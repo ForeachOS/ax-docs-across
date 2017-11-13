@@ -1,5 +1,5 @@
 {
-    "plugins": [ "theme-api" ],
+    "plugins": [ "theme-api", "asciidoc-include" ],
     "pluginsConfig": {
         "theme-api": {
             "languages": [

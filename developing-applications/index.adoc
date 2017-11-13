@@ -88,6 +88,8 @@ The `StringToDateConverter` assumes a fixed locale that can be configured (defau
 
 WARNING: If you manage the `ConversionService` outside of the `AcrossContext` the default `StringToDateConverter` will not be registered either.
 
+{% include "chap-across-development-mode.adoc" %}
+
 include::chap-across-development-mode.adoc[]
 
 // TODO mention somewhere the default beans and link to it
