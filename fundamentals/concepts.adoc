@@ -2,6 +2,7 @@
 At the heart of Across are a couple of concepts you should understand.  The terms related tot these concepts are used
 throughout all Across documentation, consider them part of the Across http://en.wikipedia.org/wiki/Domain-specific_language[DSL].
 
+[#application-context-module]
 === Application/Context/Module
 
 ==== Across application
@@ -46,6 +47,7 @@ An Across application is usually made up of multiple Across modules.
 Most often a single Across module corresponds with a single JAR file, but this is in no way an actual requirement.
 Every Across module has a unique name, and a single <<creating-an-acrossmodule,module descriptor>> that describes the basic configuration of the module.
 
+[#module-dependencies]
 === Module dependencies
 Modules can depend on other modules.
 If module B depends on module A, B states explicitly that it wishes to make use of the functionality that A will provide.
@@ -63,6 +65,7 @@ It is used throughout an Across application and expected to be very reliable: if
 This ordering is often used by modules to allow other modules to build on top initial configuration that has been done.
 Events for example are also handled in order: if module B depends on A, A will handle an event before an event handler in B is called.
 
+[#bootstrapping]
 === Bootstrapping
 The Across bootstrap is the actual starting of the application.
 During the bootstrapping phase the entire Spring `ApplicationContext` hierarchy of an application is created.
@@ -75,6 +78,7 @@ An `AcrossContext` is only successfully bootstrapped if all modules have bootstr
 
 If an Across context is being shutdown, first the modules are stopped in reverse order before the actual Across context is closed.
 
+[#exposing-beans]
 === Exposing beans
 Exposing beans or components is making them available for other modules.
 
@@ -96,12 +100,14 @@ As much as possible, dependencies should be explicit and one way only.
 The use of refresh is best to be kept to a minimum to have a clearer flow of control.
 Using events can sometimes be a better alternative.
 
+[#events]
 === Events
 An Across context creates a central event bus that every module has access to.
 Any bean can publish events on the bus, and special listeners can catch and handle the events published.
 
 Using events is a common way for modules to provide extensions points to other modules, without forcing dependencies.
 
+[#installers]
 === Installers
 An Across module can define any number of installer components.
 Installers are special beans that will only exist:
