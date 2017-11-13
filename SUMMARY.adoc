@@ -3,6 +3,7 @@
 == Overview
 
 * link:README.adoc[Introduction]
+* link:section-getting-started.adoc[Getting started]
 * link:section-whats-new.adoc[What's new in this version]
 ** link:section-whats-new.adoc#2-1-1-SNAPSHOT[2.1.1-SNAPSHOT]
 ** link:section-whats-new.adoc#2-1-0-RELEASE[2.1.0.RELEASE]
@@ -11,16 +12,12 @@
 ** link:section-whats-new.adoc#1-1-2-RELEASE[1.1.2.RELEASE]
 ** link:section-whats-new.adoc#1-1-1-RELEASE[1.1.1.RELEASE]
 * link:section-nutshell.adoc[Across in a nutshell]
-* link:section-about-across.adoc[Section About Across]
-* link:../across-core/section-across-core.adoc[]
-* link:../across-web/section-across-web.adoc[]
-* link:../across-test/section-across-test.adoc[]
-
-* link:section-appendices.adoc[]
-
-
-
-
-
-
+* link:../fundamentals/index.adoc[Fundamentals]
+* link:section-artifacts.adoc[Framework artifacts]
+* link:../developing-applications/index.adoc[Developing Across applications]
+* link:../developing-modules/index.adoc[Developing Across modules]
+* link:../developing-applications/index.adoc[Developing Across applications]
+* link:../across-web-module/index.adoc[AcrossWebModule]
+* link:../testing/index.adoc[Testing]
+* link:../appendix/index.adoc[Appendices]
 
