@@ -12,7 +12,7 @@
 ** link:section-whats-new.adoc#1-1-2-RELEASE[1.1.2.RELEASE]
 ** link:section-whats-new.adoc#1-1-1-RELEASE[1.1.1.RELEASE]
 * link:section-nutshell.adoc[Across in a nutshell]
-* link:../fundamentals/index.adoc[Fundamentals]
+* link:fundamentals/index.adoc#fundamentals[Fundamentals]
 * link:section-artifacts.adoc[Framework artifacts]
 * link:../developing-applications/index.adoc[Developing Across applications]
 * link:../developing-modules/index.adoc[Developing Across modules]
