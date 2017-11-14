@@ -1,3 +1,4 @@
+[#module-version-information]
 == Module version information
 Across modules have version information attached in the form of an `AcrossVersionInfo` property.
 This object provides information like the current version and time when it was built.

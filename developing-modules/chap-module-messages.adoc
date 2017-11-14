@@ -1,7 +1,9 @@
 [[message-source]]
+[#message-sources]
 == Message sources
 
 [[auto-detecting-message-sources]]
+[#auto-detecting-message-sourcse]
 === Auto-detecting message sources
 If a module has a message source packaged in the right location it will be auto-detected and configured.
 The following default message properties will be configured automatically if they are present on the classpath:
@@ -18,6 +20,7 @@ This is very useful during development where updates to resource bundles can be 
 Automatic configuration of message sources only happens if the module does not define a bean named *messageSource*.
 The following section details how you can manually define message sources.
 
+[#message-source-hierarchy]
 === Message source hierarchy
 Across has its own custom behavior in relation to *messageSource* beans declared in modules.
 Each module can declare a default `MessageSource` bean named *messageSource*.

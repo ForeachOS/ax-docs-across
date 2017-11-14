@@ -1,4 +1,5 @@
 [[creating-an-acrossmodule]]
+[#creating-an-across-module]
 == Creating an AcrossModule
 Creating a new Across module is done by extending `AcrossModule` and providing a valid name and description.
 An `AcrossModule` is in essence a configuration class.

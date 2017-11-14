@@ -1,6 +1,8 @@
+[#bootstrap-interaction]
 == Bootstrap interaction
 
 [[moduleconfiguration]]
+[#module-configuration]
 === @ModuleConfiguration
 Any module can provide a number of classes annotated with `@ModuleConfiguration`.
 These classes are just like classes annotated with `@Configuration`, except they will not be added to the `ApplicationContext` of the current module, but to the ones of the modules specified in the annotation attributes.
@@ -31,10 +33,12 @@ WARNING: When not specifying any module on a `@ModuleConfiguration`, the configu
 By default the sub-packages *config* and *extensions* of an `AcrossModule` will be scanned to detect classes annotated with `@ModuleConfiguration`.
 A module can configure these packages by overriding the `getModuleConfigurationScanPackages()` method.
 
+[#subscribe-to-events]
 === Subscribe to events
 A module can interact with the configuration of other modules by subscribing to one of the <<bootstrap-events,bootstrap events>>.
 This can only be done *during* bootstrap.
 
+[#customizing-module-descriptor]
 === Customizing your module descriptor
 A third approach for customizing module configuration is implementing `prepareForBootstrap()` on you `AcrossModule` module descriptor.
 This method is called before the actual bootstrapping of modules happens, which is the last point in time when the configuration of all modules can be modified.

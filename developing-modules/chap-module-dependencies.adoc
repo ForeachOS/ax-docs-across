@@ -1,7 +1,9 @@
+[#module-dependencies]
 == Module dependencies
 
 There are several ways to influence the beans that are being bootstrapped with a module, by passing information from the configuration to the actual module ApplicationContext.
 
+[#across-depends]
 === @AcrossDepends
 
 [discrete]
@@ -15,5 +17,6 @@ optional modules: the component will only be created if at least one of the opti
 ==== Using @AcrossDepends on component classes
 expression will be evaluated against the module context - as usual - beans from earlier modules will be available
 
+[#conditionals]
 === Conditionals
 Any Spring conditional can be used to determine of a bean should be created.

@@ -1,4 +1,5 @@
 [[developing-across-modules]]
+[#developing-across-modules]
 = Developing Across modules
 include::chap-module-create-a-module.adoc[]
 
