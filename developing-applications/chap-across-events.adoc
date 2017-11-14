@@ -1,4 +1,5 @@
 [[events]]
+[#events]
 == Events
 Every Across context creates an `AcrossEventPublisher` bean.
 This bean can be wired in any module to dispatch events.

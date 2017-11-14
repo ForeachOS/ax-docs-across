@@ -22,7 +22,7 @@ If you want to use `@AcrossApplication` however, you should use *across-web* ins
         </dependency>
 	</dependencies>
 ----
-
+[#creating-across-application]
 == Creating an Across application
 
 Usually an Across application is created for a web scenario and `@AcrossApplication`.
@@ -55,6 +55,7 @@ context.bootstrap();
 context.shutdown();
 ----
 
+[#module-configuration]
 == Module configuration
 Apart from module settings, an application can also define a number of `<<moduleconfiguration,@ModuleConfiguration>>` classes to be added to the bootstrapping modules.
 When using the `@EnableAcrossContext`, the packages to scan for these can be set using attributes, but by default the sub-packages *config* and *extensions* of the importing class will be used.
@@ -73,6 +74,7 @@ include::chap-across-refreshing.adoc[]
 
 include::chap-across-ordering-beans.adoc[]
 
+[#conversion-service]
 == ConversionService
 An AcrossContext requires a valid `ConversionService` bean named *conversionService* to be present.
 If there is none, a `DefaultFormattingConversionService` will be created and exposed.

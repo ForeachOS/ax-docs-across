@@ -1,4 +1,5 @@
 [[across-datasource]]
+[#across-datasource]
 == Across datasource
 An Across context supports the configuration of a `DataSource` instance.
 If there is a primary `DataSource` or only a single `DataSource` bean available, Across will automatically use that one.

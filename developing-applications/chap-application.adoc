@@ -1,4 +1,5 @@
 [[across-application]]
+[#across-application]
 === @AcrossApplication
 `@AcrossApplication` annotation can be used as an alternative for `@EnableAcrossContext` and `@SpringBootApplication` when defining an application.
 In addition to default context configuration options, it also adds selected <<spring-boot-autoconfigure,Spring Boot autoconfiguration classes>> and enables <<dynamic-across-modules,dynamic modules>>.

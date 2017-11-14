@@ -1,4 +1,5 @@
 [[enableacrosscontext]]
+[#enable-across-context]
 === @EnableAcrossContext
 Usually your application will consist of a single `AcrossContext` that is configured in the main Spring `ApplicationContext`.
 You can enable the automatic creation of an `AcrossContext` by putting the `@EnableAcrossContext` on any `@Configuration` class.

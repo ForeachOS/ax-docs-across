@@ -1,4 +1,5 @@
 [[development-mode]]
+[#development-mode]
 == Development mode
 The AcrossContext can have development mode enabled through the *developmentMode* property.
 Modules can use development mode to configure different services (or services differently).
