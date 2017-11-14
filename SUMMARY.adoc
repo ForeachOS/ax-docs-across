@@ -18,7 +18,7 @@
 .. link:fundamentals/index.adoc#fundamentals-ax-framework[Across Framework]
 .. link:fundamentals/index.adoc#fundamentals-ax-platform[Across Platform]
 .. link:fundamentals/index.adoc#fundamentals-ax-standard-modules[Across Standard Modules]
-.. link:fundamentals/concepts.adoc[Core Concepts]
+.. link:fundamentals/index.adoc#concepts[Core Concepts]
 ... link:fundamentals/concepts.adoc#application-context-module[Application/Context/Module]
 ... link:fundamentals/concepts.adoc#module-dependencies[Module dependencies]
 ... link:fundamentals/concepts.adoc#bootstrapping[Bootstrapping]

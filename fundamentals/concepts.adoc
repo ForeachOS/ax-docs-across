@@ -1,3 +1,4 @@
+[#concepts]
 == Core concepts
 At the heart of Across are a couple of concepts you should understand.  The terms related tot these concepts are used
 throughout all Across documentation, consider them part of the Across http://en.wikipedia.org/wiki/Domain-specific_language[DSL].
