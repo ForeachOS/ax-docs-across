@@ -1,3 +1,4 @@
+[#development-mode-support]
 == Development mode support
 {module-name} supports development mode retrieval of physical resources.
 If the conventions for static resources and Thymeleaf templates were followed, these will be fetched automatically from their physical location.

@@ -1,3 +1,4 @@
+[#spring-mvc-configuration]
 == Spring MVC configuration
 AcrossWebModule sets up Spring MVC configuration including a single `DispatcherServlet` and default `HandlerMapping` beans.
 In addition to the standard Spring MVC configuration, AcrossWebModule configures extra:

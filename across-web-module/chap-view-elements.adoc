@@ -1,8 +1,10 @@
 [[view-elements]]
+[#viewelement-infrastructure]
 == ViewElement infrastructure
 AcrossWebModule provides a programmatic model for rendering UI components.
 A single UI component in this context is called a `ViewElement`.
 
+[#viewelement]
 === ViewElement
 `ViewElement` implementations usually correspond to one or more HTML nodes.
 {module-name} comes with a default set `ViewElement` implementation for rendering Bootstrap markup elements.
@@ -19,6 +21,7 @@ You can render a `ViewElement` available on the model anywhere in a Thymeleaf te
 WARNING: You usually do not want to cache and reuse `ViewElement` components.
 It is better to cache `ViewElementBuilder`.
 
+[#default-properties]
 === Default properties
 In its most simple form, a `ViewElement` has the following properties:
 
@@ -60,6 +63,7 @@ It is usually best to pass the required values as attributes on the `ViewElement
 
 You can use the `TemplateViewElement` if you only want to render a custom template and optionally pass it some attributes.
 
+[#viewelementbuilder]
 === ViewElementBuilder
 A `ViewElementBuilder` is a simple API for creating a `ViewElement` instance based on a configuration and a given `ViewElementBuilderContext`.
 
@@ -83,6 +87,7 @@ The `ViewElementBuilderContext` provides a `buildLink(String)` method that will 
 By default the request-bound `WebAppLinkBuilder` is already set.
 
 [[dev-mode-rendering]]
+[#development-mode-rendering]
 === Development mode rendering
 If development mode is active, all `ViewElement` names will be rendered in the markup.
 Start and end of the element rendering will be marked by a HTML comment.

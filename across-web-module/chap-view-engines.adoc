@@ -1,5 +1,7 @@
+[#view-engines]
 == View engines
 
+[#thymeleaf-support]
 === Thymeleaf support
 AcrossWebModule automatically activates http://www.thymeleaf.org[Thymeleaf] support for server-side templating.
 Thymeleaf is a powerful templating language that allows its templates to be embedded inside the JAR files (something that is more cumbersome with regular JSP).
@@ -10,6 +12,7 @@ The Thymeleaf templates embedded in modules are expected to be located in the *v
 The supported file extension is **.html*.
 See the chapter on <<static-resources-conventions,static resource conventions>> for an example project layout.
 
+[#jsp-support]
 === JSP support
 Support for regular JSP/JSTL can be enabled by setting the property *acrossWebModule.views.jsp.enabled* to `true`.
 

@@ -1,9 +1,11 @@
 [[web-templates]]
+[#layout-templates]
 == Layout templates
 {module-name} provides support for simple layout processing.
 A controller method can be linked to a specific template which will determine some pre- and post-processing that might be done.
 The base infrastructure is provided by `WebTemplateProcessor`, `WebTemplateInterceptor` and `WebTemplateRegistry`.
 
+[#creating-a-template]
 === Creating a template
 The easiest way to create a new template is to create a bean extending `LayoutTemplateProcessorAdapterBean`.
 Your implementation should get a unique name and a path to the template view file.
@@ -64,6 +66,7 @@ The actual template view can then dispatch to the original view (or parts of it)
 After the initial `registerWebResources(WebResourceRegistry)` has been executed by the template component, an `BuildTemplateWebResourcesEvent` with the template name will be published.
 This allows event listeners to add additional resources for a specific template.
 
+[#linking-template-to-controller]
 === Linking a template to a controller
 Any controller method can specify the template to use by setting the `@Template` annotation with the unique template name.
 The `@Template` annotation can be set on the `@Controller` itself (in which case it will apply to all mapping methods) or on mapping method directly.
@@ -74,12 +77,14 @@ Special Spring MVC return options (like methods annotated with `@ResponseBody`) 
 
 WARNING: Methods in a `@Controller` do not take any `@Template` annotations of their `@ControllerAdvice` beans into account and vice versa.
 
+[#linking-template-to-exception-handler]
 === Linking a template to an exception handler
 Just like `@Template` can be used on any `@RequestMapping` method, it can also be used on a `@ExceptionHandler` method.
 Since an exception handler uses its own template, a template might be executed twice if an exception occurs.
 Initially a template might have been executed for the controller method.
 In case of an exception, that template will be cleared and a new `WebResourceRegistry` will be created for the `@ExceptionHandler` along with the optional template.
 
+[#registering-default-template]
 === Registering the default template
 If no explicit template is specified, the default template will be used it there is one.
 The default template must be set on the `WebTemplateRegistry`.

@@ -1,5 +1,7 @@
+[#general-information]
 == General information
 
+[#about]
 === About
 AcrossWebModule is the only module included in the Across framework project.
 It is the base module added to pretty much any Across web application.
@@ -20,6 +22,7 @@ AcrossWebModule is not a Web CMS, it only supplies some common infrastructure ge
 
 The across-web artifact also contains `<<across-application,@AcrossApplication>>`, a replacement for `@SpringBootApplication` when working with an AcrossContext.
 
+[#artifact]
 === Artifact
 [source,xml,indent=0]
 [subs="verbatim,attributes"]
@@ -34,6 +37,7 @@ The across-web artifact also contains `<<across-application,@AcrossApplication>>
 ----
 
 [[across-web-module-settings]]
+[#module-settings]
 === Module settings
 
 All properties start with the *acrossWebModule.* prefix.

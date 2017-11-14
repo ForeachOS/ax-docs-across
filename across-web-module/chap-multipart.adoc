@@ -1,4 +1,5 @@
 [[multipart-config]]
+[#multipart-support]
 == Multipart support
 By default {module-name} will attempt to automatically configure a `MultipartFilter` to support multipart form data.
 When correctly configured, this will enable multipart support for all servlets and web requests.

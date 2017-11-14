@@ -1,9 +1,11 @@
 [[static-resources]]
+[#static-resources]
 == Static resources
 {module-name} automatically enables serving of static resources bundled with modules.
 With the default settings static resources will be configured with <<resource-url-versioning,versioned urls>> and <<client-side-caching,client-side caching>>.
 
 [[static-resources-conventions]]
+[#conventions]
 === Conventions
 The default resources are served from the */views* folder on the classpath.
 By default {module-name} will serve resources from _/views/static_.
@@ -31,6 +33,7 @@ src/main/resources
 The relative path under which the static resources are available is determined by the *acrossWebModule.resources.path* property.
 
 [[client-side-caching]]
+[#client-side-caching]
 === Client-side caching
 By default static resources will be cached on the client-side for a period of 1 year.
 Disabling client-side caching is done with the *acrossWebModule.resources.caching.enabled* property.
@@ -41,6 +44,7 @@ Setting the value to *0* with caching enabled will sent *no-cache* headers.
 This is also the default if development mode is active.
 
 [[resource-url-versioning]]
+[#resource-url-versioning]
 === Resource URL versioning
 By default {module-name} enables link:http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-static-resources[Spring versioning of static resources].
 This will generate versioned URLs, create a `ResourceUrlProvider` bean and add a `ResourceUrlEncodingFilter` and `ResourceUrlProviderExposingInterceptor` to the request handlers.
@@ -91,6 +95,7 @@ NOTE: Because of limitations of the `CssLinkTransformer` in combination with a f
 If you absolutely need this in your application, you will have to disable the automatic resource versioning and configure it yourself.
 
 [[WebResourceRegistry]]
+[#web-resource-registry]
 === WebResourceRegistry
 {module-name} allows for programatically registering web resources through the use of a `WebResourceRegistry`.
 A new `WebResourceRegistry` is attached to every request and can be accessed as a request attribute or a handler method parameter.

@@ -1,4 +1,5 @@
 [[localized-text]]
+[#localized-text]
 == Localizing text
 Text message codes can be translated into text messages via the `MessageSource`.
 AcrossWebModule also provides a utility bean that wraps the `MessageSource` for optional resolving of message codes.

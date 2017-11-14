@@ -1,6 +1,8 @@
+[#generating-urls]
 == Generating URLs
 
 [[web-app-path-resolver]]
+[#web-app-path-resolver-and-path-prefixing]
 === WebAppPathResolver and path prefixing
 {module-name} introduces the `<<prefix-request-mappings,PrefixingRequestMappingHandlerMapping>>`.
 This allows `@RequestMapping` methods to be prefixed at runtime, based on configuration.
@@ -61,6 +63,7 @@ The examples assume that _res_ is the configured *acrossWebModule.resources.path
 ==== Registering your own prefixing handler mapping and resolver
 See `PrefixingHandlerMappingConfiguration` and `PrefixingPathContext`.
 
+[#web-app-link-builder]
 === WebAppLinkBuilder
 The `WebAppPathResolver` will only replace the relative path prefix, but to generate a valid application link you would still need to prepend the possible context path as wel as encode the URL.
 If you want to generate a complete link from code, you can use the `WebAppLinkBuilder` bean.
