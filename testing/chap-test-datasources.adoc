@@ -1,4 +1,5 @@
 [[test-datasources]]
+[#test-datasources]
 == Test datasources
 
 When using the Across Test <<test-annotations,annotations>> or <<test-builders,builders>>, default support for test datasources is activated.

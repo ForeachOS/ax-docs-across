@@ -1,3 +1,4 @@
+[#testing dynamic modules]
 == Testing dynamic modules
 
 Testing dynamic modules outside of a full `@AcrossApplication` test can be done by adding one or more `AcrossDynamicModulesConfigurer` instances to the `AcrossContext` configuration.
