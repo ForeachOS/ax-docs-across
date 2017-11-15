@@ -1,3 +1,4 @@
+[#mock-mvc-integration]
 == Mock MVC integration
 By default using either the <<test-builders,test builders>> or <<annotation-across-test-configuration,@AcrossTestConfiguration>> will provide you with a singleton `MockMvc` instance that is configured with the bootstrapped `AcrossContext`.
 You can also manually add this singleton configuration by importing the `MockMvcConfiguration` in your test application context, see the example in the <<boot-integration-test-mockmvc,Spring Boot section>>.

@@ -1,9 +1,11 @@
 [[test-annotations]]
+[#annotations]
 == Annotations
 
 The Across Test library also provides a set of Across-specific annotations that extend the default Spring Testing annotations (eg `@ContextConfiguration`) to support `AcrossContext` setups.
 
 [[annotation-across-test-configuration]]
+[#across-test-configuration]
 === @AcrossTestConfiguration
 Class-level annotation to be used as an alternative to `<<enableacrosscontext,@EnableAcrossContext>>`.
 Like `@EnableAcrossContext` this annotation will configure and bootstrap an `AcrossContext` but also add support for:
@@ -39,6 +41,7 @@ public class TestSample
 ----
 
 [[acrosswebappconfiguration]]
+[#across-web-app-configuration]
 === @AcrossWebAppConfiguration
 Class-level annotation that sets up a `@WebAppConfiguration` test that uses a `<<mock-across-servlet-context,MockAcrossServletContext>>` for initialization.
 `@AcrossWebAppConfiguration` contains a `@ContextConfiguration` annotation, unless additional annotations are specified, it will load static innter `@Configuration` classes of the annotated test class.

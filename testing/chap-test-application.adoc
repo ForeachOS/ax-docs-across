@@ -1,9 +1,11 @@
+[#across-application-testing]
 == Across application testing
 
 It is possible to test your `@AcrossApplication` with Spring Boot testing support.
 Using the `@SpringBootTest` in your tests is necessary for default _application.properties_ loading and YAML support.
 Refer to the Spring Boot reference documentation for more information on Spring Boot testing facilities.
  
+[#web-integration-test]
 === @WebIntegrationTest
 A full-stack web integration test (eg. with an embedded Tomcat) does not require any special configuration.
 
@@ -38,6 +40,7 @@ public class TestSpringBootWebIntegration
 ----
 
 [[boot-integration-test-mockmvc]]
+[#integration-test-with-mockmvc-support]
 === Integration test with MockMvc support
 It is also possible to start your entire `@AcrossApplication` without an embedded servlet container.
 However if you want to have support for `MockMvc` instantiated with dynamically registered filters, you must manually configure the application loader to use a `<<mock-across-servlet-context,MockAcrossServletContext>>`.
