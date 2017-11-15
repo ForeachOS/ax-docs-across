@@ -112,5 +112,22 @@
 .. link:across-web-module/index.adoc#published-events[Published events]
 
 * link:testing/index.adoc[Testing]
+.. link:testing/index.adoc#base-test-classes[Base test classes]
+.. link:testing/index.adoc#test-context-builders[Test context builders]
+.. link:testing/index.adoc#annotations[Annotations]
+... link:testing/index.adoc#across-test-configuration[@AcrossTestConfiguration]
+... link:testing/index.adoc#across-web-app-configuration[@AcrossWebAppConfiguration]
+.. link:testing/index.adoc#mcok-mvc-integration[Mock MVC integration]
+.. link:testing/index.adoc#mock-across-servlet-context[MockAcrossServletContext]
+.. link:testing/index.adoc#across-application-testing[Across application testing]
+... link:testing/index.adoc#web-integration-test[@WebIntegrationTest]
+... link:testing/index.adoc#integration-test-mockmvc-support[Integration test with MockMvc support]
+.. link:testing/index.adoc#testing-dynamic-modules[Testing dynamic modules]
+.. link:testing/index.adoc#test-datasources[test datasources]
+
 * link:appendix/index.adoc[Appendices]
+.. link:appendix/index.adoc#troubleshooting[Troubleshooting]
+... link:appendix/index.adoc#module-not-found[Module not found]
+.. link:appendix/index.adoc#across-core-events[Across core events]
+.. link:appendix/index.adoc#test-configuration-classes[Test configuration classes]
 
