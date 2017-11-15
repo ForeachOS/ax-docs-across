@@ -3,7 +3,7 @@
 == Message sources
 
 [[auto-detecting-message-sources]]
-[#auto-detecting-message-sourcse]
+[#auto-detecting-message-sources]
 === Auto-detecting message sources
 If a module has a message source packaged in the right location it will be auto-detected and configured.
 The following default message properties will be configured automatically if they are present on the classpath:

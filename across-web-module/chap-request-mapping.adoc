@@ -1,5 +1,5 @@
 [[extended-request-mapping]]
-[#partial-rendering]
+[#request-mapping-extensions]
 == @RequestMapping extensions
 AcrossWebModule adds several extensions to the out-of-the-box Spring MVC functionality.
 
