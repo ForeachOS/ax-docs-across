@@ -16,8 +16,8 @@
         }
     },
     "variables": {
-        "across-version": "2.1.1-SNAPSHOT",
-        "across-url": "http://across.foreach.be"
+        "across_version": "2.1.1-SNAPSHOT",
+        "across_url": "http://across.foreach.be"
     }
     
 }

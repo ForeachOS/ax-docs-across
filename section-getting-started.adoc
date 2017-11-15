@@ -8,4 +8,4 @@ The reference documentation is split up into several parts:
 * <<across-web,AcrossWebModule>> gives an overview of the web specific additions that Across core brings
 * <<across-test,Testing>> explains how developers can integration test their modules or applications
 
-Through the {{ book.across-url }}[Across website] you can find a lot more information like frequently asked questions, tutorials and available modules (with their respective documentation).
+Through the {{ book.across_url }} [Across website] you can find a lot more information like frequently asked questions, tutorials and available modules (with their respective documentation).
