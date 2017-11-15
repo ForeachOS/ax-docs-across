@@ -25,7 +25,7 @@
         "commons_fileupload_url": "http://commons.apache.org/proper/commons-fileupload/",
         "platform_bom_url": "https://foreach.atlassian.net/wiki/display/AX/Across+Platform"
         "admin_web_module_url": "https://foreach.atlassian.net/wiki/display/AX/AdminWebModule",
-        "debug_web_module_url": "https://foreach.atlassian.net/wiki/display/AX/DebugWebModule"
+        "debug_web_module_url": "https://foreach.atlassian.net/wiki/display/AX/DebugWebModule",
         "bootstrap_ui_module_url": "https://foreach.atlassian.net/wiki/display/AX/BootstrapUiModule"
     }
     
