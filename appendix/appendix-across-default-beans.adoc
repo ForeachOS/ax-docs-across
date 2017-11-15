@@ -1,3 +1,4 @@
+[#across-core-components]
 == Across core components
 The following is a listing of the default components (beans) that are created by the Across context.
 These beans are always available and accessible in every module.

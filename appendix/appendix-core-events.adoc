@@ -1,3 +1,4 @@
+[#across-core-events]
 == Across core events
 
 The following is a listing of all events published by Across core when starting the application.
