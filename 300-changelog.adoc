@@ -1,0 +1,5 @@
+= Temporary changelog for Across 3.0.0
+
+* exposed bean definitions are now copied to the module context directly instead of shared via the parent ApplicationContext
+* META-INF/across.configuration where you can specify Exposed classes, or AutoConfigurationDisabled, AutoConfigurationEnabled
+  * the latter allows specifying a different class to be executed instead of (using :) or a module name where the class should be inserted instead (using ->)
