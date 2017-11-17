@@ -1,5 +1,26 @@
 = Temporary changelog for Across 3.0.0
 
-* exposed bean definitions are now copied to the module context directly instead of shared via the parent ApplicationContext
-* META-INF/across.configuration where you can specify Exposed classes, or AutoConfigurationDisabled, AutoConfigurationEnabled
-  * the latter allows specifying a different class to be executed instead of (using :) or a module name where the class should be inserted instead (using ->)
+* exposed bean definitions are now copied to the module context directly instead of shared via the parent `ApplicationContext`
+* *META-INF/across.configuration* where you can specify Exposed classes, or AutoConfigurationDisabled, AutoConfigurationEnabled
+  * the latter allows specifying a different class to be executed instead of (using *:*) or a module name where the class should be inserted instead (using *->*)
+  
+  
+== AcrossWebModule
+* `RestTemplateBuilder` is created and exposed
+* Jackson `ObjectMapper` and `Jackson2ObjectMapperBuilder` are created and exposed
+* if Gson on the classpath: `Gson` object created and exposed
+
+Extension configuration that should be added to AcrossWebModule:
+
+* `RestTemplateCustomizer`
+* `HttpMessageConverter`
+* `Jackson2ObjectMapperBuilderCustomizer`
+
+== Unsupported auto-configuration classes
+The following is the list of auto-configuration classes that are never automatically enabled.
+They are not added to the application configuration and none of the standard modules include them.
+
+In many cases, these can still be added directly using an `@Import` statement inside an application or module.
+
+* `org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration`
+
