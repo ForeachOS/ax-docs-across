@@ -22,5 +22,15 @@ They are not added to the application configuration and none of the standard mod
 
 In many cases, these can still be added directly using an `@Import` statement inside an application or module.
 
-* `org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration`
+`org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration`::
+Across always packages Liquibase but uses installers instead of a default changeset xml.
+Looks like the auto-configuration breaks in this case.
+
+`org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration`:: 
+If you want method validation in a module, it should be ok to manually add this auto-configuration.
+Adding it on application level will only impact the application infrastructure.
+
+If you want to use a shared `Validator` bean you should consider exposing it.
+
+
 
