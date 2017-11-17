@@ -13,7 +13,14 @@
                     "name": "Go"
                 }
             ]
-        }
+        },
+        "versions": {
+            "type": "branches"
+        },
+        "edit-link": {
+            "base": "https://github.com/ForeachOS/ax-docs-across/edit/changes/1/",
+            "label": "Edit This Page"
+        }   
     },
     "variables": {
         "across_version": "2.1.1-SNAPSHOT",
@@ -27,14 +34,7 @@
         "admin_web_module_url": "https://foreach.atlassian.net/wiki/display/AX/AdminWebModule",
         "debug_web_module_url": "https://foreach.atlassian.net/wiki/display/AX/DebugWebModule",
         "bootstrap_ui_module_url": "https://foreach.atlassian.net/wiki/display/AX/BootstrapUiModule"
-    },
-    "versions": {
-        "type": "branches"
-    },
-    "edit-link": {
-        "base": "https://github.com/ForeachOS/ax-docs-across/edit/changes/1/",
-        "label": "Edit This Page"
-    }    
+    }
 }
 
 
