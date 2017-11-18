@@ -29,8 +29,7 @@ Looks like the auto-configuration breaks in this case.
 `org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration`:: 
 If you want method validation in a module, it should be ok to manually add this auto-configuration.
 Adding it on application level will only impact the application infrastructure.
-
-If you want to use a shared `Validator` bean you should consider exposing it.
+If you want to use a single shared `Validator` bean you should consider exposing it in the module where it first gets created (or also created on application level).
 
 
 
