@@ -1,7 +1,7 @@
 [[menu-building]]
 [#building-menus]
 == Building menus
-{module-name} provides some infrastructure to build a tree-like menu.
+AcrossWebModule provides some infrastructure to build a tree-like menu.
 The output class is a `Menu` instance that is created by the `MenuFactory` service.
 
 When building a menu, a `BuildMenuEvent` is published with the menu instance, the name of the menu will be the name of the event.
