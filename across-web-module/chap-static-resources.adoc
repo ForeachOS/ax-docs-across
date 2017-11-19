@@ -2,13 +2,13 @@
 [#static-resources]
 == Static resources
 {module-name} automatically enables serving of static resources bundled with modules.
-With the default settings static resources will be configured with <<resource-url-versioning,versioned urls>> and <<client-side-caching,client-side caching>>.
+With the default settings static resources will be configured with link:index.adoc#resource-url-versioning[versioned urls] and link:index.adoc#client-side-caching[client-side caching].
 
 [[static-resources-conventions]]
 [#conventions]
 === Conventions
 The default resources are served from the */views* folder on the classpath.
-By default {module-name} will serve resources from _/views/static_.
+By default AcrossWebModule will serve resources from _/views/static_.
 Additional subfolders can be configured with the *acrossWebModule.resources.folders* property.
 
 By convention (and for best development mode support) module specific resources should be located in a subfolder with the `resourcesKey` of the module.
@@ -46,7 +46,7 @@ This is also the default if development mode is active.
 [[resource-url-versioning]]
 [#resource-url-versioning]
 === Resource URL versioning
-By default {module-name} enables link:http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-static-resources[Spring versioning of static resources].
+By default AcrossWebModule enables link:http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-static-resources[Spring versioning of static resources].
 This will generate versioned URLs, create a `ResourceUrlProvider` bean and add a `ResourceUrlEncodingFilter` and `ResourceUrlProviderExposingInterceptor` to the request handlers.
 
 Using versioned resource URLs is transparent:
@@ -60,20 +60,20 @@ WARNING: If versioning is disabled, the `ResourceUrlProvider` will not be availa
 Modules using accessing the `ResourceUrlProvider` directly should built-in support for this.
 
 ==== Fixed version strategy
-{module-name} supports automatic configuration of resource versioning using a single fixed version.
+AcrossWebModule supports automatic configuration of resource versioning using a single fixed version.
 When enabled this means that resources of the form */across/resources/static/mymodule/mymodule.css* will get rewritten to */across/resources/static/VERSION/mymodule/mymodule.css*.
 
 The fixed version used is determined as follows:
 
 . *acrossWebModule.resources.versioning.version* property
 . *build.number* property
-. version of the {module-name}
+. version of the AcrossWebModule
 
 Using the fixed version strategy works well for relative includes in both CSS and JS files, avoiding the need to rewrite URLs inside those files.
 
 ==== Customizing the version strategy
 It is possible to keep configuration of the default resources active but only change the version strategy used.
-This can be done by injecting your own `VersionResourceResolver` bean named *versionResourceResolver* the {module-name} context.
+This can be done by injecting your own `VersionResourceResolver` bean named *versionResourceResolver* the AcrossWebModule context.
 
 .Example providing custom version strategy
 [source,java,indent=0]
@@ -91,13 +91,13 @@ public static class CustomVersionResourceResolver
 }
 ----
 
-NOTE: Because of limitations of the `CssLinkTransformer` in combination with a fixed version strategy, {module-name} does not rewrite links inside css files.
+NOTE: Because of limitations of the `CssLinkTransformer` in combination with a fixed version strategy, AcrossWebModule does not rewrite links inside css files.
 If you absolutely need this in your application, you will have to disable the automatic resource versioning and configure it yourself.
 
 [[WebResourceRegistry]]
 [#web-resource-registry]
 === WebResourceRegistry
-{module-name} allows for programatically registering web resources through the use of a `WebResourceRegistry`.
+AcrossWebModule allows for programatically registering web resources through the use of a `WebResourceRegistry`.
 A new `WebResourceRegistry` is attached to every request and can be accessed as a request attribute or a handler method parameter.
 
 Resources can be added in a group (eg: css, javascript) and with a specific location (eg: relative, views, external).
