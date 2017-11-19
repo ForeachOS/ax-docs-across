@@ -7,7 +7,7 @@ A single UI component in this context is called a `ViewElement`.
 [#viewelement]
 === ViewElement
 `ViewElement` implementations usually correspond to one or more HTML nodes.
-{module-name} comes with a default set `ViewElement` implementation for rendering Bootstrap markup elements.
+AcrossWebModule comes with a default set `ViewElement` implementation for rendering Bootstrap markup elements.
 This is done through a collection of Thymeleaf processors for rendering `ViewElement` components.
 
 You can render a `ViewElement` available on the model anywhere in a Thymeleaf template by using the _across:view_ tag.
@@ -33,7 +33,7 @@ In its most simple form, a `ViewElement` has the following properties:
 This name can be used to retrieve the element from a `ContainerViewElement`.
 Use `ContainerViewElementUtils` to query and modify containers.
 
-See <<development-mode,development mode rendering>> for more information to retrieve generated view names.
+See link:../developing-applications/index.adoc#development-mode[development mode rendering] for more information to retrieve generated view names.
 
 |*elementType*
 |A *required* type identification for the element.
@@ -70,7 +70,7 @@ A `ViewElementBuilder` is a simple API for creating a `ViewElement` instance bas
 The `ViewElementBuilderContext` represents the runtime context when creating the element.
 It is a way to pass attributes required for building the elements, and it also gives access to default request related beans like the `WebResourceRegistry` or the `WebAppLinkBuilder`.
 
-{module-name} comes with a number of default `ViewElementBuilder` implementations for both simple elements and more complex components.
+AcrossWebModule comes with a number of default `ViewElementBuilder` implementations for both simple elements and more complex components.
 
 ==== Global ViewElementBuilderContext
 Most `ViewElementBuilder` implementations extend `GlobalContextSupportingViewElementBuilder`.

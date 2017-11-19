@@ -20,7 +20,7 @@ On top of that, the out-of-the-box Spring MVC functionality is extended in sever
 
 AcrossWebModule is not a Web CMS, it only supplies some common infrastructure generally useful when building web applications.
 
-The across-web artifact also contains `link:./developing-applications/index.adoc#across-application[@AcrossApplication]`, a replacement for `@SpringBootApplication` when working with an AcrossContext.
+The across-web artifact also contains link:../developing-applications/index.adoc#across-application[`@AcrossApplication`], a replacement for `@SpringBootApplication` when working with an AcrossContext.
 
 [#artifact]
 === Artifact
