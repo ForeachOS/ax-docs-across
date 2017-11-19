@@ -6,11 +6,11 @@
 AcrossWebModule automatically activates http://www.thymeleaf.org[Thymeleaf] support for server-side templating.
 Thymeleaf is a powerful templating language that allows its templates to be embedded inside the JAR files (something that is more cumbersome with regular JSP).
 
-AcrossWebModule itself - as well as many other modules - use Thymeleaf extensively and add additional features for it (like <<thymeleaf-dialect,custom dialects>>).
+AcrossWebModule itself - as well as many other modules - use Thymeleaf extensively and add additional features for it (like link:index.adoc#thymeleaf-dialect[custom dialects]).
 
 The Thymeleaf templates embedded in modules are expected to be located in the *views/th/__moduleResourceKey__* resources folder.
 The supported file extension is **.html*.
-See the chapter on <<static-resources-conventions,static resource conventions>> for an example project layout.
+See the chapter on link:index.adoc#conventions[static resource conventions] for an example project layout.
 
 [#jsp-support]
 === JSP support
