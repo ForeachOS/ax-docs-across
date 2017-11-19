@@ -1,7 +1,7 @@
 [[web-templates]]
 [#layout-templates]
 == Layout templates
-{module-name} provides support for simple layout processing.
+AcrossWebModule provides support for simple layout processing.
 A controller method can be linked to a specific template which will determine some pre- and post-processing that might be done.
 The base infrastructure is provided by `WebTemplateProcessor`, `WebTemplateInterceptor` and `WebTemplateRegistry`.
 
