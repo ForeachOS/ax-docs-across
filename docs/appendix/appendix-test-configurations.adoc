@@ -5,12 +5,12 @@
 Across Test library has a number of `@Configuration` and `AcrossContextConfigurer` classes that can come in useful when setting up integration tests.
 These configurations can be found in the `com.foreach.across.test.support.config` package.
 
-Making use of these directly is only required when setting up integration tests without the Across <<test-annotations,test annotations>> or <<test-builders,builders>>.
+Making use of these directly is only required when setting up integration tests without the Across link:../testing/index.adoc#annotations[test annotations] or link:../testing/index.adoc#test-context-builders[builders].
 
 .Test configuration classes
 |===
 
-| `TestDataSourceConfigurer` | `AcrossContextConfigurer` that will configure the <<test-datasources,test datasource>> on the `AcrossContext` if no other datasource has been set.
+| `TestDataSourceConfigurer` | `AcrossContextConfigurer` that will configure the link:../testing/index.adoc#test-datasources[test datasources] on the `AcrossContext` if no other datasource has been set.
 
 | `ResetDatabaseConfigurer`
 | `AcrossContextConfigurer` that resets the datasources attached to the `AcrossContext` before it bootstraps.
