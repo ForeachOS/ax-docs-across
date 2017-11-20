@@ -29,11 +29,11 @@ This is a simple locking mechanism that can be used for distributed locks in a m
 The lock repository is also used by the installer tracking mechanism.
 
 |`AcrossDevelopmentMode`
-|Utility bean that can be used to verify if <<development-mode,development mode>> is active, and to get development locations for resources files.
+|Utility bean that can be used to verify if link:../developing-applications/index.adoc#development-mode[development mode] is active, and to get development locations for resources files.
 
 |`MessageSource`
 |The default Across `MessageSource` bean that represents the module based message source hierarchy.
-See the chapter on <<message-source,Message sources>> for more information.
+See the chapter on link:../developing-modules/index.adoc#message-sources[Message sources] for more information.
 
 |`CacheManager`
 |Exposes the `AcrossCompositeCacheManager`.
