@@ -55,7 +55,7 @@ Because of tracking and synchronization, a <<installer-datasource,datasource>> i
 NOTE: The `AcrossInstallerRepository` can be wired as a bean in installers.
 This can be helpful in migration trajectories for example to rename installers.
 
-[[installer-bootstrap-phases]]
+[#installer-bootstrap-phases]
 [discrete]
 === Bootstrap phases
 Installers are executed during a specific phase of the context bootstrap.
