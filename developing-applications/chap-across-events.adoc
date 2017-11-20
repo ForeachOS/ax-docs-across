@@ -146,6 +146,7 @@ public void handle( MyListEvent<List<Integer>> event ) {
 
 [discrete]
 [[bootstrap-events]]
+[#dev-appl-bootstrap-events]
 === Bootstrap events
 The following bootstrap events are being published by the AcrossContext:
 
