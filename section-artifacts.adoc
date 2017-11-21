@@ -6,7 +6,7 @@ across-web:: Provides an `AcrossModule` that supports configuration of a web app
 across-test:: Supports integration testing of your Across modules, both web and non-web related.  Builds on top of `spring-test`.
 standard-module-bom:: BOM pom for creating an Across Standard Module or any module wishing to adhere to the standard module conventions.
 
-There is also a separate {platform-bom-url}[platform-bom] project that provides a bill-of-material for applications built on Across and the Across Standard Modules.
+There is also a separate {{book.platform_bom_url}}[platform-bom] project that provides a bill-of-material for applications built on Across and the Across Standard Modules.
 
 .Common dependencies
 Across is directly tied to Spring framework and all artifacts come with a set of curated dependencies.
@@ -14,7 +14,7 @@ Across itself uses the http://platform.spring.io/platform/[Spring IO platform] a
 
 .Artifact repositories
 All Across related artifacts - both release and snapshot versions - can be fetched from the Foreach Nexus repository.
-This also includes the set of <<across-standard-modules>>.
+This also includes the set of link:../fundamentals/index.adoc#fundamentals-ax-standard-modules[across standard modules].
 
 [source,xml,indent=0]
 [subs="verbatim,quotes,attributes"]
