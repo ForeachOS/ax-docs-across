@@ -2,7 +2,7 @@
 [#across-application]
 === @AcrossApplication
 `@AcrossApplication` annotation can be used as an alternative for `@EnableAcrossContext` and `@SpringBootApplication` when defining an application.
-In addition to default context configuration options, it also adds selected <<spring-boot-autoconfigure,Spring Boot autoconfiguration classes>> and enables <<dynamic-across-modules,dynamic modules>>.
+In addition to default context configuration options, it also adds selected <<spring-boot-autoconfigure,Spring Boot autoconfiguration classes>> and enables link:index.adoc#dynamic-across-modules[dynamic modules].
 
 Using `@AcrossApplication` is probably the easiest way to setup a simple (Spring Boot based) application backed by an AcrossContext.
 
@@ -29,6 +29,7 @@ public class MyApplication
 ----
 
 [[dynamic-across-modules]]
+[#dynamic-across-modules]
 ==== Dynamic Across modules
 Using `@AcrossApplication` on a class will automatically enable dynamic Across modules on that class.
 Before bootstrapping the context, the configurator will attempt to find an application specific infrastructure, application or postprocessor module.
