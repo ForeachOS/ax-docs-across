@@ -92,7 +92,7 @@ The installer will always be executed, everytime the module bootstraps.
 VersionDifferent::
 The installer will only execute if the _version_ attribute is higher than the version previously executed.
 
-In addition to the standard run conditions, you can use <<installer-conditionals, `@Conditional` annotations on installer classes>>.
+In addition to the standard run conditions, you can use link:index.adoc#installer-conditionals[`@Conditional` annotations on installer classes].
 This includes for example the use of `@AcrossDepends` to execute installers if certain modules are active.
 
 WARNING: Using *AlwaysRun* installers will always cause the bootstrap lock to be taken.
@@ -101,14 +101,14 @@ WARNING: Using *AlwaysRun* installers will always cause the bootstrap lock to be
 [discrete]
 === Installer group
 In addition to the standard `@Installer` attributes, an `@InstallerGroup` annotation can be specified.
-This allows grouping types of installers together (for example schema) and overruling their execution using <<installer-settings,`InstallerSettings`>>.
+This allows grouping types of installers together (for example schema) and overruling their execution using link:index.adoc#installer-settings[`InstallerSettings`].
 
 [discrete]
 === Installer execution order
 If all conditions are fulfilled, installers will be executed in a predetermined order:
 
-. in <<installer-bootstrap-phases,bootstrap phase>> order
-. in <<across-bootstrap-order,module bootstrap order>>
+. in link:index.adoc#installer-bootstrap-phases[bootstrap phase] order
+. in link:../developing-applications/index.adoc#module-bootstrap-order[module bootstrap order]
 . in installer order (according to `@Order` annotations on the installer class)
 
 WARNING: Installers without an `@Order` annotation behave as if they have an order index of *0*.

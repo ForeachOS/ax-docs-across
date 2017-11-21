@@ -10,7 +10,7 @@ The Across Test library also provides a set of Across-specific annotations that 
 Class-level annotation to be used as an alternative to `<<enableacrosscontext,@EnableAcrossContext>>`.
 Like `@EnableAcrossContext` this annotation will configure and bootstrap an `AcrossContext` but also add support for:
 
-* <<test-datasources,test datasources>>
+* link:index.adoc#test-datasources[test datasources]
 * resetting the database before bootstrap
 * creating a `MockMvc` bean instantiated with all dynamically registered filters from the context, when used in a `<<acrosswebappconfiguration,@AcrossWebAppConfiguration>>` test class
 
