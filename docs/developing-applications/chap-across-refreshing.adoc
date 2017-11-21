@@ -44,6 +44,6 @@ A `RefreshableRegistry` is a collection of beans of a specified class that updat
 A `RefreshableRegistry` can also scan for beans inside the other modules in the running context, without the need for those beans to be exposed.
 This allows other modules to pick up extensions or configurations from other modules that bootstrap later.
 
-The value of a `RefreshableRegistry` are also ordered according to the <<ordering-beans,Across module order hierarchy>>.
+The value of a `RefreshableRegistry` are also ordered according to the link:index.adoc#bean-order[Across module order hierarchy].
 
 `IncrementalRefreshableRegistry` is a specialization that updates its values every time a module has bootstrapped.

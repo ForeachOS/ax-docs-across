@@ -7,7 +7,7 @@ When creating an across application
 === @EnableAcrossContext
 Usually your application will consist of a single `AcrossContext` that is configured in the main Spring `ApplicationContext`.
 You can enable the automatic creation of an `AcrossContext` by putting the `@EnableAcrossContext` on any `@Configuration` class.
-This will initialize a new `AcrossContext` with the main `ApplicationContext` as parent, look for a <<across-datasource,default datasource bean>> named *acrossDataSource* and then configure modules based on the `@EnableAcrossContext` attribute values.
+This will initialize a new `AcrossContext` with the main `ApplicationContext` as parent, look for a link:index.adoc#across-datasource[default datasource bean] named *acrossDataSource* and then configure modules based on the `@EnableAcrossContext` attribute values.
 
 ==== AcrossContext autoconfiguration
 By default autoconfiguration of the `AcrossContext` will be enabled.
@@ -20,7 +20,7 @@ WARNING: If you use `@EnableAcrossContext` on a top-level class (no package spec
 
 Scanning for modules in itself does not add any modules to the `AcrossContext`.
 It simply maps all modules that could be autoconfigured on their unique name.
-For a module to be autoconfigurable it should adhere to certain conventions, see the section on <<creating-an-acrossmodule,creating an Across module>> for more details.
+For a module to be autoconfigurable it should adhere to certain conventions, see the section on link:index.adoc#creating-an-across-module[creating an Across module] for more details.
 
 NOTE: The module scanning packages and settings can be controlled through attributes on `@EnableAcrossContext`.
 
@@ -76,12 +76,13 @@ Modules are configured in a certain order:
 
 . Modules defined by name on `@EnableAcrossContext`
 . Module beans detected in the `ApplicationContext`
-. Modules added through <<acrosscontextconfigurer,`AcrossContextConfigurer` instances>>
+. Modules added through link:index.adoc#acrosscontextconfigurer[`AcrossContextConfigurer` instances]
 . Missing module dependencies resolved during bootstrap
 
 If a module with the same name gets added more than once, the last version added will always win.
 
 [[acrosscontextconfigurer]]
+[#acrosscontextconfigurer]
 ==== Customizing the AcrossContext
 After initial configuration but before bootstrapping, the configured `AcrossContext` will be delegated to all `AcrossContextConfigurer` beans it can find in the `ApplicationContext`.
 This allows for changing any settings before the actual bootstrap happens.
