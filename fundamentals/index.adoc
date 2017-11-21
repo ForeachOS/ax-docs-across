@@ -20,7 +20,7 @@ Other commonly used libraries that are useful to know are http://hibernate.org/o
 [discrete]
 [#fundamentals-ax-framework]
 === Across and Spring framework
-{spring-url}[Spring framework] is a de facto industry standard for building Java (web) applications.
+{{book.spring_url}}[Spring framework] is a de facto industry standard for building Java (web) applications.
 It was a logical choice to use it as the foundation for Across.
 Across extends or even customizes some aspects of Spring, but still supports most if not all common Spring functions out of the box.
 To optimally use Across, a good knowledge of Spring is required.
@@ -30,7 +30,7 @@ Some features of Spring Boot are being used but an Across application is structu
 Most notable is the fact auto-configuration using Spring Boot starters is not supported.
 
 Other modules often integrate different packages from the Spring ecosystem.
-In the <<across-standard-modules,standard modules>> for example, there are modules building on top of {spring-data-url}[Spring Data], {spring-batch-url}[Spring Batch] and {spring-security-url}[Spring security].
+In the link:index.adoc#fundamentals-ax-standard-modules[standard modules] for example, there are modules building on top of {{book.spring_data_url}}[Spring Data], {{book.spring_batch_url}}[Spring Batch] and {{book.spring_security_url}}[Spring security].
 
 [#fundamentals-ax-framework]
 == Across Framework
@@ -49,7 +49,7 @@ Apart from the Across framework itself, there is a set of Across Standard Module
 These modules are usually maintained by the Across core team.
 They provide a common set of functionality that can be used as the foundation for your application.
 
-There are standard modules that provide you with the set-up for an administrative web interface, secured with {spring-security-url}[Spring security] and built on top of an entire roles and permissions management domain layer.
+There are standard modules that provide you with the set-up for an administrative web interface, secured with {{book.spring_security_url}}[Spring security] and built on top of an entire roles and permissions management domain layer.
 Other modules generate web forms at runtime for persistent entities you have declared in your application.
 
 Across framework provides only a ground layer, the real win is in re-using well-defined modules that have already been built.
