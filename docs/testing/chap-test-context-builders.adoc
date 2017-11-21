@@ -29,7 +29,8 @@ In addition `AcrossTestContext` implements `Closeable` that shuts down the conte
     }
 ----
 
-Using the builders will by default load the <<test-datasources,test datasources>> and will execute a reset of the databases before bootstrapping.
+Using the builders will by default load the link:index.adoc#test-datasources[test datasources]
+ and will execute a reset of the databases before bootstrapping.
 Both options can be configured separately on the builder.
 
 WARNING: You should obviously make sure you are not dropping the databases when connecting to an existing database.

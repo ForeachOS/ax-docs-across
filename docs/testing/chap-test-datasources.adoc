@@ -2,7 +2,7 @@
 [#test-datasources]
 == Test datasources
 
-When using the Across Test <<test-annotations,annotations>> or <<test-builders,builders>>, default support for test datasources is activated.
+When using the Across Test link:index.adoc#annotations[annotations] or link:index.adoc#test-context-builders[test builders], default support for test datasources is activated.
 If no specific datasource is configured on the `AcrossContext` a default test datasource will be detected.
 
 .Test datasource detection
