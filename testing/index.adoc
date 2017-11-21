@@ -16,7 +16,7 @@ Across Test also integrates with the AcrossWebModule features for testing.
 		<dependency>
 			<groupId>com.foreach.across</groupId>
 			<artifactId>across-test</artifactId>
-			<version>{across-version}</version>
+			<version>{{book.across_version}}</version>
 		</dependency>
 	</dependencies>
 ----
