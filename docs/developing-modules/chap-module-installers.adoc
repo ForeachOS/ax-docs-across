@@ -101,14 +101,14 @@ WARNING: Using *AlwaysRun* installers will always cause the bootstrap lock to be
 [discrete]
 === Installer group
 In addition to the standard `@Installer` attributes, an `@InstallerGroup` annotation can be specified.
-This allows grouping types of installers together (for example schema) and overruling their execution using <<installer-settings,`InstallerSettings`>>.
+This allows grouping types of installers together (for example schema) and overruling their execution using link:index.adoc#installer-settings[`InstallerSettings`].
 
 [discrete]
 === Installer execution order
 If all conditions are fulfilled, installers will be executed in a predetermined order:
 
-. in <<installer-bootstrap-phases,bootstrap phase>> order
-. in <<across-bootstrap-order,module bootstrap order>>
+. in link:index.adoc#installer-bootstrap-phases[bootstrap phase] order
+. in link:../developing-applications/index.adoc#module-bootstrap-order[module bootstrap order]
 . in installer order (according to `@Order` annotations on the installer class)
 
 WARNING: Installers without an `@Order` annotation behave as if they have an order index of *0*.
