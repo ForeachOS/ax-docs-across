@@ -16,7 +16,7 @@ The Across application module is a single special module in your application, it
 The application module is always considered to depend on all other “shared” modules, and as such is started as the last module (with the exception of possible specialized postprocessor modules).
 
 Shared modules have an explicit module descriptor, whereas the application module has an implicit one that is derived from the name and package of the `@AcrossApplication` annotated class.
-The application module is determined using a convention-over-configuration approach, see the <<dynamic-across-modules,chapter on dynamic modules>> for more information.
+The application module is determined using a convention-over-configuration approach, see the link:../developing-applications/index.adoc#dynamic-across-modules[chapter on dynamic modules] for more information.
 
 ==== Across context
 The Across context is the set of configured modules that make up the application.
@@ -46,7 +46,7 @@ During the bootstrap phase a module can perform one or more initialization tasks
 
 An Across application is usually made up of multiple Across modules.
 Most often a single Across module corresponds with a single JAR file, but this is in no way an actual requirement.
-Every Across module has a unique name, and a single <<creating-an-acrossmodule,module descriptor>> that describes the basic configuration of the module.
+Every Across module has a unique name, and a single link:../developing-applications/index.adoc#creating-across-application[module descriptor] that describes the basic configuration of the module.
 
 [#module-dependencies]
 === Module dependencies
@@ -56,7 +56,7 @@ The module dependencies will determine the loading order of the modules in the c
 
 Modules have two types of dependencies on other modules:
 
-* explicit dependencies usually configured with <<`@AcrossDepends`>>
+* explicit dependencies usually configured with link:../developing-modules/index.adoc#across-depends[`@AcrossDepends`]
 * implicit dependencies defined by the <<module role>>
 
 .Ordering of modules and components
@@ -93,7 +93,7 @@ There are several ways to expose beans, but in most cases it is done by annotati
 ==== Refreshing beans
 Sometimes it is not possible to define explicit dependencies between modules.
 For example where module B depends on module A but creates a bean that A should use.
-Because circular dependencies are not allowed the only solution for this would be to use either a lazy approach, or a <<refreshable beans,refreshing mechanism>>.
+Because circular dependencies are not allowed the only solution for this would be to use either a lazy approach, or a link:../developing-applications/index.adoc#refreshing[refreshing mechanism].
 
 Much like refreshing an `ApplicationContext`, once all modules in an Across context are started, a refresh is triggered that allows modules to perform actions.
 
