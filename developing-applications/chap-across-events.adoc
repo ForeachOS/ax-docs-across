@@ -171,6 +171,7 @@ By default all exceptions will be logged in the `AcrossEventPublisher` logger.
 
 [discrete]
 [[event-handler-ordering]]
+[#event-handler-ordering]
 === Event handler ordering
 Event handlers can be ordered, although the support is limited.
 Events are handled in module bootstrap order, with handlers from the same AcrossModule having a random order.
