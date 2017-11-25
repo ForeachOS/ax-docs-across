@@ -34,7 +34,7 @@ If you want to use a single shared `Validator` bean you should consider exposing
 = Spring Boot starters
 Lists the support status of different Spring Boot starters and how you can use them in an Across application.
 
-== Support levels explained!
+.Support levels explained
 
 Not supported:: 
   No auto-configuration possible.
@@ -53,7 +53,7 @@ Partial support::
 Auto-configuration is partially supported.
 Additional manual configuration is still required.
 
-*Status explained*
+.Status explained
 
 Expected::
   Currently not yet available.
