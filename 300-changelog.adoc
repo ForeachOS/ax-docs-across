@@ -2,8 +2,8 @@
 
 * exposed bean definitions are now copied to the module context directly instead of shared via the parent `ApplicationContext`
 * *META-INF/across.configuration* where you can specify Exposed classes, or AutoConfigurationDisabled, AutoConfigurationEnabled
-  * the latter allows specifying a different class to be executed instead of (using *:*) or a module name where the class should be inserted instead (using *->*)
-  
+* the latter allows specifying a different class to be executed instead of (using *:*) or a module name where the class should be inserted instead (using *->*)
+* the main application class package is not registered as an auto configuration package, instead the package of the application module is
   
 == AcrossWebModule
 * `RestTemplateBuilder` is created and exposed
@@ -95,12 +95,15 @@ Known issues:
 
 * date conversion issue on Audit tab
 
+== Spring Boot Admin
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
 
-
-
-
-
-
-
-
+|Application support
+|Verified
+|none
+|===
 
