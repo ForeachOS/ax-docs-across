@@ -31,10 +31,10 @@ If you want method validation in a module, it should be ok to manually add this 
 Adding it on application level will only impact the application infrastructure.
 If you want to use a single shared `Validator` bean you should consider exposing it in the module where it first gets created (or also created on application level).
 
-== Spring Boot starters
+= Spring Boot starters
 Lists the support status of different Spring Boot starters and how you can use them in an Across application.
 
-*Support levels explained*
+== Support levels explained!
 
 Not supported:: 
   No auto-configuration possible.
@@ -65,7 +65,7 @@ To be verified::
 Verified::
   Support level is available as indicated.
   
-=== Actuator
+== Actuator
 [cols="1,1,4",opts=header]
 |===
 |Support level
@@ -79,7 +79,7 @@ Verified::
 
 Endpoints, metrics, health indicators from all modules will automatically be exposed and detected.
 
-=== Spring Boot Admin
+== Spring Boot Admin
 [cols="1,1,4",opts=header]
 |===
 |Support level
