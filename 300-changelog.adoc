@@ -45,13 +45,26 @@ Support is automatic in all modules configured in an application.
 Common case: web controllers, actuator endpoints...
 
 Application support::
-Auto-configuration works as most expected for an Across application.
+Auto-configuration works as expected for an Across application.
 Infrastructure is usually configured on the application level, automatic support is only activated in the application module. Shared modules require manual configuration.
 Common case: Spring Data repositories
 
 Partial support::
+Auto-configuration is partially supported.
+Additional manual configuration is still required.
 
+*Status explained*
 
+Expected::
+  Currently not yet available.
+  
+To be verified::
+  Auto-configuration available but not yet - or only partially - verified.
+  Some cases might not yet work as expected.
+
+Verified::
+  Support level is available as indicated.
+  
 === Actuator
 [cols="1,1,4",opts=header]
 |===
@@ -75,8 +88,12 @@ Endpoints, metrics, health indicators from all modules will automatically be exp
 
 |Full support
 |To be verified
-|none
+|known issues
 |===
+
+Known issues:
+
+* date conversion issue on Audit tab
 
 
 
