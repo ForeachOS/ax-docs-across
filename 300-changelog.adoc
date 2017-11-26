@@ -4,6 +4,7 @@
 * *META-INF/across.configuration* where you can specify Exposed classes, or AutoConfigurationDisabled, AutoConfigurationEnabled
 * the latter allows specifying a different class to be executed instead of (using *:*) or a module name where the class should be inserted instead (using *->*)
 * the main application class package is not registered as an auto configuration package, instead the package of the application module is
+* provided some tests-projects in the across-autoconfigure project. These tests check the integration of several spring-boot-starter artifacts and their autoconfiguration within Across. They also serve as an example on how to setup such a spring-boot-starter with minimal configuration. See <<spring-boot-starters,Spring Boot Starters>>
   
 == AcrossWebModule
 * `RestTemplateBuilder` is created and exposed
@@ -31,6 +32,7 @@ If you want method validation in a module, it should be ok to manually add this 
 Adding it on application level will only impact the application infrastructure.
 If you want to use a single shared `Validator` bean you should consider exposing it in the module where it first gets created (or also created on application level).
 
+[[spring-boot-starters]]
 = Spring Boot starters
 Lists the support status of different Spring Boot starters and how you can use them in an Across application.
 
