@@ -133,4 +133,4 @@
 
 == How-tos
 
-* link:how-tos/creating-an-across-module.adoc[Creating an across module]
+* link:how-tos/creating-an-across-module.md[Creating an across module]
