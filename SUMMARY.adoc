@@ -131,3 +131,6 @@
 .. link:appendix/index.adoc#across-core-events[Across core events]
 .. link:appendix/index.adoc#test-configuration-classes[Test configuration classes]
 
+== How-tos
+
+* link:how-tos/creating-an-across-module.adoc[Creating an across module]
