@@ -4,7 +4,7 @@
 * *META-INF/across.configuration* where you can specify Exposed classes, or AutoConfigurationDisabled, AutoConfigurationEnabled
 * the latter allows specifying a different class to be executed instead of (using *:*) or a module name where the class should be inserted instead (using *->*)
 * the main application class package is not registered as an auto configuration package, instead the package of the application module is
-* provided some tests-projects in the across-autoconfigure project. These tests check the integration of several spring-boot-starter artifacts and their autoconfiguration within Across. They also serve as an example on how to setup such a spring-boot-starter with minimal configuration. See <<spring-boot-starters,Spring Boot Starters>>
+* provided some tests-projects in the across-autoconfigure project. These tests check the integration of several spring-boot-starter artifacts and their autoconfiguration within Across. They also serve as an example on how to setup such a spring-boot-starter with minimal configuration. See <<spring-boot-starters,Spring Boot Starters 1.5.x>>
   
 == AcrossWebModule
 * `RestTemplateBuilder` is created and exposed
@@ -33,7 +33,7 @@ Adding it on application level will only impact the application infrastructure.
 If you want to use a single shared `Validator` bean you should consider exposing it in the module where it first gets created (or also created on application level).
 
 [[spring-boot-starters]]
-= Spring Boot starters
+= Spring Boot starters 1.5.x
 Lists the support status of different Spring Boot starters and how you can use them in an Across application.
 
 == Support levels explained
@@ -66,8 +66,14 @@ To be verified::
 
 Verified::
   Support level is available as indicated.
-  
-== Actuator
+
+== Spring Boot Starter Activemq
+https://spring.io/guides/gs/messaging-jms/
+
+TBD
+
+== Spring Boot Starter Actuator
+https://spring.io/guides/gs/actuator-service/
 [cols="1,1,4",opts=header]
 |===
 |Support level
@@ -81,7 +87,26 @@ Verified::
 
 Endpoints, metrics, health indicators from all modules will automatically be exposed and detected.
 
+== Spring Boot Starter amqp
+https://projects.spring.io/spring-amqp/
+
+TBD   
+
+== Spring Boot Starter Aop
+
+TBD           
+
+== Spring Boot Starter Artemis
+
+TBD          
+
+== Spring Boot Starter Batch
+
+TBD
+
 == Spring Boot Admin
+https://github.com/codecentric/spring-boot-admin
+
 [cols="1,1,4",opts=header]
 |===
 |Support level
@@ -97,7 +122,17 @@ Known issues:
 
 * date conversion issue on Audit tab
 
-== Spring Data SOLR
+== Spring Boot Starter Cache
+
+TBD
+            
+== Spring Boot Starter Cloud Connectors
+
+TBD
+            
+== Spring Boot Starter Data Cassandra
+https://projects.spring.io/spring-data-cassandra/
+
 [cols="1,1,4",opts=header]
 |===
 |Support level
@@ -108,4 +143,287 @@ Known issues:
 |Verified
 |none
 |===
+            
+== Spring Boot Starter Data Couchbase
+https://projects.spring.io/spring-data-couchbase/
 
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|Verified
+|known issues
+|===
+
+Known issues:
+
+* CouchbaseMock used for testing doesn't fully support spring data repositories
+
+== Spring Boot Starter Data Elasticsearch
+https://projects.spring.io/spring-data-elasticsearch/
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|Verified
+|none
+|===
+            
+== Spring Boot Starter Data Gemfire
+
+TBD
+            
+== Spring Boot Starter Data JPA
+
+TBD
+            
+== Spring Boot Starter Data Ldap
+https://projects.spring.io/spring-data-ldap/
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|Verified
+|none
+|===
+            
+== Spring Boot Starter Data Mongodb
+https://projects.spring.io/spring-data-mongodb/
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|Verified
+|none
+|===
+            
+== Spring Boot Starter Data Neo4j
+https://projects.spring.io/spring-data-neo4j/
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|Verified
+|none
+|===
+            
+== Spring Boot Starter Data Redis
+https://projects.spring.io/spring-data-redis/
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|Verified
+|none
+|===
+            
+== Spring Boot Starter Data REST
+
+TBD
+            
+== Spring Boot Starter Data SOLR
+https://projects.spring.io/spring-data-solr/
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|Verified
+|none
+|===
+            
+== Spring Boot Starter Freemarker
+
+TBD
+            
+== Spring Boot Starter Groovy Templates
+
+TBD
+            
+== Spring Boot Starter hateoas
+
+TBD
+            
+== Spring Boot Starter integration
+
+TBD
+            
+== Spring Boot Starter jdbc
+
+TBD
+            
+== Spring Boot Starter jersey
+
+TBD
+            
+== Spring Boot Starter jetty
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|Verified
+|none
+|===
+            
+== Spring Boot Starter jooq
+
+TBD
+            
+== Spring Boot Starter jta-atomikos
+
+TBD
+            
+== Spring Boot Starter jta-bitronix
+
+TBD
+            
+== Spring Boot Starter jta-narayana
+
+TBD
+            
+== Spring Boot Starter log4j2
+
+TBD
+            
+== Spring Boot Starter logging
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|Verified
+|none
+|===
+            
+== Spring Boot Starter mail
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|Verified
+|none
+|===
+            
+== Spring Boot Starter mobile
+
+TBD
+            
+== Spring Boot Starter mustache
+
+TBD
+            
+== Spring Boot Starter remote-shell
+
+TBD
+            
+== Spring Boot Starter security
+
+TBD
+            
+== Spring Boot Starter social-facebook
+
+TBD
+            
+== Spring Boot Starter social-linkedin
+
+TBD
+            
+== Spring Boot Starter social-twitter
+
+TBD
+            
+== Spring Boot Starter test
+
+TBD
+            
+== Spring Boot Starter thymeleaf
+
+TBD
+            
+== Spring Boot Starter tomcat
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|Verified
+|none
+|===
+            
+== Spring Boot Starter undertow
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|Verified
+|none
+|===
+            
+== Spring Boot Starter validation
+
+TBD
+            
+== Spring Boot Starter web-services
+
+TBD
+            
+== Spring Boot Starter web
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|To be verified
+|none
+|===
+            
+== Spring Boot Starter websocket
+
+TBD
