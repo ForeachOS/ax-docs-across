@@ -107,6 +107,11 @@ TBD
 == Spring Boot Admin
 https://github.com/codecentric/spring-boot-admin
 
+Autoconfiguration classes:
+
+* ``@EnableAdminServer``
+* ``AdminServerImportSelector``
+
 [cols="1,1,4",opts=header]
 |===
 |Support level
@@ -116,6 +121,28 @@ https://github.com/codecentric/spring-boot-admin
 |Full support
 |To be verified
 |known issues
+|===
+
+Known issues:
+
+* date conversion issue on Audit tab
+
+== Spring Boot Admin Starter Client
+https://github.com/codecentric/spring-boot-admin
+
+Autoconfiguration classes:
+
+* ``SpringBootAdminClientAutoConfiguration``
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|Verified
+|none
 |===
 
 Known issues:
@@ -133,6 +160,13 @@ TBD
 == Spring Boot Starter Data Cassandra
 https://projects.spring.io/spring-data-cassandra/
 
+Autoconfiguration classes:
+
+* ``CassandraAutoConfiguration``
+* ``CassandraDataAutoConfiguration``
+* ``CassandraRepositoriesAutoConfiguration``
+
+
 [cols="1,1,4",opts=header]
 |===
 |Support level
@@ -146,6 +180,12 @@ https://projects.spring.io/spring-data-cassandra/
             
 == Spring Boot Starter Data Couchbase
 https://projects.spring.io/spring-data-couchbase/
+
+Autoconfiguration classes:
+
+* ``CouchbaseAutoConfiguration``
+* ``CouchbaseDataAutoConfiguration``
+* ``CouchbaseRepositoriesAutoConfiguration``
 
 [cols="1,1,4",opts=header]
 |===
@@ -164,6 +204,12 @@ Known issues:
 
 == Spring Boot Starter Data Elasticsearch
 https://projects.spring.io/spring-data-elasticsearch/
+
+Autoconfiguration classes:
+
+* ``ElasticsearchAutoConfiguration``
+* ``ElasticsearchDataAutoConfiguration``
+* ``ElasticsearchRepositoriesAutoConfiguration``
 
 [cols="1,1,4",opts=header]
 |===
@@ -187,6 +233,13 @@ TBD
 == Spring Boot Starter Data Ldap
 https://projects.spring.io/spring-data-ldap/
 
+Autoconfiguration classes:
+
+* ``LdapAutoConfiguration``
+* ``EmbeddedLdapAutoConfiguration``
+* ``LdapDataAutoConfiguration``
+* ``LdapRepositoriesAutoConfiguration``
+
 [cols="1,1,4",opts=header]
 |===
 |Support level
@@ -200,6 +253,13 @@ https://projects.spring.io/spring-data-ldap/
             
 == Spring Boot Starter Data Mongodb
 https://projects.spring.io/spring-data-mongodb/
+
+Autoconfiguration classes:
+
+* ``MongoAutoConfiguration``
+* ``EmbeddedMongoAutoConfiguration``
+* ``MongoDataAutoConfiguration``
+* ``MongoRepositoriesAutoConfiguration``
 
 [cols="1,1,4",opts=header]
 |===
@@ -215,6 +275,11 @@ https://projects.spring.io/spring-data-mongodb/
 == Spring Boot Starter Data Neo4j
 https://projects.spring.io/spring-data-neo4j/
 
+Autoconfiguration classes:
+
+* ``Neo4jDataAutoConfiguration``
+* ``Neo4jRepositoriesAutoConfiguration``
+
 [cols="1,1,4",opts=header]
 |===
 |Support level
@@ -228,6 +293,11 @@ https://projects.spring.io/spring-data-neo4j/
             
 == Spring Boot Starter Data Redis
 https://projects.spring.io/spring-data-redis/
+
+Autoconfiguration classes:
+
+* ``RedisAutoConfiguration``
+* ``RedisRepositoriesAutoConfiguration``
 
 [cols="1,1,4",opts=header]
 |===
@@ -246,6 +316,11 @@ TBD
             
 == Spring Boot Starter Data SOLR
 https://projects.spring.io/spring-data-solr/
+
+Autoconfiguration classes:
+
+* ``SolrAutoConfiguration``
+* ``SolrRepositoriesAutoConfiguration``
 
 [cols="1,1,4",opts=header]
 |===
@@ -266,23 +341,27 @@ TBD
 
 TBD
             
-== Spring Boot Starter hateoas
+== Spring Boot Starter Hateoas
 
 TBD
             
-== Spring Boot Starter integration
+== Spring Boot Starter Integration
 
 TBD
             
-== Spring Boot Starter jdbc
+== Spring Boot Starter JDBC
 
 TBD
             
-== Spring Boot Starter jersey
+== Spring Boot Starter Jersey
 
 TBD
             
-== Spring Boot Starter jetty
+== Spring Boot Starter Jetty
+
+Autoconfiguration classes:
+
+* ``JettyEmbeddedServletContainerFactory``
 
 [cols="1,1,4",opts=header]
 |===
@@ -295,19 +374,19 @@ TBD
 |none
 |===
             
-== Spring Boot Starter jooq
+== Spring Boot Starter Jooq
 
 TBD
             
-== Spring Boot Starter jta-atomikos
+== Spring Boot Starter JTA Atomikos
 
 TBD
             
-== Spring Boot Starter jta-bitronix
+== Spring Boot Starter JTA Bitronix
 
 TBD
             
-== Spring Boot Starter jta-narayana
+== Spring Boot Starter JTA Narayana
 
 TBD
             
@@ -315,7 +394,31 @@ TBD
 
 TBD
             
-== Spring Boot Starter logging
+== Spring Boot Starter Logging
+
+Autoconfiguration classes:
+
+* ``LoggingApplicationListener``
+
+LoggingApplicationListener
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|Verified
+|none
+|===
+            
+== Spring Boot Starter Mail
+
+Autoconfiguration classes:
+
+* ``MailSenderAutoConfiguration``
+* ``MailSenderValidatorAutoConfiguration``
+
 
 [cols="1,1,4",opts=header]
 |===
@@ -328,7 +431,56 @@ TBD
 |none
 |===
             
-== Spring Boot Starter mail
+== Spring Boot Starter Mobile
+
+TBD
+            
+== Spring Boot Starter Mustache
+
+TBD
+            
+== Spring Boot Starter Remote Shell
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|To be verified
+|Will be deprecated in Spring Boot 2.0.0
+|===
+            
+== Spring Boot Starter Security
+
+TBD
+            
+== Spring Boot Starter Social Facebook
+
+TBD
+            
+== Spring Boot Starter Social Linkedin
+
+TBD
+            
+== Spring Boot Starter Social Twitter
+
+TBD
+            
+== Spring Boot Starter Test
+
+TBD
+            
+== Spring Boot Starter Thymeleaf
+
+TBD
+            
+== Spring Boot Starter Tomcat
+
+Autoconfiguration classes:
+
+* ``TomcatEmbeddedServletContainerFactory``
 
 [cols="1,1,4",opts=header]
 |===
@@ -341,43 +493,11 @@ TBD
 |none
 |===
             
-== Spring Boot Starter mobile
+== Spring Boot Starter Undertow
 
-TBD
-            
-== Spring Boot Starter mustache
+Autoconfiguration classes:
 
-TBD
-            
-== Spring Boot Starter remote-shell
-
-TBD
-            
-== Spring Boot Starter security
-
-TBD
-            
-== Spring Boot Starter social-facebook
-
-TBD
-            
-== Spring Boot Starter social-linkedin
-
-TBD
-            
-== Spring Boot Starter social-twitter
-
-TBD
-            
-== Spring Boot Starter test
-
-TBD
-            
-== Spring Boot Starter thymeleaf
-
-TBD
-            
-== Spring Boot Starter tomcat
+* ``UndertowEmbeddedServletContainerFactory``
 
 [cols="1,1,4",opts=header]
 |===
@@ -390,28 +510,15 @@ TBD
 |none
 |===
             
-== Spring Boot Starter undertow
-
-[cols="1,1,4",opts=header]
-|===
-|Support level
-|Status
-|Remarks
-
-|Full support
-|Verified
-|none
-|===
-            
-== Spring Boot Starter validation
+== Spring Boot Starter Validation
 
 TBD
             
-== Spring Boot Starter web-services
+== Spring Boot Starter Web Services
 
 TBD
             
-== Spring Boot Starter web
+== Spring Boot Starter Web
 
 [cols="1,1,4",opts=header]
 |===
@@ -424,6 +531,6 @@ TBD
 |none
 |===
             
-== Spring Boot Starter websocket
+== Spring Boot Starter Websocket
 
 TBD
