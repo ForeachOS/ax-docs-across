@@ -309,10 +309,34 @@ Autoconfiguration classes:
 |Verified
 |none
 |===
-            
+
+[[spring-boot-starter-data-rest]]
 == Spring Boot Starter Data REST
 
-TBD
+https://projects.spring.io/spring-data-rest/
+
+Autoconfiguration classes:
+
+* ``RepositoryRestMvcAutoConfiguration``
+* ``HibernateJpaAutoConfiguration``, not included by default
+* ``JpaRepositoriesAutoConfiguration``, not included by default
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|To be verified
+|known issues
+|===
+
+Known issues:
+
+* Integration with AcrossHibernateModule and AcrossHibernateJpaModule have not been reviewed yet.
+* To use AutoConfiguration of ``HibernateJpaAutoConfiguration`` and ``JpaRepositoriesAutoConfiguration``
+you need to add them manually to your across.configuration file.
             
 == Spring Boot Starter Data SOLR
 https://projects.spring.io/spring-data-solr/
@@ -332,7 +356,7 @@ Autoconfiguration classes:
 |Verified
 |none
 |===
-            
+
 == Spring Boot Starter Freemarker
 
 TBD
@@ -343,7 +367,7 @@ TBD
             
 == Spring Boot Starter Hateoas
 
-TBD
+Spring Boot Data Rest includes hateoas, see <<spring-boot-starter-data-rest,Spring Boot Starter Data Rest>>
             
 == Spring Boot Starter Integration
 
@@ -448,9 +472,11 @@ TBD
 |Remarks
 
 |Full support
-|To be verified
+|Verified
 |Will be deprecated in Spring Boot 2.0.0
 |===
+
+WARNING: This Spring Starter will be removed in Spring Boot 2.0.0 so hasn't been reviewed fully.
             
 == Spring Boot Starter Security
 
