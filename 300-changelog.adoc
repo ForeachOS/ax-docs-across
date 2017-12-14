@@ -559,4 +559,14 @@ TBD
             
 == Spring Boot Starter Websocket
 
-TBD
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|To be verified
+|none
+|===
+
