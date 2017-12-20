@@ -17,6 +17,16 @@ Extension configuration that should be added to AcrossWebModule:
 * `HttpMessageConverter`
 * `Jackson2ObjectMapperBuilderCustomizer`
 
+.Filter registration
+Filters and servlets are registered in a slightly different fashion than in previous versions.
+Any `Servlet` or `Filter` bean will now be automatically be exposed and registered.
+If there is an actual registration bean for the filter or servlet, it will take precedence.
+
+The new approach might introduce breaking changes with applications that do not use an embedded application context.
+Also the ordering of filters might have changed slightly, modules providing filters should review the order assignment.
+
+Dynamically registered filters should preferably include an explicit order value and should be done inside the Across context (inside a module) and not on the application configuration level.
+
 == Unsupported auto-configuration classes
 The following is the list of auto-configuration classes that are never automatically enabled.
 They are not added to the application configuration and none of the standard modules include them.
