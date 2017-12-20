@@ -23,6 +23,8 @@ Any `Servlet` or `Filter` bean will now be automatically be exposed and register
 If there is an actual registration bean for the filter or servlet, it will take precedence.
 
 The new approach might introduce breaking changes with applications that do not use an embedded application context.
+The `AcrossWebDynamicServletConfigurer` is fully deprecated and any beans of that type created in the parent context will not be executed any longer in a non-embedded configuration.
+
 Also the ordering of filters might have changed slightly, modules providing filters should review the order assignment.
 
 Dynamically registered filters should preferably include an explicit order value and should be done inside the Across context (inside a module) and not on the application configuration level.
