@@ -92,7 +92,7 @@ VersionDifferent::
 The installer will only execute if the _version_ attribute is higher than the version previously executed.
 
 In addition to the standard run conditions, you can use <<installer-conditionals, `@Conditional` annotations on installer classes>>.
-This includes for example the use of `@AcrossDepends` to execute installers if certain modules are active.
+This includes for example the use of `@ConditionalOnAcrossModule` to execute installers if certain modules are active.
 
 WARNING: Using *AlwaysRun* installers will always cause the bootstrap lock to be taken.
  This might cause a slowdown when starting multiple applications on the same datasource simultaneously.
