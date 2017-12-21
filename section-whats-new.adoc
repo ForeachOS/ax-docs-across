@@ -4,7 +4,7 @@
 [#3-0-0-SNAPSHOT]
 *Across Core*
 
-* @ConditionalOnAcrossModule available to create create beans, configurations and components based on the presence of modules.
+* @ConditionalOnAcrossModule annotation that can be put on a @Configuration class, @Bean method and any component to depend on the presence of modules.
 
 [#2-1-1-SNAPSHOT]
 === 2.1.1-SNAPSHOT
