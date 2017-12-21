@@ -1,6 +1,11 @@
 [[whats-new]]
 == What's new in this version?
 
+[#3-0-0-SNAPSHOT]
+*Across Core*
+
+* @ConditionalOnAcrossModule available to create create beans, configurations and components based on the presence of modules.
+
 [#2-1-1-SNAPSHOT]
 === 2.1.1-SNAPSHOT
 *Across Core*
