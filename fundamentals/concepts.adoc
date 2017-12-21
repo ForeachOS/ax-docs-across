@@ -56,7 +56,7 @@ The module dependencies will determine the loading order of the modules in the c
 
 Modules have two types of dependencies on other modules:
 
-* explicit dependencies usually configured with <<`@ConditionalOnAcrossModule`>>
+* explicit dependencies usually configured with <<`@AcrossDepends`>>
 * implicit dependencies defined by the <<module role>>
 
 .Ordering of modules and components

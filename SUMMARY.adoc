@@ -49,6 +49,7 @@
 * link:developing-modules/index.adoc[Developing Across modules]
 ** link:developing-modules/index.adoc#creating-an-across-module[Creating an AcrossModule]
 ** link:developing-modules/index.adoc#module-dependencies[Module dependencies]
+*** link:developing-modules/index.adoc#across-depends[@AcrossDepends]
 *** link:developing-modules/index.adoc#conditional-on-across-module[@ConditionalOnAcrossModule]
 *** link:developing-modules/index.adoc#conditionals[Conditionals]
 ** link:developing-modules/index.adoc#bootstrap-interaction[Bootstrap interaction]
