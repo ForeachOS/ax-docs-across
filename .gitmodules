@@ -1,0 +1,3 @@
+[submodule "ax-docs-shared"]
+	path = ax-docs-shared
+	url = https://github.com/sgentens/ax-docs-shared.git
