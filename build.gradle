@@ -58,6 +58,6 @@ task docsZip(type: Zip, dependsOn: ['asciidoctor']) {
 			"for deployment at http://docs-across.foreach.be"
 
 	from ("${buildDir}/asciidoc/html5") {
-		into "reference"
+		into "${project.version}/reference"
 	}
 }
