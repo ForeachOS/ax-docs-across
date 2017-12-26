@@ -51,7 +51,8 @@ asciidoctor {
 
 task docsZip(type: Zip, dependsOn: ['asciidoctor']) {
 	group = "Distribution"
-	baseName = "across"
+	baseName = "across-base-distribution"
+	version = ""
 	classifier = "docs"
 	description = "Builds -${classifier} archive containing reference " +
 			"for deployment at http://docs-across.foreach.be"
