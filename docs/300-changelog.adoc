@@ -120,10 +120,7 @@ TBD
 == Spring Boot Admin
 https://github.com/codecentric/spring-boot-admin
 
-Autoconfiguration classes:
-
-* ``@EnableAdminServer``
-* ``AdminServerImportSelector``
+Add `@EnableAdminServer` on your application class to create a Spring Boot admin in your application.
 
 [cols="1,1,4",opts=header]
 |===
@@ -133,19 +130,12 @@ Autoconfiguration classes:
 
 |Full support
 |To be verified
-|known issues
+|none
 |===
-
-Known issues:
-
-* date conversion issue on Audit tab
 
 == Spring Boot Admin Starter Client
 https://github.com/codecentric/spring-boot-admin
 
-Autoconfiguration classes:
-
-* ``SpringBootAdminClientAutoConfiguration``
 
 [cols="1,1,4",opts=header]
 |===
@@ -158,9 +148,8 @@ Autoconfiguration classes:
 |none
 |===
 
-Known issues:
-
-* date conversion issue on Audit tab
+.Autoconfiguration classes
+* `SpringBootAdminClientAutoConfiguration`
 
 == Spring Boot Starter Cache
 
