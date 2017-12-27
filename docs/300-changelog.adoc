@@ -610,7 +610,7 @@ Autoconfiguration classes:
 
 Autoconfiguration classes:
 
-* ``Swagger2AutoConfiguration``
+* ``Swagger2AutoConfiguration`` - added by Across autoconfigure project
 
 [cols="1,1,4",opts=header]
 |===
@@ -618,7 +618,7 @@ Autoconfiguration classes:
 |Status
 |Remarks
 
-|Application support
+|Full support
 |Verified
 |none
 |===
