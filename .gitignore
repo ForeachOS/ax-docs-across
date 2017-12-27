@@ -21,3 +21,5 @@ _book
 /target/
 .idea/
 *.iml
+
+ax-docs-shared/

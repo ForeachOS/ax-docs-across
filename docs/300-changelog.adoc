@@ -440,12 +440,6 @@ LoggingApplicationListener
             
 == Spring Boot Starter Mail
 
-Autoconfiguration classes:
-
-* ``MailSenderAutoConfiguration``
-* ``MailSenderValidatorAutoConfiguration``
-
-
 [cols="1,1,4",opts=header]
 |===
 |Support level
@@ -456,7 +450,11 @@ Autoconfiguration classes:
 |Verified
 |none
 |===
-            
+
+.Autoconfiguration classes
+* ``MailSenderAutoConfiguration``
+* ``MailSenderValidatorAutoConfiguration``
+
 == Spring Boot Starter Mobile
 
 TBD
