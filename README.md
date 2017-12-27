@@ -10,3 +10,19 @@ git submodule update
 ```
 
 If you happen to be on the wrong submodule branch, use the `--remote` option on the update command. 
+
+To build the html files, execute the following command:
+```
+[Windows]
+gradlew asciidoctor
+[Unix]
+./gradlew asciidoctor
+```
+
+To build the distribution zip file, execute the following command:
+```
+[Windows]
+gradlew docsZip
+[Unix]
+./gradlew docsZip
+```
