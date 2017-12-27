@@ -1,0 +1,11 @@
+:across-version: 3.0.0-SNAPSHOT
+:across-url: https://across.foreach.be
+:spring-url: http://projects.spring.io/spring-framework/
+:spring-data-url: http://projects.spring.io/spring-data/
+:spring-batch-url: http://projects.spring.io/spring-batch/
+:spring-security-url: http://projects.spring.io/spring-security/
+:commons-fileupload-url: http://commons.apache.org/proper/commons-fileupload/
+:platform-bom-url: https://foreach.atlassian.net/wiki/display/AX/Across+Platform
+:admin-web-module-url: https://foreach.atlassian.net/wiki/display/AX/AdminWebModule
+:debug-web-module-url: https://foreach.atlassian.net/wiki/display/AX/DebugWebModule
+:bootstrap-ui-module-url: https://foreach.atlassian.net/wiki/display/AX/BootstrapUiModule

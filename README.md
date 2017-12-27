@@ -1,4 +1,4 @@
-Welcome to the Across Framework reference documentation.
+# Across Framework reference documentation
 
 This repository has a submodule: [ax-docs-shared](https://github.com/ForeachOS/ax-docs-shared.git).
 

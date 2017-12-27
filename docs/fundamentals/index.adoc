@@ -21,7 +21,7 @@ Other commonly used libraries that are useful to know are http://hibernate.org/o
 [discrete]
 [#fundamentals-ax-framework]
 === Across and Spring framework
-{{book.spring_url}}[Spring framework] is a de facto industry standard for building Java (web) applications.
+{spring-url}[Spring framework] is a de facto industry standard for building Java (web) applications.
 It was a logical choice to use it as the foundation for Across.
 Across extends or even customizes some aspects of Spring, but still supports most if not all common Spring functions out of the box.
 To optimally use Across, a good knowledge of Spring is required.
@@ -31,7 +31,7 @@ Some features of Spring Boot are being used but an Across application is structu
 Most notable is the fact auto-configuration using Spring Boot starters is not supported.
 
 Other modules often integrate different packages from the Spring ecosystem.
-In the link:index.adoc#fundamentals-ax-standard-modules[standard modules] for example, there are modules building on top of {{book.spring_data_url}}[Spring Data], {{book.spring_batch_url}}[Spring Batch] and {{book.spring_security_url}}[Spring security].
+In the link:index.adoc#fundamentals-ax-standard-modules[standard modules] for example, there are modules building on top of {spring-data-url}[Spring Data], {{spring-batch-url}[Spring Batch] and {spring-security-url}[Spring security].
 
 [#fundamentals-ax-framework]
 == Across Framework

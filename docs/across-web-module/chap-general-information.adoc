@@ -31,7 +31,7 @@ The across-web artifact also contains link:../developing-applications/index.adoc
 		<dependency>
 			<groupId>com.foreach.across</groupId>
 			<artifactId>across-web</artifactId>
-			<version>{{book.across_version}}</version>
+			<version>{across-version}</version>
 		</dependency>
 	</dependencies>
 ----

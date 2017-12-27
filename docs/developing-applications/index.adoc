@@ -13,14 +13,14 @@ If you want to use `@AcrossApplication` however, you should use *across-web* ins
 ----
 	<dependencies>
 		<dependency>
-			<groupId>com.foreach.across</groupId>
-			<artifactId>across-core</artifactId>
-			<version>{{book.across_version}}</version>
+            <groupId>com.foreach.across</groupId>
+            <artifactId>across-core</artifactId>
+            <version>{across-version}</version>
 		</dependency>
 		<dependency>
             <groupId>com.foreach.across</groupId>
             <artifactId>across-web</artifactId>
-            <version>{{book.across_version}}</version>
+            <version>{across-version}</version>
         </dependency>
 	</dependencies>
 ----
