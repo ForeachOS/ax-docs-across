@@ -15,7 +15,6 @@ plugins {
 apply from: "${rootProject.projectDir}/ax-docs-shared/tasks.gradle"
 
 group = 'com.foreach.across'
-version = '3.0.0-SNAPSHOT'
 
 repositories {
 	mavenCentral()
