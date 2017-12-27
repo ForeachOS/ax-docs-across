@@ -52,7 +52,7 @@ include::testing/index.adoc[]
 include::appendix/index.adoc[]
 
 :sectnums!:
-include:how-tos/creating-an-across-module.adoc[]
+include::how-tos/creating-an-across-module.adoc[]
 
 :sectnums!:
 include::300-changelog.adoc[]
