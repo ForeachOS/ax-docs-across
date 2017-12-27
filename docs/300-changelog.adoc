@@ -46,6 +46,7 @@ If you want to use a single shared `Validator` bean you should consider exposing
 
 [[spring-boot-starters]]
 = Spring Boot starters 1.5.x
+
 Lists the support status of different Spring Boot starters and how you can use them in an Across application.
 
 == Support levels explained
@@ -608,9 +609,7 @@ Autoconfiguration classes:
 
 == Swagger2
 
-Autoconfiguration classes:
-
-* ``Swagger2AutoConfiguration`` - added by Across autoconfigure project
+Use `@EnableSwagger2` on the Across application class to activate Swagger2 support on all controllers in any module.
 
 [cols="1,1,4",opts=header]
 |===
@@ -623,4 +622,6 @@ Autoconfiguration classes:
 |none
 |===
 
+.Autoconfiguration classes
+* ``Swagger2AutoConfiguration`` - added by Across autoconfigure project
 
