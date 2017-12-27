@@ -54,9 +54,14 @@ As we have noticed earlier, by default the _config_ and _extensions_ packages ar
 ```java
 @Override
 protected void registerDefaultApplicationContextConfigurers( Set<ApplicationContextConfigurer> contextConfigurers ) {
-    contextConfigurers.add( new ComponentScanConfigurer( AdvantageModule.class ) );
+    contextConfigurers.add( new ComponentScanConfigurer.forAcrossModule( AdvantageModule.class ) );
 }
 ```
+
+The `ComponentScanConfigurer.forAcrossModule` method excludes two packages from being scanned to prevent faulty configurations:
+
+* extensions: in the extension package we define configurations that should be injected into _other_ modules
+* installers: in the installers package we define our instalelrs. Installers are somewhat special, as they should only exist during the application start-up.
 
 Since our module will have its own application context, for beans to be visible they need to be exposed. By default all beans annotated with @Exposed or @Service will be exposed to other contexts. This means that if you define repositories in your module and you want to allow other modules or applications to use them, they will have to be annotated with @Exposed. However if you wish to expose all your repositories without annotating them with @Expose, you can also override the default expose filter.
 

@@ -51,8 +51,8 @@ include::testing/index.adoc[]
 :sectnums!:
 include::appendix/index.adoc[]
 
-//:sectnums!:
-//include:how-tos/creating-an-across-module.md[]
+:sectnums!:
+include:how-tos/creating-an-across-module.adoc[]
 
 :sectnums!:
 include::300-changelog.adoc[]
