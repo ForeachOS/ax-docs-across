@@ -1,13 +1,15 @@
 [[whats-new]]
 == What's new in this version?
+:!chapter-number:
 
 [#3-0-0-SNAPSHOT]
+=== 3.0.0-SNAPSHOT
 *Across Core*
 
 * @ConditionalOnAcrossModule annotation that can be put on a @Configuration class, @Bean method and any component to depend on the presence of modules.
 
-[#2-1-1-SNAPSHOT]
-=== 2.1.1-SNAPSHOT
+[#2-1-1-RELEASE]
+=== 2.1.1.RELEASE
 *Across Core*
 
 * minor performance improvements

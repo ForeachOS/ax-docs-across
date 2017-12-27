@@ -1,3 +1,7 @@
+[#across-application-fundamentals]
+=== Fundamentals
+When creating an across application
+
 [[enableacrosscontext]]
 [#enable-across-context]
 === @EnableAcrossContext

@@ -1,6 +1,7 @@
 [[fundamentals]]
 = Fundamentals
-:numbered:
+:sectnums:
+:chapter-number: 0
 
 This chapter explains the terminology and fundamental concepts involved with developing Across applications and modules.
 Understanding these terms and concepts is a prerequisite for working with Across.

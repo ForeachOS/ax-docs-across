@@ -21,22 +21,38 @@ Copyright (C) 2014-2017 +
 [small]#Copies of this document may be made for your own use and for distribution to others, provided that you do not charge any fee for such copies and further provided that each copy contains this Copyright Notice, whether distributed in print or electronically.#
 --
 
+:sectnums!:
 include::section-getting-started.adoc[]
 
+:sectnums!:
 include::section-whats-new.adoc[]
 
+:sectnums!:
 include::section-nutshell.adoc[]
 
+:sectnums!:
 include::fundamentals/index.adoc[]
 
+:sectnums!:
 include::section-artifacts.adoc[]
 
+:sectnums!:
 include::developing-applications/index.adoc[]
 
+:sectnums!:
 include::developing-modules/index.adoc[]
 
+:sectnums!:
 include::across-web-module/index.adoc[]
 
+:sectnums!:
 include::testing/index.adoc[]
 
+:sectnums!:
 include::appendix/index.adoc[]
+
+//:sectnums!:
+//include:how-tos/creating-an-across-module.md[]
+
+:sectnums!:
+include::300-changelog.adoc[]

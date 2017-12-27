@@ -17,17 +17,13 @@ Using AcrossDepends annotation on a module descriptor class you can avoid beans 
 === @ConditionalOnAcrossModule
 
 [discrete]
-==== Using @ConditionalOnAcrossModule on a module
+==== Using @ConditionalOnAcrossModule on components
 
 Using AcrossDepends annotation on a component class you can avoid beans or Configurations from being created based on the presence of other modules.
 
 * allOf modules: the component will only be created if all the _allOf_ modules are present
 * anyOf modules: the component will only be created if at least one of the _anyOf_ modules is present
 * noneOf modules: the component will only be created if none of the _noneOf_ modules are present
-
-[discrete]
-==== Using @ConditionalOnAcrossModule on component classes
-expression will be evaluated against the module context - as usual - beans from earlier modules will be available
 
 [#conditionals]
 === Conditionals

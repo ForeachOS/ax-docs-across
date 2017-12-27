@@ -1,6 +1,8 @@
 [[across-core]]
 [[developing-across-applications]]
 = Developing Across applications
+:sectnums:
+:chapter-number: 0
 
 Across Core is the main dependency that is required for bootstrapping an `AcrossContext`.
 If you want to use `@AcrossApplication` however, you should use *across-web* instead.

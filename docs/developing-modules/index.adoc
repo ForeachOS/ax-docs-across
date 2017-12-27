@@ -1,6 +1,9 @@
 [[developing-across-modules]]
 [#developing-across-modules]
 = Developing Across modules
+:sectnums:
+:chapter-number: 0
+
 include::chap-module-create-a-module.adoc[]
 
 //include::chap-module-settings.adoc[]

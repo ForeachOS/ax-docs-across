@@ -1,4 +1,6 @@
 = Appendices
+:sectnums:
+:chapter-number: 0
 
 include::appendix-troubleshooting.adoc[]
 
