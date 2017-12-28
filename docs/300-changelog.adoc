@@ -589,11 +589,14 @@ Autoconfiguration classes:
 |Status
 |Remarks
 
+|Application support
 |Full support
-|Verified
 |Requires the @EnableWebSocketMessageBroker provided by Across (com.foreach.across.autoconfigure.websocket.EnableWebSocketMessageBroker)
 
-MessageBrokerRegistry in AbstractWebSocketMessageBrokerConfigurer will overwrite its settings when declared in multiple modules
+MessageBrokerRegistry in AbstractWebSocketMessageBrokerConfigurer will overwrite its settings when declared in multiple modules.
+
+Full support to use basic WebSocket requests using WebSocketHandlers.
+Requires the @EnableWebSocket annotation provided by Across (com.foreach.across.autoconfigure.websocket.EnableWebSocket)
 |===
 
 == Swagger2

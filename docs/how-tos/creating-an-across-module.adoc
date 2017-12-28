@@ -54,7 +54,7 @@ As we have noticed earlier, by default the _config_ and _extensions_ packages ar
 ```java
 @Override
 protected void registerDefaultApplicationContextConfigurers( Set<ApplicationContextConfigurer> contextConfigurers ) {
-    contextConfigurers.add( new ComponentScanConfigurer.forAcrossModule( AdvantageModule.class ) );
+    contextConfigurers.add( ComponentScanConfigurer.forAcrossModule( MyModule.class ) );
 }
 ```
 
@@ -73,5 +73,5 @@ public MyModule(){
 
 ## Tests
 
-For our module to be useable by other modules and applications, it is very important that it works correctly. Hence why you should always provide tests, at the very least a few integration tests to check your module works as intended. You should definitely take a look at the [Testing section](/docs/testing/index.adoc) for more information about Across Test.
+For our module to be useable by other modules and applications, it is very important that it works correctly. Hence why you should always provide tests, at the very least a few integration tests to check your module works as intended. You should definitely take a look at the link:../docs/testing/index.adoc[Testing section] for more information about Across Test.
 
