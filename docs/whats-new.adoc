@@ -1,7 +1,16 @@
 [[whats-new]]
-== What's new in this version?
-:!chapter-number:
+= Across framework release notes
+:toc: left
+:toc-title: Release notes
+:toclevels: 2
+:sectnums:
+:chapter-number: 0
+:docinfo1:
+include::variables.adoc[]
 
+:!numbered:
+
+== What's new in this version
 [#3-0-0-SNAPSHOT]
 === 3.0.0-SNAPSHOT
 *Across Core*
@@ -129,3 +138,5 @@ Several improvements have been done for easier integration testing of modules in
 [#1-1-1-RELEASE]
 === 1.1.1.RELEASE
 Initial public release available on http://search.maven.org/[Maven central].
+
+include::section-artifacts.adoc[]

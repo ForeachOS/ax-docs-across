@@ -1,9 +1,11 @@
 [[fundamentals]]
 = Fundamentals
 :toc: left
+:toc-title: Fundamentals
 :toclevels: 2
 :sectnums:
 :chapter-number: 0
+:docinfo1:
 include::variables.adoc[]
 
 [abstract]
@@ -60,4 +62,4 @@ Other modules generate web forms at runtime for persistent entities you have dec
 Across framework provides only a ground layer, the real win is in re-using well-defined modules that have already been built.
 The standard modules projects aims to do exactly that: bring some generic base modules to the open source Across landscape.
 
-include::concepts.adoc[]
+include::fundamentals/concepts.adoc[]
