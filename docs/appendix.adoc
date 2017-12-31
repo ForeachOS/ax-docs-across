@@ -1,0 +1,16 @@
+= Appendices
+:toc: left
+:toc-title: Appendices
+:toclevels: 2
+:sectnums:
+:chapter-number: 0
+:docinfo1:
+include::variables.adoc[]
+
+include::appendix/appendix-troubleshooting.adoc[]
+
+include::appendix/appendix-core-events.adoc[]
+
+include::appendix/appendix-across-default-beans.adoc[]
+
+include::appendix/appendix-test-configurations.adoc[]
