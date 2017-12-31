@@ -1,5 +1,5 @@
 [[test-builders]]
-[#test-context-builders]
+[[test-context-builders]]
 == Test context builders
 
 Across Test comes with a set of helpers for integration testing an Across module with all its dependencies.
@@ -29,7 +29,7 @@ In addition `AcrossTestContext` implements `Closeable` that shuts down the conte
     }
 ----
 
-Using the builders will by default load the link:index.adoc#test-datasources[test datasources]
+Using the builders will by default load the <<test-datasources,test datasources>>
  and will execute a reset of the databases before bootstrapping.
 Both options can be configured separately on the builder.
 

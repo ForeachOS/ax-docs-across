@@ -1,0 +1,45 @@
+[[across-test]]
+= Testing
+:toc: left
+:toc-title: Testing
+:toclevels: 2
+:sectnums:
+:chapter-number: 0
+:docinfo1:
+include::variables.adoc[]
+
+Testing your shared Across modules or your Across application can be done using Across Test.
+Across Test is a utility library extending the Spring testing library.
+It provides helpers for integration testing in a standard or web context.
+
+Across Test also integrates with the AcrossWebModule features for testing.
+
+[discrete]
+== Artifact
+[source,xml,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+	<dependencies>
+		<dependency>
+			<groupId>com.foreach.across</groupId>
+			<artifactId>across-test</artifactId>
+			<version>{across-version}</version>
+		</dependency>
+	</dependencies>
+----
+
+include::testing/chap-base-test-classes.adoc[]
+
+include::testing/chap-test-context-builders.adoc[]
+
+include::testing/chap-test-annotations.adoc[]
+
+include::testing/chap-test-mock-mvc.adoc[]
+
+include::testing/chap-mock-across-servlet-context.adoc[]
+
+include::testing/chap-test-application.adoc[]
+
+include::testing/chap-test-dynamic-modules.adoc[]
+
+include::testing/chap-test-datasources.adoc[]

@@ -14,8 +14,8 @@ When `initialize()` is called, the `init()` methods of the servlet/filter instan
 Note that `initialize()` can be called only once, and afterwards all registration operations will throw an `IllegalStateException`.
 
 Using a `MockAcrossServletContext` can be used for unit testing `AcrossWebDynamicServletConfigurer` implementations or for integration tests needing web functionality.
-`MockAcrossServletContext` is used automatically behind the scenes when using the link:index.adoc#test-context-builders[test builders] or link:index.adoc#annotations[annotations].
-In an integration test scenario, the implementation can either be wired as a bean (when using the link:index.adoc#annotations[annotations]) or retrieved from the resulting `AcrossTestWebContext`.
+`MockAcrossServletContext` is used automatically behind the scenes when using the <<test-context-builders,test builders>> or <<annotations,annotations>>.
+In an integration test scenario, the implementation can either be wired as a bean (when using the <<annotations,annotations>>) or retrieved from the resulting `AcrossTestWebContext`.
 
 Please refer to the javadoc for `MockAcrossServletContext` for more information.
 
