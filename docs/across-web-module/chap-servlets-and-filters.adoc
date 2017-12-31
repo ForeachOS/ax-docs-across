@@ -2,7 +2,7 @@
 [#registering-servlets-and-filters]
 == Registering servlets and filters
 It is possible to register `Servlet` and `Filter` instances from within an Across module by providing `ServletContextInitializer` beans.
-During bootstrap, AcrossWebModule will detect these beans and execute them link:../developing-applications/index.adoc#bean-order[in order].
+During bootstrap, AcrossWebModule will detect these beans and execute them <<developing-applications.adoc#bean-order,in order>>.
 
 For the `ServletContext` to be customized, the `AcrossContext` must be bootstrapped during the `ServletContext` initialization.
 This is the default when you use `@AcrossApplication` with an embedded container (Spring Boot application).

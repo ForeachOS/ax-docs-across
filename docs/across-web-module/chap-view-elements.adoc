@@ -33,7 +33,7 @@ In its most simple form, a `ViewElement` has the following properties:
 This name can be used to retrieve the element from a `ContainerViewElement`.
 Use `ContainerViewElementUtils` to query and modify containers.
 
-See link:../developing-applications/index.adoc#development-mode[development mode rendering] for more information to retrieve generated view names.
+See <<developing-applications.adoc#development-mode,development mode rendering>> for more information to retrieve generated view names.
 
 |*elementType*
 |A *required* type identification for the element.

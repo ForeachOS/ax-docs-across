@@ -112,6 +112,6 @@ The `PrefixingRequestMappingHandlerMapping` allows request mappings to be prefix
 Core infrastructure is the `PrefixingRequestMappingHandlerMapping` and the `PrefixingHandlerMappingConfigurer`.
 The latter can be used to add interceptors only to request mappings attached to a specific `PrefixingRequestMappingHandlerMapping` instance.
 
-`PrefixingRequestMappingHandlerMapping` also fully supports link:index.adoc#custom-request-mapping[custom request conditions].
+`PrefixingRequestMappingHandlerMapping` also fully supports <<custom-request-mapping,custom request conditions>>.
 
 Examples of prefixing request mappings can be found in the {admin-web-module-url}[AdminWebModule] and {debug-web-module-url}[DebugWebModule].

@@ -84,7 +84,7 @@ The `AcrossWebDialect` makes the following expression objects available for scri
 For example to static resources.
 
 These links can still be processed by the Thymeleaf link builder (`@{..}`).
-Usually not necessary to use the `#webapp` however, see the link:index.adoc#url-support[URL support section].
+Usually not necessary to use the `#webapp` however, see the <<url-support,URL support section>>.
 
 |*#htmlIdStore*
 |`HtmlIdStore`
@@ -95,7 +95,7 @@ Usually not necessary to use the `#webapp` however, see the link:index.adoc#url-
 [[url-support]]
 [#url-support]
 === URL support
-Apart from the availability of *#webapp*, AcrossWebModule activates transparent support for the link:index.adoc#web-app-path-resolver-and-path-prefixing[`WebAppPathResolver`] on Thymeleaf URL generation. +
+Apart from the availability of *#webapp*, AcrossWebModule activates transparent support for the <<web-app-path-resolver-and-path-prefixing,`WebAppPathResolver`>> on Thymeleaf URL generation. +
 
 Example:
 _<img th:src="@{@static:/img}">_ would produce _<img src="/res/static/img">_

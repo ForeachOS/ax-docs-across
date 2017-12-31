@@ -11,16 +11,16 @@ This means modules can configure the Spring MVC support, add controllers, servle
 
 On top of that, the out-of-the-box Spring MVC functionality is extended in several ways:
 
- * a link:index.adoc#thymeleaf-dialect[Thymeleaf dialect] is provided for interacting with the Across web infrastructure
- * AcrossWebModule provides infrastructure for link:index.adoc#layout-templates[templates], link:index.adoc#building-menus[menu building] and link:index.adoc#web-resource-registry[registering web resources]
- * adding a link:index.adoc#viewelement-infrastructure[programmatic model for creating UI components] from code
- * adding support for link:index.adoc#request-mapping-extensions[prefixing request mappings and adding custom request condition]
- * auto configuration of a link:index.adoc#multipart-support[Multipart filter]
- * auto configuration of static resources with link:index.adoc#client-side-caching[client-side caching] and link:index.adoc#resource-url-versioning[url versioning]
+ * a <<thymeleaf-dialect,Thymeleaf dialect>> is provided for interacting with the Across web infrastructure
+ * AcrossWebModule provides infrastructure for <<layout-templates,templates>>, <<building-menus,menu building>> and <<web-resource-registry,registering web resources>>
+ * adding a <<viewelement-infrastructure,programmatic model for creating UI components>> from code
+ * adding support for <<request-mapping-extensions,prefixing request mappings and adding custom request condition>>
+ * auto configuration of a <<multipart-support,Multipart filter>>
+ * auto configuration of static resources with <<client-side-caching,client-side caching>> and <<resource-url-versioning,url versioning>>
 
 AcrossWebModule is not a Web CMS, it only supplies some common infrastructure generally useful when building web applications.
 
-The across-web artifact also contains link:../developing-applications/index.adoc#across-application[`@AcrossApplication`], a replacement for `@SpringBootApplication` when working with an AcrossContext.
+The across-web artifact also contains <<developing-applications.adoc#across-application,`@AcrossApplication`>>, a replacement for `@SpringBootApplication` when working with an AcrossContext.
 
 [#artifact]
 === Artifact
@@ -92,12 +92,12 @@ All properties start with the *acrossWebModule.* prefix.
 
 |templates.enabled
 |`Boolean`
-|Should support for link:index.adoc#layout-templates[web templates] be enabled.
+|Should support for <<layout-templates,web templates>> be enabled.
 |_true_
 
 |templates.auto-register
 |`Boolean`
-|If link:index.adoc#layout-templates[web templates] are enabled, should named templates be autodetected.
+|If <<layout-templates,web templates>> are enabled, should named templates be autodetected.
 |_true_
 
 |multipart.auto-configure

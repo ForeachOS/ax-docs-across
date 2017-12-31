@@ -4,7 +4,7 @@
 [[web-app-path-resolver]]
 [#web-app-path-resolver-and-path-prefixing]
 === WebAppPathResolver and path prefixing
-{module-name} introduces the `<<prefix-request-mappings,PrefixingRequestMappingHandlerMapping>>`.
+{module-name} introduces the `<<prefixed-request-mappings,PrefixingRequestMappingHandlerMapping>>`.
 This allows `@RequestMapping` methods to be prefixed at runtime, based on configuration.
 
 Some standard Across modules like AdminWebModule and DebugWebModule make use of this functionality.
@@ -12,7 +12,7 @@ Some standard Across modules like AdminWebModule and DebugWebModule make use of 
 Because the actual relative path of a controller is then not known during development, you can define a relative path with a prefix.
 If you provide your path to the `WebAppPathResolver` bean, the prefix will then be replaced at runtime by the final path.
 
-The link:index.adoc#thymeleaf-dialect[AcrossWebModule Thymeleaf dialect] integrates with the `WebAppPathResolver` so prefix based paths are supported directly in templates.
+The <<thymeleaf-dialect,AcrossWebModule Thymeleaf dialect>> integrates with the `WebAppPathResolver` so prefix based paths are supported directly in templates.
 
 NOTE: If you want to ensure your relative path is never prefixed, start it with an exclamation mark (!).
 

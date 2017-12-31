@@ -11,7 +11,7 @@ The reference documentation is split up into several parts:
 * <<fundamentals.adoc#fundamentals,Fundamentals>> explains the fundamental concepts of Across, things you should really understand when building Across applications or modules
 * <<developing-applications.adoc#developing-across-applications,Developing Across applications>> goes into some more detail about the steps involved in developing application with Across modules, as well as some of the features you can use
 * <<developing-modules.adoc#developing-across-modules,Developing Across modules>> is more geared towards developers interested in creating shared modules - although the information is generally useful
-* link:across-web-module/index.adoc[AcrossWebModule] gives an overview of the web specific additions that Across core brings
+* <<across-web-module.adoc#across-web,AcrossWebModule>> gives an overview of the web specific additions that Across core brings
 * <<testing.adoc#across-test,Testing>> explains how developers can integration test their modules or applications
 
 Through the {across-url}[Across website] you can find a lot more information like frequently asked questions, tutorials and available modules (with their respective documentation).

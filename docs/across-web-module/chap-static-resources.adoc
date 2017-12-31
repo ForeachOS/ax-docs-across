@@ -2,7 +2,7 @@
 [#static-resources]
 == Static resources
 {module-name} automatically enables serving of static resources bundled with modules.
-With the default settings static resources will be configured with link:index.adoc#resource-url-versioning[versioned urls] and link:index.adoc#client-side-caching[client-side caching].
+With the default settings static resources will be configured with <<resource-url-versioning,versioned urls>> and <<client-side-caching,client-side caching>>.
 
 [[static-resources-conventions]]
 [#conventions]
@@ -46,6 +46,7 @@ This is also the default if development mode is active.
 [[resource-url-versioning]]
 [#resource-url-versioning]
 === Resource URL versioning
+//TODO fix spring link to mvc config static resources
 By default AcrossWebModule enables link:http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-static-resources[Spring versioning of static resources].
 This will generate versioned URLs, create a `ResourceUrlProvider` bean and add a `ResourceUrlEncodingFilter` and `ResourceUrlProviderExposingInterceptor` to the request handlers.
 
