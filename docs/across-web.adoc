@@ -1,11 +1,11 @@
-[[across-test]]
-= Testing
+[[across-web]]
+= Across Web
 :toc: left
-:toc-title: Testing
+:toc-title: AcrossWebModule
 :toclevels: 2
 :sectnums:
 :chapter-number: 0
 :docinfo1:
 include::variables.adoc[]
 
-include::testing/index.adoc[]
+include::across-web/index.adoc[]

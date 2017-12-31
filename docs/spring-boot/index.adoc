@@ -1,3 +1,4 @@
+
 = Temporary changelog for Across 3.0.0
 
 * exposed bean definitions are now copied to the module context directly instead of shared via the parent `ApplicationContext`
@@ -5,7 +6,7 @@
 * the latter allows specifying a different class to be executed instead of (using *:*) or a module name where the class should be inserted instead (using *->*)
 * the main application class package is not registered as an auto configuration package, instead the package of the application module is
 * provided some tests-projects in the across-autoconfigure project. These tests check the integration of several spring-boot-starter artifacts and their autoconfiguration within Across. They also serve as an example on how to setup such a spring-boot-starter with minimal configuration. See <<spring-boot-starters,Spring Boot Starters 1.5.x>>
-  
+
 == AcrossWebModule
 * `RestTemplateBuilder` is created and exposed
 * Jackson `ObjectMapper` and `Jackson2ObjectMapperBuilder` are created and exposed
@@ -39,7 +40,7 @@ In many cases, these can still be added directly using an `@Import` statement in
 Across always packages Liquibase but uses installers instead of a default changeset xml.
 Looks like the auto-configuration breaks in this case.
 
-`org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration`:: 
+`org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration`::
 If you want method validation in a module, it should be ok to manually add this auto-configuration.
 Adding it on application level will only impact the application infrastructure.
 If you want to use a single shared `Validator` bean you should consider exposing it in the module where it first gets created (or also created on application level).
@@ -51,7 +52,7 @@ Lists the support status of different Spring Boot starters and how you can use t
 
 == Support levels explained
 
-Not supported:: 
+Not supported::
   No auto-configuration possible.
 
 Full support::
@@ -72,7 +73,7 @@ Additional manual configuration is still required.
 
 Expected::
   Currently not yet available.
-  
+
 To be verified::
   Auto-configuration available but not yet - or only partially - verified.
   Some cases might not yet work as expected.
@@ -103,15 +104,15 @@ Endpoints, metrics, health indicators from all modules will automatically be exp
 == Spring Boot Starter amqp
 https://projects.spring.io/spring-amqp/
 
-TBD   
+TBD
 
 == Spring Boot Starter Aop
 
-TBD           
+TBD
 
 == Spring Boot Starter Artemis
 
-TBD          
+TBD
 
 == Spring Boot Starter Batch
 
@@ -154,11 +155,11 @@ https://github.com/codecentric/spring-boot-admin
 == Spring Boot Starter Cache
 
 TBD
-            
+
 == Spring Boot Starter Cloud Connectors
 
 TBD
-            
+
 == Spring Boot Starter Data Cassandra
 https://projects.spring.io/spring-data-cassandra/
 
@@ -179,7 +180,7 @@ Autoconfiguration classes:
 |Verified
 |none
 |===
-            
+
 == Spring Boot Starter Data Couchbase
 https://projects.spring.io/spring-data-couchbase/
 
@@ -223,15 +224,15 @@ Autoconfiguration classes:
 |Verified
 |none
 |===
-            
+
 == Spring Boot Starter Data Gemfire
 
 TBD
-            
+
 == Spring Boot Starter Data JPA
 
 TBD
-            
+
 == Spring Boot Starter Data Ldap
 https://projects.spring.io/spring-data-ldap/
 
@@ -252,7 +253,7 @@ Autoconfiguration classes:
 |Verified
 |none
 |===
-            
+
 == Spring Boot Starter Data Mongodb
 https://projects.spring.io/spring-data-mongodb/
 
@@ -273,7 +274,7 @@ Autoconfiguration classes:
 |Verified
 |none
 |===
-            
+
 == Spring Boot Starter Data Neo4j
 https://projects.spring.io/spring-data-neo4j/
 
@@ -292,7 +293,7 @@ Autoconfiguration classes:
 |Verified
 |none
 |===
-            
+
 == Spring Boot Starter Data Redis
 https://projects.spring.io/spring-data-redis/
 
@@ -339,7 +340,7 @@ Known issues:
 * Integration with AcrossHibernateModule and AcrossHibernateJpaModule have not been reviewed yet.
 * To use AutoConfiguration of ``HibernateJpaAutoConfiguration`` and ``JpaRepositoriesAutoConfiguration``
 you need to add them manually to your across.configuration file.
-            
+
 == Spring Boot Starter Data SOLR
 https://projects.spring.io/spring-data-solr/
 
@@ -362,27 +363,27 @@ Autoconfiguration classes:
 == Spring Boot Starter Freemarker
 
 TBD
-            
+
 == Spring Boot Starter Groovy Templates
 
 TBD
-            
+
 == Spring Boot Starter Hateoas
 
 Spring Boot Data Rest includes hateoas, see <<spring-boot-starter-data-rest,Spring Boot Starter Data Rest>>
-            
+
 == Spring Boot Starter Integration
 
 TBD
-            
+
 == Spring Boot Starter JDBC
 
 TBD
-            
+
 == Spring Boot Starter Jersey
 
 TBD
-            
+
 == Spring Boot Starter Jetty
 
 Autoconfiguration classes:
@@ -399,27 +400,27 @@ Autoconfiguration classes:
 |Verified
 |none
 |===
-            
+
 == Spring Boot Starter Jooq
 
 TBD
-            
+
 == Spring Boot Starter JTA Atomikos
 
 TBD
-            
+
 == Spring Boot Starter JTA Bitronix
 
 TBD
-            
+
 == Spring Boot Starter JTA Narayana
 
 TBD
-            
+
 == Spring Boot Starter log4j2
 
 TBD
-            
+
 == Spring Boot Starter Logging
 
 Autoconfiguration classes:
@@ -437,7 +438,7 @@ LoggingApplicationListener
 |Verified
 |none
 |===
-            
+
 == Spring Boot Starter Mail
 
 [cols="1,1,4",opts=header]
@@ -458,11 +459,11 @@ LoggingApplicationListener
 == Spring Boot Starter Mobile
 
 TBD
-            
+
 == Spring Boot Starter Mustache
 
 TBD
-            
+
 == Spring Boot Starter Remote Shell
 
 [cols="1,1,4",opts=header]
@@ -477,11 +478,11 @@ TBD
 |===
 
 WARNING: This Spring Starter will be removed in Spring Boot 2.0.0 so hasn't been reviewed fully.
-            
+
 == Spring Boot Starter Security
 
 TBD
-            
+
 == Spring Boot Starter Social Facebook
 
 [cols="1,1,4",opts=header]
@@ -494,11 +495,11 @@ TBD
 |Verified
 |none
 |===
-            
+
 == Spring Boot Starter Social Linkedin
 
 TBD
-            
+
 == Spring Boot Starter Social Twitter
 
 [cols="1,1,4",opts=header]
@@ -512,15 +513,15 @@ TBD
 |none
 |===
 
-            
+
 == Spring Boot Starter Test
 
 TBD
-            
+
 == Spring Boot Starter Thymeleaf
 
 TBD
-            
+
 == Spring Boot Starter Tomcat
 
 Autoconfiguration classes:
@@ -537,7 +538,7 @@ Autoconfiguration classes:
 |Verified
 |none
 |===
-            
+
 == Spring Boot Starter Undertow
 
 Autoconfiguration classes:
@@ -554,15 +555,15 @@ Autoconfiguration classes:
 |Verified
 |none
 |===
-            
+
 == Spring Boot Starter Validation
 
 TBD
-            
+
 == Spring Boot Starter Web Services
 
 TBD
-            
+
 == Spring Boot Starter Web
 
 [cols="1,1,4",opts=header]
@@ -575,7 +576,7 @@ TBD
 |To be verified
 |none
 |===
-            
+
 == Spring Boot Starter Websocket
 
 Autoconfiguration classes:

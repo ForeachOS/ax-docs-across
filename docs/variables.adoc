@@ -9,3 +9,4 @@
 :admin-web-module-url: https://foreach.atlassian.net/wiki/display/AX/AdminWebModule
 :debug-web-module-url: https://foreach.atlassian.net/wiki/display/AX/DebugWebModule
 :bootstrap-ui-module-url: https://foreach.atlassian.net/wiki/display/AX/BootstrapUiModule
+:git-across-docs: https://github.com/ForeachOS/ax-docs-across

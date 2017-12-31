@@ -1,11 +1,11 @@
-[[across-test]]
-= Testing
+[[how-tos]]
+= Across How-tos
 :toc: left
-:toc-title: Testing
+:toc-title: How-tos
 :toclevels: 2
 :sectnums:
 :chapter-number: 0
 :docinfo1:
 include::variables.adoc[]
 
-include::testing/index.adoc[]
+include::how-tos/index.adoc[]

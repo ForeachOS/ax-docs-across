@@ -1,8 +1,3 @@
-[[across-test]]
-= Testing
-:sectnums:
-:chapter-number: 0
-
 Testing your shared Across modules or your Across application can be done using Across Test.
 Across Test is a utility library extending the Spring testing library.
 It provides helpers for integration testing in a standard or web context.

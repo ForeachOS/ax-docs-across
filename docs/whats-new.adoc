@@ -139,4 +139,4 @@ Several improvements have been done for easier integration testing of modules in
 === 1.1.1.RELEASE
 Initial public release available on http://search.maven.org/[Maven central].
 
-include::section-artifacts.adoc[]
+include::whats-new/section-artifacts.adoc[]
