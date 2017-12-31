@@ -19,10 +19,10 @@ If not specified, the fully qualified class name of the installer class will be 
 
 |*phase*
 |When this installer should run during the context bootstrap.
-See link:index.adoc#installer-bootstrap-phases[bootstrap phases].
+See <<installer-bootstrap-phases,bootstrap phases>>.
 
 |*runCondition*
-|Condition when this installer should run.  See link:index.adoc#installer-run-conditions[run conditions].
+|Condition when this installer should run.  See <<installer-run-conditions,run conditions>>.
 
 |*version*
 |Version number of the installer.
@@ -42,7 +42,7 @@ Though still possible for compatibility reasons, installers should be specified 
 [discrete]
 === Installer tracking and synchronization
 The execution of installers is tracked using the `AcrossInstallerRepository`.
-This allows for installers to execute only if they have not yet been executed (see link:index.adoc#installer-run-conditions[run conditions]).
+This allows for installers to execute only if they have not yet been executed (see <<installer-run-conditions,run conditions>>).
 
 In addition, installer execution is synchronized for multiple applications connecting on the same database.
 This is done through the `DistributedLockRepository` that is created in the core schema.
@@ -50,11 +50,12 @@ A lock will be taken on the database as soon as a single installer wishes to exe
 
 The lock owner will contain the hostname of the computer running the application, as well as the `displayName` of the `AcrossContext`.
 
-Because of tracking and synchronization, a link:index.adoc#installer-datasource[datasource] is required in order to execute installers.
+Because of tracking and synchronization, a <<installer-datasource,datasource>> is required in order to execute installers.
 
 NOTE: The `AcrossInstallerRepository` can be wired as a bean in installers.
 This can be helpful in migration trajectories for example to rename installers.
 
+[[installer-bootstrap-phases]]
 [#installer-bootstrap-phases]
 [discrete]
 === Bootstrap phases
@@ -66,7 +67,7 @@ The following bootstrap phases exist:
 
 BeforeContextBootstrap::
 The installer is executed before any of the modules in the AcrossContext are bootstrapped.
-Only beans from the parent `ApplicationContext` or the link:index.adoc#installer-applicationcontext[installer `ApplicationContext`] are available.
+Only beans from the parent `ApplicationContext` or the <<installer-applicationcontext,installer `ApplicationContext`>> are available.
 
 BeforeModuleBootstrap::
 The installer is executed before the module that owns it bootstraps, but after all previous modules have bootstrapped.
@@ -92,7 +93,7 @@ The installer will always be executed, everytime the module bootstraps.
 VersionDifferent::
 The installer will only execute if the _version_ attribute is higher than the version previously executed.
 
-In addition to the standard run conditions, you can use link:index.adoc#installer-conditionals[`@Conditional` annotations on installer classes].
+In addition to the standard run conditions, you can use <<installer-conditionals,`@Conditional` annotations on installer classes>>.
 This includes for example the use of `@AcrossDepends` to execute installers if certain modules are active.
 
 WARNING: Using *AlwaysRun* installers will always cause the bootstrap lock to be taken.
@@ -101,14 +102,14 @@ WARNING: Using *AlwaysRun* installers will always cause the bootstrap lock to be
 [discrete]
 === Installer group
 In addition to the standard `@Installer` attributes, an `@InstallerGroup` annotation can be specified.
-This allows grouping types of installers together (for example schema) and overruling their execution using link:index.adoc#installer-settings[`InstallerSettings`].
+This allows grouping types of installers together (for example schema) and overruling their execution using <<installer-settings,`InstallerSettings`>>.
 
 [discrete]
 === Installer execution order
 If all conditions are fulfilled, installers will be executed in a predetermined order:
 
-. in link:index.adoc#installer-bootstrap-phases[bootstrap phase] order
-. in link:../developing-applications/index.adoc#module-bootstrap-order[module bootstrap order]
+. in <<installer-bootstrap-phases,bootstrap phase>> order
+. in <<developing-applications.adoc#module-bootstrap-order,module bootstrap order>>
 . in installer order (according to `@Order` annotations on the installer class)
 
 WARNING: Installers without an `@Order` annotation behave as if they have an order index of *0*.

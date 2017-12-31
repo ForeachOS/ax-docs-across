@@ -59,7 +59,7 @@ context.shutdown();
 
 [#module-configuration]
 == Module configuration
-Apart from module settings, an application can also define a number of `<<../../developing-modules.adoc#module-configuration,@ModuleConfiguration>>` classes to be added to the bootstrapping modules.
+Apart from module settings, an application can also define a number of `<<developing-modules.adoc#module-configuration,@ModuleConfiguration>>` classes to be added to the bootstrapping modules.
 When using the `@EnableAcrossContext`, the packages to scan for these can be set using attributes, but by default the sub-packages *config* and *extensions* of the importing class will be used.
 
 Alternatively the packages to scan can be controlled via the `moduleConfigurationScanPackages` property on `AcrossContext`.

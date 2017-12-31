@@ -1,0 +1,28 @@
+[[developing-across-modules]]
+[#developing-across-modules]
+= Developing Across modules
+:toc: left
+:toc-title: Developing Across modules
+:toclevels: 2
+:sectnums:
+:chapter-number: 0
+:docinfo1:
+include::variables.adoc[]
+
+include::developing-modules/chap-module-create-a-module.adoc[]
+
+//include::developing-modules/chap-module-settings.adoc[]
+
+include::developing-modules/chap-module-dependencies.adoc[]
+
+//include::developing-modules/chap-module-roles.adoc[]
+
+include::developing-modules/chap-module-bootstrap.adoc[]
+
+include::developing-modules/chap-module-exposing-beans.adoc[]
+
+include::developing-modules/chap-module-messages.adoc[]
+
+include::developing-modules/chap-module-installers.adoc[]
+
+include::developing-modules/chap-module-version.adoc[]
