@@ -1,8 +1,13 @@
 [[across-core]]
 [[developing-across-applications]]
 = Developing Across applications
+:toc: left
+:toc-title: Developing Across applications
+:toclevels: 2
 :sectnums:
 :chapter-number: 0
+:docinfo1:
+include::variables.adoc[]
 
 Across Core is the main dependency that is required for bootstrapping an `AcrossContext`.
 If you want to use `@AcrossApplication` however, you should use *across-web* instead.
@@ -33,9 +38,9 @@ This configures your application and starts it up as a Spring Boot application.
 Behind the scenes, `@AcrossApplication` uses `@EnableAcrossContext`.
 The latter can also be used for defining an Across context on a configuration class, but without the Spring Boot application support.
 
-include::chap-configuring-across-context.adoc[]
+include::developing-applications/chap-configuring-across-context.adoc[]
 
-include::chap-application.adoc[]
+include::developing-applications/chap-application.adoc[]
 
 [discrete]
 === Manual configuration
@@ -59,22 +64,22 @@ context.shutdown();
 
 [#module-configuration]
 == Module configuration
-Apart from module settings, an application can also define a number of `<<../../developing-modules.adoc#module-configuration,@ModuleConfiguration>>` classes to be added to the bootstrapping modules.
+Apart from module settings, an application can also define a number of `<<moduleconfiguration,@ModuleConfiguration>>` classes to be added to the bootstrapping modules.
 When using the `@EnableAcrossContext`, the packages to scan for these can be set using attributes, but by default the sub-packages *config* and *extensions* of the importing class will be used.
 
 Alternatively the packages to scan can be controlled via the `moduleConfigurationScanPackages` property on `AcrossContext`.
 
-include::chap-across-bootstrap.adoc[]
+include::developing-applications/chap-across-bootstrap.adoc[]
 
-include::chap-across-properties.adoc[]
+include::developing-applications/chap-across-properties.adoc[]
 
-include::chap-across-datasource.adoc[]
+include::developing-applications/chap-across-datasource.adoc[]
 
-include::chap-across-events.adoc[]
+include::developing-applications/chap-across-events.adoc[]
 
-include::chap-across-refreshing.adoc[]
+include::developing-applications/chap-across-refreshing.adoc[]
 
-include::chap-across-ordering-beans.adoc[]
+include::developing-applications/chap-across-ordering-beans.adoc[]
 
 [#conversion-service]
 == ConversionService
@@ -92,7 +97,7 @@ The `StringToDateConverter` assumes a fixed locale that can be configured (defau
 
 WARNING: If you manage the `ConversionService` outside of the `AcrossContext` the default `StringToDateConverter` will not be registered either.
 
-include::chap-across-development-mode.adoc[]
+include::developing-applications/chap-across-development-mode.adoc[]
 
 // TODO mention somewhere the default beans and link to it
 

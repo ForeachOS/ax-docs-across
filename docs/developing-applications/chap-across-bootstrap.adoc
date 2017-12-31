@@ -28,8 +28,8 @@ Once the order has been determined, the modules will be started one by one.
 
 [#installers]
 === Installers
-At several points during bootstrap of an Across context, link:../developing-modules/index.adoc#installer-bootstrap-phases[installers can get executed].
+At several points during bootstrap of an Across context, <<../../developing-modules.adoc#installer-bootstrap-phases,installers can get executed>>.
 
 [#bootstrap-events]
 === Bootstrap events
-During bootstrap, the Across context link:index.adoc#dev-appl-bootstrap-events[publishes several events] that allow other components to act upon.
+During bootstrap, the Across context <<dev-appl-bootstrap-events,publishes several events>> that allow other components to act upon.

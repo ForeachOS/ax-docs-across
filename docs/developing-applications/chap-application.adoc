@@ -2,13 +2,13 @@
 [#across-application]
 === @AcrossApplication
 `@AcrossApplication` annotation can be used as an alternative for `@EnableAcrossContext` and `@SpringBootApplication` when defining an application.
-In addition to default context configuration options, it also adds selected <<spring-boot-autoconfigure,Spring Boot autoconfiguration classes>> and enables link:index.adoc#dynamic-across-modules[dynamic modules].
+In addition to default context configuration options, it also adds selected <<../../appendix.adoc#spring-boot-autoconfigure,Spring Boot autoconfiguration classes>> and enables <<dynamic-across-modules,dynamic modules>>.
 
 Using `@AcrossApplication` is probably the easiest way to setup a simple (Spring Boot based) application backed by an AcrossContext.
 
 WARNING: Using `@EnableAutoConfiguration` and Spring Boot starters directly with Across is currently not supported.
 Only a selected number of starters have support directly built into Across.
-See <<across-spring-boot>> for more background information.
+See <<../../appendix.adoc#across-spring-boot,Across and Spring Boot>> for more background information.
 
 [[embedded-servlet-container]]
 ==== Embedded servlet container

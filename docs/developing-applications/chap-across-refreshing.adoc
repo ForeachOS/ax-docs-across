@@ -24,7 +24,7 @@ These will be executed when the AcrossContext is refreshed.
 `@RefreshableCollection` is an annotation to qualify dependencies being autowired.
 It can only be used on dependencies of type `Collection`.
 
-When using `@RefreshableCollection`, instead of a regular collection of beans, a `<<RefreshableRegistry>>` will be wired.
+When using `@RefreshableCollection`, instead of a regular collection of beans, a `<<refreshable-registry>>` will be wired.
 The behaviour and type of the `RefreshableRegistry` can be determined through the annotation attributes.
 
 .Example autowiring collection that will contain all MyBean instances from all modules, even if not exposed
@@ -44,6 +44,6 @@ A `RefreshableRegistry` is a collection of beans of a specified class that updat
 A `RefreshableRegistry` can also scan for beans inside the other modules in the running context, without the need for those beans to be exposed.
 This allows other modules to pick up extensions or configurations from other modules that bootstrap later.
 
-The value of a `RefreshableRegistry` are also ordered according to the link:index.adoc#bean-order[Across module order hierarchy].
+The value of a `RefreshableRegistry` are also ordered according to the <<bean-order,Across module order hierarchy>>.
 
 `IncrementalRefreshableRegistry` is a specialization that updates its values every time a module has bootstrapped.
