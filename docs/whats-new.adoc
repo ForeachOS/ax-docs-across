@@ -16,6 +16,42 @@ include::variables.adoc[]
 *Across Core*
 
 * @ConditionalOnAcrossModule annotation that can be put on a @Configuration class, @Bean method and any component to depend on the presence of modules.
+* exposed beans
+* events
+* addition of auto-configuration artifact
+* auto-configuration support
+
+==== Temporary changelog for Across 3.0.0
+
+* exposed bean definitions are now copied to the module context directly instead of shared via the parent `ApplicationContext`
+* *META-INF/across.configuration* where you can specify Exposed classes, or AutoConfigurationDisabled, AutoConfigurationEnabled
+* the latter allows specifying a different class to be executed instead of (using *:*) or a module name where the class should be inserted instead (using *->*)
+* the main application class package is not registered as an auto configuration package, instead the package of the application module is
+* provided some tests-projects in the across-autoconfigure project. These tests check the integration of several spring-boot-starter artifacts and their autoconfiguration within Across. They also serve as an example on how to setup such a spring-boot-starter with minimal configuration. See <<spring-boot-starters,Spring Boot Starters 1.5.x>>
+
+==== AcrossWebModule
+* `RestTemplateBuilder` is created and exposed
+* Jackson `ObjectMapper` and `Jackson2ObjectMapperBuilder` are created and exposed
+* if Gson on the classpath: `Gson` object created and exposed
+
+Extension configuration that should be added to AcrossWebModule:
+
+* `RestTemplateCustomizer`
+* `HttpMessageConverter`
+* `Jackson2ObjectMapperBuilderCustomizer`
+
+.Filter registration
+Filters and servlets are registered in a slightly different fashion than in previous versions.
+Any `Servlet` or `Filter` bean will now be automatically be exposed and registered.
+If there is an actual registration bean for the filter or servlet, it will take precedence.
+
+The new approach might introduce breaking changes with applications that do not use an embedded application context.
+The `AcrossWebDynamicServletConfigurer` is fully deprecated and any beans of that type created in the parent context will not be executed any longer in a non-embedded configuration.
+
+Also the ordering of filters might have changed slightly, modules providing filters should review the order assignment.
+
+Dynamically registered filters should preferably include an explicit order value and should be done inside the Across context (inside a module) and not on the application configuration level.
+
 
 [#2-1-1-RELEASE]
 === 2.1.1.RELEASE

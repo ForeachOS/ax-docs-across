@@ -1,56 +1,6 @@
+== Auto-configuration support
 
-= Temporary changelog for Across 3.0.0
-
-* exposed bean definitions are now copied to the module context directly instead of shared via the parent `ApplicationContext`
-* *META-INF/across.configuration* where you can specify Exposed classes, or AutoConfigurationDisabled, AutoConfigurationEnabled
-* the latter allows specifying a different class to be executed instead of (using *:*) or a module name where the class should be inserted instead (using *->*)
-* the main application class package is not registered as an auto configuration package, instead the package of the application module is
-* provided some tests-projects in the across-autoconfigure project. These tests check the integration of several spring-boot-starter artifacts and their autoconfiguration within Across. They also serve as an example on how to setup such a spring-boot-starter with minimal configuration. See <<spring-boot-starters,Spring Boot Starters 1.5.x>>
-
-== AcrossWebModule
-* `RestTemplateBuilder` is created and exposed
-* Jackson `ObjectMapper` and `Jackson2ObjectMapperBuilder` are created and exposed
-* if Gson on the classpath: `Gson` object created and exposed
-
-Extension configuration that should be added to AcrossWebModule:
-
-* `RestTemplateCustomizer`
-* `HttpMessageConverter`
-* `Jackson2ObjectMapperBuilderCustomizer`
-
-.Filter registration
-Filters and servlets are registered in a slightly different fashion than in previous versions.
-Any `Servlet` or `Filter` bean will now be automatically be exposed and registered.
-If there is an actual registration bean for the filter or servlet, it will take precedence.
-
-The new approach might introduce breaking changes with applications that do not use an embedded application context.
-The `AcrossWebDynamicServletConfigurer` is fully deprecated and any beans of that type created in the parent context will not be executed any longer in a non-embedded configuration.
-
-Also the ordering of filters might have changed slightly, modules providing filters should review the order assignment.
-
-Dynamically registered filters should preferably include an explicit order value and should be done inside the Across context (inside a module) and not on the application configuration level.
-
-== Unsupported auto-configuration classes
-The following is the list of auto-configuration classes that are never automatically enabled.
-They are not added to the application configuration and none of the standard modules include them.
-
-In many cases, these can still be added directly using an `@Import` statement inside an application or module.
-
-`org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration`::
-Across always packages Liquibase but uses installers instead of a default changeset xml.
-Looks like the auto-configuration breaks in this case.
-
-`org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration`::
-If you want method validation in a module, it should be ok to manually add this auto-configuration.
-Adding it on application level will only impact the application infrastructure.
-If you want to use a single shared `Validator` bean you should consider exposing it in the module where it first gets created (or also created on application level).
-
-[[spring-boot-starters]]
-= Spring Boot starters 1.5.x
-
-Lists the support status of different Spring Boot starters and how you can use them in an Across application.
-
-== Support levels explained
+=== Support levels explained
 
 Not supported::
   No auto-configuration possible.
@@ -69,7 +19,7 @@ Partial support::
 Auto-configuration is partially supported.
 Additional manual configuration is still required.
 
-== Status explained
+=== Status explained
 
 Expected::
   Currently not yet available.
@@ -81,12 +31,38 @@ To be verified::
 Verified::
   Support level is available as indicated.
 
-== Spring Boot Starter Activemq
+
+=== Adding auto-configuration support
+tbd
+
+== Unsupported auto-configuration classes
+The following is the list of auto-configuration classes that are never automatically enabled.
+They are not added to the application configuration and none of the standard modules include them.
+
+In many cases, these can still be added directly using an `@Import` statement inside an application or module.
+
+`org.springframework.boot.autoconfigure.liquibase.LiquibaseAutoConfiguration`::
+Across always packages Liquibase but uses installers instead of a default changeset xml.
+Looks like the auto-configuration breaks in this case.
+
+`org.springframework.boot.autoconfigure.validation.ValidationAutoConfiguration`::
+If you want method validation in a module, it should be ok to manually add this auto-configuration.
+Adding it on application level will only impact the application infrastructure.
+If you want to use a single shared `Validator` bean you should consider exposing it in the module where it first gets created (or also created on application level).
+
+[[spring-boot-starters]]
+== Starters and libraries
+Lists the support status of different Spring Boot starters and how you can use them in an Across application.
+
+:!numbered:
+===  Spring Boot starters
+
+==== ActiveMQ
 https://spring.io/guides/gs/messaging-jms/
 
 TBD
 
-== Spring Boot Starter Actuator
+==== Actuator
 https://spring.io/guides/gs/actuator-service/
 [cols="1,1,4",opts=header]
 |===
@@ -101,66 +77,33 @@ https://spring.io/guides/gs/actuator-service/
 
 Endpoints, metrics, health indicators from all modules will automatically be exposed and detected.
 
-== Spring Boot Starter amqp
+==== AMQP
 https://projects.spring.io/spring-amqp/
 
 TBD
 
-== Spring Boot Starter Aop
+==== AOP
 
 TBD
 
-== Spring Boot Starter Artemis
+==== Artemis
 
 TBD
 
-== Spring Boot Starter Batch
+==== Batch
 
 TBD
 
-== Spring Boot Admin
-https://github.com/codecentric/spring-boot-admin
 
-Add `@EnableAdminServer` on your application class to create a Spring Boot admin in your application.
-
-[cols="1,1,4",opts=header]
-|===
-|Support level
-|Status
-|Remarks
-
-|Full support
-|To be verified
-|none
-|===
-
-== Spring Boot Admin Starter Client
-https://github.com/codecentric/spring-boot-admin
-
-
-[cols="1,1,4",opts=header]
-|===
-|Support level
-|Status
-|Remarks
-
-|Full support
-|Verified
-|none
-|===
-
-.Autoconfiguration classes
-* `SpringBootAdminClientAutoConfiguration`
-
-== Spring Boot Starter Cache
+==== Cache
 
 TBD
 
-== Spring Boot Starter Cloud Connectors
+==== Cloud Connectors
 
 TBD
 
-== Spring Boot Starter Data Cassandra
+==== Data Cassandra
 https://projects.spring.io/spring-data-cassandra/
 
 Autoconfiguration classes:
@@ -181,7 +124,7 @@ Autoconfiguration classes:
 |none
 |===
 
-== Spring Boot Starter Data Couchbase
+==== Data Couchbase
 https://projects.spring.io/spring-data-couchbase/
 
 Autoconfiguration classes:
@@ -205,7 +148,7 @@ Known issues:
 
 * CouchbaseMock used for testing doesn't fully support spring data repositories
 
-== Spring Boot Starter Data Elasticsearch
+==== Data Elasticsearch
 https://projects.spring.io/spring-data-elasticsearch/
 
 Autoconfiguration classes:
@@ -225,15 +168,15 @@ Autoconfiguration classes:
 |none
 |===
 
-== Spring Boot Starter Data Gemfire
+==== Data Gemfire
 
 TBD
 
-== Spring Boot Starter Data JPA
+==== Data JPA
 
 TBD
 
-== Spring Boot Starter Data Ldap
+==== Data Ldap
 https://projects.spring.io/spring-data-ldap/
 
 Autoconfiguration classes:
@@ -254,7 +197,7 @@ Autoconfiguration classes:
 |none
 |===
 
-== Spring Boot Starter Data Mongodb
+==== Data MongoDB
 https://projects.spring.io/spring-data-mongodb/
 
 Autoconfiguration classes:
@@ -275,7 +218,7 @@ Autoconfiguration classes:
 |none
 |===
 
-== Spring Boot Starter Data Neo4j
+==== Data Neo4j
 https://projects.spring.io/spring-data-neo4j/
 
 Autoconfiguration classes:
@@ -294,7 +237,7 @@ Autoconfiguration classes:
 |none
 |===
 
-== Spring Boot Starter Data Redis
+==== Data Redis
 https://projects.spring.io/spring-data-redis/
 
 Autoconfiguration classes:
@@ -314,7 +257,7 @@ Autoconfiguration classes:
 |===
 
 [[spring-boot-starter-data-rest]]
-== Spring Boot Starter Data REST
+==== Data REST
 
 https://projects.spring.io/spring-data-rest/
 
@@ -341,7 +284,7 @@ Known issues:
 * To use AutoConfiguration of ``HibernateJpaAutoConfiguration`` and ``JpaRepositoriesAutoConfiguration``
 you need to add them manually to your across.configuration file.
 
-== Spring Boot Starter Data SOLR
+==== Data SOLR
 https://projects.spring.io/spring-data-solr/
 
 Autoconfiguration classes:
@@ -360,31 +303,31 @@ Autoconfiguration classes:
 |none
 |===
 
-== Spring Boot Starter Freemarker
+==== Freemarker
 
 TBD
 
-== Spring Boot Starter Groovy Templates
+==== Groovy Templates
 
 TBD
 
-== Spring Boot Starter Hateoas
+==== HATEOAS
 
 Spring Boot Data Rest includes hateoas, see <<spring-boot-starter-data-rest,Spring Boot Starter Data Rest>>
 
-== Spring Boot Starter Integration
+==== Integration
 
 TBD
 
-== Spring Boot Starter JDBC
+==== JDBC
 
 TBD
 
-== Spring Boot Starter Jersey
+==== Jersey
 
 TBD
 
-== Spring Boot Starter Jetty
+==== Jetty
 
 Autoconfiguration classes:
 
@@ -401,27 +344,27 @@ Autoconfiguration classes:
 |none
 |===
 
-== Spring Boot Starter Jooq
+==== JOOQ
 
 TBD
 
-== Spring Boot Starter JTA Atomikos
+==== JTA Atomikos
 
 TBD
 
-== Spring Boot Starter JTA Bitronix
+==== JTA Bitronix
 
 TBD
 
-== Spring Boot Starter JTA Narayana
+==== JTA Narayana
 
 TBD
 
-== Spring Boot Starter log4j2
+==== Log4J2
 
 TBD
 
-== Spring Boot Starter Logging
+==== Logging
 
 Autoconfiguration classes:
 
@@ -439,7 +382,7 @@ LoggingApplicationListener
 |none
 |===
 
-== Spring Boot Starter Mail
+==== Mail
 
 [cols="1,1,4",opts=header]
 |===
@@ -456,15 +399,15 @@ LoggingApplicationListener
 * ``MailSenderAutoConfiguration``
 * ``MailSenderValidatorAutoConfiguration``
 
-== Spring Boot Starter Mobile
+==== Mobile
 
 TBD
 
-== Spring Boot Starter Mustache
+==== Mustache
 
 TBD
 
-== Spring Boot Starter Remote Shell
+==== Remote Shell
 
 [cols="1,1,4",opts=header]
 |===
@@ -479,11 +422,11 @@ TBD
 
 WARNING: This Spring Starter will be removed in Spring Boot 2.0.0 so hasn't been reviewed fully.
 
-== Spring Boot Starter Security
+==== Security
 
 TBD
 
-== Spring Boot Starter Social Facebook
+==== Social Facebook
 
 [cols="1,1,4",opts=header]
 |===
@@ -496,11 +439,11 @@ TBD
 |none
 |===
 
-== Spring Boot Starter Social Linkedin
+==== Social Linkedin
 
 TBD
 
-== Spring Boot Starter Social Twitter
+==== Social Twitter
 
 [cols="1,1,4",opts=header]
 |===
@@ -513,16 +456,49 @@ TBD
 |none
 |===
 
+==== Spring Boot Admin
+https://github.com/codecentric/spring-boot-admin
 
-== Spring Boot Starter Test
+Add `@EnableAdminServer` on your application class to create a Spring Boot admin in your application.
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|To be verified
+|none
+|===
+
+==== Spring Boot Admin Client
+https://github.com/codecentric/spring-boot-admin
+
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|Verified
+|none
+|===
+
+.Autoconfiguration classes
+* `SpringBootAdminClientAutoConfiguration`
+
+==== Test
 
 TBD
 
-== Spring Boot Starter Thymeleaf
+==== Thymeleaf
 
 TBD
 
-== Spring Boot Starter Tomcat
+==== Tomcat
 
 Autoconfiguration classes:
 
@@ -539,7 +515,7 @@ Autoconfiguration classes:
 |none
 |===
 
-== Spring Boot Starter Undertow
+==== Undertow
 
 Autoconfiguration classes:
 
@@ -556,15 +532,15 @@ Autoconfiguration classes:
 |none
 |===
 
-== Spring Boot Starter Validation
+==== Validation
 
 TBD
 
-== Spring Boot Starter Web Services
+==== Web Services
 
 TBD
 
-== Spring Boot Starter Web
+==== Web
 
 [cols="1,1,4",opts=header]
 |===
@@ -577,12 +553,11 @@ TBD
 |none
 |===
 
-== Spring Boot Starter Websocket
+==== Websocket
 
 Autoconfiguration classes:
 
 * ``WebSocketAutoConfiguration``
-
 
 [cols="1,1,4",opts=header]
 |===
@@ -600,7 +575,9 @@ Full support to use basic WebSocket requests using WebSocketHandlers.
 Requires the @EnableWebSocket annotation provided by Across (com.foreach.across.autoconfigure.websocket.EnableWebSocket)
 |===
 
-== Swagger2
+=== Other libraries
+
+==== Swagger2
 
 Use `@EnableSwagger2` on the Across application class to activate Swagger2 support on all controllers in any module.
 
@@ -617,4 +594,3 @@ Use `@EnableSwagger2` on the Across application class to activate Swagger2 suppo
 
 .Autoconfiguration classes
 * ``Swagger2AutoConfiguration`` - added by Across autoconfigure project
-
