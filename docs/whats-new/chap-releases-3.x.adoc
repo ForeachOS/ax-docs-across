@@ -36,6 +36,9 @@ It is also the first release with auto-configuration support, see the separate d
 *** bootstrap events can no longer be captured through annotated methods in the parent `ApplicationContext`, implement `AcrossLifecycleListener` instead
 * add support for Spring Boot auto-configuration and the `META-INF/across.configuration` file inside libraries
 * addition of `AcrossBootstrapConfigurer` that can be used to customize a bootstrapping Across context from a parent `ApplicationContext` (for example for auto-configuration classes)
+* bean definition names generated for `@Configuration` or manually registered annotated classes (without `@Component`) are now always based on the fully qualified class name
+** in rare cases this could introduce a breaking change where configuration instances are wired by name as beans, in this case providing an explicit name for the configuration should fix the problem
+
 
 *AcrosWebModule*
 

@@ -59,6 +59,10 @@ If you want method validation in a module, it should be ok to manually add this 
 Adding it on application level will only impact the application infrastructure.
 If you want to use a single shared `Validator` bean you should consider exposing it in the module where it first gets created (or also created on application level).
 
+`org.springframework.boot.autoconfigure.thymeleaf.ThymeleafAutoConfiguration`::
+AcrossWebModule provides its own Thymeleaf configuration that differs slightly from the Spring Boot default.
+Templates are expected to be in `classpath:/views/*` with `html` extension.
+
 [[spring-boot-starters]]
 == Starters and libraries
 Lists the support status of different Spring Boot starters and how you can use them in an Across application.

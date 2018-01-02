@@ -38,7 +38,7 @@ public void sendEvent() {
 ----
 
 === Filtering events
-Event listeners can subscribe to specific events only using one of several mechanisms.
+Event listeners can subscribe to specific events using one of several mechanisms:
 
 .Setting a specific (base) class as the event argument on an @EventListener method
 [source,java]
@@ -110,7 +110,7 @@ Thus, listeners registered in your application module will usually fire last.
 
 Once an event has been handled by all modules, it will be sent to the (optional) parent `ApplicationContext`.
 
-WARNING: Events published directly from a parent `ApplicationContext` - for example directly from withing your `@AcrossApplication` class - will not be sent downstream to the modules!
+WARNING: Events published directly from a parent `ApplicationContext` - for example directly from within your `@AcrossApplication` class - will not be sent downstream to the modules!
 
 Just like with other Across related ordering, you can influence the default behaviour:
 
