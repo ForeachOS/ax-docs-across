@@ -1,11 +1,7 @@
-[[across-core]]
-[[developing-across-applications]]
-= Developing Across applications
-:sectnums:
-:chapter-number: 0
-
+[abstract]
 Across Core is the main dependency that is required for bootstrapping an `AcrossContext`.
 If you want to use `@AcrossApplication` however, you should use *across-web* instead.
+
 [discrete]
 == Artifact
 [source,xml,indent=0]
@@ -94,6 +90,7 @@ WARNING: If you manage the `ConversionService` outside of the `AcrossContext` th
 
 include::chap-across-development-mode.adoc[]
 
+include::chap-advanced-topics.adoc[]
 // TODO mention somewhere the default beans and link to it
 
 // TODO mention the message source

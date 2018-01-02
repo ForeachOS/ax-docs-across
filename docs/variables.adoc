@@ -4,6 +4,7 @@
 :spring-data-url: http://projects.spring.io/spring-data/
 :spring-batch-url: http://projects.spring.io/spring-batch/
 :spring-security-url: http://projects.spring.io/spring-security/
+:spring-docs: https://docs.spring.io/spring/docs/4.3.13.RELEASE/spring-framework-reference/htmlsingle/
 :commons-fileupload-url: http://commons.apache.org/proper/commons-fileupload/
 :platform-bom-url: https://across.foreach.be/modules
 :admin-web-module-url: https://foreach.atlassian.net/wiki/display/AX/AdminWebModule

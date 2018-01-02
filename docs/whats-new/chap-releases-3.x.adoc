@@ -25,10 +25,13 @@ It is also the first release with auto-configuration support, see the separate d
 ** `AcrossEventPublisher` has been deprecated in favour of the standard `ApplicationEventPublisher`
 ** `ParameterizedAcrossEvent` has been deprecated in favour of implementing `ResolvableTypeProvider`
 ** `@EventName` has been deprecated, use the `condition` attribute on `@EventListener` instead
+** parameter-less event listener methods are now possible
+** event listener methods can now also provide return values which will be published as new events
 ** ordering event listeners through annotations on a method level is now supported
 ** events `AcrossModuleBeforeBootstrapEvent`, `AcrossModuleBootstrappedEvent` and `AcrossContextBootstrappedEvent` now extend `AcrossLifecycleEvent` which implements the Spring `ApplicationEvent` directly
 *** a utility interface `AcrossLifecycleListener` has been provided to intercept these common lifecycle events
 ** some breaking changes that have been introduced as a result of the refactoring:
+*** any uncaught exception in an event listener will now bubble up to the caller and stop the subsequent listeners from being called, instead of just logging the exception and continuing to the next listener
 *** manual (de-)registration of event listeners on `AcrossEventPublisher` is no longer possible
 *** bootstrap events can no longer be captured through annotated methods in the parent `ApplicationContext`, implement `AcrossLifecycleListener` instead
 * add support for Spring Boot auto-configuration and the `META-INF/across.configuration` file inside libraries
