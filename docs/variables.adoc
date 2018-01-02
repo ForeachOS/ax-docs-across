@@ -5,8 +5,12 @@
 :spring-batch-url: http://projects.spring.io/spring-batch/
 :spring-security-url: http://projects.spring.io/spring-security/
 :commons-fileupload-url: http://commons.apache.org/proper/commons-fileupload/
-:platform-bom-url: https://foreach.atlassian.net/wiki/display/AX/Across+Platform
+:platform-bom-url: https://across.foreach.be/modules
 :admin-web-module-url: https://foreach.atlassian.net/wiki/display/AX/AdminWebModule
 :debug-web-module-url: https://foreach.atlassian.net/wiki/display/AX/DebugWebModule
 :bootstrap-ui-module-url: https://foreach.atlassian.net/wiki/display/AX/BootstrapUiModule
 :git-across-docs: https://github.com/ForeachOS/ax-docs-across
+
+// HTML links to other documentation sections
+:doc-fundamentals: fundamentals.html
+:doc-spring-boot: spring-boot.html

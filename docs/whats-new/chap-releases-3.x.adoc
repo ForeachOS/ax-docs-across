@@ -1,0 +1,62 @@
+[#3-0-0-SNAPSHOT]
+=== 3.0.0-SNAPSHOT
+Across 3.0.0 is a big internal upgrade focused on improving Spring Boot compatibility.
+Although limited, this release does introduce some breaking changes.
+
+Across Framework 3.0.0 adds the `across-autoconfigure` artifact as a base dependency for creating Across applications.
+It is also the first release with auto-configuration support, see the separate documentation on link:{doc-spring-boot}#spring-boot[Spring Boot compatibility] for more details.
+
+*Core dependency upgrades*
+
+* Spring Platform Brussels-SR6
+* Spring Framework 4.3.13
+* Spring Boot 1.5.9
+
+*Across Core*
+
+* addition of the `@ConditionalOnAcrossModule` annotation that can be put on a `@Configuration` class, `@Bean` method and any `@Component` to depend on the presence of modules.
+** `@AcrossDepends` should now only be used on module descriptors, and no longer for conditional component creation
+* exposed bean definitions are now copied to the module context directly instead of shared via the parent `ApplicationContext`
+** this improves compatibility with a lot of default Spring related configurations, but might introduce a breaking change for certain modules
+* the event handling system has been overhauled and now uses the default Spring events implementation
+** the custom event bus using MBassador has been removed, as well as the MBassador dependency itself
+** implementing `AcrossEvent` for your own events is no longer required
+** `@Event` has been deprecated in favour of the standard `@EventListener`
+** `AcrossEventPublisher` has been deprecated in favour of the standard `ApplicationEventPublisher`
+** `ParameterizedAcrossEvent` has been deprecated in favour of implementing `ResolvableTypeProvider`
+** `@EventName` has been deprecated, use the `condition` attribute on `@EventListener` instead
+** ordering event listeners through annotations on a method level is now supported
+** events `AcrossModuleBeforeBootstrapEvent`, `AcrossModuleBootstrappedEvent` and `AcrossContextBootstrappedEvent` now extend `AcrossLifecycleEvent` which implements the Spring `ApplicationEvent` directly
+*** a utility interface `AcrossLifecycleListener` has been provided to intercept these common lifecycle events
+** some breaking changes that have been introduced as a result of the refactoring:
+*** manual (de-)registration of event listeners on `AcrossEventPublisher` is no longer possible
+*** bootstrap events can no longer be captured through annotated methods in the parent `ApplicationContext`, implement `AcrossLifecycleListener` instead
+* add support for Spring Boot auto-configuration and the `META-INF/across.configuration` file inside libraries
+* addition of `AcrossBootstrapConfigurer` that can be used to customize a bootstrapping Across context from a parent `ApplicationContext` (for example for auto-configuration classes)
+
+*AcrosWebModule*
+
+A lot of configuration has been modified to use out-of-the-box Spring Boot configuration classes instead of customized versions.
+This introduces a number of changes and additions:
+
+* `RestTemplateBuilder` is created and exposed
+* Jackson `ObjectMapper` and `Jackson2ObjectMapperBuilder` are created and exposed
+* if Gson on the classpath: `Gson` object created and exposed
+
+Extension configuration that can now be added to AcrossWebModule as well:
+
+* `RestTemplateCustomizer`
+* `HttpMessageConverter`
+* `Jackson2ObjectMapperBuilderCustomizer`
+
+.Changes in servlet and filter registration
+Filters and servlets are registered in a slightly different fashion than in previous versions.
+Any `Servlet` or `Filter` bean will now be automatically be exposed and registered.
+If there is an actual registration bean for the filter or servlet, it will take precedence.
+
+The new approach might introduce breaking changes with applications that do not use an embedded application context.
+The `AcrossWebDynamicServletConfigurer` is fully deprecated and any beans of that type created in the parent context will not be executed any longer in a non-embedded configuration.
+
+Also the ordering of filters might have changed slightly, modules providing filters should review the order assignment.
+
+Dynamically registered filters should preferably include an explicit order value and should be done inside the Across context (inside a module) and not on the application configuration level.

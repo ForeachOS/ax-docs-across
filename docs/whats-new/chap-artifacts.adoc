@@ -1,8 +1,10 @@
 == Framework artifacts
-Across framework itself consists of 3 library artifacts (`across-core`, `across-web` and `across-test`) and one bill-of-material pom (`standard-module-bom`).
+Across framework itself consists of 4 library artifacts (`across-core`, `across-web`, `across-autoconfigure` and `across-test`) and one bill-of-material pom (`standard-module-bom`).
 
 across-core:: Supports the configuration of an Across context and provides all necessary infrastructure to define and execute modules.
 across-web:: Provides an `AcrossModule` that supports configuration of a web application using Across with the Spring `DispatcherServlet` as the most common scenario.
+across-autoconfigure:: Simplifies configuration of a Spring Boot based Across application.
+This is usually the base dependency for an application, as it transitively imports both core and web.
 across-test:: Supports integration testing of your Across modules, both web and non-web related.  Builds on top of `spring-test`.
 standard-module-bom:: BOM pom for creating an Across Standard Module or any module wishing to adhere to the standard module conventions.
 
@@ -13,8 +15,10 @@ Across is directly tied to Spring framework and all artifacts come with a set of
 Across itself uses the http://platform.spring.io/platform/[Spring IO platform] as a basis for all its dependencies.
 
 .Artifact repositories
-All Across related artifacts - both release and snapshot versions - can be fetched from the Foreach Nexus repository.
-This also includes the set of link:../fundamentals/index.adoc#fundamentals-ax-standard-modules[across standard modules].
+All release versions of Across artifacts are available on Maven Central.
+
+Snapshot and milestones can be fetched from the Foreach Nexus repository.
+This also includes the set of link:{doc-fundamentals}#fundamentals-ax-standard-modules[across standard modules].
 
 [source,xml,indent=0]
 [subs="verbatim,quotes,attributes"]
@@ -23,9 +27,8 @@ This also includes the set of link:../fundamentals/index.adoc#fundamentals-ax-st
     <repository>
         <id>foreach-nexus</id>
         <name>Foreach nexus</name>
-        <url>http://repository.foreach.be/nexus/repository/public/</url>
+        <url>https://repository.foreach.be/nexus/repository/public/</url>
     </repository>
 </repositories>
 ----
 
-Release versions are also available in Maven Central.
