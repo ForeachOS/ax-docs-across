@@ -92,8 +92,10 @@ public class EntityCreatedEvent<T> implements ResolvableTypeProvider {
 ----
 
 === Asynchronous listeners
-You can use an `@Async` to handle events asynchronously.
+You can use a `@Async` to handle events asynchronously.
 This has some limitations, see the {spring-docs}#context-functionality-events-async[Spring framework documentation].
+
+Please note as well that asynchronous execution must be enabled in the module where you register the event listener.
 
 [[event-handler-ordering]]
 === Ordering listeners
