@@ -1,0 +1,69 @@
+[#2-1-1-RELEASE]
+=== 2.1.1.RELEASE
+*Across Core*
+
+* minor performance improvements
+* `@PostRefresh` now supports method arguments, behaving as an equivalent of `@Autowired` but after the Across context has bootstrapped
+** it is also possible to indicate that dependencies are not required, if dependencies are not met, the method will not be executed
+** `@PostRefresh` methods can be called more than once if a parent `ApplicationContext` refreshes
+
+*Across Test*
+
+* bug fixes:
+** test datasource is generated with a unique name - this improves the re-use of the main `ApplicationContext` without the need for `@DirtiesContext`
+
+[#2-1-0-RELEASE]
+=== 2.1.0.RELEASE
+*Across Core*
+
+* bootstrap locking changes
+** the bootstrap lock is now taken and released per installer instead of once for the entire bootstrap phase
+** lock owner id is prefixed with both the `AcrossContext#displayName` and the hostname of the server
+* link:/developing-applications/index.adoc#event-handler-ordering[event handlers are now executed in module bootstrap order]: event handlers from a previous module will have been executed when yours is called
+** this removes an old limitation of event handling in Across
+
+*AcrossWebModule*
+
+* `@AcrossApplication` has a `displayName` attribute to configure the context display name
+** if empty, the property value of *across.displayName* will be considered instead
+* added `LocalizedTextResolver` for link:across-web-module/index.adoc#localizing-text[generic localization of text snippets]
+** `ViewElementBuilderContext` also implements text and message code resolving (see {bootstrap-ui-module-url}[BootstrapUiModule] documentation)
+* the default Thymeleaf resolvers now support templates with **.html* suffix
+** _.html_ extension is now preferred as text editors will automatically recognize the template as html
+** _.thtml_ extension is still fully supported but support may be removed in a future major release
+
+[#2-0-0-RELEASE]
+=== 2.0.0.RELEASE
+Upgrade to *Spring Platform Athens*, new major dependency versions:
+
+* Spring framework 4.3.x
+* Spring Boot 1.4.x
+* Thymeleaf 3.x
+
+*Across Core*
+
+* `@AcrossEventHandler` has been deprecated, all beans are now automatically scanned for `@Event` methods
+* the `AcrossEventPublisher` interface has some MBassador specific methods removed
+** note that the backing implementation of the event bus might change in the future, applications should avoid using MBassdor specific features
+* development mode will register a default resources directory for dynamic modules
+** this will be an existing *src/main/resources* folder relative to the working directory of the running application
+* `@ConditionalOnDevelopmentMode` added to detect if development mode is active
+
+*Across Test*
+
+* The spring-boot-test dependency is now part of across-test
+* Updated documentation to use the new `@SpringBootTest` annotation
+
+*AcrossWebModule*
+
+* `ServletContextInitializer` beans in modules are now supported directly for customizing the `ServletContext`
+** `@ConditionalOnConfigurableServletContext` and `@ConditionalOnNotConfigurableServletContext` added to determine if `ServletContext` can still be customized
+** favour the use of `FilterRegistrationBean` or `ServletRegistrationBean` instead of `AcrossWebDynamicServletConfigurer`, the latter is now deprecated and will be removed in a future release
+* Spring Boot devtools are now supported - application context restart will be triggered by default if devtools is on the classpath
+* AcrossWebModule now ensures that all `HandlerMapping` beans from other modules are exposed
+* a path prefix *@static* and *@resource* is registered to link:across-web-module/index.adoc#web-app-path-resolver-and-path-prefixing[link to static resources]
+* link:across-web-module/index.adoc#thymeleaf-dialect[Thymeleaf dialect] extensions
+** using link:across-web-module/index.adoc#web-app-path-resolver-and-path-prefixing[prefixes] directly in url expressions is now supported
+** addition of *across:static* and *across:resource* attributes for generating links to static resources
+* add infrastructure for defining link:across-web-module/index.adoc#custom-request-mapping[custom request mapping conditions] using `@CustomRequestMapping` and `CustomRequestCondition`
+* partial rendering of a single `ViewElement` is now also supported (see {bootstrap-ui-module-url}[BootstrapUiModule] documentation).

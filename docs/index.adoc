@@ -18,11 +18,11 @@ The reference documentation is split up into several parts:
 
 Through the {across-url}[Across website] you can find a lot more information like frequently asked questions, tutorials and available modules (with their respective documentation).
 
-****
+'''
 .About the reference documentation
 This document is generated from a {git-across-docs}[separate Github repository] using Asciidoctor.
 
 Corrections, additions and general contributions to this documentation are very welcome and can be submitted through the source code repository.
-****
+
 
 

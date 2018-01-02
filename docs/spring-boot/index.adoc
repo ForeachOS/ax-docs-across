@@ -35,6 +35,15 @@ Verified::
 === Adding auto-configuration support
 tbd
 
+==== across.configuration
+
+* *META-INF/across.configuration* where you can specify Exposed classes, or AutoConfigurationDisabled, AutoConfigurationEnabled
+* the latter allows specifying a different class to be executed instead of (using *:*) or a module name where the class should be inserted instead (using *->*)
+* the main application class package is not registered as an auto configuration package, instead the package of the application module is
+* provided some tests-projects in the across-autoconfigure project. These tests check the integration of several spring-boot-starter artifacts and their autoconfiguration within Across. They also serve as an example on how to setup such a spring-boot-starter with minimal configuration. See <<spring-boot-starters,Spring Boot Starters 1.5.x>>
+
+* DynamicApplicationModule & AcrossContextPostProcessorModule
+
 == Unsupported auto-configuration classes
 The following is the list of auto-configuration classes that are never automatically enabled.
 They are not added to the application configuration and none of the standard modules include them.
