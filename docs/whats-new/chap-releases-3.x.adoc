@@ -38,7 +38,9 @@ It is also the first release with auto-configuration support, see the separate d
 * addition of `AcrossBootstrapConfigurer` that can be used to customize a bootstrapping Across context from a parent `ApplicationContext` (for example for auto-configuration classes)
 * bean definition names generated for `@Configuration` or manually registered annotated classes (without `@Component`) are now always based on the fully qualified class name
 ** in rare cases this could introduce a breaking change where configuration instances are wired by name as beans, in this case providing an explicit name for the configuration should fix the problem
-
+* it's now possible to explicitly exclude annotated classes to be loaded as module extension during bootstrap configuration
+* the default module scanning packages will now always be kept if you add additional packages on either `@EnableAcrossContext` or `@AcrossApplication`
+** if you explicitly want to exclude the default packages you should add *.* (dot) as a package name to the list
 
 *AcrosWebModule*
 
