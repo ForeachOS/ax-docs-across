@@ -12,6 +12,7 @@
 :debug-web-module-url: https://foreach.atlassian.net/wiki/display/AX/DebugWebModule
 :bootstrap-ui-module-url: https://foreach.atlassian.net/wiki/display/AX/BootstrapUiModule
 :git-across-docs: https://github.com/ForeachOS/ax-docs-across
+:git-across-autoconfigure: https://bitbucket.org/beforeach/across-autoconfigure
 
 // HTML links to other documentation sections
 :doc-fundamentals: fundamentals.html

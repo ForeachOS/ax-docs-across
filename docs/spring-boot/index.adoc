@@ -3,6 +3,7 @@ include::chap-auto-configuration.adoc[]
 [[spring-boot-starters]]
 == Starters and libraries
 Lists the support status of different Spring Boot starters and libraries.
+Most of these are configured and tested in the {git-across-autoconfigure}[Across auto-configure project].
 
 include::chap-official-starters.adoc[]
 
