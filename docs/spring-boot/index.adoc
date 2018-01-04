@@ -68,12 +68,13 @@ Templates are expected to be in `classpath:/views/*` with `html` extension.
 Lists the support status of different Spring Boot starters and how you can use them in an Across application.
 
 :!numbered:
-===  Spring Boot starters
+===  Official Spring Boot starters
+{spring-boot-docs}#using-boot-starter
 
 ==== ActiveMQ
 https://spring.io/guides/gs/messaging-jms/
 
-TBD
+Under investigation.
 
 ==== Actuator
 https://spring.io/guides/gs/actuator-service/
@@ -93,28 +94,28 @@ Endpoints, metrics, health indicators from all modules will automatically be exp
 ==== AMQP
 https://projects.spring.io/spring-amqp/
 
-TBD
+Under investigation.
 
 ==== AOP
 
-TBD
+Under investigation.
 
 ==== Artemis
 
-TBD
+Currently not supported, to be investigated.
 
 ==== Batch
 
-TBD
-
+Under investigation.
+There is currently an Across standard module https://across.foreach.be/modules/SpringBatchModule that will most likely be discontinued in favour of auto-configuration.
 
 ==== Cache
 
-TBD
+Under investigation.
 
 ==== Cloud Connectors
 
-TBD
+Under investigation.
 
 ==== Data Cassandra
 https://projects.spring.io/spring-data-cassandra/
@@ -183,13 +184,13 @@ Autoconfiguration classes:
 
 ==== Data Gemfire
 
-TBD
+Currently not supported, to be investigated.
 
 ==== Data JPA
 
-TBD
+Under investigation.
 
-==== Data Ldap
+==== Data LDAP
 https://projects.spring.io/spring-data-ldap/
 
 Autoconfiguration classes:
@@ -318,27 +319,27 @@ Autoconfiguration classes:
 
 ==== Freemarker
 
-TBD
+Currently not supported, to be investigated.
 
 ==== Groovy Templates
 
-TBD
+Currently not supported, to be investigated.
 
 ==== HATEOAS
 
-Spring Boot Data Rest includes hateoas, see <<spring-boot-starter-data-rest,Spring Boot Starter Data Rest>>
+Spring Boot Data Rest includes hateoas, see <<spring-boot-starter-data-rest,Spring Boot Starter Data Rest>>.
 
 ==== Integration
 
-TBD
+Currently not supported, to be investigated.
 
 ==== JDBC
 
-TBD
+Under investigation.
 
 ==== Jersey
 
-TBD
+Currently not supported, to be investigated.
 
 ==== Jetty
 
@@ -359,23 +360,23 @@ Autoconfiguration classes:
 
 ==== JOOQ
 
-TBD
+Currently not supported, to be investigated.
 
 ==== JTA Atomikos
 
-TBD
+Currently not supported, to be investigated.
 
 ==== JTA Bitronix
 
-TBD
+Currently not supported, to be investigated.
 
 ==== JTA Narayana
 
-TBD
+Currently not supported, to be investigated.
 
 ==== Log4J2
 
-TBD
+Currently not supported, to be investigated.
 
 ==== Logging
 
@@ -414,11 +415,12 @@ LoggingApplicationListener
 
 ==== Mobile
 
-TBD
+Currently not supported, to be investigated.
+There is a https://across.foreach.be/modules/SpringMobileModule that integrates with AcrossWebModule to enable Spring mobile support.
 
 ==== Mustache
 
-TBD
+Currently not supported, to be investigated.
 
 ==== Remote Shell
 
@@ -437,7 +439,7 @@ WARNING: This Spring Starter will be removed in Spring Boot 2.0.0 so hasn't been
 
 ==== Security
 
-TBD
+Under investigation.
 
 ==== Social Facebook
 
@@ -454,7 +456,7 @@ TBD
 
 ==== Social Linkedin
 
-TBD
+Under investigation.
 
 ==== Social Twitter
 
@@ -469,47 +471,14 @@ TBD
 |none
 |===
 
-==== Spring Boot Admin
-https://github.com/codecentric/spring-boot-admin
-
-Add `@EnableAdminServer` on your application class to create a Spring Boot admin in your application.
-
-[cols="1,1,4",opts=header]
-|===
-|Support level
-|Status
-|Remarks
-
-|Full support
-|To be verified
-|none
-|===
-
-==== Spring Boot Admin Client
-https://github.com/codecentric/spring-boot-admin
-
-
-[cols="1,1,4",opts=header]
-|===
-|Support level
-|Status
-|Remarks
-
-|Full support
-|Verified
-|none
-|===
-
-.Autoconfiguration classes
-* `SpringBootAdminClientAutoConfiguration`
-
 ==== Test
 
-TBD
+Fully supported.
 
 ==== Thymeleaf
 
-TBD
+Not supported.
+AcrossWebModule configures its own Thymeleaf configuration for template support in modules.
 
 ==== Tomcat
 
@@ -547,11 +516,11 @@ Autoconfiguration classes:
 
 ==== Validation
 
-TBD
+Under investigation.
 
 ==== Web Services
 
-TBD
+Currently not supported, to be investigated.
 
 ==== Web
 
@@ -587,6 +556,43 @@ MessageBrokerRegistry in AbstractWebSocketMessageBrokerConfigurer will overwrite
 Full support to use basic WebSocket requests using WebSocketHandlers.
 Requires the @EnableWebSocket annotation provided by Across (com.foreach.across.autoconfigure.websocket.EnableWebSocket)
 |===
+
+=== Contributed Spring Boot starters
+
+
+==== Spring Boot Admin
+https://github.com/codecentric/spring-boot-admin
+
+Add `@EnableAdminServer` on your application class to create a Spring Boot admin in your application.
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|To be verified
+|none
+|===
+
+==== Spring Boot Admin Client
+https://github.com/codecentric/spring-boot-admin
+
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|Verified
+|none
+|===
+
+.Autoconfiguration classes
+* `SpringBootAdminClientAutoConfiguration`
 
 === Other libraries
 

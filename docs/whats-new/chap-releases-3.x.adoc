@@ -1,7 +1,7 @@
 [#3-0-0-SNAPSHOT]
 === 3.0.0-SNAPSHOT
 Across 3.0.0 is a big internal upgrade focused on improving Spring Boot compatibility.
-Although limited, this release does introduce some breaking changes.
+Although the number should be limited, this release does introduce some breaking changes.
 
 Across Framework 3.0.0 adds the `across-autoconfigure` artifact as a base dependency for creating Across applications.
 It is also the first release with auto-configuration support, see the separate documentation on link:{doc-spring-boot}#spring-boot[Spring Boot compatibility] for more details.
