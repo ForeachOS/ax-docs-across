@@ -1,0 +1,490 @@
+:numbered:
+===  Official Spring Boot starters
+{spring-boot-docs}#using-boot-starter
+
+:!numbered:
+==== ActiveMQ
+https://spring.io/guides/gs/messaging-jms/
+
+Under investigation.
+
+==== Actuator
+https://spring.io/guides/gs/actuator-service/
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|To be verified
+|none
+|===
+
+Endpoints, metrics, health indicators from all modules will automatically be exposed and detected.
+
+==== AMQP
+https://projects.spring.io/spring-amqp/
+
+Under investigation.
+
+==== AOP
+
+Under investigation.
+
+==== Artemis
+
+Currently not supported, to be investigated.
+
+==== Batch
+
+Under investigation.
+There is currently an Across standard module https://across.foreach.be/modules/SpringBatchModule that will most likely be discontinued in favour of auto-configuration.
+
+==== Cache
+
+Under investigation.
+
+==== Cloud Connectors
+
+Under investigation.
+
+==== Data Cassandra
+https://projects.spring.io/spring-data-cassandra/
+
+Autoconfiguration classes:
+
+* ``CassandraAutoConfiguration``
+* ``CassandraDataAutoConfiguration``
+* ``CassandraRepositoriesAutoConfiguration``
+
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|Verified
+|none
+|===
+
+==== Data Couchbase
+https://projects.spring.io/spring-data-couchbase/
+
+Autoconfiguration classes:
+
+* ``CouchbaseAutoConfiguration``
+* ``CouchbaseDataAutoConfiguration``
+* ``CouchbaseRepositoriesAutoConfiguration``
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|Verified
+|known issues
+|===
+
+Known issues:
+
+* CouchbaseMock used for testing doesn't fully support spring data repositories
+
+==== Data Elasticsearch
+https://projects.spring.io/spring-data-elasticsearch/
+
+Autoconfiguration classes:
+
+* ``ElasticsearchAutoConfiguration``
+* ``ElasticsearchDataAutoConfiguration``
+* ``ElasticsearchRepositoriesAutoConfiguration``
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|Verified
+|none
+|===
+
+==== Data Gemfire
+
+Currently not supported, to be investigated.
+
+==== Data JPA
+
+Under investigation.
+
+==== Data LDAP
+https://projects.spring.io/spring-data-ldap/
+
+Autoconfiguration classes:
+
+* ``LdapAutoConfiguration``
+* ``EmbeddedLdapAutoConfiguration``
+* ``LdapDataAutoConfiguration``
+* ``LdapRepositoriesAutoConfiguration``
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|Verified
+|none
+|===
+
+==== Data MongoDB
+https://projects.spring.io/spring-data-mongodb/
+
+Autoconfiguration classes:
+
+* ``MongoAutoConfiguration``
+* ``EmbeddedMongoAutoConfiguration``
+* ``MongoDataAutoConfiguration``
+* ``MongoRepositoriesAutoConfiguration``
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|Verified
+|none
+|===
+
+==== Data Neo4j
+https://projects.spring.io/spring-data-neo4j/
+
+Autoconfiguration classes:
+
+* ``Neo4jDataAutoConfiguration``
+* ``Neo4jRepositoriesAutoConfiguration``
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|Verified
+|none
+|===
+
+==== Data Redis
+https://projects.spring.io/spring-data-redis/
+
+Autoconfiguration classes:
+
+* ``RedisAutoConfiguration``
+* ``RedisRepositoriesAutoConfiguration``
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|Verified
+|none
+|===
+
+[[spring-boot-starter-data-rest]]
+==== Data REST
+
+https://projects.spring.io/spring-data-rest/
+
+Autoconfiguration classes:
+
+* ``RepositoryRestMvcAutoConfiguration``
+* ``HibernateJpaAutoConfiguration``, not included by default
+* ``JpaRepositoriesAutoConfiguration``, not included by default
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|To be verified
+|known issues
+|===
+
+Known issues:
+
+* Integration with AcrossHibernateModule and AcrossHibernateJpaModule have not been reviewed yet.
+* To use AutoConfiguration of ``HibernateJpaAutoConfiguration`` and ``JpaRepositoriesAutoConfiguration``
+you need to add them manually to your across.configuration file.
+
+==== Data SOLR
+https://projects.spring.io/spring-data-solr/
+
+Autoconfiguration classes:
+
+* ``SolrAutoConfiguration``
+* ``SolrRepositoriesAutoConfiguration``
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|Verified
+|none
+|===
+
+==== Freemarker
+
+Currently not supported, to be investigated.
+
+==== Groovy Templates
+
+Currently not supported, to be investigated.
+
+==== HATEOAS
+
+Spring Boot Data Rest includes hateoas, see <<spring-boot-starter-data-rest,Spring Boot Starter Data Rest>>.
+
+==== Integration
+
+Currently not supported, to be investigated.
+
+==== JDBC
+
+Under investigation.
+
+==== Jersey
+
+Currently not supported, to be investigated.
+
+==== Jetty
+
+Autoconfiguration classes:
+
+* ``JettyEmbeddedServletContainerFactory``
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|Verified
+|none
+|===
+
+==== JOOQ
+
+Currently not supported, to be investigated.
+
+==== JTA Atomikos
+
+Currently not supported, to be investigated.
+
+==== JTA Bitronix
+
+Currently not supported, to be investigated.
+
+==== JTA Narayana
+
+Currently not supported, to be investigated.
+
+==== Log4J2
+
+Currently not supported, to be investigated.
+
+==== Logging
+
+Autoconfiguration classes:
+
+* ``LoggingApplicationListener``
+
+LoggingApplicationListener
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|Verified
+|none
+|===
+
+==== Mail
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|Verified
+|none
+|===
+
+.Autoconfiguration classes
+* ``MailSenderAutoConfiguration``
+* ``MailSenderValidatorAutoConfiguration``
+
+==== Mobile
+
+Currently not supported, to be investigated.
+There is a https://across.foreach.be/modules/SpringMobileModule that integrates with AcrossWebModule to enable Spring mobile support.
+
+==== Mustache
+
+Currently not supported, to be investigated.
+
+==== Remote Shell
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|Verified
+|Will be deprecated in Spring Boot 2.0.0
+|===
+
+WARNING: This Spring Starter will be removed in Spring Boot 2.0.0 so hasn't been reviewed fully.
+
+==== Security
+
+Under investigation.
+
+==== Social Facebook
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|Verified
+|none
+|===
+
+==== Social Linkedin
+
+Under investigation.
+
+==== Social Twitter
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|Verified
+|none
+|===
+
+==== Test
+
+Fully supported.
+
+==== Thymeleaf
+
+Not supported.
+AcrossWebModule configures its own Thymeleaf configuration for template support in modules.
+
+==== Tomcat
+
+Autoconfiguration classes:
+
+* ``TomcatEmbeddedServletContainerFactory``
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|Verified
+|none
+|===
+
+==== Undertow
+
+Autoconfiguration classes:
+
+* ``UndertowEmbeddedServletContainerFactory``
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|Verified
+|none
+|===
+
+==== Validation
+
+Under investigation.
+
+==== Web Services
+
+Currently not supported, to be investigated.
+
+==== Web
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|To be verified
+|none
+|===
+
+==== Websocket
+
+Autoconfiguration classes:
+
+* ``WebSocketAutoConfiguration``
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|Verified
+|Requires the @EnableWebSocketMessageBroker provided by Across (com.foreach.across.autoconfigure.websocket.EnableWebSocketMessageBroker)
+
+MessageBrokerRegistry in AbstractWebSocketMessageBrokerConfigurer will overwrite its settings when declared in multiple modules.
+
+Full support to use basic WebSocket requests using WebSocketHandlers.
+Requires the @EnableWebSocket annotation provided by Across (com.foreach.across.autoconfigure.websocket.EnableWebSocket)
+|===
