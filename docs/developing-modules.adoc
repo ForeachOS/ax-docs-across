@@ -9,20 +9,4 @@
 :docinfo1:
 include::variables.adoc[]
 
-include::developing-modules/chap-module-create-a-module.adoc[]
-
-//include::developing-modules/chap-module-settings.adoc[]
-
-include::developing-modules/chap-module-dependencies.adoc[]
-
-//include::developing-modules/chap-module-roles.adoc[]
-
-include::developing-modules/chap-module-bootstrap.adoc[]
-
-include::developing-modules/chap-module-exposing-beans.adoc[]
-
-include::developing-modules/chap-module-messages.adoc[]
-
-include::developing-modules/chap-module-installers.adoc[]
-
-include::developing-modules/chap-module-version.adoc[]
+include::developing-modules/index.adoc[]

@@ -31,6 +31,9 @@ Only relevant if the run condition is `VersionDifferent`.
 
 |===
 
+An `@InstallerMethod` annotation marks a method within an `@Installer` marked class as a method that should be executed when the installer is executed.
+Using the *required* attribute, it is possible to define the method's parameters as optional, which means they will not be autowired if they are not found.
+
 [discrete]
 === Installer detection
 By default installers are detected from the classpath by scanning the *installers* package relative to the package of the `AcrossModule`.

@@ -1,9 +1,3 @@
-[[developing-across-modules]]
-[#developing-across-modules]
-= Developing Across modules
-:sectnums:
-:chapter-number: 0
-
 include::chap-module-create-a-module.adoc[]
 
 //include::chap-module-settings.adoc[]
@@ -12,7 +6,8 @@ include::chap-module-dependencies.adoc[]
 
 //include::chap-module-roles.adoc[]
 
-include::chap-module-bootstrap.adoc[]
+//TODO fix chap-module-bootstrap (is currently a copy of chap-module-installers)
+//include::chap-module-bootstrap.adoc[]
 
 include::chap-module-exposing-beans.adoc[]
 
