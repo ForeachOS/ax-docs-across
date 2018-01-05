@@ -1,0 +1,30 @@
+[[error-handling]]
+== Error handling
+When working with `@AcrossApplication` and auto-configuration, a customized version of link:{spring-boot-docs}#boot-features-error-handling[Spring Boot error handling] will be activated.
+The main difference is in the automatic detection of custom error pages, most other features work in exactly the same way.
+
+=== Custom error pages
+Across Web error handling will only auto-detect Thymeleaf templates in the application module resources.
+It *does not support* the default Spring Boot `/templates` locations.
+
+Add a template with the right conventional path (`error` subfolder and status code or series file name) to have it picked up.
+
+.Error template location for MyApplication
+[source]
+----
+src/
+ +- main/
+     +- java/
+     |   + <source code>
+     +- resources/
+         +- views/
+             +- my/
+                 +- error/
+                 |   +- 404.html
+                 |   +- 5xx.html
+                 +- <other templates>
+----
+
+If you want another module to automatically look for error templates in its resources, you should register a `AcrossModuleDefaultErrorViewResolver` in that module.
+
+Any module can provide a `ErrorViewResolver` or `ErrorController` component for more advanced customization options

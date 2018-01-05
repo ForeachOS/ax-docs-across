@@ -84,7 +84,7 @@ If Across is unsure about what to do with them, you should see the AutoConfigura
 [source]
 ----
  --- Across AutoConfiguration Report ---
- The following auto-configuration classes have unknown Across support and were not added:
+ The following 2 auto-configuration classes have unknown Across support and were not added:
  - org.springframework.boot.autoconfigure.admin.SpringApplicationAdminJmxAutoConfiguration
  - org.springframework.boot.autoconfigure.aop.AopAutoConfiguration
  Consider adding them to a META-INF/across.configuration.

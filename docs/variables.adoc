@@ -5,7 +5,7 @@
 :spring-batch-url: http://projects.spring.io/spring-batch/
 :spring-security-url: http://projects.spring.io/spring-security/
 :spring-docs: https://docs.spring.io/spring/docs/4.3.13.RELEASE/spring-framework-reference/htmlsingle/
-:spring-boot-docs: https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/
+:spring-boot-docs: https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/
 :commons-fileupload-url: http://commons.apache.org/proper/commons-fileupload/
 :platform-bom-url: https://across.foreach.be/modules
 :admin-web-module-url: https://foreach.atlassian.net/wiki/display/AX/AdminWebModule
@@ -16,4 +16,5 @@
 
 // HTML links to other documentation sections
 :doc-fundamentals: fundamentals.html
+:doc-across-web: across-web.html
 :doc-spring-boot: spring-boot.html

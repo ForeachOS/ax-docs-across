@@ -50,6 +50,7 @@ This introduces a number of changes and additions:
 * `RestTemplateBuilder` is created and exposed
 * Jackson `ObjectMapper` and `Jackson2ObjectMapperBuilder` are created and exposed
 * if Gson on the classpath: `Gson` object created and exposed
+* support for link:{doc-across-web}#error-handling[default error pages] is now automatically activated
 
 Extension configuration that can now be added to AcrossWebModule as well:
 

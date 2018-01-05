@@ -11,6 +11,8 @@ include::chap-view-engines.adoc[]
 
 include::chap-static-resources.adoc[]
 
+include::chap-error-handling.adoc[]
+
 include::chap-menus.adoc[]
 
 include::chap-view-elements.adoc[]
