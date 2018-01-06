@@ -44,13 +44,15 @@ It is also the first release with auto-configuration support, see the separate d
 
 *AcrosWebModule*
 
-A lot of configuration has been modified to use out-of-the-box Spring Boot configuration classes instead of customized versions.
-This introduces a number of changes and additions:
+A lot of internal configuration has been modified to use out-of-the-box Spring Boot configuration classes instead of customized versions.
 
-* `RestTemplateBuilder` is created and exposed
+The following changes and additions are included in the update:
+
+* a `RestTemplateBuilder` is created and exposed
 * Jackson `ObjectMapper` and `Jackson2ObjectMapperBuilder` are created and exposed
-* if Gson on the classpath: `Gson` object created and exposed
+* if Gson on the classpath: a `Gson` object created and exposed
 * support for link:{doc-across-web}#error-handling[default error pages] is now automatically activated
+* the https://github.com/thymeleaf/thymeleaf-extras-java8time[Thymeleaf Java 8 Time dialect] is now also included and enabled
 
 Extension configuration that can now be added to AcrossWebModule as well:
 
