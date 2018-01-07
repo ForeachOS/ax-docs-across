@@ -41,6 +41,7 @@ It is also the first release with auto-configuration support, see the separate d
 * it's now possible to explicitly exclude annotated classes to be loaded as module extension during bootstrap configuration
 * the default module scanning packages will now always be kept if you add additional packages on either `@EnableAcrossContext` or `@AcrossApplication`
 ** if you explicitly want to exclude the default packages you should add *.* (dot) as a package name to the list
+* Bean Validation 1.1 method validation is now automatically enabled in every Across module if a JSR-303 implementation (eg. Hibernate validator) is on the classpath
 
 *AcrosWebModule*
 
@@ -53,6 +54,7 @@ The following changes and additions are included in the update:
 * if Gson on the classpath: a `Gson` object created and exposed
 * support for link:{doc-across-web}#error-handling[default error pages] is now automatically activated
 * the https://github.com/thymeleaf/thymeleaf-extras-java8time[Thymeleaf Java 8 Time dialect] is now also included and enabled
+* the default mvc `Validator` bean now implements `SmartValidator` directly, allowing `@Validated` with group validation to be used
 
 Extension configuration that can now be added to AcrossWebModule as well:
 

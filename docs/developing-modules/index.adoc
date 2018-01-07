@@ -15,4 +15,6 @@ include::chap-module-messages.adoc[]
 
 include::chap-module-installers.adoc[]
 
+include::chap-validation.adoc[]
+
 include::chap-module-version.adoc[]

@@ -86,6 +86,8 @@ WARNING: If you manage the `ConversionService` outside of the `AcrossContext` th
 
 include::chap-across-development-mode.adoc[]
 
+include::chap-validation.adoc[]
+
 include::chap-advanced-topics.adoc[]
 // TODO mention somewhere the default beans and link to it
 

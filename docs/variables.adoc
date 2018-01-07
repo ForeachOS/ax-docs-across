@@ -16,5 +16,6 @@
 
 // HTML links to other documentation sections
 :doc-fundamentals: fundamentals.html
+:doc-developing-applications: developing-applications.html
 :doc-across-web: across-web.html
 :doc-spring-boot: spring-boot.html

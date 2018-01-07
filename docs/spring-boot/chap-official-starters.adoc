@@ -448,7 +448,23 @@ Autoconfiguration classes:
 
 ==== Validation
 
-Under investigation.
+Bean Validation 1.1 method validation is automatically activated in all modules.
+A single `Validator` bean will be available by default.
+In case of a web setup, it will also be registered as the *mvcValidator* bean.
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Full support
+|Verified
+|none
+|===
+
+.Autoconfiguration classes
+* ``ValidationAutoConfiguration``
 
 ==== Web Services
 
