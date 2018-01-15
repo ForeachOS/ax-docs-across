@@ -8,9 +8,10 @@
 :spring-boot-docs: https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/
 :commons-fileupload-url: http://commons.apache.org/proper/commons-fileupload/
 :platform-bom-url: https://across.foreach.be/modules
-:admin-web-module-url: https://foreach.atlassian.net/wiki/display/AX/AdminWebModule
-:debug-web-module-url: https://foreach.atlassian.net/wiki/display/AX/DebugWebModule
-:bootstrap-ui-module-url: https://foreach.atlassian.net/wiki/display/AX/BootstrapUiModule
+:admin-web-module-url: https://across.foreach.be/modules/AdminWebModule
+:debug-web-module-url: https://across.foreach.be/modules/DebugWebModule
+:across-hibernate-module-url: https://across.foreach.be/modules/AcrossHibernateJpaModule
+:bootstrap-ui-module-url: https://across.foreach.be/modules/BootstrapUiModule
 :git-across-docs: https://github.com/ForeachOS/ax-docs-across
 :git-across-autoconfigure: https://bitbucket.org/beforeach/across-autoconfigure
 

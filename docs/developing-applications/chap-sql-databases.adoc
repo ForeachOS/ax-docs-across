@@ -1,0 +1,31 @@
+[[sql-databases]]
+== Working with SQL databases
+An Across application supports virtually all features of a regular Spring Boot application when it comes to working with SQL databases.
+You can automatically create a `DataSource` instance by setting the right properties and adding a starter like `spring-boot-starter-jdbc` or `spring-boot-starter-jpa`.
+
+.Example configuring a datasource bean
+[source,properties]
+----
+spring.datasource.url=jdbc:mysql://localhost/test
+spring.datasource.username=dbuser
+spring.datasource.password=dbpass
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+----
+
+See the link:{spring-boot-docs}#boot-features-sql[relevant Spring Boot documentation] for an overview of the possible features.
+The rest of this chapter lists the most important differences between a regular Spring Boot and an Across application.
+
+=== Using JdbcTemplate
+Currently not supported.
+
+=== JPA and Spring Data
+When adding `spring-boot-starter-data-jpa` a JPA `EntityManager` using Hibernate 5 will be automatically created and available in the application module.
+The *application module package will be scanned for entities and Spring Data JPA repositories*, in the same way as described in the link:{spring-boot-docs}#boot-features-jpa-and-spring-data[Spring Boot documentation].
+
+Default support is limited to the application module however.
+If you are looking for JPA support for multiple (shared) modules, you should look at the link:{across-hibernate-module-url}[AcrossHibernateJpaModule].
+Said module creates a shared `EntityManager` with a mapping context that other modules can extend.
+It is also fully compatible with the default Spring Boot JPA support and can often be used as a simple drop-in replacement when switching from a simple application to having multiple modules with entities.
+
+WARNING: When only using the `spring-boot-starter-data-jpa` the database schema will be created by default when using an embedded database.
+When switching to AcrossHibernateJpaModule as a replacement, you will always have to specify the schema creation.

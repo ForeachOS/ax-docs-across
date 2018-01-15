@@ -135,7 +135,26 @@ Currently not supported, to be investigated.
 
 ==== Data JPA
 
-Under investigation.
+The regular Spring Boot Data JPA starter enables JPA entities and Spring Data JPA repositories in the application module only.
+If you need support for JPA for multiple modules, you should look at the link:{across-hibernate-module-url}[AcrossHibernateJpaModule] instead.
+The latter is a transparent alternative for the application module support, taking over all tasks of the regular starter.
+
+[cols="1,1,4",opts=header]
+|===
+|Support level
+|Status
+|Remarks
+
+|Application support
+|Verified
+|none
+|===
+
+.Autoconfiguration classes
+* `org.springframework.boot.autoconfigure.data.jpa.JpaRepositoriesAutoConfiguration`
+* `org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration`
+* `org.springframework.boot.autoconfigure.transaction.TransactionAutoConfiguration`
+* `org.springframework.boot.autoconfigure.dao.PersistenceExceptionTranslationAutoConfiguration`
 
 ==== Data LDAP
 https://projects.spring.io/spring-data-ldap/

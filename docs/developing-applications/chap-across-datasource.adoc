@@ -1,13 +1,15 @@
 [[across-datasource]]
 [#across-datasource]
 == Across datasource
-An Across context supports the configuration of a `DataSource` instance.
+An Across context supports the configuration of a SQL database `DataSource` instance.
 If there is a primary `DataSource` or only a single `DataSource` bean available, Across will automatically use that one.
 
-The datasource will be available for all modules as bean named *acrossDataSource*.
+The datasource will be available for all modules as a bean named *acrossDataSource*.
 Additionally a second datasource can be configured that will be available as the *acrossInstallerDataSource*.
 If no separate installer datasource is specified, the default across datasource will be used.
 
 .Installers
 Across only actually needs a datasource if you want to execute installers or use the `DistributedLockRepository` directly.
 The datasource is used for keeping track of which installers have been executed.
+
+See for more information on working with SQL databases in an Across application, see the <<sql-databases,separate chapter>>.

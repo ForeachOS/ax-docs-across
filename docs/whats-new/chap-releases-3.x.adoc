@@ -42,6 +42,11 @@ It is also the first release with auto-configuration support, see the separate d
 * the default module scanning packages will now always be kept if you add additional packages on either `@EnableAcrossContext` or `@AcrossApplication`
 ** if you explicitly want to exclude the default packages you should add *.* (dot) as a package name to the list
 * Bean Validation 1.1 method validation is now automatically enabled in every Across module if a JSR-303 implementation (eg. Hibernate validator) is on the classpath
+* the `TransactionManagementConfigurer` helper class has been removed from the core artifact
+** modules should provide their own implementation when necessary
+* `ComponentScanConfigurer.forAcrossModule(Class)` and `ComponentScanConfigurer.forAcrossModulePackage(String)` helper functions have been added to create default configurations for modules wishing to scan their entire root package
+** these will correctly exclude the `installers` and `extensions` child package
+** default `AcrossModule` implementations still only scan the `config` child package
 
 *AcrosWebModule*
 
