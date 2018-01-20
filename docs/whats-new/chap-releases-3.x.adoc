@@ -25,6 +25,8 @@ It is also the first release with auto-configuration support, see the separate d
 ** `AcrossEventPublisher` has been deprecated in favour of the standard `ApplicationEventPublisher`
 ** `ParameterizedAcrossEvent` has been deprecated in favour of implementing `ResolvableTypeProvider`
 ** `@EventName` has been deprecated, use the `condition` attribute on `@EventListener` instead
+** Please note that generic event types are handled differently with the new system, where in the past
+`SomeEvent<Object>` would have worked, the only working (and more correct) signature is now `SomeEvent<? extends Object>`
 ** parameter-less event listener methods are now possible
 ** event listener methods can now also provide return values which will be published as new events
 ** ordering event listeners through annotations on a method level is now supported

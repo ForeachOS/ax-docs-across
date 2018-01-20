@@ -72,9 +72,15 @@ public void handle( NamedEvent event ) {
 [source,java]
 ----
 @EventListener
-public void onPersonCreated( EntityCreatedEvent<Person> event ) {
-    // Called if the generic type is a Person
+public void onManCreated( EntityCreatedEvent<Man> event ) {
+    // Called if the generic type is exactly Man
 }
+
+@EventListener
+public void onHumanCreated( EntityCreatedEvent<? extends Human> event ) {
+    // Called whenever the generic type implements Human
+}
+
 
 // The event must implement ResolvableTypeProvider if it is not a specific class
 public class EntityCreatedEvent<T> implements ResolvableTypeProvider {
