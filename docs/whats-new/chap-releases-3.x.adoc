@@ -63,8 +63,23 @@ The following changes and additions are included in the update:
 * the https://github.com/thymeleaf/thymeleaf-extras-java8time[Thymeleaf Java 8 Time dialect] is now also included and enabled
 * the default mvc `Validator` bean now implements `SmartValidator` directly, allowing `@Validated` with group validation to be used
 * the `TextViewElementBuilder` now supports a link:{doc-across-web}#localized-text[localized text pattern] as text value
+* several changes to the menu building infrastructure, some breaking. See the link:{doc-across-web}#menu-building[updated documentation] for use case examples.
+** added `Menu.builder()` for easy ad-hoc creation of a menu using path registration
+** `MenuSelector` factory methods have been moved from the `Menu` to `MenuSelector` class
+** some rarely used methods on `PathBasedMenuBuilder`, `PathBasedMenuItemBuilder` and `BuildMenuEvent` have been removed
+** `BuildMenuFinishedEvent` has been removed, modules requiring this functionality should now register a `Menu` post-processor on the `BuildMenuEvent` instead
+** renamed methods on `BuildMenuEvent`:
+*** `setSelector()` -> `setMenuSelector()`, `getSelector()` -> `getMenuSelector()`
+*** `forMenu()` -> `isForMenuOfType()`
+** options to customize a menu have been improved and some new ones have been added:
+*** on a menu builder these are `changeItemPath()`, `removeItems()`, `optionalItem()` and `withProcessor()`
+*** on a menu item builder these are `changePathTo()`, `remove()` and `comparator()`
+*** the unreliable `move()` method for menu items has been deprecated, use the new `changeItemPath()` or `item().changePathTo()` instead
+*** using `PathBasedMenuBuilder.andThen()` it is now possible to register and apply additional configuration after all initial configuration has been done.
+This is especially useful if you want to make changes to a menu builder when you want to be sure all intial items have been added.
 
-Extension configuration that can now be added to AcrossWebModule as well:
+.New module extension support
+Extension configuration classes that can now be added to AcrossWebModule:
 
 * `RestTemplateCustomizer`
 * `HttpMessageConverter`
