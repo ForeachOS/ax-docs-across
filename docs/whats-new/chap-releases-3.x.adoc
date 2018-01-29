@@ -63,7 +63,7 @@ The following changes and additions are included in the update:
 * the https://github.com/thymeleaf/thymeleaf-extras-java8time[Thymeleaf Java 8 Time dialect] is now also included and enabled
 * the default mvc `Validator` bean now implements `SmartValidator` directly, allowing `@Validated` with group validation to be used
 * the `TextViewElementBuilder` now supports a link:{doc-across-web}#localized-text[localized text pattern] as text value
-* several changes to the menu building infrastructure, some breaking. See the link:{doc-across-web}#menu-building[updated documentation] for use case examples.
+* several changes to the menu building infrastructure, some breaking. See the link:{doc-across-web}#menu-infrastructure[updated documentation] for use case examples.
 ** added `Menu.builder()` for easy ad-hoc creation of a menu using path registration
 ** `MenuSelector` factory methods have been moved from the `Menu` to `MenuSelector` class
 ** some rarely used methods on `PathBasedMenuBuilder`, `PathBasedMenuItemBuilder` and `BuildMenuEvent` have been removed

@@ -1,5 +1,4 @@
-[[menu-building]]
-[#building-menus]
+[[menu-infrastructure]]
 == Working with menus
 Across Web provides some infrastructure to build a tree-like menu.
 This can be used for rendering for example hierarchical menus on a web page, though the class structure can be used for many things.
