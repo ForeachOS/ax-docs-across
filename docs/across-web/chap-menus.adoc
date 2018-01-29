@@ -468,5 +468,5 @@ Across Web itself does not in any way determine how a `Menu` is visualized, this
 </ol>
 ----
 
-A module like link:{bootstrap-ui-module}[BootstrapUiModule] provides components for rendering `Menu` instances.
+A module like link:{bootstrap-ui-module-url}[BootstrapUiModule] provides components for rendering `Menu` instances.
 
