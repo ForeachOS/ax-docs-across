@@ -12,6 +12,7 @@
 :debug-web-module-url: https://across.foreach.be/modules/DebugWebModule
 :across-hibernate-module-url: https://across.foreach.be/modules/AcrossHibernateJpaModule
 :bootstrap-ui-module-url: https://across.foreach.be/modules/BootstrapUiModule
+:entity-module-url: https://across.foreach.be/modules/EntityModule
 :git-across-docs: https://github.com/ForeachOS/ax-docs-across
 :git-across-autoconfigure: https://bitbucket.org/beforeach/across-autoconfigure
 

@@ -1,11 +1,473 @@
 [[menu-building]]
 [#building-menus]
-== Building menus
-AcrossWebModule provides some infrastructure to build a tree-like menu.
-The output class is a `Menu` instance that is created by the `MenuFactory` service.
+== Working with menus
+Across Web provides some infrastructure to build a tree-like menu.
+This can be used for rendering for example hierarchical menus on a web page, though the class structure can be used for many things.
 
-When building a menu, a `BuildMenuEvent` is published with the menu instance, the name of the menu will be the name of the event.
-The `BuildMenuEvent` provides access to a `PathBasedMenuBuilder` that allows asynchronous registering of menu items with a unique hierarchical path.
-After the event handling the actual menu will be built and path structure will be used for the tree hierarchy.
+Several standard modules like link:{admin-web-module-url}[AdminWebModule], link:{entity-module-url}[EntityModule] or link:{bootstrap-ui-module-url}[BootstrapUiModule] uses these features to allow creation, customization and easy rendering of menus.
+In this section we will explain the basics of working with the Across Web menu features.
 
-It is still up to the developer to actually output the `Menu` in some fashion, for example by rendering it in the Thymeleaf template.
+=== Creating a menu
+The base class for the menu tree structure is `com.foreach.across.modules.web.menu.Menu`.
+A single `Menu` can have several child `Menu` items, which in turn can have children of their own.
+As such, a `Menu` can optionally have a single parent `Menu`.
+The top-most item without a parent is called the _root_ of the menu tree.
+
+.Example menu tree
+[source,text]
+----
+ROOT
++ l1: item one
+  - l2: item one
+  + l2: item two
+    - l3: item one
+- l1: item two
+----
+
+The `Menu` class has some properties that are common for visual menu rendering, like a `title` and an `url`.
+Every `Menu` also has a `path` property which is usually used to uniquely identify an item inside the entire menu tree.
+
+Apart from some other direct properties, every `Menu` has an `attributes` property which is a `Map` of custom key/value pairs.
+These can be used to store additional custom information on a menu item, something which is used by many implementation.
+
+Suppose you have menu item that links to a web page, backed by a `WebPage` object.
+You could put the `Menu` title to the title of the web page, and the url to the request path where the page is served.
+The `attributes` collection could then hold the actual `WebPage` instance that the menu item represents.
+
+The following table gives a short overview of the different `Menu` properties:
+
+.Menu property descriptions
+[cols="2,4"]
+|===
+|Property |Description
+
+|`parent`
+|Holds the optional parent `Menu` that owns the current menu.
+
+|`name`, `path`
+|Properties mainly used to identify a `Menu` in its subtree.
+See <<building-a-menu,path based menu building>> for a common use of the `path` property.
+The `name` property is mostly relevant for the top-most `Menu` when <<publishing-a-menu,publishing a menu>>.
+
+|`title`, `url`
+|Common (visualization) metadata for a `Menu` item.
+
+|`attributes`
+|`Map` of custom attributes attached to this `Menu`.
+The value of an attribute is artibitrary, but every attribute is identified by a unique `String` key.
+
+|`group`
+|This flag is mostly used to indicate an item that has children, but is not a regular item in itself.
+Though implementation dependent, this is often used for an item that for example has no url set (and would not be clickable), but is still expected to be a heading in a visualized menu tree.
+
+Note that the value of `group` has no impact on the actual presence of child items.
+Child items are represented by the `items` property and related methods.
+
+|`order`, `comparator`
+|Properties to influence how a menu tree should be sorted.
+See <<sorting-a-menu,the section on sorting a menu>> for more information.
+
+|`selected`
+|Indicates if the `Menu` item is part of the selected path of the menu tree.
+See <<selecting-menu-items,the section on selecting menu items>> for more information.
+
+|`disabled`
+|Indicates if a `Menu` item is considered disabled.
+This usually implies the entire sub-tree the item represents is disabled.
+The meaning of disabled is application dependant, but usually it means the menu item is still part of the tree but should not be shown.
+
+|`items`
+|Contains the list of direct children of this `Menu`.
+
+|===
+
+NOTE: How the different properties of a `Menu` are being used is entirely up to the developer.
+`Menu` in itself is nothing more than a class structure for representing a tree of items with those properties.
+
+A `Menu` can be constructed and modified directly, it is never an immutable instance.
+
+.Example of simple menu creation
+[source,java]
+----
+Menu root = new Menu( "ROOT" );
+Menu childOne = new Menu( "l1: item one" );
+Menu childOfChildOne = new Menu( "l2: item one" );
+Menu childTwo = new Menu( "l1: item two" );
+
+root.addItem( childOne );
+root.addItem( childTwo );
+childOne.addItem( childOfChildOne );
+----
+
+Because of the hierarchical nature of a menu however, usually constructing a complex `Menu` is done using a <<building-a-menu,path based builder>>.
+
+[[sorting-a-menu]]
+=== Sorting a menu
+A `Menu` can be sorted once its items have been added, simply by calling the `sort()` method.
+Sorting a menu will sort its direct child items, and in turn call `sort()` on every child item, resulting in the entire menu tree being sorted.
+
+Sorting is done using a `Comparator<Menu>` instance.
+The default comparator will sort menu items first on the value of their `order` property, and then alphabetically on their `title`.
+
+You can set a different `Comparator` that should be used directly on a `Menu` instance.
+This means you can use different comparators for sub-trees of a menu tree.
+Usually a single comparator is responsible for the entire sub-tree, but you can make exceptions there as well.
+
+[[selecting-menu-items]]
+=== Selecting menu items
+A `Menu` item in the tree can be `selected`.
+When a `Menu` is selected and it has a parent, its parent `Menu` will also be selected, all the way up to the root of the tree.
+
+As a result as soon as there is a single item selected, you can retrieve a _selected path_ containing all the `Menu` items that are selected top-down.
+This is a useful feature if you want to create a breadcrumb for example.
+
+Useful methods for `Menu`:
+
+* `isSelected()` to check if the `Menu` itself is selected
+* `getSelectedItem()` to get its first selected child
+* `getLowestSelectedItem()` to get the leaf item oo the selected path
+* `getSelectedItemPath()` to retrieve the full selected path starting from this `Menu`.
+
+NOTE: The current `Menu` implementation only allows a single selected path in a menu tree.
+You cannot have more than one leaf item selected.
+
+[discrete]
+==== Using a MenuSelector
+`MenuSelector` is a strategy interface for finding or selecting a `Menu` in a tree.
+There are several implementations available as factory methods on the `MenuSelector` class.
+The default implementations will traverse the entire `Menu` tree to find the lowest item that matches the predicate.
+
+.Example selecting a menu with a specific path
+[source,java]
+----
+myMenu.select( MenuSelector.byPath( "path-to-select" ) );
+----
+
+[discrete]
+[[request-menu-selector]]
+==== HTTP request selector
+A common case for using `Menu` in a web scenario is selecting the menu item based on the path of the current web request.
+The `RequestMenuSelector` is a specific `MenuSelector` implementation that does exactly that.
+
+.Selecting the menu item based on the current http request
+[source,java]
+----
+HttpServletRequest currentRequest;
+myMenu.select( MenuSelector.byHttpServletRequest( currentRequest ) );
+----
+
+The `RequestMenuSelector` uses a scoring mechanism to find the best matching item for the current request.
+It will look at the current url, servlet path and query string, and will select the menu item that has the best match.
+It will inspect the `url` property of a `Menu` but also take the value of `RequestMenuSelector.ATTRIBUTE_MATCHERS` into account.
+The latter is an optional attribute that can be registered on a `Menu`, with its value expected to be a `Collection` of strings that represent urls or paths this item represents.
+
+Suppose the current url is `\http://my.domain/my-page?id=10`, then `RequestMenuSelector` would select the items the following order:
+
+. `\http://my.domain/my-page/create?id=10`
+. `/my-page/create?id=10`
+. `/my-page/create`
+. `/my-page`
+
+Note that even if an item matches only a prefix of the requested path, it will match if there is none more specific.
+
+TIP: The `RequestMenuSelector` is the default selector that is automatically used when using the `MenuFactory`to <<publishing-a-menu,publish a menu for configuration>>.
+
+[[building-a-menu]]
+=== Path based menu building
+Instead of manually assembling a `Menu`, it is usually to easier to use a `PathBasedMenuBuilder` for configuration of an entire menu tree using a single class.
+The fastest way to create a new `PathBasedMenuBuilder` builder is with `Menu.builder()`.
+
+The builder allows you to register items as a flat list, with each item being identified by a unique path.
+The path can have several segments which are separate with a `/` (forward slash) character.
+Every item with a path that is also the prefix of another item's path, will become the parent item of those other items.
+The flat list of items will only be turned into a `Menu` tree when calling the `build()` method.
+
+A `PathBasedMenuBuilder` not only allows you to create a new `Menu` instance using `build()`, it can also be used to update/extend already existing menu trees using the `merge(Menu)` method.
+
+[discrete]
+==== A simple example
+Suppose you register the following menu items in order:
+
+. `/my-group/item-1`
+. `/my-group`
+. `/my-item`
+. `/my-group/item-2`
+. `/my-other-group/single-item`
+
+In Java code this would look like:
+
+[source,java]
+----
+Menu menu = Menu.builder()
+                .item( "/my-group/item-1" ).and()
+                .item( "/my-group" ).and()
+                .item( "/my-item" ).and()
+                .item( "/my-group/item-2" ).and()
+                .item( "/my-other-group/single-item" ).and()
+                .item( "/my-group:item-3" ).and()
+                .build()
+----
+
+The resulting `Menu` then contains the following hierarchy:
+
+[source,text]
+----
+ ROOT <1>
+   + /my-group <2>
+   |   + /my-group/item-1
+   |   + /my-group/item-2
+   + /my-group:item-3 <3>
+   + /my-item
+   + /my-other-group/single-item <4>
+----
+
+<1> By default the top-most item of the menu has no specific path.
+Setting a path on the root item can be done by calling its item builder using `builder.root(String)`, but this will have no impact on the hierarchy being created.
+The root path of a `Menu` is only relevant in specialized cases where you want to merge the result of a builder into an already existing `Menu`.
+<2> The presence of the item with path `/my-group` causes the other 2 items starting with the same path prefix to be added as child items of this one.
+<3> Because `/my-group:item-3` does not have the right path separator (it has a `:` instead of a `/`), it is still a separate item instead of a child of `/my-group`.
+<4> A parent item does not automatically get created based on path separation.
+There is no item `/my-other-group`, so this item remains a direct child of the root.
+
+NOTE: Items should peferably not be registered with a trailing slash to ensure correct conversion to a menu tree.
+
+[discrete]
+==== Fluent API examples
+The `PathBasedMenuBuilder` provides a fluent API to add items, modify them and remove them, and _move them around_  by manipulating their paths.
+It allows you to change the registered paths of an item before `Menu` building, thus influencing the actual menu tree that gets created.
+
+*Creating an item*
+[source,java]
+----
+builder.item( "/item-path" )
+----
+This will create an item with that path if it does not yet exist.
+Once the item has been registered, the same item builder will always be returned on subsequent calls.
+
+*Setting item properties*
+[source,java]
+----
+builder.item( "/item-path" ).title( "My item").attribute( "key", "value" )
+----
+
+*Changing an item only if it is present*
+[source,java]
+----
+builder.optionalItem( "/item-path" ).url( "update url" )
+----
+This will return a valid item builder that allows all actions to be performed, but will in fact do nothing unless that item was registered previously.
+Useful if you are not sure the item has been added, for example in  <<publishing-a-menu,menu publishing>> scenarios.
+
+*Removing an item and all items that would become children*
+[source,java]
+----
+builder.item( "/item-path" ).remove( true )
+builder.removeItems( "/item-path", true );
+----
+The `true` argument indicates that all other items having the specified path as prefix should also be removed.
+
+*Removing an item but not its possible children*
+[source,java]
+----
+builder.item( "/item-path" ).remove( false )
+builder.removeItems( "/item-path", false );
+----
+The `false` argument indicates that only the item with that exact path should be removed.
+
+*Removing an item that might not be present*
+[source,java]
+----
+builder.optionalItem( "/item-path" ).remove( true|false ) <1>
+builder.removeItems( "/item-path", true|false ) <2>
+----
+<1> In this case nothing will be removed if the original `/item-path` item is not present, even if the method argument is `true`.
+<2> When the argument is `true`, this will always attempt to remove all items starting with that prefix.
+It does not matter if the exact `/item-path` is present or not.
+
+*Changing the path of an item and all its possible children*
+[source,java]
+----
+builder.item( "/original" ).changePathTo( "/new" )
+builder.changeItemPath( "/original", "/new" )
+----
+This will replace the `/original` path prefix in all items with the `/new` value.
+
+*Changing the path of an item but not its possible children*
+[source,java]
+----
+builder.item( "/original" ).changePathTo( "/new", false )
+builder.changeItemPath( "/original", "/new", false )
+----
+The `false` argument indicates that only the item with the exact path should updated.
+In this case `/original` would be changed to `/new`, but `/original/item` would not be modified.
+
+*Changing the path of child items to-be, but not their parent item*
+[source,java]
+----
+builder.changeItemPath( "/original/", "/new/" )
+----
+In this case I update all items where the path starts with `/original/`.
+It is the trailing slash that ensures we do not modify the `/original` item.
+
+
+WARNING: Actions performed on a builder are immediate, that means after you change an item path, or remove an item, you can no longer refer to it in the same way.
+If you do you will simply re-create a new item with that path.
+
+[discrete]
+==== Delayed configuration
+Builders are used extensively when <<publishing-a-menu,publishing a menu>>, allowing different classes to configure a single menu using event listeners.
+The same builder is then passed to the different event handling methods, and these modify the previous configuration performed on the builder.
+
+Sometimes you want to modify a menu builder, but you want to be sure that all other configuration has been applied first.
+You can do so by registering an additional consumer using `andThen()`.
+
+.Example using delayed configuration
+[source,java]
+----
+// This will NOT work <1>
+builder.item( "/one" ).title( "One" ).and()
+       .item( "/one" ).changePathTo( "/two" ).and()
+       .item( "/one/child" ).title( "Child of one" );
+
+// This will work as expected <2>
+builder.item( "/one" ).title( "One" ).and()
+       .andThen( builder -> builder.item( "/one" ).changePathTo( "/two" ) );
+builder.item( "/one/child" ).title( "Child of one" );
+----
+
+<1> In this case the path of `/one` is changed to `/two` before item `/one/child` is registered.
+The resulting tree will contain 2 children of the root node: `/two` and `/one/child`.
+<2> The path prefix `/one` is updated after the initial configuration has been applied, by calling the separate consumer.
+The resulting tree will have a single child of the root node, two items in total: `/two` and `/two/child`.
+
+[discrete]
+==== MenuItemBuilderProcessor
+The `PathBasedMenuBuilder` also allows you to register a `MenuItemBuilderProcessor` instance, that can be used to post-process generated `Menu` items right after they have been created.
+
+An example where this could be useful is to transparently translate context-relative urls to absolute or domain relative urls.
+Please see the javadoc and source code for more information on this.
+
+[[publishing-a-menu]]
+=== Publishing a menu
+Menus are often used to allow other modules to configure items to them.
+An example is link:{admin-web-module-url}[AdminWebModule] which builds a custom `Menu` for the navigation items on the UI.
+It publishes an event and any component in any module can listen for that event, and use it to register its own navigational items.
+
+Behind the scenes <<request-menu-selector,request based selecting>> is then used to automatically select & highlight the active nav item.
+
+Anyone can publish an event for building a menu, using the `MenuFactory`.
+
+.Example publishing a new menu with the MenuFactory
+[source,java]
+----
+@Autowired
+MenuFactory menuFactory;
+
+Menu myMenu = new Menu( "myMenu" );
+menuFactory.buildMenu( myMenu );
+----
+
+When publishing a menu with the `MenuFactory` this way, the following things happen:
+
+* a `PathBasedMenuBuilder` for the menu is created
+* a `RequestMenuSelector` is created for <<selecting-menu-items,selecting the active menu items>>
+* a `BuildMenuEvent` is published, embedding the original menu, the selector and the builder
+** any event listener can make modifications, register items, change paths or replace the selector
+* after the event has been handled the menu is sorted and the active items are selected (using the configured selector)
+* if there are any post-processors registered on the `BuildMenuEvent`, these will be executed before returning to the original caller
+
+Simple event listening can be used to customize a published menu.
+
+.Example customizing myMenu
+[source,java]
+----
+@EventListener( condition = "#menu.menuName == 'myMenu'" )
+void registerMenuItem( BuildMenuEvent menu ) {
+    menu.item( "/my-item" ).title( "my custom item" );
+}
+----
+
+A `BuildMenuEvent` has both a generic type (the specific class of the `Menu` instance) and a `menuName` (name of menu instance), that can be used to match the specific event.
+
+.Example publishing and customizing a typed menu
+[source,java]
+----
+class MyCustomMenu extends Menu {
+}
+
+MyCustomMenu myMenu = new MyCustomMenu();
+menuFactory.buildMenu( myMenu );
+
+@EventListener
+void registerMenuItem( BuildMenuEvent<MyCustomMenu> menu ) {
+    menu.item( "/my-item" ).title( "my custom item" );
+}
+----
+
+`MenuFactory` has several other variations for building events.
+Please refer to the javadoc for an overview.
+
+NOTE: More advanced configurations often have custom types for both `Menu` and `BuildMenuEvent`, exposing more context information.
+This requires you to customize the `MenuFactory` configuration.
+We invite you to look at both the javadoc and source code if you want to implement a similar scenario.
+
+[discrete]
+==== Post-processing a menu
+If you need to post-process a generated `Menu` after all items have been registered, the menu has been built, sorted and active items selected; you can register a `Consumer<Menu>` using `event.addMenuPostProcessor()`.
+
+[discrete]
+==== Automatic menu publishing from handler methods
+`MenuFactory` provides integration with handler methods through means of an argument resolver.
+If you specify a menu argument, the instance will be created and published automatically, provided there is a parameter-less constructor available if you use a specific menu type.
+
+.Example handler method with a menu
+[source,java]
+----
+@GetMapping( "/" )
+String renderHomepage( MyCustomMenu navMenu ) {
+    ...
+}
+----
+
+When the handler method is being called, the `MenuFactory` will be checked for the presence of a menu named `navMenu`.
+If there is none available, a new `MyCustomMenu` will be created with name `navMenu`, and the menu will be published.
+
+When a menu is generated this way, it is also available as a request attribute with the menu name.
+In our example, a request attribute called `navMenu` would be available in the `View`.
+
+A single handler method can have as many menu references as it wants, as long as the names are different.
+Every menu will only be built once per request.
+In the above example, subsequent calls to `menuFactory.buildMenu( "navMenu" )` would always return the same instance.
+
+=== Rendering a menu
+Across Web itself does not in any way determine how a `Menu` is visualized, this is up to the application.
+
+.Example Thymeleaf snippet rendering a Bootstrap markup breadcrumb
+[source,html]
+----
+<ol class="breadcrumb">
+<li th:each="item : ${menu.selectedItemPath}"
+        th:unless="${item.disabled}"
+        th:classappend="${itemStat.last} ? 'active'"
+        th:if="${item.hasTitle()}">
+
+	<span th:if="${itemStat.last}" th:text="${item.title}">
+	    title selected item
+	</span>
+
+	<div th:unless="${itemStat.last}" th:remove="tag">
+		<span th:if="${!item.hasUrl() and (!item.isGroup() or !item.firstItem.hasUrl())}"
+		      th:text="${item.title}">title if no url</span>
+		<a th:if="${item.hasUrl() and !itemStat.last}"
+		   th:href="@{${item.url}}"
+		   th:text="${item.title}">title with url</a>
+		<a th:if="${!item.hasUrl() and item.isGroup() and item.firstItem.hasUrl()}"
+		   th:href="@{${item.firstItem.url}}"
+		   th:text="${item.title}">title with first item url</a>
+	</div>
+</li>
+</ol>
+----
+
+A module like link:{bootstrap-ui-module}[BootstrapUiModule] provides components for rendering `Menu` instances.
+
