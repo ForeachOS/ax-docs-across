@@ -12,7 +12,7 @@ This means modules can configure the Spring MVC support, add controllers, servle
 On top of that, the out-of-the-box Spring MVC functionality is extended in several ways:
 
  * a <<thymeleaf-dialect,Thymeleaf dialect>> is provided for interacting with the Across web infrastructure
- * AcrossWebModule provides infrastructure for <<layout-templates,templates>>, <<building-menus,menu building>> and <<web-resource-registry,registering web resources>>
+ * AcrossWebModule provides infrastructure for <<layout-templates,templates>>, <<menu-infrastructure,menu building>> and <<web-resource-registry,registering web resources>>
  * adding a <<viewelement-infrastructure,programmatic model for creating UI components>> from code
  * adding support for <<request-mapping-extensions,prefixing request mappings and adding custom request condition>>
  * auto configuration of a <<multipart-support,Multipart filter>>
