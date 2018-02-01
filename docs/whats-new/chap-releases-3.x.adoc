@@ -77,6 +77,11 @@ The following changes and additions are included in the update:
 *** the unreliable `move()` method for menu items has been deprecated, use the new `changeItemPath()` or `item().changePathTo()` instead
 *** using `PathBasedMenuBuilder.andThen()` it is now possible to register and apply additional configuration after all initial configuration has been done.
 This is especially useful if you want to make changes to a menu builder when you want to be sure all intial items have been added.
+* `ViewElement` related changes
+** all `ViewElementBuilderSupport` extensions now have a `configure(Consumer<ViewElementBuilder>)` method to use a more fluent API callback approach for additional configuration
+** container-like builders support `null` values for `ViewElement` or `ViewElementBuilder`
+*** these will safely be ignored and never added to the children of a container
+*** this makes it easier to keep a fluent API style
 
 .New module extension support
 Extension configuration classes that can now be added to AcrossWebModule:
