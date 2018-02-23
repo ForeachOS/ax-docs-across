@@ -20,4 +20,5 @@
 :doc-fundamentals: fundamentals.html
 :doc-developing-applications: developing-applications.html
 :doc-across-web: across-web.html
+:doc-testing: testing.html
 :doc-spring-boot: spring-boot.html

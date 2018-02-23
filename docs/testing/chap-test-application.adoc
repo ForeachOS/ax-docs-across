@@ -4,10 +4,12 @@
 It is possible to test your `@AcrossApplication` with Spring Boot testing support.
 Using the `@SpringBootTest` in your tests is necessary for default _application.properties_ loading and YAML support.
 Refer to the Spring Boot reference documentation for more information on Spring Boot testing facilities.
- 
+
 [[web-integration-test]]
 === @WebIntegrationTest
 A full-stack web integration test (eg. with an embedded Tomcat) does not require any special configuration.
+
+You can use <<expose-for-test,`@ExposeForTest`>> in combination with `@SpringBootTest` to expose additional components during test execution.
 
 .Example integration test with an embedded servlet container on a random port
 [source,java,indent=0]

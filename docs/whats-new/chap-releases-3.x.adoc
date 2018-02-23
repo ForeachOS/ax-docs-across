@@ -104,5 +104,8 @@ Dynamically registered filters should preferably include an explicit order value
 
 *Across Test*
 
-* both `@AcrossTestConfiguration` and the `AcrossTestBuilders` now have an attribute/method to easily expose additional classes for the scope of the test
-** this can be particular useful for integration testing of a dynamic application module
+* new features for exposing additional components during the scope of a test
+** both `@AcrossTestConfiguration` and the `AcrossTestBuilders` now have an attribute/method to easily expose additional classes for the scope of the test
+** link:{doc-testing}#expose-for-test[`@ExposeForTest`] can be used in combination with `@SpringBootTest`
+*** the latter is particularly useful for integration testing of a dynamic application module
+
