@@ -11,6 +11,7 @@ Class-level annotation to be used as an alternative to `<<developing-application
 Like `@EnableAcrossContext` this annotation will configure and bootstrap an `AcrossContext` but also add support for:
 
 * <<test-datasources,test datasources>>
+* easily exposing additional types for the scope of the test
 * resetting the database before bootstrap
 * creating a `MockMvc` bean instantiated with all dynamically registered filters from the context, when used in a `<<across-web-app-configuration,@AcrossWebAppConfiguration>>` test class
 
@@ -33,7 +34,7 @@ public class TestSample
 		...
 	}
 
-	@AcrossTestConfiguration(modules = { MyModule.NAME })
+	@AcrossTestConfiguration(modules = MyModule.NAME, expose = MyExposedBean.class)
 	protected static class Config
 	{
 	}
