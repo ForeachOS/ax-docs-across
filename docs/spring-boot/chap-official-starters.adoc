@@ -65,14 +65,9 @@ Under investigation.
 Under investigation.
 
 ==== Data Cassandra
-https://projects.spring.io/spring-data-cassandra/
 
-Autoconfiguration classes:
-
-* ``CassandraAutoConfiguration``
-* ``CassandraDataAutoConfiguration``
-* ``CassandraRepositoriesAutoConfiguration``
-
+Auto-configuration of Spring Data Cassandra repositories is supported in the application module only.
+Project url: https://projects.spring.io/spring-data-cassandra/
 
 [cols="1,1,4",opts=header]
 |===
@@ -84,6 +79,11 @@ Autoconfiguration classes:
 |Verified
 |none
 |===
+
+.Autoconfiguration classes
+* ``CassandraAutoConfiguration``: application configuration
+* ``CassandraDataAutoConfiguration``: application module
+* ``CassandraRepositoriesAutoConfiguration``: application module
 
 ==== Data Couchbase
 https://projects.spring.io/spring-data-couchbase/
