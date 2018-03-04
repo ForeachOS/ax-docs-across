@@ -158,7 +158,6 @@ This is useful for providing an `<<AcrossBootstrapConfigurer>>`.
 In this case the configuration will not be added to the application level but to the module specified.
 You can use *DynamicApplicationModule* as a placeholder name to indicate the configuration should be added to the application module.
 
-
 com.foreach.across.IllegalConfiguration::
  List of class names that are not allowed to be present in a module or context.
  These will be validated during startup and if one of these is present, the application will not start up and throw an error.
