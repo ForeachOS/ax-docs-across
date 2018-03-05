@@ -8,15 +8,15 @@ It is also the first release with auto-configuration support, see the separate d
 
 *Core dependency upgrades*
 
-* Spring Platform Brussels-SR6
-* Spring Framework 4.3.13
-* Spring Boot 1.5.9
+* Spring Platform Brussels-SR7
+* Spring Framework 4.3.14
+* Spring Boot 1.5.10
 
 *Across Core*
 
 * addition of the `@ConditionalOnAcrossModule` annotation that can be put on a `@Configuration` class, `@Bean` method and any `@Component` to depend on the presence of modules.
 ** `@AcrossDepends` should now only be used on module descriptors, and no longer for conditional component creation
-* exposed bean definitions are now copied to the module context directly instead of shared via the parent `ApplicationContext`
+* internal rewrite of the exposing mechanism: exposed bean definitions are now copied to the module context directly instead of shared via the parent `ApplicationContext`
 ** this improves compatibility with a lot of default Spring related configurations, but might introduce a breaking change for certain modules
 * the event handling system has been overhauled and now uses the default Spring events implementation
 ** the custom event bus using MBassador has been removed, as well as the MBassador dependency itself
@@ -48,7 +48,17 @@ It is also the first release with auto-configuration support, see the separate d
 ** modules should provide their own implementation when necessary
 * `ComponentScanConfigurer.forAcrossModule(Class)` and `ComponentScanConfigurer.forAcrossModulePackage(String)` helper functions have been added to create default configurations for modules wishing to scan their entire root package
 ** these will correctly exclude the `installers` and `extensions` child package
-** default `AcrossModule` implementations still only scan the `config` child package
+** *note*: default `AcrossModule` implementations still only scan the `config` child package, this behaviour has not changed
+* failure analyzers have been added to provide better exception information when using `@AcrossApplication`
+* added support for link:{doc-spring-boot}#across-configuration[`META-INF/across.configuration`]
+** allows for externalizing compatibility rules with regular Spring Boot auto-configuration
+** allows for defining illegal use of configuration classes, this can help in avoiding bad use of regular Spring Boot configurations in an Across context
+* added illegal configuration detection on a `@AcrossApplication`, upon starting the presence of configuration classes will be detected and possibly result in an exception describing the illegal use
+** on by default, it can be disabled explicitly by setting `across.configuration.validate` to `false`
+* `@ModuleConfiguration` classes are now only supported in the `extensions` package, and no longer looked for in `config`
+** `@ModuleConfiguration` is now always a configuration class as well (has `@Configuration` as meta-annotation)
+** the implementation of `@ModuleConfiguration` has changed, they are now imported as regular configurations, with full support for conditionals
+*** in rare cases this might lead to problems as these configuration classes are imported at a different point in time, usually before the addition of regular annotated classes added to the module
 
 *AcrosWebModule*
 
@@ -58,7 +68,7 @@ The following changes and additions are included in the update:
 
 * a `RestTemplateBuilder` is created and exposed
 * Jackson `ObjectMapper` and `Jackson2ObjectMapperBuilder` are created and exposed
-* if Gson on the classpath: a `Gson` object created and exposed
+* if Gson on the classpath: a `Gson` object is created and exposed
 * support for link:{doc-across-web}#error-handling[default error pages] is now automatically activated
 * the https://github.com/thymeleaf/thymeleaf-extras-java8time[Thymeleaf Java 8 Time dialect] is now also included and enabled
 * the default mvc `Validator` bean now implements `SmartValidator` directly, allowing `@Validated` with group validation to be used
@@ -82,6 +92,13 @@ This is especially useful if you want to make changes to a menu builder when you
 ** container-like builders support `null` values for `ViewElement` or `ViewElementBuilder`
 *** these will safely be ignored and never added to the children of a container
 *** this makes it easier to keep a fluent API style
+* `PrefixingHandlerMappingConfigurer` can no longer be applied to the default AcrossWebModule, use a regular `WebMvcConfigurer` to add interceptors
+** different prefixed handler mappings (eg. AdminWebModule) still require the use of `PrefixingHandlerMappingConfigurer` for adding interceptors
+** if you want to add an interceptor to all controllers, you should implement both `WebMvcConfigurer` and `PrefixingHandlerMappingConfigurer`
+* websocket support has been added, it is activated automatically:
+** if the required dependencies are on the classpath
+** a `WebSocketConfigurer` or `WebSocketMessageBrokerConfigurer` bean is provided by any module
+** using `@EnableWebSocket` or `@EnableWebSocketMessageBroker` anywhere will result in a bootstrap failure, it's usually enough to just remove these annotations and leave the rest of your code as is
 
 .New module extension support
 Extension configuration classes that can now be added to AcrossWebModule:

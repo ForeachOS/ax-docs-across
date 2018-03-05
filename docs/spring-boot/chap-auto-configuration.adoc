@@ -158,6 +158,30 @@ This is useful for providing an `<<AcrossBootstrapConfigurer>>`.
 In this case the configuration will not be added to the application level but to the module specified.
 You can use *DynamicApplicationModule* as a placeholder name to indicate the configuration should be added to the application module.
 
+com.foreach.across.IllegalConfiguration::
+ List of class names that are not allowed to be present in a module or context.
+ These will be validated during startup and if one of these is present, the application will not start up and throw an error.
+
+The *com.foreach.across.IllegalConfiguration* values support multiple options:
+
+* If only a class name is given, the configuration may not be used in the AcrossContext, which is the root context of the application.
+This means that the configuration is not allowed on the level of the `*Application` class.
+* A module name can be specified using *->* after the class name.
+This means that the configuration is not allowed for the specified module(s).
+It is also possible to make a configuration illegal in all modules or in the across application context.
+** If the module name is equal to *AcrossContext*, beans of the provided type name may not be present in the across application context.
+** If the module name is equal to *AcrossModule*, beans of the provided type may not be present in *ANY* module
+** If the module name is prefixed by an *exclamation mark ( ! )*, it is allowed in that specific module.
+** Multiple module names can be specified using a *pipe  ( | )*.
+As an example,  `org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport->AcrossContext|AcrossModule|!MyModule,` means that the configuration may not be used in the across context or in any module, except for `MyModule`.
+By default as soon as a module has been specified, the specified type may not be used in any module except those specified.
+So the former example is per se equal to `org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport->!MyModule,`
+** The illegal configuration can be suffixed by a *colon ( : )* followed by a message key.
+This key can then be used to specify more information about why beans of that type are not allowed, as well as the action(s) that should be taken.
+This is done through the use of the following entries in the `across.configuration` file:
+*** `com.foreach.across.IllegalConfiguration[MESSAGE_KEY].description=` Why this is an illegal configuration
+*** `com.foreach.across.IllegalConfiguration[MESSAGE_KEY].action=` A possible resolution or steps to take
+
 .Example META-INF/across.configuration
 [source,properties]
 ----
