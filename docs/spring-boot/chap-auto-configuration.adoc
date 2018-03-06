@@ -207,6 +207,19 @@ com.foreach.across.AutoConfigurationEnabled=\
   my.ReplacedIncompatibleAutoConfiguration:my.AcrossAnotherIncompatibleAutoConfigurationAdapter,\
   my.ApplicationModuleInjectedAutoConfiguration->DynamicApplicationModule,\
   my.PostProcessorModuleInjectedAutoConfiguration->AcrossContextPostProcessorModule
+
+#
+# List of AutoConfiguration classes or bean types that are not allowed to be present (in the specified modules).
+#
+com.foreach.across.IllegalConfiguration=\
+  my.SimpleConfiguration->AcrossContext:mydescriptionlabel
+  my.SomeBean->!AcrossContextPostProcessorModule
+
+#
+# List of illegal configuration descriptions.
+#
+com.foreach.across.IllegalConfiguration[mydescriptionlabel].description=This configuration is not allowed to be present on the AcrossContext.
+com.foreach.across.IllegalConfiguration[mydescriptionlabel].action=Remove this configuration on the AcrossApplication level.
 ----
 
 NOTE: Some auto-configuration classes use the `AutoConfigurationPackage` for scanning components.
