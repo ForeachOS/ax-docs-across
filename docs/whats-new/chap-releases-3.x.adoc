@@ -59,6 +59,8 @@ It is also the first release with auto-configuration support, see the separate d
 ** `@ModuleConfiguration` is now always a configuration class as well (has `@Configuration` as meta-annotation)
 ** the implementation of `@ModuleConfiguration` has changed, they are now imported as regular configurations, with full support for conditionals
 *** in rare cases this might lead to problems as these configuration classes are imported at a different point in time, usually before the addition of regular annotated classes added to the module
+* `@InstallerMethod` methods now support arguments, much like a `@Autowired` or `@PostRefresh` method
+** the arguments will be fetched from the `ApplicationContext` when the method is executed
 
 *AcrosWebModule*
 
