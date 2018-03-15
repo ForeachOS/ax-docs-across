@@ -4,8 +4,8 @@
 :spring-data-url: http://projects.spring.io/spring-data/
 :spring-batch-url: http://projects.spring.io/spring-batch/
 :spring-security-url: http://projects.spring.io/spring-security/
-:spring-docs: https://docs.spring.io/spring/docs/4.3.13.RELEASE/spring-framework-reference/htmlsingle/
-:spring-boot-docs: https://docs.spring.io/spring-boot/docs/1.5.9.RELEASE/reference/htmlsingle/
+:spring-docs: https://docs.spring.io/spring/docs/4.3.14.RELEASE/spring-framework-reference/htmlsingle/
+:spring-boot-docs: https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/htmlsingle/
 :commons-fileupload-url: http://commons.apache.org/proper/commons-fileupload/
 :platform-bom-url: https://across.foreach.be/modules
 :admin-web-module-url: https://across.foreach.be/modules/AdminWebModule
@@ -13,6 +13,7 @@
 :across-hibernate-module-url: https://across.foreach.be/modules/AcrossHibernateJpaModule
 :bootstrap-ui-module-url: https://across.foreach.be/modules/BootstrapUiModule
 :entity-module-url: https://across.foreach.be/modules/EntityModule
+:spring-security-module-url: https://across.foreach.be/modules/SpringSecurityModule
 :git-across-docs: https://github.com/ForeachOS/ax-docs-across
 :git-across-autoconfigure: https://bitbucket.org/beforeach/across-autoconfigure
 
