@@ -10,9 +10,13 @@ Servlets will still need a `MultipartConfigElement` set for multipart data to be
 The latter is done automatically for the `DispatcherServlet`.
 
 .Customizing the multipart configuration
-Common settings (eg. max file size) can be customized by providing a `MultipartConfigElement` bean.
+Multipart settings can be configured using the `spring.http.multipart.*` properties from Spring Boot (`MultipartProperties` class).
+Alternatively you can provide a custom `MultipartConfigElement` bean.
 This bean will be automatically picked up for the configuration.
 If none is present, AcrossWebModule will create a default bean.
+
+.Disabling multipart configuration
+Disabling the automatic multipart resolving configuration can be done by setting property `spring.http.multipart.enabled` to `false`.
 
 .Apache Commons support
 If link:http://commons.apache.org/proper/commons-fileupload/[Apache Commons Fileupload] is available on the classpath, the filter will be configured using a `CommonsMultipartResolver` instead.
@@ -30,7 +34,3 @@ Multipart support will only be enabled on requests made through the `DispatcherS
 
 WARNING: Spring Boot will automatically rename any `MultipartResolver` bean to *multipartResolver* so it will be picked up by the `DispatcherServlet`.
 If you want to use the `MultipartFilter` but want to customize the `MultipartResolver` it uses, you should ensure that the resolver bean is injected in the AcrossWebModule and not exposed.
-
-.Disabling multipart configuration
-Disabling the automatic multipart resolving configuration can be done by setting *acrossWebModule.multipart.auto-configure* to `false`.
-

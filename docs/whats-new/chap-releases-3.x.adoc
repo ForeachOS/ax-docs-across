@@ -101,6 +101,8 @@ This is especially useful if you want to make changes to a menu builder when you
 ** if the required dependencies are on the classpath
 ** a `WebSocketConfigurer` or `WebSocketMessageBrokerConfigurer` bean is provided by any module
 ** using `@EnableWebSocket` or `@EnableWebSocketMessageBroker` anywhere will result in a bootstrap failure, it's usually enough to just remove these annotations and leave the rest of your code as is
+* the multipart configuration now uses the `spring.http.multipart.*` properties from Spring Boot (`MultipartProperties` class)
+** the `acrossWebModule.multipart.*` settings have been removed: replace `acrossWebModule.multipart.auto-configure=false` by `spring.http.multipart.enabled=false`
 
 .New module extension support
 Extension configuration classes that can now be added to AcrossWebModule:

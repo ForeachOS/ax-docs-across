@@ -41,6 +41,7 @@ The across-web artifact also contains <<developing-applications.adoc#across-appl
 === Module settings
 
 All properties start with the *acrossWebModule.* prefix.
+Note that several Spring (Boot) properties can also influence behaviour of the AcrossWebModule, for example the `spring.http.multipart.*` properties.
 
 |===
 |Property |Type |Description |Default
@@ -99,16 +100,6 @@ All properties start with the *acrossWebModule.* prefix.
 |`Boolean`
 |If <<layout-templates,web templates>> are enabled, should named templates be autodetected.
 |_true_
-
-|multipart.auto-configure
-|`Boolean`
-|Should a multipart resolver be configured automatically.
-|_true_
-
-|multipart.settings
-|`MultipartConfigElement`
-|Multipart upload settings, if missing defaults will be used.
-|_null_
 
 |development-views
 |`Map<String,String>`
