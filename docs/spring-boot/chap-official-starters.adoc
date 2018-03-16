@@ -241,28 +241,22 @@ Autoconfiguration classes:
 
 https://projects.spring.io/spring-data-rest/
 
-Autoconfiguration classes:
-
-* ``RepositoryRestMvcAutoConfiguration``
-* ``HibernateJpaAutoConfiguration``, not included by default
-* ``JpaRepositoriesAutoConfiguration``, not included by default
-
 [cols="1,1,4",opts=header]
 |===
 |Support level
 |Status
 |Remarks
 
-|Application support
-|To be verified
-|known issues
+|Full support
+|Verified
+|
 |===
 
-Known issues:
 
-* Integration with AcrossHibernateModule and AcrossHibernateJpaModule have not been reviewed yet.
-* To use AutoConfiguration of ``HibernateJpaAutoConfiguration`` and ``JpaRepositoriesAutoConfiguration``
-you need to add them manually to your across.configuration file.
+.Autoconfiguration classes:
+
+* ``RepositoryRestMvcAutoConfiguration``
+* ``HypermediaAutoConfiguration``
 
 ==== Data SOLR
 https://projects.spring.io/spring-data-solr/
@@ -293,7 +287,11 @@ Currently not supported, to be investigated.
 
 ==== HATEOAS
 
+Hypermedia should be correctly supported.
 Spring Boot Data Rest includes hateoas, see <<spring-boot-starter-data-rest,Spring Boot Starter Data Rest>>.
+
+.Autoconfiguration classes:
+* ``HypermediaAutoConfiguration``
 
 ==== Integration
 
