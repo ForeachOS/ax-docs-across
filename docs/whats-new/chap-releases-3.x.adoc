@@ -1,5 +1,5 @@
-[#3-0-0-SNAPSHOT]
-=== 3.0.0-SNAPSHOT
+[#3-0-0]
+=== 3.0.0.RELEASE
 Across 3.0.0 is a big internal upgrade focused on improving Spring Boot compatibility.
 Although the number should be limited, this release does introduce some breaking changes.
 
