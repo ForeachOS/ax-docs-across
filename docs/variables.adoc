@@ -1,4 +1,5 @@
 :across-version: 3.0.0.RELEASE
+:across-autoconfigure-version: 1.0.0.RELEASE
 :across-url: https://across.foreach.be
 :spring-url: http://projects.spring.io/spring-framework/
 :spring-data-url: http://projects.spring.io/spring-data/
