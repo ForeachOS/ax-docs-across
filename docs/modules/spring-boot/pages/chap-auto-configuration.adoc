@@ -1,3 +1,4 @@
+:page-partial:
 == Auto-configuration support
 
 You can use `@AcrossApplication` to execute as a Spring Boot application and use auto-configuration of your application infrastructure.

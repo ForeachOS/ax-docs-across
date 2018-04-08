@@ -3,4 +3,9 @@ title: Across
 version: 3.0.0
 nav:
 - modules/ROOT/nav.adoc
+- modules/releases/nav.adoc
+- modules/developing-applications/nav.adoc
+- modules/developing-modules/nav.adoc
+- modules/across-web/nav.adoc
 - modules/testing/nav.adoc
+- modules/spring-boot/nav.adoc

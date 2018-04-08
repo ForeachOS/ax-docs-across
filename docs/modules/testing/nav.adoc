@@ -1,3 +1,9 @@
-* Testing
-** test one
-** test two
+* xref:index.adoc[Testing]
+** <<base-test-classes.adoc,Base test classes>>
+** <<test-context-builders.adoc,Test context builders>>
+** <<annotations.adoc,Annotations>>
+** <<mock-mvc.adoc,Mock MVC integration>>
+** <<mock-across-servlet-context.adoc,MockAcrossServletContext>>
+** <<application-testing.adoc,Across application testing>>
+** <<test-dynamic-modules.adoc,Testing dynamic modules>>
+** <<test-datasources.adoc,Test datasources>>

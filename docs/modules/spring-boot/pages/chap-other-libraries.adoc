@@ -1,3 +1,4 @@
+:page-partial:
 :numbered:
 === Other libraries
 

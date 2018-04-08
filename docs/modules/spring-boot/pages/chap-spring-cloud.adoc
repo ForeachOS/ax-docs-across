@@ -1,3 +1,4 @@
+:page-partial:
 :numbered:
 === Spring Cloud
 The following chapter lists the support for specific projects under the Spring Cloud umbrella.

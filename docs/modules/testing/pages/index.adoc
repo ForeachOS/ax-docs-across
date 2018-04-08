@@ -1,0 +1,21 @@
+= Testing
+
+Testing your shared Across modules or your Across application can be done using Across Test.
+Across Test is a utility library extending the Spring testing library.
+It provides helpers for integration testing in a standard or web context.
+
+Across Test also integrates with the AcrossWebModule features for testing.
+
+[discrete]
+== Artifact
+[source,xml,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+	<dependencies>
+		<dependency>
+			<groupId>com.foreach.across</groupId>
+			<artifactId>across-test</artifactId>
+			<version>{across-version}</version>
+		</dependency>
+	</dependencies>
+----

@@ -1,1 +1,13 @@
-Zis is ze index
+
+The reference documentation is split up into several parts:
+
+* <<whats-new.adoc#whats-new,What's new in this version>> lists the release notes of Across framework
+* <<fundamentals.adoc#fundamentals,Fundamentals>> explains the fundamental concepts of Across, things you should really understand when building Across applications or modules
+* <<developing-applications.adoc#developing-across-applications,Developing Across applications>> goes into some more detail about the steps involved in developing applications with Across modules, as well as some of the features you can use
+* <<developing-modules.adoc#developing-across-modules,Developing Across modules>> is more geared towards developers interested in creating shared modules - although the information is generally useful
+* <<across-web.adoc#across-web,Across Web>> gives an overview of the features that AcrossWebModule brings
+* <<testing.adoc#across-test,Testing>> explains how developers can integration test their modules or applications
+* <<spring-boot.adoc#spring-boot,Spring Boot compatibility>> provides information on how you can use common libraries and Spring Boot starters in your Across applications or modules
+* <<how-tos.adoc#how-tos,How-tos>> provides a different approach to learning Across through some general tutorials
+
+Through the {across-url}[Across website] you can find a lot more information like frequently asked questions, tutorials and available modules (with their respective documentation).

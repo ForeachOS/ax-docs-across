@@ -1,3 +1,13 @@
+[[spring-boot]]
+= Across - Spring Boot compatibility
+:toc: left
+:toc-title: Spring Boot compatibility
+:toclevels: 3
+:sectnums:
+:chapter-number: 0
+:docinfo1:
+include::variables.adoc[]
+
 include::chap-auto-configuration.adoc[]
 
 [[spring-boot-starters]]

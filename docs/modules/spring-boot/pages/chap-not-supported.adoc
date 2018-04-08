@@ -1,3 +1,4 @@
+:page-partial:
 :numbered:
 == Not supported
 The following is a list of common auto-configuration classes that are not automatically enabled, but explicitly excluded instead.

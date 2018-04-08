@@ -1,4 +1,4 @@
-== Framework artifacts
+= Framework artifacts
 Across framework itself consists of 4 library artifacts (`across-core`, `across-web`, `across-autoconfigure` and `across-test`) and one bill-of-material pom (`standard-module-bom`).
 
 across-core:: Supports the configuration of an Across context and provides all necessary infrastructure to define and execute modules.

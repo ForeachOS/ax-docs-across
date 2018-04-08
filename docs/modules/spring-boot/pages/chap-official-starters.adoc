@@ -1,3 +1,4 @@
+:page-partial:
 :numbered:
 ===  Official Spring Boot starters
 {spring-boot-docs}#using-boot-starter

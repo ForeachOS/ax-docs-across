@@ -1,3 +1,0 @@
-include::chap-releases.adoc[]
-
-include::chap-artifacts.adoc[]
