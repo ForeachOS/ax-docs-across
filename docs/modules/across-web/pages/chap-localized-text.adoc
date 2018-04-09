@@ -1,3 +1,4 @@
+:page-partial:
 [[localized-text]]
 [#localized-text]
 == Localizing text

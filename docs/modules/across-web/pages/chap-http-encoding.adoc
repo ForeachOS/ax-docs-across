@@ -1,3 +1,4 @@
+:page-partial:
 [[default-http-encoding]]
 [#default-http-encoding]
 == Default HTTP encoding

@@ -1,3 +1,4 @@
+:page-partial:
 [[view-elements]]
 [#viewelement-infrastructure]
 == ViewElement infrastructure

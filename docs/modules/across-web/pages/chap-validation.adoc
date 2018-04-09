@@ -1,3 +1,4 @@
+:page-partial:
 [[web-validation]]
 == Validation
 Across Web supports all link:{spring-docs}#validation[Spring MVC validation] options on data binding and controllers.

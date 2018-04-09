@@ -1,3 +1,4 @@
+:page-partial:
 == TODO: Module settings
 about @ConfigurationProperties
 Spring configuration metadata

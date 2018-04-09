@@ -1,3 +1,4 @@
+:page-partial:
 [[dynamic-servlet-registration]]
 [#registering-servlets-and-filters]
 == Registering servlets and filters

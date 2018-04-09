@@ -1,3 +1,4 @@
+:page-partial:
 [[message-source]]
 [#message-sources]
 == Message sources

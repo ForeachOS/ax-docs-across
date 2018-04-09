@@ -1,3 +1,4 @@
+:page-partial:
 [[ordering-beans]]
 [#bean-order]
 == Bean order

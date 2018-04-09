@@ -1,3 +1,4 @@
+:page-partial:
 [#across-application-fundamentals]
 === Fundamentals
 When creating an Across application, we create an `*Application` class, which defines which modules should be bootstrapped in our application.

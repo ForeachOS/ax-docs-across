@@ -1,3 +1,4 @@
+:page-partial:
 [[development-mode]]
 [#development-mode]
 == Development mode

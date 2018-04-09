@@ -1,3 +1,4 @@
+:page-partial:
 [#properties]
 == Properties
 Both AcrossModule and AcrossContext have a collection of Properties.

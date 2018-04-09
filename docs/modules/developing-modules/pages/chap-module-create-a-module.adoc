@@ -1,3 +1,4 @@
+:page-partial:
 [[creating-an-acrossmodule]]
 [#creating-an-across-module]
 == Creating an AcrossModule

@@ -1,3 +1,4 @@
+:page-partial:
 [#published-events]
 == Published events
 The following is a listing of possible events published by the AcrossWebModule or one of its components.

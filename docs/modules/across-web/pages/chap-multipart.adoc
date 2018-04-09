@@ -1,3 +1,4 @@
+:page-partial:
 [[multipart-config]]
 [#multipart-support]
 == Multipart support

@@ -1,3 +1,4 @@
+:page-partial:
 [[sql-databases]]
 == Working with SQL databases
 An Across application supports virtually all features of a regular Spring Boot application when it comes to working with SQL databases.

@@ -1,3 +1,4 @@
+:page-partial:
 [#module-version-information]
 == Module version information
 Across modules have version information attached in the form of an `AcrossVersionInfo` property.

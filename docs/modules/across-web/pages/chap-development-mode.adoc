@@ -1,3 +1,4 @@
+:page-partial:
 [#development-mode-support]
 == Development mode support
 AcrossWebModule supports development mode retrieval of physical resources.

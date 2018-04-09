@@ -1,3 +1,4 @@
+:page-partial:
 [[across-datasource]]
 [#across-datasource]
 == Across datasource

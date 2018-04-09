@@ -1,3 +1,4 @@
+:page-partial:
 [[exposing-beans]]
 [#exposing-beans]
 == Exposing beans

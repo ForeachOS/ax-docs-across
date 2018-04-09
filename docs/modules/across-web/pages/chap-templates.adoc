@@ -1,3 +1,4 @@
+:page-partial:
 [[web-templates]]
 [#layout-templates]
 == Layout templates

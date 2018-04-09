@@ -1,3 +1,4 @@
+:page-partial:
 [[error-handling]]
 == Error handling
 When working with `@AcrossApplication` and auto-configuration, a customized version of link:{spring-boot-docs}#boot-features-error-handling[Spring Boot error handling] will be activated.

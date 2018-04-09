@@ -1,3 +1,4 @@
+:page-partial:
 [[across-application]]
 [#across-application]
 === @AcrossApplication

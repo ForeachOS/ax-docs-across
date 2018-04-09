@@ -1,3 +1,4 @@
+:page-partial:
 [[menu-infrastructure]]
 == Working with menus
 Across Web provides some infrastructure to build a tree-like menu.

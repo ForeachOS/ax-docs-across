@@ -1,3 +1,4 @@
+:page-partial:
 [[events]]
 == Events
 Modules in an Across application often use events to communicate with each other.

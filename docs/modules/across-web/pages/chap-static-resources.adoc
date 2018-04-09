@@ -1,3 +1,4 @@
+:page-partial:
 [[static-resources]]
 [#static-resources]
 == Static resources

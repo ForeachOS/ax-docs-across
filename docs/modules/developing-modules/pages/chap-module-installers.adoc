@@ -1,3 +1,4 @@
+:page-partial:
 [[installers]]
 [#installers]
 == Installers

@@ -1,3 +1,4 @@
+:page-partial:
 [[extended-request-mapping]]
 [#request-mapping-extensions]
 == @RequestMapping extensions

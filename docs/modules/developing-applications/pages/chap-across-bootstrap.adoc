@@ -1,3 +1,4 @@
+:page-partial:
 [[across-bootstrap]]
 [#across-bootstrap]
 == Across bootstrap

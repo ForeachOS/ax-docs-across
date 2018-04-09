@@ -1,3 +1,4 @@
+:page-partial:
 [#partial-rendering]
 == Partial rendering
 Apart from <<layout-templates,layout templates>>, AcrossWebModule also activates support for partial rendering: rendering only a specific fragment of a (Thymeleaf) template, or even a single `ViewElement`.
