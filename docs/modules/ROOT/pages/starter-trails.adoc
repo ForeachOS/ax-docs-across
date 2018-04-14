@@ -1,0 +1,5 @@
+////
+starter trails are different example flows for creating an application
+they combine both standard documentation and application guides
+where every page visited should say what the next step is in the starter trail
+////

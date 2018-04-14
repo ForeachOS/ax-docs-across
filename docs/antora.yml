@@ -1,6 +1,6 @@
 name: across
-title: Across
-version: 3.0.0
+title: Across Platform
+version: '2.1.0'
 nav:
 - modules/ROOT/nav.adoc
 - modules/releases/nav.adoc
@@ -8,4 +8,4 @@ nav:
 - modules/developing-modules/nav.adoc
 - modules/across-web/nav.adoc
 - modules/testing/nav.adoc
-- modules/spring-boot/nav.adoc
+- modules/ROOT/nav-related.adoc

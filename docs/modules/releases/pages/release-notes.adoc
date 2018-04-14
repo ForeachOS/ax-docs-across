@@ -1,6 +1,0 @@
-== What's new in this version
-include::chap-releases-3.x.adoc[]
-
-include::chap-releases-2.x.adoc[]
-
-include::chap-releases-1.x.adoc[]

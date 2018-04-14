@@ -1,9 +1,20 @@
 * xref:index.adoc[Testing]
-** <<base-test-classes.adoc,Base test classes>>
-** <<test-context-builders.adoc,Test context builders>>
-** <<annotations.adoc,Annotations>>
-** <<mock-mvc.adoc,Mock MVC integration>>
-** <<mock-across-servlet-context.adoc,MockAcrossServletContext>>
-** <<application-testing.adoc,Across application testing>>
-** <<test-dynamic-modules.adoc,Testing dynamic modules>>
-** <<test-datasources.adoc,Test datasources>>
+** Application testing
+*** Full-stack integration test
+*** Exposing components for tests
+*** Test datasources
+** Module testing
+*** Application module
+** Testing web features
+*** Web requests using MockMvc
+*** Filter and servlet registration
+*** Custom view elements
+
+//** <<base-test-classes.adoc,Base test classes>>
+//** <<test-context-builders.adoc,Test context builders>>
+//** <<annotations.adoc,Annotations>>
+//** <<mock-mvc.adoc,Mock MVC integration>>
+//** <<mock-across-servlet-context.adoc,MockAcrossServletContext>>
+//** <<application-testing.adoc,Across application testing>>
+//** <<test-dynamic-modules.adoc,Testing dynamic modules>>
+//** <<test-datasources.adoc,Test datasources>>

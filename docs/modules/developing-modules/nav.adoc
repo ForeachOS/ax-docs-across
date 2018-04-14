@@ -1,1 +1,31 @@
 * xref:index.adoc[Developing modules]
+** Creating a reusable module
+*** Module descriptor
+*** Module resources
+*** Default package layout
+*** Extracting a module from your application
+** Module dependencies
+*** Exposing components for other modules
+*** Using components from other modules
+*** Module order explained
+*** Solving order related problems
+// refresh, post refresh, refreshable, refreshableregistry
+** Using configuration properties
+** Extending other modules
+// module extensions, prepare for bootstrap
+** Installers
+** Events
+** Optimizing for development
+** Testing your module
+** Distributing your module
+*** Packaging your module
+*** Versioning
+// version information + semantic versioning
+** Messages and localized data
+** Best practices
+// package structure
+// provide version information - use semantic versioning
+// small installers
+// define the @AcrossDepends
+// use @ConditionalOnAcrossModule
+

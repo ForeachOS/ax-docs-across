@@ -22,3 +22,5 @@ Across applications force you to use the modular approach as much as possible.
 
 Across is free and open source, published under an Apache 2.0 license.
 
+include::{partialsdir}/concepts.adoc[]
+

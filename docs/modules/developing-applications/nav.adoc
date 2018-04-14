@@ -1,1 +1,37 @@
 * xref:index.adoc[Developing applications]
+** Creating an application
+*** Application descriptor
+*** Package structure
+**** Application module
+**** Application resources
+** Adding modules
+// AcrossContextConfigurer?
+*** Conditional modules
+** Interacting with modules
+*** Using components from modules
+// autowire (?) -
+*** Working with events
+** Using configuration properties
+*** Application profile
+** Connecting to a database
+// multiple databases -> see the guide
+** Initializing application data
+// clustering
+
+** Application bootstrap & lifecycle
+*** Customizing modules before starting
+// AcrossBootstrapConfigurer?
+** Development mode
+// devtools!
+
+** Messages and localized data
+
+** Testing your application
+** Default modules in an application
+// AcrossContextPostProccesorModule,Dynamic Application Module
+
+** Default components
+// cache, conversionservice, distributedlockrepo
+
+** Deploying your application
+

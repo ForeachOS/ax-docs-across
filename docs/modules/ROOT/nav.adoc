@@ -1,2 +1,3 @@
-* xref:chap-in-a-nutshell.adoc[Across in a Nutshell]
-* xref:concepts.adoc[Fundamental concepts]
+* xref:in-a-nutshell.adoc[Across in a Nutshell]
+* xref:quick-start.adoc[Quick start]
+** xref:starter-trails.adoc[Starter Trails]

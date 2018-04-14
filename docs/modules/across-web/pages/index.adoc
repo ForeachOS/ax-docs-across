@@ -1,42 +1,40 @@
 :module-artifact: across-web
 :module-name: AcrossWebModule
 
-include::chap-general-information.adoc[]
+[#general-information]
+== General information
 
-include::chap-mvc-configuration.adoc[]
+[#about]
+=== About
+AcrossWebModule is the only module included in the Across framework project.
+It is the base module added to pretty much any Across web application.
 
-include::chap-conversion-service.adoc[]
+AcrossWebModule activates Spring MVC support for all modules in an AcrossContext.
+This means modules can configure the Spring MVC support, add controllers, servlets and filters.
 
-include::chap-view-engines.adoc[]
+On top of that, the out-of-the-box Spring MVC functionality is extended in several ways:
 
-include::chap-static-resources.adoc[]
+ * a <<thymeleaf-dialect,Thymeleaf dialect>> is provided for interacting with the Across web infrastructure
+ * AcrossWebModule provides infrastructure for <<layout-templates,templates>>, <<menu-infrastructure,menu building>> and <<web-resource-registry,registering web resources>>
+ * adding a <<viewelement-infrastructure,programmatic model for creating UI components>> from code
+ * adding support for <<request-mapping-extensions,prefixing request mappings and adding custom request condition>>
+ * auto configuration of a <<multipart-support,Multipart filter>>
+ * auto configuration of static resources with <<client-side-caching,client-side caching>> and <<resource-url-versioning,url versioning>>
 
-include::chap-error-handling.adoc[]
+AcrossWebModule is not a Web CMS, it only supplies some common infrastructure generally useful when building web applications.
+Other modules like link:https://across.foreach.be/modules/WebCmsModule[WebCmsModule] provide CMS features on top of Across Web.
 
-include::chap-menus.adoc[]
+[#artifact]
+=== Artifact
+[source,xml,indent=0]
+[subs="verbatim,attributes"]
+----
+	<dependencies>
+		<dependency>
+			<groupId>com.foreach.across</groupId>
+			<artifactId>across-web</artifactId>
+			<version>{across-version}</version>
+		</dependency>
+	</dependencies>
+----
 
-include::chap-validation.adoc[]
-
-include::chap-view-elements.adoc[]
-
-include::chap-templates.adoc[]
-
-include::chap-partial-rendering.adoc[]
-
-include::chap-localized-text.adoc[]
-
-include::chap-webapp-path-resolver.adoc[]
-
-include::chap-thymeleaf-dialect.adoc[]
-
-include::chap-request-mapping.adoc[]
-
-include::chap-http-encoding.adoc[]
-
-include::chap-servlets-and-filters.adoc[]
-
-include::chap-multipart.adoc[]
-
-include::chap-development-mode.adoc[]
-
-include::chap-published-events.adoc[]
