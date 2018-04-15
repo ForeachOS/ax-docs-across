@@ -1,0 +1,2 @@
+// refer to autoconfiguration support
+// list differences between Spring (Boot) and Across applications

@@ -46,3 +46,39 @@ Paths should be relative to the working directory of the running application.
 Depending on how you run the application, the working directory can differ.
 
 WARNING: Properties added directly to the application properties will take precedence over those present in the development mode properties.
+
+
+// can also be activated using AcrossContextConfigurer
+==== Customizing the AcrossContext
+After initial configuration but before bootstrapping, the configured `AcrossContext` will be delegated to all `AcrossContextConfigurer` beans it can find in the `ApplicationContext`.
+This allows for changing any settings before the actual bootstrap happens.
+
+.Example customizing an AcrossContext
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@Configuration
+@EnableAcrossContext
+public class WebConfiguration implements AcrossContextConfigurer
+{
+	@Bean
+	public DataSource acrossDataSource() {
+		BasicDataSource dataSource = new BasicDataSource();
+		dataSource.setDriverClassName( "org.hsqldb.jdbc.JDBCDriver" );
+		dataSource.setUrl( "jdbc:hsqldb:mem:/hsql/testDataSource" );
+		dataSource.setUsername( "sa" );
+		dataSource.setPassword( "" );
+
+		return dataSource;
+	}
+
+	@Override
+	public void configure( AcrossContext context ) {
+		context.setDevelopmentMode( true );
+
+		context.addModule( new SomeModule() );
+	}
+}
+----
+
+// devtools!

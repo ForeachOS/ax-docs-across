@@ -1,0 +1,108 @@
+[#creating-across-application]
+== Creating an Across application
+
+Usually an Across application is created for a web scenario and `@AcrossApplication`.
+This configures your application and starts it up as a Spring Boot application.
+
+Behind the scenes, `@AcrossApplication` uses `@EnableAcrossContext`.
+The latter can also be used for defining an Across context on a configuration class, but without the Spring Boot application support.
+
+include::chap-configuring-across-context.adoc[]
+
+include::chap-application.adoc[]
+
+[discrete]
+=== Manual configuration
+An `AcrossContext` can be also configured manually and is started using the `bootstrap()` method, and stopped using `shutdown()`.
+These methods take care of the Spring `ApplicationContext` lifecycle of all modules configured in the context.
+
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+AcrossContext context = new AcrossContext();
+context.setParentApplicationContext( optionalParentContext );
+context.setDataSource( someDataSource );
+context.addModule( new SomeModule() );
+
+// Start the context
+context.bootstrap();
+
+// Stop the context
+context.shutdown();
+----
+
+[#module-configuration]
+== Module configuration
+Apart from module settings, an application can also define a number of `<<developing-modules.adoc#module-configuration,@ModuleConfiguration>>` classes to be added to the bootstrapping modules.
+When using the `@EnableAcrossContext`, the packages to scan for these can be set using attributes, but by default the sub-packages *config* and *extensions* of the importing class will be used.
+
+Alternatively the packages to scan can be controlled via the `moduleConfigurationScanPackages` property on `AcrossContext`.
+
+[#across-application-fundamentals]
+=== Fundamentals
+When creating an Across application, we create an `*Application` class, which defines which modules should be bootstrapped in our application.
+However, Across also expects an application module, which defines the logic that our application needs. The `application` package will define the application module.
+
+Example package structure
+[source,indent=0]
+----
+| java
+  | com.examples.my
+    | application
+    \ MyApplication.java
+| resources
+  \ views
+    | static
+      | my
+      \ *.js
+    \ th
+      | my
+      \ *.html
+----
+
+One notable difference from a typical Across module is that all classes under the `application` package and its subpackages will be scanned for components, instead of the default config and extensions sub-packages.
+This means, if we'd for example like to add a controller, we can simply define our class under the application package (or a sub-package) with the correct annotations.
+
+Package structure:
+[source,indent=0]
+----
+| java
+  | com.examples.my
+    | application
+      | web
+        \ HelloController.java
+    \ MyApplication.java
+| resources
+  \ views
+    | static
+      | my
+        \ js
+          \ main.js
+        \ css
+          \ main.css
+    \ th
+      | my
+        \ homepage.html
+----
+
+Example controller:
+[source,java,indent=0]
+----
+package com.examples.my.application.web
+
+@Controller
+public class HelloController{
+
+    @RequestMapping("/")
+    public String home(){
+        return "th/my/homepage"
+    }
+
+}
+----
+
+The above controller will be automatically picked up and registered as a bean. As we can see, we've mapped the root path "/" to a static template.
+This template will be present under `resources/th/my` folder.
+
+The across framework by default configures resource handlers for the web resources in the static/css/js folders under the resources/views folder.
+As well as provides a ThymeleafViewResolver for the resources under the resources/th.

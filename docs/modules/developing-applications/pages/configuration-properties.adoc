@@ -1,4 +1,9 @@
-:page-partial:
+= Using configuration properties
+
+== application.yml
+
+== @ConfigurationProperties
+
 [#properties]
 == Properties
 Both AcrossModule and AcrossContext have a collection of Properties.
@@ -148,3 +153,6 @@ public class SomeBeanInModule {
     private String someValueFromProperty;
 }
 ----
+
+[[application-profiles]]
+== Application profiles

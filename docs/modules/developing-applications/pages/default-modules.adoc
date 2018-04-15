@@ -1,38 +1,10 @@
-:page-partial:
-[[across-application]]
-[#across-application]
-=== @AcrossApplication
-`@AcrossApplication` annotation can be used as an alternative for `@EnableAcrossContext` and `@SpringBootApplication` when defining an application.
-In addition to default context configuration options, it also adds selected <<spring-boot.adoc#spring-boot,Spring Boot autoconfiguration classes>> and enables <<dynamic-across-modules,dynamic modules>>.
+= Default modules in an application
 
-Using `@AcrossApplication` is probably the easiest way to setup a simple (Spring Boot based) application backed by an AcrossContext.
-
-WARNING: Using `@EnableAutoConfiguration` and Spring Boot starters directly with Across is currently not supported.
-Only a selected number of starters have support directly built into Across.
-See <<spring-boot.adoc#spring-boot,Auto-configuration support>> for more background information.
-It is also possible to disable specific autoconfiguration classes using the *exclude* attribute on @AcrossApplication.
-
-[[embedded-servlet-container]]
-==== Embedded servlet container
-Using `@AcrossApplication` adds the necessary Spring Boot auto configuration classes for embedded servlet containers.
-If you have for example *spring-boot-starter-tomcat* on the classpath, you can run an Across based application inside an embedded Tomcat using `SpringApplication`.
-
-.Minimal example of a Spring Boot based Across application
-[source,java,indent=0]
-[subs="verbatim,quotes,attributes"]
-----
-@AcrossApplication(modules = { MyModule.NAME, MyOtherModule.NAME })
-public class MyApplication
-{
-	public static void main( String[] args ) {
-		SpringApplication.run( MyApplication.class, args );
-	}
-}
-----
+// AcrossContextPostProccesorModule,Dynamic Application Module
 
 [[dynamic-across-modules]]
 [#dynamic-across-modules]
-==== Dynamic Across modules
+== Dynamic Across modules
 Using `@AcrossApplication` on a class will automatically enable dynamic Across modules on that class.
 Before bootstrapping the context, the configurator will attempt to find an application specific infrastructure, application or postprocessor module.
 The name of the expected module is generated based on the name of the importing class.

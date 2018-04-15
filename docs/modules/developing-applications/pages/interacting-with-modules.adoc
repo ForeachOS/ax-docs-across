@@ -1,0 +1,7 @@
+= Interacting with modules
+
+[[using-components]]
+== Using components from modules
+// autowire (?)
+[[working-with-events]]
+== Working with events

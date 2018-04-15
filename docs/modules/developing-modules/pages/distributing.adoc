@@ -1,6 +1,17 @@
-:page-partial:
+= Distributing your module
+
+== Packaging your module
+
+//== Registering your module
+// todo: drop us an email? or form?
+
+[#versioning]
+== Versioning your module
+
+// semantic versioning
+
 [#module-version-information]
-== Module version information
+=== Module version information
 Across modules have version information attached in the form of an `AcrossVersionInfo` property.
 This object provides information like the current version and time when it was built.
 By default this information is fetched automatically from the *META-INF/MANIFEST.MF* resource.

@@ -1,6 +1,0 @@
-:page-partial:
-[[module-validation]]
-== Validation
-If a JSR-303 implementation (eg. Hibernate validator) is on the classpath, all modules can automatically use the Bean Validation 1.1 features.
-See the chapter on link:{doc-developing-applications}#validation[validation in "Developing applications"] for more information.
-

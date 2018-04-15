@@ -8,3 +8,5 @@ This ensures that an application restart is not required for static resources or
 If development mode is active AcrossWebModule will also send no-cache headers for static resources and will use a generated fixed version if versioning is enabled.
 
 `ViewElement` rendering will also <<development-mode-rendering,output debugging information>> when development mode is active.
+
+// mention disable custom error pages, show stack trace (?)

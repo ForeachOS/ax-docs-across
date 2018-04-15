@@ -1,73 +1,34 @@
-:page-partial:
-[#across-application-fundamentals]
-=== Fundamentals
-When creating an Across application, we create an `*Application` class, which defines which modules should be bootstrapped in our application.
-However, Across also expects an application module, which defines the logic that our application needs. The `application` package will define the application module.
 
-Example package structure
-[source,indent=0]
-----
-| java
-  | com.examples.my
-    | application
-    \ MyApplication.java
-| resources
-  \ views
-    | static
-      | my
-      \ *.js
-    \ th
-      | my
-      \ *.html
-----
+[[across-application]]
+[#across-application]
+=== @AcrossApplication
+`@AcrossApplication` annotation can be used as an alternative for `@EnableAcrossContext` and `@SpringBootApplication` when defining an application.
+In addition to default context configuration options, it also adds selected <<spring-boot.adoc#spring-boot,Spring Boot autoconfiguration classes>> and enables <<dynamic-across-modules,dynamic modules>>.
 
-One notable difference from a typical Across module is that all classes under the `application` package and its subpackages will be scanned for components, instead of the default config and extensions sub-packages.
-This means, if we'd for example like to add a controller, we can simply define our class under the application package (or a sub-package) with the correct annotations.
+Using `@AcrossApplication` is probably the easiest way to setup a simple (Spring Boot based) application backed by an AcrossContext.
 
-Package structure:
-[source,indent=0]
-----
-| java
-  | com.examples.my
-    | application
-      | web
-        \ HelloController.java
-    \ MyApplication.java
-| resources
-  \ views
-    | static
-      | my
-        \ js
-          \ main.js
-        \ css
-          \ main.css
-    \ th
-      | my
-        \ homepage.html
-----
+WARNING: Using `@EnableAutoConfiguration` and Spring Boot starters directly with Across is currently not supported.
+Only a selected number of starters have support directly built into Across.
+See <<spring-boot.adoc#spring-boot,Auto-configuration support>> for more background information.
+It is also possible to disable specific autoconfiguration classes using the *exclude* attribute on @AcrossApplication.
 
-Example controller:
+[[embedded-servlet-container]]
+==== Embedded servlet container
+Using `@AcrossApplication` adds the necessary Spring Boot auto configuration classes for embedded servlet containers.
+If you have for example *spring-boot-starter-tomcat* on the classpath, you can run an Across based application inside an embedded Tomcat using `SpringApplication`.
+
+.Minimal example of a Spring Boot based Across application
 [source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
 ----
-package com.examples.my.application.web
-
-@Controller
-public class HelloController{
-
-    @RequestMapping("/")
-    public String home(){
-        return "th/my/homepage"
-    }
-
+@AcrossApplication(modules = { MyModule.NAME, MyOtherModule.NAME })
+public class MyApplication
+{
+	public static void main( String[] args ) {
+		SpringApplication.run( MyApplication.class, args );
+	}
 }
 ----
-
-The above controller will be automatically picked up and registered as a bean. As we can see, we've mapped the root path "/" to a static template.
-This template will be present under `resources/th/my` folder.
-
-The across framework by default configures resource handlers for the web resources in the static/css/js folders under the resources/views folder.
-As well as provides a ThymeleafViewResolver for the resources under the resources/th.
-
 
 [[enableacrosscontext]]
 [#enable-across-context]
@@ -147,38 +108,3 @@ Modules are configured in a certain order:
 . Missing module dependencies resolved during bootstrap
 
 If a module with the same name gets added more than once, the last version added will always win.
-
-[[acrosscontextconfigurer]]
-[#acrosscontextconfigurer]
-==== Customizing the AcrossContext
-After initial configuration but before bootstrapping, the configured `AcrossContext` will be delegated to all `AcrossContextConfigurer` beans it can find in the `ApplicationContext`.
-This allows for changing any settings before the actual bootstrap happens.
-
-.Example customizing an AcrossContext
-[source,java,indent=0]
-[subs="verbatim,quotes,attributes"]
-----
-@Configuration
-@EnableAcrossContext
-public class WebConfiguration implements AcrossContextConfigurer
-{
-	@Bean
-	public DataSource acrossDataSource() {
-		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName( "org.hsqldb.jdbc.JDBCDriver" );
-		dataSource.setUrl( "jdbc:hsqldb:mem:/hsql/testDataSource" );
-		dataSource.setUsername( "sa" );
-		dataSource.setPassword( "" );
-
-		return dataSource;
-	}
-
-	@Override
-	public void configure( AcrossContext context ) {
-		context.setDevelopmentMode( true );
-
-		context.addModule( new SomeModule() );
-	}
-}
-----
-

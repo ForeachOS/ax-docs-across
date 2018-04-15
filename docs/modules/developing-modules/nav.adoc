@@ -1,31 +1,23 @@
 * xref:index.adoc[Developing modules]
-** Creating a reusable module
-*** Module descriptor
-*** Module resources
-*** Default package layout
-*** Extracting a module from your application
-** Module dependencies
-*** Exposing components for other modules
-*** Using components from other modules
-*** Module order explained
-*** Solving order related problems
-// refresh, post refresh, refreshable, refreshableregistry
-** Using configuration properties
-** Extending other modules
-// module extensions, prepare for bootstrap
-** Installers
-** Events
-** Optimizing for development
-** Testing your module
-** Distributing your module
-*** Packaging your module
-*** Versioning
-// version information + semantic versioning
-** Messages and localized data
-** Best practices
-// package structure
-// provide version information - use semantic versioning
-// small installers
-// define the @AcrossDepends
-// use @ConditionalOnAcrossModule
+** xref:creating-a-module/index.adoc[Creating a reusable module]
+*** xref:creating-a-module/module-descriptor.adoc[Module descriptor]
+*** xref:creating-a-module/project-structure.adoc[Project structure]
+**** xref:creating-a-module/project-structure.adoc#module-resources[Module resources]
+*** xref:creating-a-module/extracting-from-application.adoc[Extracting a module from your application]
+** xref:module-dependencies/index.adoc[Module dependencies]
+*** xref:module-dependencies/sharing-components.adoc[Using components from other modules]
+*** xref:module-dependencies/sharing-components.adoc#exposing-beans[Exposing components for other modules]
+*** xref:module-dependencies/module-order-explained.adoc[Module order explained]
+*** xref:module-dependencies/refreshing.adoc[Solving order related problems]
+** xref:configuration-properties.adoc[Using configuration properties]
+** xref:installers.adoc[Installers]
+** xref:events.adoc[Events]
+** xref:messages.adoc[Messages and localized data]
+** xref:extending-modules.adoc[Extending other modules]
+** xref:development-mode.adoc[Providing developer features]
+** xref:testing.adoc[Testing your module]
+** xref:distributing.adoc[Distributing your module]
+*** xref:distributing.adoc#versioning[Versioning]
+** xref:best-practices.adoc[Best practices]
+
 

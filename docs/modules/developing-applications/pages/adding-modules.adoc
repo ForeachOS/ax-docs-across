@@ -1,0 +1,44 @@
+= Adding modules
+
+[[conditional-modules]]
+== Conditional modules
+
+// AcrossContextConfigurer?
+
+
+[[acrosscontextconfigurer]]
+[#acrosscontextconfigurer]
+==== Customizing the AcrossContext
+After initial configuration but before bootstrapping, the configured `AcrossContext` will be delegated to all `AcrossContextConfigurer` beans it can find in the `ApplicationContext`.
+This allows for changing any settings before the actual bootstrap happens.
+
+.Example customizing an AcrossContext
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@Configuration
+@EnableAcrossContext
+public class WebConfiguration implements AcrossContextConfigurer
+{
+	@Bean
+	public DataSource acrossDataSource() {
+		BasicDataSource dataSource = new BasicDataSource();
+		dataSource.setDriverClassName( "org.hsqldb.jdbc.JDBCDriver" );
+		dataSource.setUrl( "jdbc:hsqldb:mem:/hsql/testDataSource" );
+		dataSource.setUsername( "sa" );
+		dataSource.setPassword( "" );
+
+		return dataSource;
+	}
+
+	@Override
+	public void configure( AcrossContext context ) {
+		context.setDevelopmentMode( true );
+
+		context.addModule( new SomeModule() );
+	}
+}
+----
+
+
+

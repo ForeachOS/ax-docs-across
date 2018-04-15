@@ -1,37 +1,24 @@
 * xref:index.adoc[Developing applications]
-** Creating an application
-*** Application descriptor
-*** Package structure
-**** Application module
-**** Application resources
-** Adding modules
-// AcrossContextConfigurer?
-*** Conditional modules
-** Interacting with modules
-*** Using components from modules
-// autowire (?) -
-*** Working with events
-** Using configuration properties
-*** Application profile
-** Connecting to a database
-// multiple databases -> see the guide
-** Initializing application data
-// clustering
-
-** Application bootstrap & lifecycle
-*** Customizing modules before starting
-// AcrossBootstrapConfigurer?
-** Development mode
-// devtools!
-
-** Messages and localized data
-
-** Testing your application
-** Default modules in an application
-// AcrossContextPostProccesorModule,Dynamic Application Module
-
-** Default components
-// cache, conversionservice, distributedlockrepo
-
-** Deploying your application
+** xref:creating-an-application/index.adoc[Creating an application]
+*** xref:creating-an-application/application-descriptor.adoc[Application descriptor]
+*** xref:creating-an-application/project-structure.adoc[Project structure]
+**** xref:creating-an-application/project-structure.adoc#application-module[Application module]
+**** xref:creating-an-application/project-structure.adoc#application-resources[Application resources]
+** xref:configuration-properties.adoc[Using configuration properties]
+*** xref:configuration-properties.adoc#application-profiles[Application profiles]
+** xref:adding-modules.adoc[Adding modules]
+*** xref:adding-modules.adoc#conditional-modules[Conditional modules]
+** xref:interacting-with-modules.adoc[Interacting with modules]
+*** xref:interacting-with-modules.adoc#using-components[Using components from modules]
+*** xref:interacting-with-modules.adoc#working-with-events[Working with events]
+** xref:connecting-to-a-database.adoc[Connecting to a database]
+** xref:application-bootstrap.adoc[Application bootstrap]
+*** xref:extend-module-configuration.adoc[Customizing modules before starting]
+** xref:initializing-data.adoc[Initializing application data]
+** xref:development-mode.adoc[Development mode]
+** xref:messages.adoc[Messages and localized data]
+** xref:testing.adoc[Testing your application]
+** xref:default-modules.adoc[Default modules in an application]
+** xref:default-components.adoc[Default components]
+** xref:application-deploy.adoc[Deploying your application]
 

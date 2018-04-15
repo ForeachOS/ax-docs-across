@@ -1,0 +1,37 @@
+[[expose-for-test]]
+== @ExposeForTest
+Class-level annotation that can be used to manually expose components for tests.
+It can be added to the level of the Across context configuration (`@EnableAcrossContext` or `@AcrossTestConfiguration`), as well as unit test class level when working with `@SpringBootTest`.
+
+.Example using @ExposeForTest for a manual Across context
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@RunWith(SpringJUnit4ClassRunner.class)
+@DirtiesContext
+@AcrossWebAppConfiguration
+@TestPropertySource( properties = "acrossWebModule.resources.versioning.enabled=false" )
+public class TestSample
+{
+	// Note that @AcrossTestConfiguration has an expose() attribute
+	// that also allows exposing additional components
+	@ExposeForTest(MyComponent.class)
+	@AcrossTestConfiguration(modules = { AcrossWebModule.NAME }, expose = MyOtherComponent.class)
+	protected static class Config
+	{
+	}
+}
+----
+
+.Example using @ExposeForTest for an Across application test
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@RunWith(SpringJUnit4ClassRunner.class)
+@WebIntegrationTest(randomPort = true)
+@SpringBootTest(classes = MyApplication.class)
+@ExposeForTest(MyComponent.class)
+public class TestSpringBootWebIntegration
+{
+}
+----

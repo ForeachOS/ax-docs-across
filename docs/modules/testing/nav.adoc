@@ -1,20 +1,13 @@
 * xref:index.adoc[Testing]
-** Application testing
-*** Full-stack integration test
-*** Exposing components for tests
-*** Test datasources
-** Module testing
-*** Application module
-** Testing web features
-*** Web requests using MockMvc
-*** Filter and servlet registration
-*** Custom view elements
+** xref:application-testing.adoc[Application testing]
+** xref:module-testing.adoc[Module testing]
+*** xref:test-context-builders.adoc[Testing bootstrap combinations]
+*** xref:test-dynamic-modules.adoc[Test an Application module]
+** xref:expose-for-test.adoc[Exposing components for tests]
+** xref:test-datasources.adoc[Test datasources]
+** xref:testing-web-features.adoc[Testing web features]
+*** xref:mock-mvc.adoc[Web requests using MockMvc]
+*** xref:mock-across-servlet-context.adoc[Filter and servlet registration]
+*** xref:view-element-rendering.adoc[View element rendering]
 
-//** <<base-test-classes.adoc,Base test classes>>
-//** <<test-context-builders.adoc,Test context builders>>
-//** <<annotations.adoc,Annotations>>
-//** <<mock-mvc.adoc,Mock MVC integration>>
-//** <<mock-across-servlet-context.adoc,MockAcrossServletContext>>
-//** <<application-testing.adoc,Across application testing>>
-//** <<test-dynamic-modules.adoc,Testing dynamic modules>>
-//** <<test-datasources.adoc,Test datasources>>
+// todo: test configurations & annotations overview ?

@@ -1,0 +1,4 @@
+= Customizing modules before starting
+
+// AcrossBootstrapConfigurer?
+// module extensions

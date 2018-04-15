@@ -1,0 +1,5 @@
+
+// don't test stuff from other modules.
+// either mock it out altogether, or bootstrap the entire module
+// be very careful with "partial integration" testing where you create beans
+// from other modules manually
