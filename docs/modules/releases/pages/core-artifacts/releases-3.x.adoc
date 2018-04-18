@@ -1,3 +1,11 @@
+[#3-1-0]
+=== 3.1.0-SNAPSHOT
+*Across Web*
+
+* path prefixes are now supported directly in redirect view names +
+
+ return "redirect:@adminWeb:/somePath";
+
 [#3-0-0]
 === 3.0.0.RELEASE
 Across 3.0.0 is a big internal upgrade focused on improving Spring Boot compatibility.
