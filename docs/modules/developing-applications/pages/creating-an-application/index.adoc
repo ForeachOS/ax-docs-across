@@ -1,5 +1,5 @@
 [#creating-across-application]
-== Creating an Across application
+= Creating an Across application
 
 Usually an Across application is created for a web scenario and `@AcrossApplication`.
 This configures your application and starts it up as a Spring Boot application.
@@ -12,7 +12,7 @@ include::chap-configuring-across-context.adoc[]
 include::chap-application.adoc[]
 
 [discrete]
-=== Manual configuration
+== Manual configuration
 An `AcrossContext` can be also configured manually and is started using the `bootstrap()` method, and stopped using `shutdown()`.
 These methods take care of the Spring `ApplicationContext` lifecycle of all modules configured in the context.
 
@@ -39,7 +39,7 @@ When using the `@EnableAcrossContext`, the packages to scan for these can be set
 Alternatively the packages to scan can be controlled via the `moduleConfigurationScanPackages` property on `AcrossContext`.
 
 [#across-application-fundamentals]
-=== Fundamentals
+== Fundamentals
 When creating an Across application, we create an `*Application` class, which defines which modules should be bootstrapped in our application.
 However, Across also expects an application module, which defines the logic that our application needs. The `application` package will define the application module.
 

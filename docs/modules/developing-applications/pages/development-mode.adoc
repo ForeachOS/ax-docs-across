@@ -1,7 +1,6 @@
-:page-partial:
 [[development-mode]]
 [#development-mode]
-== Development mode
+= Development mode
 The AcrossContext can have development mode enabled through the *developmentMode* property.
 Modules can use development mode to configure different services (or services differently).
 An example is auto-reloading and no caching of the message sources if development mode is active.
@@ -49,7 +48,7 @@ WARNING: Properties added directly to the application properties will take prece
 
 
 // can also be activated using AcrossContextConfigurer
-==== Customizing the AcrossContext
+== Customizing the AcrossContext
 After initial configuration but before bootstrapping, the configured `AcrossContext` will be delegated to all `AcrossContextConfigurer` beans it can find in the `ApplicationContext`.
 This allows for changing any settings before the actual bootstrap happens.
 

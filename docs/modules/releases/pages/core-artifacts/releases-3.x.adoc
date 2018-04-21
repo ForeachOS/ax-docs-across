@@ -1,26 +1,28 @@
+= 3.x release notes
+
 [#3-1-0]
-=== 3.1.0-SNAPSHOT
-*Across Web*
+== 3.1.0-SNAPSHOT
+=== Across Web
 
 * path prefixes are now supported directly in redirect view names +
 
  return "redirect:@adminWeb:/somePath";
 
 [#3-0-0]
-=== 3.0.0.RELEASE
+== 3.0.0.RELEASE
 Across 3.0.0 is a big internal upgrade focused on improving Spring Boot compatibility.
 Although the number should be limited, this release does introduce some breaking changes.
 
 Across Framework 3.0.0 adds the `across-autoconfigure` artifact as a base dependency for creating Across applications.
 It is also the first release with auto-configuration support, see the separate documentation on link:{doc-spring-boot}#spring-boot[Spring Boot compatibility] for more details.
 
-*Core dependency upgrades*
+=== Core dependency upgrades
 
 * Spring Platform Brussels-SR7
 * Spring Framework 4.3.14
 * Spring Boot 1.5.10
 
-*Across Core*
+=== Across Core
 
 * addition of the `@ConditionalOnAcrossModule` annotation that can be put on a `@Configuration` class, `@Bean` method and any `@Component` to depend on the presence of modules.
 ** `@AcrossDepends` should now only be used on module descriptors, and no longer for conditional component creation
@@ -70,7 +72,7 @@ It is also the first release with auto-configuration support, see the separate d
 * `@InstallerMethod` methods now support arguments, much like a `@Autowired` or `@PostRefresh` method
 ** the arguments will be fetched from the `ApplicationContext` when the method is executed
 
-*AcrosWebModule*
+=== Across Web
 
 A lot of internal configuration has been modified to use out-of-the-box Spring Boot configuration classes instead of customized versions.
 
@@ -131,7 +133,7 @@ Also the ordering of filters might have changed slightly, modules providing filt
 
 Dynamically registered filters should preferably include an explicit order value and should be done inside the Across context (inside a module) and not on the application configuration level.
 
-*Across Test*
+=== Across Test
 
 * new features for exposing additional components during the scope of a test
 ** both `@AcrossTestConfiguration` and the `AcrossTestBuilders` now have an attribute/method to easily expose additional classes for the scope of the test

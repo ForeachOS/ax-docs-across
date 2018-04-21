@@ -1,7 +1,8 @@
+= Across Application Descriptor
 
 [[across-application]]
 [#across-application]
-=== @AcrossApplication
+== @AcrossApplication
 `@AcrossApplication` annotation can be used as an alternative for `@EnableAcrossContext` and `@SpringBootApplication` when defining an application.
 In addition to default context configuration options, it also adds selected <<spring-boot.adoc#spring-boot,Spring Boot autoconfiguration classes>> and enables <<dynamic-across-modules,dynamic modules>>.
 
@@ -13,7 +14,7 @@ See <<spring-boot.adoc#spring-boot,Auto-configuration support>> for more backgro
 It is also possible to disable specific autoconfiguration classes using the *exclude* attribute on @AcrossApplication.
 
 [[embedded-servlet-container]]
-==== Embedded servlet container
+=== Embedded servlet container
 Using `@AcrossApplication` adds the necessary Spring Boot auto configuration classes for embedded servlet containers.
 If you have for example *spring-boot-starter-tomcat* on the classpath, you can run an Across based application inside an embedded Tomcat using `SpringApplication`.
 
@@ -32,12 +33,12 @@ public class MyApplication
 
 [[enableacrosscontext]]
 [#enable-across-context]
-=== @EnableAcrossContext
+== @EnableAcrossContext
 Usually your application will consist of a single `AcrossContext` that is configured in the main Spring `ApplicationContext`.
 You can enable the automatic creation of an `AcrossContext` by putting the `@EnableAcrossContext` on any `@Configuration` class.
 This will initialize a new `AcrossContext` with the main `ApplicationContext` as parent, look for a <<across-datasource,default datasource bean>> named *acrossDataSource* and then configure modules based on the `@EnableAcrossContext` attribute values.
 
-==== AcrossContext autoconfiguration
+=== AcrossContext autoconfiguration
 By default autoconfiguration of the `AcrossContext` will be enabled.
 This implies that all `AcrossModule` beans from the parent `ApplicationContext` will be configured, along with any modules specified by name on `@EnableAcrossContext`.
 

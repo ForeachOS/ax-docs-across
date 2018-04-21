@@ -1,20 +1,24 @@
+= 2.x release notes
+
 [#2-1-1-RELEASE]
-=== 2.1.1.RELEASE
-*Across Core*
+== 2.1.1.RELEASE
+
+=== Across Core
 
 * minor performance improvements
 * `@PostRefresh` now supports method arguments, behaving as an equivalent of `@Autowired` but after the Across context has bootstrapped
 ** it is also possible to indicate that dependencies are not required, if dependencies are not met, the method will not be executed
 ** `@PostRefresh` methods can be called more than once if a parent `ApplicationContext` refreshes
 
-*Across Test*
+=== Across Test
 
 * bug fixes:
 ** test datasource is generated with a unique name - this improves the re-use of the main `ApplicationContext` without the need for `@DirtiesContext`
 
 [#2-1-0-RELEASE]
-=== 2.1.0.RELEASE
-*Across Core*
+== 2.1.0.RELEASE
+
+=== Across Core
 
 * bootstrap locking changes
 ** the bootstrap lock is now taken and released per installer instead of once for the entire bootstrap phase
@@ -22,7 +26,7 @@
 * link:/developing-applications/index.adoc#event-handler-ordering[event handlers are now executed in module bootstrap order]: event handlers from a previous module will have been executed when yours is called
 ** this removes an old limitation of event handling in Across
 
-*AcrossWebModule*
+=== Across Web
 
 * `@AcrossApplication` has a `displayName` attribute to configure the context display name
 ** if empty, the property value of *across.displayName* will be considered instead
@@ -33,14 +37,14 @@
 ** _.thtml_ extension is still fully supported but support may be removed in a future major release
 
 [#2-0-0-RELEASE]
-=== 2.0.0.RELEASE
+== 2.0.0.RELEASE
 Upgrade to *Spring Platform Athens*, new major dependency versions:
 
 * Spring framework 4.3.x
 * Spring Boot 1.4.x
 * Thymeleaf 3.x
 
-*Across Core*
+=== Across Core
 
 * `@AcrossEventHandler` has been deprecated, all beans are now automatically scanned for `@Event` methods
 * the `AcrossEventPublisher` interface has some MBassador specific methods removed
@@ -49,12 +53,12 @@ Upgrade to *Spring Platform Athens*, new major dependency versions:
 ** this will be an existing *src/main/resources* folder relative to the working directory of the running application
 * `@ConditionalOnDevelopmentMode` added to detect if development mode is active
 
-*Across Test*
+=== Across Test
 
 * The spring-boot-test dependency is now part of across-test
 * Updated documentation to use the new `@SpringBootTest` annotation
 
-*AcrossWebModule*
+=== Across Web
 
 * `ServletContextInitializer` beans in modules are now supported directly for customizing the `ServletContext`
 ** `@ConditionalOnConfigurableServletContext` and `@ConditionalOnNotConfigurableServletContext` added to determine if `ServletContext` can still be customized

@@ -1,5 +1,5 @@
 [discrete]
-== Artifact
+= Artifact
 [source,xml,indent=0]
 [subs="verbatim,quotes,attributes"]
 ----
@@ -7,12 +7,10 @@
 		<dependency>
             <groupId>com.foreach.across</groupId>
             <artifactId>across-core</artifactId>
-            <version>{across-version}</version>
 		</dependency>
 		<dependency>
             <groupId>com.foreach.across</groupId>
             <artifactId>across-web</artifactId>
-            <version>{across-version}</version>
         </dependency>
 	</dependencies>
 ----

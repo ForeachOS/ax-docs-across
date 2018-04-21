@@ -1,7 +1,8 @@
-:page-partial:
 [[across-datasource]]
 [#across-datasource]
-== Across datasource
+= Connecting to a database
+
+== The Across DataSource
 An Across context supports the configuration of a SQL database `DataSource` instance.
 If there is a primary `DataSource` or only a single `DataSource` bean available, Across will automatically use that one.
 

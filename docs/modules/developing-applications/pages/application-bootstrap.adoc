@@ -1,10 +1,11 @@
-:page-partial:
 [[across-bootstrap]]
 [#across-bootstrap]
-== Across bootstrap
+= Across bootstrap
+
 The Across bootstrap is the actual starting of the application.
 During the bootstrapping phase the entire Spring `ApplicationContext` hierarchy of an application is created.
 
+== Bootstrap phases
 A typical Across application has the following bootstrap phases:
 
 1. The root `ApplicationContext` is scanned, which includes the configuration of the Across context (represented by the `@AcrossApplication` annotation).
@@ -23,16 +24,16 @@ A typical Across application has the following bootstrap phases:
 
 [[across-bootstrap-order]]
 [#module-bootstrap-order]
-=== Module bootstrap order
+== Module bootstrap order
 During bootstrap the Across context will inspect the dependencies between modules, and will determine the order in which modules should be started.
 Once the order has been determined, the modules will be started one by one.
 
 [#installers]
-=== Installers
+== Installers
 At several points during bootstrap of an Across context, <<developing-modules.adoc#installer-bootstrap-phases,installers can get executed>>.
 
 [#bootstrap-events]
-=== Bootstrap events
+== Bootstrap events
 During bootstrap, the Across context <<dev-appl-bootstrap-events,publishes several events>> that allow other components to act upon.
 
 == Advanced topics
