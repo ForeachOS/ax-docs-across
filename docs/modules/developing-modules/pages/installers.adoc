@@ -1,7 +1,7 @@
 :page-partial:
 [[installers]]
 [#installers]
-== Installers
+= Installers
 A module can have one or more installer classes.
 The purpose of installers is setup data that modules need, before the actual application takes over.
 Examples: creating database schema, installing default or test data...
