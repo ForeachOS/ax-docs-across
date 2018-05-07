@@ -16,26 +16,40 @@ link to the starter trails
 
 === Trail 1: User interface for a remote web service
 
-* No database
-* EntityModule
-* security
-* remote web service
-* adminweb
-** login
+* Creating an application
+* Testing your application
+* Admin Web
+* Authentication using oauth
+* EntityModule with remote web services
 
 === Trail 2: Management interface with a database
 
 * Creating an application
+* Testing your application
 * Connecting to a database
-* EntityModule
-* UserModule
-* Hibernate
-* AdminWeb
-* Acl
+* Setup admin web
+* Using Hibernate entities (Product, Order)
+** Initialize database schema
+* Initializing application data
+* EntityModule for managing catalog, order
+* Add entity validation -> less than or equal to product availability
+* Adding user management
+* Auditing entities
+* Role based security
+* ACL-based security
 
 === Trail 3: Website for a multidomain blog
 
-* Web features
+* Creating an application
+* Testing your application
+* Adding a web controller
+* Using a page layout
+* Setup admin web
 * Connecting to a database
-* WebCmsModule
-* AdminWeb
+* Adding user management
+* Initializing application data
+* WebCmsModule pages & menu items
+* Creating default pages
+* Web CMS using articles
+* Activating multi-site
+* Securing domains
