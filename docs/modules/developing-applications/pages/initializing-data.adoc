@@ -1,4 +1,7 @@
 = Initializing application data
-installers
 
-// clustering ?
+////
+* installers
+* schema installer
+* locking on installers: distributedlockrepository
+////

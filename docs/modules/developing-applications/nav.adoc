@@ -1,4 +1,4 @@
-* xref:index.adoc[Developing applications]
+* xref:creating-an-application/index.adoc[Developing applications]
 ** xref:creating-an-application/index.adoc[Creating an application]
 *** xref:creating-an-application/application-descriptor.adoc[Application descriptor]
 *** xref:creating-an-application/project-structure.adoc[Project structure]

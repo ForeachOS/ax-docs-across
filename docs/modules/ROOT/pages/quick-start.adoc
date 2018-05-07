@@ -1,5 +1,41 @@
+= Quick start
 ////
 java 8 & maven required
 generate a simple app
 link to the starter trails
 ////
+
+== Prerequisites
+
+* Java 8
+* Maven 3
+
+== Select your trail
+
+// what are trails
+
+=== Trail 1: User interface for a remote web service
+
+* No database
+* EntityModule
+* security
+* remote web service
+* adminweb
+** login
+
+=== Trail 2: Management interface with a database
+
+* Creating an application
+* Connecting to a database
+* EntityModule
+* UserModule
+* Hibernate
+* AdminWeb
+* Acl
+
+=== Trail 3: Website for a multidomain blog
+
+* Web features
+* Connecting to a database
+* WebCmsModule
+* AdminWeb

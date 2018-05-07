@@ -1,5 +1,13 @@
 [#creating-across-application]
 = Creating an Across application
+////
+* across initializr
+* blank application + message source
+* maven spring boot run
+* snippet + modules being bootstrapped
+* describe acrosscontextpostprocessormodule
+////
+
 
 Usually an Across application is created for a web scenario and `@AcrossApplication`.
 This configures your application and starts it up as a Spring Boot application.

@@ -2,7 +2,14 @@
 
 == application.yml
 
+////
+* key in application.yml file
+* @Value(key)
+////
+
 == @ConfigurationProperties
+
+////
 
 [#properties]
 == Properties
@@ -153,6 +160,14 @@ public class SomeBeanInModule {
     private String someValueFromProperty;
 }
 ----
+////
 
 [[application-profiles]]
 == Application profiles
+
+////
+* several profiles
+* start up with one different profiles
+////
+* link to externalized configuration from Spring Boot
+////

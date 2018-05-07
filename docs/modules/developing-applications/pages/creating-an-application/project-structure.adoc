@@ -1,0 +1,27 @@
+= Project Structure
+
+////
+* application-descriptor
+* yaml
+* resources
+* installer
+
+////
+
+For a full example of the project structure see the cheat sheet page:
+
+== Application module
+
+////
+* package application
+* component aanmaken die een LOG.info() via @Slf4j doet
+* na het opstarten wordt de LOG getoond
+////
+
+== Application resources
+
+////
+* message source file
+* replace LOG.info with message and @Autowire MessageSource
+* use @RequiredArgsConstructor
+////

@@ -2,6 +2,14 @@
 
 [[using-components]]
 == Using components from modules
-// autowire (?)
+
+////
+* autowire objectMapper to serialize an object
+////
+
 [[working-with-events]]
 == Working with events
+
+////
+* modify debugweb menu
+////

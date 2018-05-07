@@ -62,7 +62,7 @@ WARNING: Because of component creation order, lifecycle events can often not be 
 You should provide an `ApplicationListener` component for those events instead. A general purpose interface `AcrossLifecycleListener` can be implemented if you want to handle more than one lifecycle event.
 
 === Customizing modules before starting
-If is possible to customize an Across context configuration after the modules have been assembled, but before the actual context or module starts.
+It is possible to customize an Across context configuration after the modules have been assembled, but before the actual context or module starts.
 There are two common ways to do this:
 
 . handling the `AcrossModuleBeforeBootstrapEvent` and customizing the configuration of the module being started

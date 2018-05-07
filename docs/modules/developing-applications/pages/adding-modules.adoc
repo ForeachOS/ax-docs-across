@@ -1,5 +1,27 @@
 = Adding modules
 
+== Adding a module
+
+////
+* add debugweb
+* describe transitive dependency for webmodule in bootstrap
+* screenshot van Context Browser
+////
+
+=== Adding a custom module
+
+////
+* scanning of path
+////
+
+== Conditional modules
+
+////
+* @Profile on module
+* @ConditionalOnProperty("production")
+////
+
+////
 [[enableacrosscontext]]
 [#enable-across-context]
 == @EnableAcrossContext
@@ -119,6 +141,4 @@ public class WebConfiguration implements AcrossContextConfigurer
 	}
 }
 ----
-
-
-
+////
