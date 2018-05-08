@@ -1,27 +1,155 @@
 = Project Structure
 
-////
-* application-descriptor
-* yaml
-* resources
-* installer
+On this page, you will:
 
-////
+* [*] Learn about the project structure of an Across application.
+* [*] Create a component in the application module which logs an information message.
+* [*] Replace the LOG message with a localized message.
 
-For a full example of the project structure see the cheat sheet page:
+== The Across application structure
+
+After xref:creating-an-application/index.adoc[creating an application] and learning about the xref:creating-an-application/application-descriptor.adoc[application descriptor], you are ready to learn about the Across application structure.
+
+The following tree outlines the structure in the generated application:
+
+```
+pom.xml
+src
+├── main
+│   ├── java
+│   │   └── com
+│   │       └── example
+│   │           └── demo
+│   │           │   └── application # <1>
+│   │           └── DemoApplication.java # <2>
+│   └── resources
+│       │   └── messages
+│       │       └── demo
+│       │           └── default.properties # <3>
+│       ├── application.yml # <4>
+│       ├── application-dev.yml # <5>
+│       └── application-prod.yml # <6>
+└── test
+    └── java
+        └── com
+        │   └── example
+        │       └── demo
+        │           └── application # <7>
+        └── it
+            └── ITDemoApplication.java # <8>
+```
+
+<1> The `application` package is the location where you will store Spring components.
+These components can only be accessed from the DemoApplication module.
+ This is also where you you will store xref:initializing-data[installers] in a later stage.
+<2> This is the xref:creating-an-application/application-descriptor.adoc[application descriptor].
+<3> The `default.properties` file contains xref:messages.adoc[translations] used for localisation.
+<4> `application.yml` is a https://en.wikipedia.org/wiki/YAML[YAML] file containing configuration settings for you application.
+These values are are always applied, but can be overwritten by profile specific files below.
+<5> `application-dev.yml` overwrites configurations values from `application.yml` when the `dev` profile is active (see Spring Boot's https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/html/boot-features-external-config.html#boot-features-external-config-profile-specific-properties[Profile-specific properties]).
+<5> `application-prod.yml` overwrites configurations values from `application.yml` when the `prod` profile is active.
+<7> Under this package you can place your unit tests.
+<8> The `it` package is the location to store your integration tests.
+The package is outside the application's package, to avoid scanning of beans that are defined inside the integration tests.
+
+For a full example of the project structure see the xref:cheat-sheet.adoc[cheat sheet].
 
 == Application module
 
-////
-* package application
-* component aanmaken die een LOG.info() via @Slf4j doet
-* na het opstarten wordt de LOG getoond
-////
+Now that you are familiar with the project structure, we will create a component which logs `Hello world!` to our console, using Slf4j.
+
+Go ahead and create a class `StartupLogger` and place it into your `application` package.
+
+.A simple component which creates a dummy bean and logs Hello world!
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@Component <1>
+@Slf4j # <2>
+public class StartupLogger {
+    @Bean
+    public Void dummyBean() {
+        LOG.info("Hello world!"); # <3>
+        return null;
+    }
+}
+----
+
+<1> Across will scan and pick up this component because it is located under the `application` package.
+<2> This https://projectlombok.org/features/log[Lombok annotation] creates a `LOG` field in our class.
+<3> Here we print the message to the console.
+
+Now run the application.
+
+[source,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+$ mvn spring-boot:run
+----
+
+In the console you should see `Hello world!` being printed.
+
+[source,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+c.e.demo.application.StartupLogger       : Hello world!
+----
+
+****
+*Why is this?*
+
+By default, Across will scan all files under the `application` class.
+Any Spring `@Component` or `@Service` that is matched, will be created.
+****
 
 == Application resources
 
-////
-* message source file
-* replace LOG.info with message and @Autowire MessageSource
-* use @RequiredArgsConstructor
-////
+Now that we have created our component, we will modify it to print a message from a xref:messages.adoc[message source].
+
+.A component which displays a message from a message source.
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@Component
+@Slf4j
+@RequiredArgsConstructor # <1>
+public class StartupLogger {
+
+    private final MessageSource messageSource;  # <2>
+
+    @Bean
+    public Void dummyBean() {
+        LOG.info(messageSource.getMessage("sample.message", null, Locale.getDefault()));  # <3>
+        return null;
+    }
+}
+----
+
+<1> We use this https://projectlombok.org/features/constructor[Lombok annotation] to use https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/html/using-boot-spring-beans-and-dependency-injection.html[constructor injection] on all fields that are marked `private final`.
+<2> The `MessageSource` bean is injected by Spring on this field.
+This bean has already been automatically created by Across.
+<3> We modified the `LOG` statement to retrieve the message source, using the default system locale.
+
+Now run the application.
+
+[source,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+$ mvn spring-boot:run
+----
+
+In the console you should see the following being printed.
+
+[source,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+c.e.demo.application.StartupLogger       : This is a message from your message source
+----
+
+****
+*Why is this?*
+
+The `default.properties` file already contains a message code `sample.message`.
+
+The `MessageSource` will lookup this code and print it instead.
+****
