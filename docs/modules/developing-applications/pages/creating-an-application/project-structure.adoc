@@ -44,7 +44,7 @@ These components can only be accessed from the DemoApplication module.
  This is also where you you will store xref:initializing-data[installers] in a later stage.
 <2> This is the xref:creating-an-application/application-descriptor.adoc[application descriptor].
 <3> The `default.properties` file contains xref:messages.adoc[translations] used for localisation.
-<4> `application.yml` is a https://en.wikipedia.org/wiki/YAML[YAML] file containing configuration settings for you application.
+<4> `application.yml` is a https://en.wikipedia.org/wiki/YAML[YAML] file containing configuration settings for your application.
 These values are are always applied, but can be overwritten by profile specific files below.
 <5> `application-dev.yml` overwrites configurations values from `application.yml` when the `dev` profile is active (see Spring Boot's https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/html/boot-features-external-config.html#boot-features-external-config-profile-specific-properties[Profile-specific properties]).
 <5> `application-prod.yml` overwrites configurations values from `application.yml` when the `prod` profile is active.
@@ -151,5 +151,5 @@ c.e.demo.application.StartupLogger       : This is a message from your message s
 
 The `default.properties` file already contains a message code `sample.message`.
 
-The `MessageSource` will lookup this code and print it instead.
+The `MessageSource` will look up this code and print it instead.
 ****

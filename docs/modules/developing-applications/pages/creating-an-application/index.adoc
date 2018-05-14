@@ -31,13 +31,17 @@ In the console you will see the modules that are being bootstrapped:
 [subs="verbatim,quotes,attributes"]
 ----
  ---
- AcrossContext: DemoApplication (AcrossContext-1)
+ AcrossContext: DemoApplication (AcrossContext-1) # <1>
  Bootstrapping 2 modules in the following order:
- 1 - DemoApplicationModule [resources: demo]: class com.foreach.across.core.DynamicAcrossModule$DynamicApplicationModule # <1>
- 2 - AcrossContextPostProcessorModule [resources: AcrossContextPostProcessorModule]: class com.foreach.across.core.AcrossContextConfigurationModule  # <2>
+ 1 - DemoApplicationModule [resources: demo]: class com.foreach.across.core.DynamicAcrossModule$DynamicApplicationModule # <2>
+ 2 - AcrossContextPostProcessorModule [resources: AcrossContextPostProcessorModule]: class com.foreach.across.core.AcrossContextConfigurationModule  # <3>
  ---
 ----
 
-<1> The `DemoApplicationModule` is the xref:creating-an-application/application-descriptor.adoc[application descriptor] for this application.
-<2> The `AcrossContextPostProcessorModule` is a specialised Across module, which is automatically enabled when the `across-autoconfigure` artifact is included in your project.
+<1> The `DemoApplication` is the xref:creating-an-application/application-descriptor.adoc[application descriptor] for this application.
+<2> The `DemoApplicationModule` is one of the xref:default-modules.adoc[dynamic across modules].
+These are special modules which serve a specific use case.
+The application module contains the application specific code.
+See the xref:default-modules.adoc#dynamic-application-module[dynamic application module] for more information.
+<3> The `AcrossContextPostProcessorModule` is a specialised Across module, which is automatically enabled when the `across-autoconfigure` artifact is included in your project.
 It facilitates https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/html/using-boot-auto-configuration.html[Spring Boot Auto-configuration] across different modules, for more information see: xref:across-autoconfigure:ROOT:chap-auto-configuration.adoc#acrosscontextpostprocessormodule[Auto-configuration support]
