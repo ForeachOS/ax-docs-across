@@ -1,0 +1,24 @@
+= Application configuration
+
+[[application-yml]]
+== application.yml
+
+////
+* key in application.yml file
+* @Value(key)
+////
+
+[[configuration-properties]]
+== @ConfigurationProperties
+
+
+
+[[application-profiles]]
+== Application profiles
+
+////
+* several profiles
+* start up with one different profiles
+////
+* link to externalized configuration from Spring Boot
+////
