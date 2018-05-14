@@ -1,2 +1,16 @@
 // refer to autoconfiguration support
 // list differences between Spring (Boot) and Across applications
+
+
+= Spring boot compatibility
+Using `@EnableAutoConfiguration` and Spring Boot starters directly with Across is currently not supported, but for a selected number of starters support has been built.
+See xref:ROOT:spring-boot-compatibility.adoc#spring-boot[Auto-configuration support] for more background information.
+It is also possible to disable specific autoconfiguration classes using the *exclude* attribute on `@AcrossApplication`, as well as creating your own autoconfiguration.
+
+
+== Spring boot autoconfiguration
+Spring boot allows developers to opt-in on automatic configuration of their application through the use of `@EnableAutoConfiguration`.
+Using autoconfiguration allows Spring Boot to configure your application based on its jar dependencies.
+
+
+== Spring boot starters
