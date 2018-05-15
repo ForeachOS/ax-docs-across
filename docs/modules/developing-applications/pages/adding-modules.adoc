@@ -1,6 +1,85 @@
 = Adding modules
 
+On this page, you will:
+
+* [*] Add a standard and custom module to an application.
+* [*] Conditionally add modules to an application.
+
+Thus far, we've learned about our application descriptor, project structure and application configuration.
+In the following sections we'll start adding additional modulus in various use cases.
+
 == Adding a module
+
+Earlier, we've mentioned that modules are bootstrapped into our application when it starts up.
+Let's add an extra module, and see whether it gets bootstrapped correctly.
+To do so, we'll add it to the `modules` specification of the `@AcrossApplication` annotation in the application descriptor.
+
+In this example, we'll add DebugWebModule to our application.
+DebugWebModule provides some additional tools to check up on the state of the application.
+// TODO specify the across-site url
+See the xref:https://across-docs.foreach.be/across-standard-modules/DebugWebModule/2.0.0.RELEASE/reference/[reference documentation] for more information.
+Before we can add the module to our application, we have to ensure that the source for the module is found.
+To do so, we'll specify the dependency in our `pom.xml`.
+
+.Adding DebugWebModule as a dependency using maven
+[source,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+	<dependencies>
+		<dependency>
+			<groupId>com.foreach.across.modules</groupId> # <1>
+			<artifactId>debug-web-module</artifactId> # <2>
+		</dependency>
+		...
+	</dependencies>
+----
+<1> We specify the group id of the maven dependency.
+For standard modules, this is always `com.foreach.across.modules`.
+<2> We specify the artifact id of the module that we want to add to the application.
+
+NOTE: We do not have to specify a version for any of the standard modules we would like to use.
+When we downloaded our application from Across Initializr, by default the latest release version was specified.
+If we take a look at the `dependencyManagement` section of our application, we'll notice that there is a dependency on the platform-bom.
+The platform-bom is a Bill of Material pom that specifies the module versions of the standard modules, to ensure you'll have a stable application.
+
+Now that we've added the required dependency, we can add the module to our application.
+
+.Specifying the modules that should be bootstrapped in the application descriptor
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@AcrossApplication( modules = { DebugWebModule.NAME } ) # <1>
+public class DemoApplication
+{
+    ...
+}
+----
+<1> Add DebugWebModule to the application.
+
+If we now restart our application, we'll notice that additional modules have been bootstrapped in our application.
+
+.Abbreviated logging output during application startup
+----
+...
+INFO --- [ost-startStop-1] c.f.a.c.AcrossDynamicModulesConfigurer   : Adding package based APPLICATION module DemoApplicationModule, resources: demo, base package: com.example.demo.application
+INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : ---
+INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : AcrossContext: DemoApplication (AcrossContext-1)
+INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : Bootstrapping 4 modules in the following order:
+INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 1 - AcrossWebModule [resources: ]: class com.foreach.across.modules.web.AcrossWebModule # <1>
+INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 2 - DebugWebModule [resources: debugweb]: class com.foreach.across.modules.debugweb.DebugWebModule # <2>
+INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 3 - DemoApplicationModule [resources: demo]: class com.foreach.across.core.DynamicAcrossModule$DynamicApplicationModule
+INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 4 - AcrossContextPostProcessorModule [resources: AcrossContextPostProcessorModule]: class com.foreach.across.core.AcrossContextConfigurationModule
+INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : ---
+...
+----
+<1> AcrossWebModule was added, which provides basic web support for our application.
+See xref:across-web:index.adoc[Across Web Support] for more information.
+<2> DebugWebModule was bootstrapped in our application.
+
+We've added one module to our application, but two where bootstrapped, why was AcrossWebModule bootstrapped?
+Modules themselves can depend on other modules.
+DebugWebModule specifies a *required* dependency on AcrossWebModule, as it discloses application information through a specific endpoint, and as such requires basic web support.
+Since AcrossWebModule is specified as a dependency in the pom.xml, and is specified as a required dependency, it will be transitively pulled in and bootstrapped as well.
 
 ////
 * add debugweb
@@ -8,7 +87,7 @@
 * screenshot van Context Browser
 ////
 
-=== Adding a custom module
+== Adding a custom module
 
 ////
 * scanning of path
