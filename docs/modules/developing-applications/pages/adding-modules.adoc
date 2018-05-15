@@ -81,6 +81,12 @@ Modules themselves can depend on other modules.
 DebugWebModule specifies a *required* dependency on AcrossWebModule, as it discloses application information through a specific endpoint, and as such requires basic web support.
 Since AcrossWebModule is specified as a dependency in the pom.xml, and is specified as a required dependency, it will be transitively pulled in and bootstrapped as well.
 
+Since our application has started up, we can now navigate to the `/debug` path of the application.
+The `/debug` path is provided by DebugWebModule, and provides amongst other tools a Context Browser.
+The context browser hands us information about the various Web Contexts that are present in our application, which modules are bootstrapped, which beans are present (in which modules), and more.
+We can navigate to the context browser through the *Context browser* menu item under the *Across* menu item.
+
+image::debug-web-ctx-browser.png[The context browser provided by DebugWebModule]
 ////
 * add debugweb
 * describe transitive dependency for webmodule in bootstrap
