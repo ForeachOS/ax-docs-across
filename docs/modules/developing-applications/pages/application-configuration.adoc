@@ -1,24 +1,213 @@
 = Application configuration
 
+On this page, you will:
+
+* [*] Get to know the application.yml file.
+* [*] Use the @ConfigurationProperties annotation.
+* [*] Use profiles to simulate different application environments.
+
 [[application-yml]]
 == application.yml
 
-////
-* key in application.yml file
-* @Value(key)
-////
+We will start this example by adding an entry to the `application.yml` file.
+This YAML file holds all configuration values for a specific application.
+
+Place the following snippet in the file.
+
+[source,yaml,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+applicationKey: 73RNNJIJFN83N3R3NKFNK
+----
+
+We are defining a configuration item with name `applicationKey` and value `73RNNJIJFN83N3R3NKFNK`.
+
+To use this configuration item, we can use the `@Value` annotation in our class.
+Modify the `StartupLogger` class to the one below:
+
+.A component which displays a configuration value!
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@Component
+@Slf4j
+public class StartupLogger {
+
+    @Value( "${applicationKey}" )
+    private String applicationKey;
+
+    @Bean
+    public Void dummyBean() {
+        LOG.info( "Your application key is: {}", applicationKey);
+        return null;
+    }
+}
+----
+
+Run the application.
+
+----
+$ mvn spring-boot:run
+----
+
+In the console you should see the following:
+
+----
+INFO --- [ost-startStop-1] c.e.demo.application.StartupLogger       : Your application key is: 73RNNJIJFN83N3R3NKFNK
+----
+
+Next up, you will see how we can use `@ConfigurationProperties`.
+This is a more structured way of defining your configuration values.
 
 [[configuration-properties]]
 == @ConfigurationProperties
 
+`@ConfigurationProperties` can be used to map configuration values onto a strongly typed configuration class.
+To demonstrate this we will modify the example from above to use `@ConfigurationProperties` instead.
 
+Create a configuration class `ApplicationProperties`.
+
+.A configuration class with one configuration value.
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@ConfigurationProperties # <1>
+@Component
+@Data # <2>
+public class ApplicationProperties {
+    private String applicationKey;  # <3>
+}
+----
+
+<1> The `@ConfigurationProperties` annotation specifies that this is a configuration class.
+<2> We use this Lombok annotation to generate getters and setters which Spring Boot require for setting the field appropriately.
+<3> This field will map to the entry from the YAML file. The field name and the YAML key must match.
+
+Modify your `StartupLogger` class to the one below.
+
+.A component which displays a configuration value from a configuration class.
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@Component
+@Slf4j
+@RequiredArgsConstructor
+public class StartupLogger {
+
+    private final ApplicationProperties applicationProperties; # <1>
+
+    @Bean
+    public Void dummyBean() {
+        LOG.info( "Your application key is: {}", applicationProperties.getApplicationKey());  # <2>
+        return null;
+    }
+}
+----
+
+<1> We are wiring our configuration class here.
+<2> The `applicationKey` YAML entry is now automatically mapped onto the configuration class by Spring and we can retrieve it using the getter.
+
+The advantage of doing this that:
+
+* You can easily bundle configuration values belonging to the same 'object'.
+For example, you can bundle FTP properties like hostname, username and password into an `FtpProperties` configuration class.
+* Instead of having multiple `@Value` annotations, you only need to map one configuration class, making your code less verbose.
+* You can take advantage of Spring validation, to validate configuration values at application startup.
+
+Have a look at https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/html/boot-features-external-config.html#boot-features-external-config-typesafe-configuration-properties[Spring Boot Externalized Configuration] for more information.
+
+In the next section we will learn how to specify different values per configuration item, for example to differentiate between development and production enviroments.
 
 [[application-profiles]]
 == Application profiles
 
-////
-* several profiles
-* start up with one different profiles
-////
-* link to externalized configuration from Spring Boot
-////
+In the previous example we created a configuration item `applicationKey` which holds the value `73RNNJIJFN83N3R3NKFNK`.
+
+But what needs to happen when this value is different between environments?
+For example in development you might want to use `DEV:487FEF7E8F7E8F7E8` whereas in production you want the value `PROD:FEU4349323FJ83NF'.
+
+To achieve this, you can use profiles and the `@Profile` annotation.
+
+Place the following configuration items anywhere in the `application-dev.yml` and `application-prod.yml` files.
+
+.application-dev.yml
+[source,yaml,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+applicationKey: 'DEV:487FEF7E8F7E8F7E8'
+----
+
+.application-prod.yml
+[source,yaml,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+applicationKey: 'PROD:FEU4349323FJ83NF'
+----
+
+Run the application.
+
+----
+$ mvn spring-boot:run
+----
+
+You should see the following in your console:
+
+----
+INFO --- [ost-startStop-1] c.e.demo.application.StartupLogger       : Your application key is: 73RNNJIJFN83N3R3NKFNK
+----
+
+****
+*Why is this?*
+
+You specified configuration values in several configuration values, but you did not specify which profile needed to be active.
+This can be done by specifying the `spring.profiles.active` property when starting the application.
+
+A hint was also in the console:
+
+----
+INFO --- [  restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication with PID 133348
+INFO --- [  restartedMain] com.example.demo.DemoApplication         : No active profile set, falling back to default profiles: default
+----
+****
+
+Let's fix this and start our application with the `dev` profile.
+
+----
+$ mvn spring-boot:run -Dspring-boot.run.profiles=dev
+----
+
+WARNING: Because we are running the application with the spring-boot-maven-plugin, the property is actually `spring-boot.run.profiles`.
+
+Alterntatively, you could fix this by using an environment variable instead:
+
+----
+$ SPRING_PROFILES_ACTIVE=dev mvn spring-boot:run
+----
+
+TIP: You would get the same behaviour when using the following command line in case of an executable jar:
+
+----
+$ java -jar target/demo.jar -Dspring.profiles.active=dev
+----
+
+In the console you should now see:
+
+----
+INFO --- [  restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication with PID 126896
+INFO --- [  restartedMain] com.example.demo.DemoApplication         : The following profiles are active: dev
+...
+INFO --- [ost-startStop-1] c.e.demo.application.StartupLogger       : Your application key is: DEV:487FEF7E8F7E8F7E8
+----
+
+For production, the command line would be:
+----
+$ java -jar target/demo.jar -Dspring.profiles.active=prod
+----
+
+Note that it's also possible to combine profiles, the following would activate the `dev` profile as well as the `test-data` profile.
+
+----
+$ java -jar target/demo.jar -Dspring.profiles.active=dev,test-data
+----
+
+Read the https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/html/boot-features-profiles.html[Spring Boot Profiles] documentation for more configuration options.
