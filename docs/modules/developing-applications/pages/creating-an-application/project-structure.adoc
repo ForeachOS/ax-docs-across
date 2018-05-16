@@ -132,18 +132,14 @@ This bean has already been automatically created by Across.
 
 Now run the application.
 
-[source,indent=0]
-[subs="verbatim,quotes,attributes"]
 ----
 $ mvn spring-boot:run
 ----
 
 In the console you should see the following being printed.
 
-[source,indent=0]
-[subs="verbatim,quotes,attributes"]
 ----
-c.e.demo.application.StartupLogger       : This is a message from your message source
+INFO --- [ost-startStop-1] c.e.demo.application.StartupLogger       : This is a message from your message source
 ----
 
 ****

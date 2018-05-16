@@ -19,23 +19,19 @@ Click on `Generate Project`, this downloads a zip file containing a Maven projec
 
 Extract the zip file and run the application.
 
-[source,indent=0]
-[subs="verbatim,quotes,attributes"]
 ----
 $ mvn spring-boot:run
 ----
 
 In the console you will see the modules that are being bootstrapped:
 
-[source,indent=0]
-[subs="verbatim,quotes,attributes"]
 ----
- ---
- AcrossContext: DemoApplication (AcrossContext-1) # <1>
- Bootstrapping 2 modules in the following order:
- 1 - DemoApplicationModule [resources: demo]: class com.foreach.across.core.DynamicAcrossModule$DynamicApplicationModule # <2>
- 2 - AcrossContextPostProcessorModule [resources: AcrossContextPostProcessorModule]: class com.foreach.across.core.AcrossContextConfigurationModule  # <3>
- ---
+INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : ---
+INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : AcrossContext: DemoApplication (AcrossContext-1) # <1>
+INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : Bootstrapping 2 modules in the following order:
+INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 1 - DemoApplicationModule [resources: demo]: class com.foreach.across.core.DynamicAcrossModule$DynamicApplicationModule # <2>
+INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 2 - AcrossContextPostProcessorModule [resources: AcrossContextPostProcessorModule]: class com.foreach.across.core.AcrossContextConfigurationModule # <3>
+INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : ---
 ----
 
 <1> The `DemoApplication` is the xref:creating-an-application/application-descriptor.adoc[application descriptor] for this application.
