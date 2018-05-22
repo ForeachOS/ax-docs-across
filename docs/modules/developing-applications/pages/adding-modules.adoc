@@ -3,6 +3,7 @@
 On this page, you will learn
 
 * [*] How to add a standard and custom module to an application.
+* [*] How to add a module to the local maven repository.
 * [*] How to define when a module should be bootstrapped into the application.
 
 Thus far, we've learned about our application descriptor, project structure and application configuration.
