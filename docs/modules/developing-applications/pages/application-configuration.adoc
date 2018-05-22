@@ -109,7 +109,7 @@ public class StartupLogger {
 <1> The configuration class is wired.
 <2> The `applicationKey` YAML entry is now automatically mapped onto the configuration class by Spring and can be retrieved through the getter.
 
-The advantage of doing this are:
+The advantages of doing this are:
 
 * Configuration values belonging to the same 'object' can be bundled.
 For example, you can bundle FTP properties like hostname, username and password into an `FtpProperties` configuration class.
