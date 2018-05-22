@@ -1,6 +1,6 @@
 = Adding modules
 
-On this page, you will learn
+On this page, you will learn:
 
 * [*] How to add a standard and custom module to an application.
 * [*] How to add a module to the local maven repository.
@@ -14,10 +14,10 @@ In the following sections we'll start adding additional modules in various use c
 Earlier, you've learned that modules are bootstrapped into our application when it starts up.
 In this section, a module will be added to the application, by specifying it in the `modules` parameter of the `@AcrossApplication` annotation in the application descriptor.
 
-In this example, DebugWebModule will be added to the application.
-DebugWebModule enables the user/developer to check various application settings.
+In this example, `DebugWebModule` will be added to the application.
+`DebugWebModule` enables the user/developer to check various application settings.
 // TODO specify the across-site url
-See the xref:https://across-docs.foreach.be/across-standard-modules/DebugWebModule/2.0.0.RELEASE/reference/[reference documentation] for more information.
+See the https://across-docs.foreach.be/across-standard-modules/DebugWebModule/2.0.0.RELEASE/reference/[reference documentation] for more information.
 Before the module can be added to the application, the jar library needs to be present in the project.
 To do so, we'll specify the dependency in the `pom.xml`.
 
@@ -39,7 +39,7 @@ All standard modules have `com.foreach.across.modules` as their group id.
 <2> The identifier of the module.
 
 NOTE: Versions do not have to be specified explicitly for any of the standard modules if you generate your project through the Across Initializr.
-When you've downloaded the application from Across Initializr, by default the latest release version was specified.
+When you've downloaded the application from Across Initializr, the latest release version was specified by default.
 If you take a look at the `dependencyManagement` section of the application's pom file, you'll notice that there is a dependency on the platform-bom.
 The platform-bom is a Bill of Material pom that specifies the module versions of the standard modules, to ensure that those specific versions are compatible.
 
@@ -73,15 +73,15 @@ INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 4 - Across
 INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : ---
 ...
 ----
-<1> AcrossWebModule was added, which provides basic web support for our application.
+<1> `AcrossWebModule` was added, which provides basic web support for our application.
 See xref:across-web:index.adoc[Across Web Support] for more information.
-<2> DebugWebModule was bootstrapped in the application.
+<2> `DebugWebModule` was bootstrapped in the application.
 
 NOTE: Modules themselves can depend on other modules.
-Hence, when DebugWebModule was bootstrapped, AcrossWebModule was bootstrapped as well, because DebugWebModule specifies a *required* dependency on AcrossWebModule.
-Since AcrossWebModule is specified as a dependency in the pom.xml, and is specified as a required dependency, it will be transitively pulled in and bootstrapped as well.
+Hence, when `DebugWebModule` was bootstrapped, `AcrossWebModule` was bootstrapped as well, because `DebugWebModule` specifies a *required* dependency on `AcrossWebModule`.
+Since `AcrossWebModule` is specified as a dependency in the pom.xml, and is specified as a required dependency, it will be transitively pulled in and bootstrapped as well.
 
-DebugWebModule provides the `/debug` path, which is a user interface to inspect the application settings.
+`DebugWebModule` provides the `/debug` path, which is a user interface to inspect the application settings.
 Amongst these settings, there is a context browser which discloses information about the various Web Contexts that are present in our application, which modules are bootstrapped, which beans are present (in which modules), and more.
 We can navigate to the context browser through the *Context browser* menu item under the *Across* menu item.
 
@@ -181,7 +181,7 @@ INFO --- [ost-startStop-1] c.f.a.c.d.AcrossDevelopmentMode          : Loading de
 INFO --- [ost-startStop-1] c.f.a.s.m.d.c.DummyModuleConfiguration   : DummyModule has been added to the application. # <2>
 ...
 ----
-<1> The custom module has been bootstrapped into the application
+<1> The custom module has been bootstrapped into the application.
 <2> The DummyModule simply prints an additional log message during startup.
 
 [#conditional-modules]
@@ -191,9 +191,11 @@ In the previous sections, you've learned how to add modules by using the `@Acros
 It is also possible to specify a module by defining it as a bean.
 When a module is defined as a bean, it will be added to the ApplicationContext, but since a module always implements the `AcrossModule` interface, it will also be picked up by the `AcrossContext`.
 By using this approach, Spring annotations can be used to define when exactly the module should be created.
-In the following examples, you'll add DebugWebModule to the application once again, but instead of specifying the module by name, you'll add it as a bean.
+In the following examples, you'll add `DebugWebModule` to the application once again, but instead of specifying the module by name, you'll add it as a bean.
 
-First off, you'll add the module when we're starting up the application with the `dev` profile.
+First off, you'll add the module when starting the application with the `dev` profile.
+
+If you haven't read about application profiles yet, have a look xref:application-configuration.adoc#application-profiles[here].
 
 .Adding a module when the dev profile is present
 [source,java,indent=0]
@@ -211,11 +213,11 @@ public class DemoApplication
     }
 }
 ----
-<1> We specify the module as a bean so that it can be picked up by the AcrossContext
+<1> We specify the module as a bean so that it can be picked up by the AcrossContext.
 <2> We specify the `@Profile` annotation so that it is only added when the *dev* profile is active.
 <3> We return an instance that will be bootstrapped as a module.
 
-If we would now simply start up the application again, we would notice that neither DebugWebModule nor AcrossWebModule are bootstrapped into the application.
+If we would now simply start up the application again, we would notice that neither `DebugWebModule` nor `AcrossWebModule` are bootstrapped into the application.
 
 .Starting the application without any profiles
 ----
@@ -234,7 +236,7 @@ INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : ---
 <1> We started the application without any profile, so only the 'default' profile is present.
 <2> Neither DebugWebModule nor AcrossWebModule have been bootstrapped.
 
-If we would then start up the application with the dev profile, they will once again be bootstrapped.
+If we would then start up the application with the `dev` profile, these modules will be bootstrapped once again.
 
 `$ mvn spring-boot:run -Dspring-boot.run.profiles=dev`
 
@@ -254,8 +256,8 @@ INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 4 - Across
 INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : ---
 ...
 ----
-<1> We have started the application with the dev profile.
-<2> DebugWebModule and AcrossWebModule are bootstrapped as well.
+<1> We have started the application with the `dev` profile.
+<2> `DebugWebModule` and `AcrossWebModule` are bootstrapped as well.
 
 .Adding a module based on configured properties
 [source,java,indent=0]
@@ -274,129 +276,4 @@ public class DemoApplication
 }
 ----
 
-////
-* @Profile on module
-* @ConditionalOnProperty("production")
-////
-
-////
-[[enableacrosscontext]]
-[#enable-across-context]
-== @EnableAcrossContext
-Usually your application will consist of a single `AcrossContext` that is configured in the main Spring `ApplicationContext`.
-You can enable the automatic creation of an `AcrossContext` by putting the `@EnableAcrossContext` on any `@Configuration` class.
-This will initialize a new `AcrossContext` with the main `ApplicationContext` as parent, look for a <<across-datasource,default datasource bean>> named *acrossDataSource* and then configure modules based on the `@EnableAcrossContext` attribute values.
-
-=== AcrossContext autoconfiguration
-By default autoconfiguration of the `AcrossContext` will be enabled.
-This implies that all `AcrossModule` beans from the parent `ApplicationContext` will be configured, along with any modules specified by name on `@EnableAcrossContext`.
-
-When autoconfiguration is enabled, packages will be scanned to find valid module classes.
-Unless packages are configured manually using the *modulePackages* or *modulePackageClasses* attributes, the _com.foreach.across.modules_ package along with the package of the declaring `@Configuration` class will be scanned.
-
-WARNING: If you use `@EnableAcrossContext` on a top-level class (no package specified), package _modules_ and _com.foreach.across.modules_ will be used for default scanning.
-
-Scanning for modules in itself does not add any modules to the `AcrossContext`.
-It simply maps all modules that could be autoconfigured on their unique name.
-For a module to be autoconfigurable it should adhere to certain conventions, see the section on <<developing-modules.adoc#creating-an-across-module,creating an Across module>> for more details.
-
-NOTE: The module scanning packages and settings can be controlled through attributes on `@EnableAcrossContext`.
-
-WARNING: A module name should be unique.
-If you have more than one module with the same name, the last module scanned will take precedence.
-
-.Minimal example of using @EnableAcrossContext
-[source,java,indent=0]
-[subs="verbatim,quotes,attributes"]
-----
-/**
- * Minimal configuration that will attempt to resolve module MyCustomModule:
- * - in the standard modules package (com.foreach.across.modules)
- * - in the package that AppConfiguration belongs to
- *
- * If found, MyCustomModule and its required dependencies will be added to the AcrossContext.
- * If not found, AcrossContext bootstrapping will fail.
- */
-@Configuration
-@EnableAcrossContext( "MyCustomModule" )
-public class AppConfiguration
-{
-}
-----
-
-If you want to customize the module configuration or a module is not autoconfigurable, you can add it as a bean in the parent `ApplicationContext` instead.
-
-.Example adding a module as a bean
-[source,java,indent=0]
-[subs="verbatim,quotes,attributes"]
-----
-/**
- * AcrossWebModule is added to the AcrossContext by name.
- *
- * MyCustomModule is added as a bean in the ApplicationContext.
- * Because the bean implements AcrossModule, it will also be added to the AcrossContext.
- *
- * All required dependencies of either module will also be added if they can be found through scanning.
- */
-@Configuration
-@EnableAcrossContext( AcrossWebModule.NAME )
-public class AppConfiguration
-{
-    @Bean
-    public MyCustomModule myCustomModule() {
-        return new MyCustomModule();
-    }
-}
-----
-
-As the previous example shows, you can safely combine beans and named module configuration.
-Modules are configured in a certain order:
-
-. Modules defined by name on `@EnableAcrossContext`
-. Module beans detected in the `ApplicationContext`
-. Modules added through <<acrosscontextconfigurer,`AcrossContextConfigurer` instances>>
-. Missing module dependencies resolved during bootstrap
-
-If a module with the same name gets added more than once, the last version added will always win.
-
-
-[[conditional-modules]]
-== Conditional modules
-
-// AcrossContextConfigurer?
-
-
-[[acrosscontextconfigurer]]
-[#acrosscontextconfigurer]
-==== Customizing the AcrossContext
-After initial configuration but before bootstrapping, the configured `AcrossContext` will be delegated to all `AcrossContextConfigurer` beans it can find in the `ApplicationContext`.
-This allows for changing any settings before the actual bootstrap happens.
-
-.Example customizing an AcrossContext
-[source,java,indent=0]
-[subs="verbatim,quotes,attributes"]
-----
-@Configuration
-@EnableAcrossContext
-public class WebConfiguration implements AcrossContextConfigurer
-{
-	@Bean
-	public DataSource acrossDataSource() {
-		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName( "org.hsqldb.jdbc.JDBCDriver" );
-		dataSource.setUrl( "jdbc:hsqldb:mem:/hsql/testDataSource" );
-		dataSource.setUsername( "sa" );
-		dataSource.setPassword( "" );
-
-		return dataSource;
-	}
-
-	@Override
-	public void configure( AcrossContext context ) {
-		context.setDevelopmentMode( true );
-
-		context.addModule( new SomeModule() );
-	}
-}
-----
-////
+// TODO should we add a small paragraph on when a conditional module might be handy? e.g. when you have a more complex Test Data Module, or ... ?
