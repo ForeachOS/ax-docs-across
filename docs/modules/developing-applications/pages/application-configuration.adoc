@@ -44,7 +44,7 @@ public class StartupLogger {
 }
 ----
 <1> The `@Value` annotation can be used to perform expression based dependency injection.
-In combination with the property syntax or the Spring Expression Language (SpEL), we can also use it to fetch properties from our configuration file.
+In combination with the property syntax or the Spring Expression Language (SpEL), it can be used to fetch properties from a configuration file or beans.
 
 Run the application.
 
