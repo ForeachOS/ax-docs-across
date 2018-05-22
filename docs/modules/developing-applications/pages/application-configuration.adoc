@@ -33,7 +33,7 @@ Modify the `StartupLogger` class to the one below:
 @Slf4j
 public class StartupLogger {
 
-    @Value( "${applicationKey}" )
+    @Value( "${applicationKey}" ) # <1>
     private String applicationKey;
 
     @Bean
@@ -43,6 +43,8 @@ public class StartupLogger {
     }
 }
 ----
+<1> The `@Value` annotation can be used to perform expression based dependency injection.
+In combination with the property syntax or the Spring Expression Language (SpEL), we can also use it to fetch properties from our configuration file.
 
 Run the application.
 
@@ -104,19 +106,19 @@ public class StartupLogger {
 }
 ----
 
-<1> We are wiring our configuration class here.
-<2> The `applicationKey` YAML entry is now automatically mapped onto the configuration class by Spring and we can retrieve it using the getter.
+<1> The configuration class is wired.
+<2> The `applicationKey` YAML entry is now automatically mapped onto the configuration class by Spring and can be retrieved through the getter.
 
-The advantage of doing this that:
+The advantage of doing this are:
 
-* You can easily bundle configuration values belonging to the same 'object'.
+* Configuration values belonging to the same 'object' can be bundled.
 For example, you can bundle FTP properties like hostname, username and password into an `FtpProperties` configuration class.
-* Instead of having multiple `@Value` annotations, you only need to map one configuration class, making your code less verbose.
+* Instead of having multiple `@Value` annotations, a single configuration class has to be mapped, making your code less verbose.
 * You can take advantage of Spring validation, to validate configuration values at application startup.
 
 Have a look at https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/html/boot-features-external-config.html#boot-features-external-config-typesafe-configuration-properties[Spring Boot Externalized Configuration] for more information.
 
-In the next section we will learn how to specify different values per configuration item, for example to differentiate between development and production enviroments.
+In the next section we will learn how to specify different values per configuration item, for example to differentiate between development and production environments.
 
 [[application-profiles]]
 == Application profiles
@@ -176,7 +178,7 @@ Let's fix this and start our application with the `dev` profile.
 $ mvn spring-boot:run -Dspring-boot.run.profiles=dev
 ----
 
-WARNING: Because we are running the application with the spring-boot-maven-plugin, the property is actually `spring-boot.run.profiles`.
+WARNING: Because we are running the application with the spring-boot-maven-plugin, the parameter that should be passed is actually `spring-boot.run.profiles`.
 
 Alterntatively, you could fix this by using an environment variable instead:
 
