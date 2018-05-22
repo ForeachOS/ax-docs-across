@@ -161,7 +161,7 @@ INFO --- [ost-startStop-1] c.e.demo.application.StartupLogger       : Your appli
 ****
 *Why is this?*
 
-You specified configuration values in several configuration values, but you did not specify which profile needed to be active.
+You specified configuration values in several configuration files, but you did not specify which profile needs to be active.
 This can be done by specifying the `spring.profiles.active` property when starting the application.
 
 A hint was also in the console:
@@ -180,7 +180,7 @@ $ mvn spring-boot:run -Dspring-boot.run.profiles=dev
 
 WARNING: Because we are running the application with the spring-boot-maven-plugin, the parameter that should be passed is actually `spring-boot.run.profiles`.
 
-Alterntatively, you could fix this by using an environment variable instead:
+Alterntatively, an environment variable could be used instead:
 
 ----
 $ SPRING_PROFILES_ACTIVE=dev mvn spring-boot:run
