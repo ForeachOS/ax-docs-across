@@ -195,7 +195,7 @@ In the following examples, you'll add `DebugWebModule` to the application once a
 
 First off, you'll add the module when starting the application with the `dev` profile.
 
-If you haven't read about application profiles yet, have a look xref:application-configuration.adoc#application-profiles[here].
+If you haven't read about application profiles yet, take a look at xref:application-configuration.adoc#application-profiles[Application profiles].
 
 .Adding a module when the dev profile is present
 [source,java,indent=0]
