@@ -1,15 +1,142 @@
 = Interacting with modules
 
+On this page, you will:
+
+* [*] Use the `ObjectMapper` component from the `AcrossWebModule`.
+* [*] Learn how to use events to modify a menu from DebugWebModule.
+
 [[using-components]]
 == Using components from modules
 
-////
-* autowire objectMapper to serialize an object
-////
+In previous chapters you have seen how to xref:adding-modules.adoc[add modules] to your xref:creating-an-application/application-descriptor.adoc[application descriptor].
+Each module can define several components, but you will never be able to use these components outside of your module.
+
+****
+*Why is this?*
+
+By default, Across will create an `ApplicationContext` per module.
+
+Any Spring `@Component` or `@Service` defined in this module is only visible inside that module.
+****
+
+A module can *expose* certain components or beans, so they can be used in any other module.
+
+`AcrossWebModule` will expose certain objects, like the `ObjectMapper` class.
+Doing this, you can wire this bean in any other module when you require object conversion.
+
+First, modify your xref:creating-an-application/application-descriptor.adoc[application descriptor] to include `AcrossWebModule`.
+
+.Adding AcrossWebModule to the application descriptor
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@AcrossApplication(
+		modules = {
+				AcrossWebModule.NAME # <1>
+		}
+)
+public class DemoApplication
+{
+
+}
+----
+
+<1> Add `AcrossWebModule` to your application descriptor.
+
+In the following example we will wire the `ObjectMapper` to convert a `User` object to JSON and back again.
+
+Modify your `StartupLogger` class to the one below.
+
+.A component which converts to JSON and back to a User object.
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@Component
+@Slf4j
+@RequiredArgsConstructor
+public class StartupLogger {
+
+    private final ObjectMapper objectMapper; # <1>
+
+    @Bean
+    public Void dummyBean() throws IOException {
+        User user = User.builder().firstName("Jane").lastName("Doe").build();  # <2>
+        String json = objectMapper.writeValueAsString( user );  # <3>
+        LOG.info("This user in json: {}", json );
+        LOG.info( "The json converted back into a user object: {}", objectMapper.readValue(json, User.class) );  # <4>
+        return null;
+    }
+
+    @Data  # <5>
+    @Builder  # <6>
+    @NoArgsConstructor  # <7>
+    @AllArgsConstructor  # <8>
+    private static final class User {
+        private String firstName;
+        private String lastName;
+    }
+}
+
+----
+
+<1> We use the Jackson `ObjectMapper` bean, which is exposed by `AcrossWebModule` by default.
+<2> We use a builder to create a `User` object.
+<3> We use the objectMapper to convert this user to a a JSON string.
+<4> The JSON string is converted back to a User class.
+<5> We require getters/setters, so that the `ObjectMapper` can find the fields when mapping from JSON to a `User` object.
+<6> We use a builder to quickly create a `User` object.
+<7> The `@NoArgsConstructor` is required so that the `ObjectMapper` can create a `User` object when converting from JSON to a `User` object.
+<8> The `@AllArgsConstructor` is required by the `@Builder`.
+
+Now run the application.
+
+----
+$ mvn spring-boot:run
+----
+
+In the console you should see the following:
+
+----
+INFO --- [ost-startStop-1] c.e.demo.application.StartupLogger       : This user in json: {"firstName":"Jane","lastName":"Doe"}
+INFO --- [ost-startStop-1] c.e.demo.application.StartupLogger       : The json converted back into a user object: StartupLogger.User(firstName=Jane, lastName=Doe)
+
+----
 
 [[working-with-events]]
 == Working with events
 
-////
-* modify debugweb menu
-////
+Since all components are scoped to the current module, you need a way to communicate between modules.
+
+Using events, one module can send out an event and all other modules that are listening to this event, can act upon it.
+
+In the following example, we will listen to the `DebugMenuEvent` from the `DebugWebModule` to modify the menu.
+
+Modify your `StartupLogger` class to the one below.
+
+.A component which listens to the DebugMenuEvent and modifies the menu.
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@Component
+public class StartupLogger {
+
+    @EventListener # <1>
+    public void buildMainMenu(DebugMenuEvent event) {  # <2>
+        event.builder()
+                .group("/across-docs", "Across").and()  # <3>
+                .item("/across-docs/site", "Across documentation", "https://across-docs.foreach.be")  # <4>
+                .and()
+                .changeItemPath("/across", "/across-docs");  # <5>
+    }
+}
+----
+
+<1> We use the https://docs.spring.io/spring/docs/4.3.14.RELEASE/spring-framework-reference/htmlsingle/#context-functionality-events[Spring's `@EventListener`] to catch events.
+<2> We are listening to events of type `DebugMenuEvent`, which is published when the menu is about to be built.
+<3> We create a new menu group called `Documentation`, in which we will add a new menu item.
+<4> We create a new menu item which links to our documentation.
+<5> We move all other paths under `/across` underneath this new menu group. In this case the Across Context Browser will move to the `Documentation` dropdown.
+
+You can see an overview of events published by Across Web components is available xref:across-web:published-events.adoc[here].
+
+For a more in-depth overview of menu's, visit the page xref:across-web:web-views/working-with-menus.adoc[Working with menus].
