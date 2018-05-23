@@ -102,14 +102,14 @@ public class DemoApplication {
 ```
 <1> The provided configuration properties for the datasource are mapped to a DatasourceProperties instance by using `@ConfigurationProperties`.
 <2> The acrossDataSource bean will be the primary datasource, as such, we annotate it with `@Primary`.
-The `@Primary` is used to specify which bean should be preferably wired, when there are multiple beans that could be wired.
+The `@Primary` is used to specify which bean should be preferably wired, when multiple beans of the same type are available. +
 The `DataSourceProperties` for the primary datasource are also marked with the `@Primary` annotation.
 <3> An additional datasource is created, similar to the primary datasource.
 
 WARNING: When using multiple datasources, one datasource has to be specified as the primary datasource to be used.
 
-Now, to check whether these datasources are found by the application, DebugWebModule can be used.
-When we navigate to the `/debug` path of the application, there will be a menu *Datasources*, with a sub menu item *Overview*.
+Now, to check whether these datasources are found by the application, `DebugWebModule` can be used.
+When we navigate to the `/debug` path of the application, there will be a menu *Datasources*, with a submenu item *Overview*.
 On the overview page, two datasources will be listed, as well as their metadata information.
 
 image::debug-web-datasource-overview.png[Listing of datasources by DebugWebModule]
@@ -123,8 +123,9 @@ Additionally a second datasource can be configured that will be available as the
 If no separate installer datasource is specified, the default across datasource will be used.
 
 .Installers
-Across only actually needs a datasource if you want to execute installers or use the `DistributedLockRepository` directly.
-The datasource is used for keeping track of which installers have been executed.
+Across only needs a datasource if you want to execute installers or use the `DistributedLockRepository` directly.
+The datasource is used to keep track of which installers have been executed.
+
 ////
 === Using JdbcTemplate
 Currently not supported.
