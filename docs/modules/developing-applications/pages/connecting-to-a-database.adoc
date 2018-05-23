@@ -62,7 +62,7 @@ app: # <1>
             username: sa-users
             password:
 ```
-<1> to avoid confusion with a single datasource configured through spring, we shall use the prefix app.
+<1> To avoid confusion with a single datasource configured through spring, we shall use the prefix app.
 
 Once the datasource properties have been specified, the datasource beans can be created.
 
@@ -101,12 +101,12 @@ public class DemoApplication {
 }
 ```
 <1> The provided configuration properties for the datasource are mapped to a DatasourceProperties instance by using `@ConfigurationProperties`.
-<2> The acrossDataSource bean will be the primary datasource, as such, we annotate it with `@Primary`.
-The `@Primary` is used to specify which bean should be preferably wired, when multiple beans of the same type are available. +
-The `DataSourceProperties` for the primary datasource are also marked with the `@Primary` annotation.
+<2> The xref:connecting-to-a-database.adoc#across-datasource[acrossDataSource] bean will be the primary datasource, as such, we annotate it with `@Primary`.
+The `@Primary` is used to specify which bean should be preferably wired, when multiple beans of the same type are available.
+The `DataSourceProperties` for the primary datasource are also marked with the `@Primary` annotation to ensure it is the default bean to be wired when ambiguity occurs.
 <3> An additional datasource is created, similar to the primary datasource.
 
-WARNING: When using multiple datasources, one datasource has to be specified as the primary datasource to be used.
+WARNING: When using multiple datasources, one datasource has to be specified as the primary datasource to be used as other modules may attempt to use the configured datasource (for example HibernateModule).
 
 Now, to check whether these datasources are found by the application, `DebugWebModule` can be used.
 When we navigate to the `/debug` path of the application, there will be a menu *Datasources*, with a submenu item *Overview*.
@@ -114,6 +114,7 @@ On the overview page, two datasources will be listed, as well as their metadata 
 
 image::debug-web-datasource-overview.png[Listing of datasources by DebugWebModule]
 
+[[across-datasource]]
 == The Across DataSource
 An Across context supports the configuration of a `DataSource` instance.
 If there is a primary `DataSource` or only a single `DataSource` bean available, Across will automatically use that one.
