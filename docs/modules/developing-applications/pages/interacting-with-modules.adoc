@@ -16,7 +16,7 @@ Each module can define several components, but you will never be able to use the
 
 By default, Across will create an `ApplicationContext` per module.
 
-Any Spring `@Component` or `@Service` defined in this module is only visible inside that module.
+Any Spring bea, for example a `@Component` or `@Service`, defined in this module is only visible inside that module.
 ****
 
 A module can *expose* certain components or beans, so they can be used in any other module.
@@ -123,7 +123,7 @@ public class StartupLogger {
     @EventListener # <1>
     public void buildMainMenu(DebugMenuEvent event) {  # <2>
         event.builder()
-                .group("/across-docs", "Across").and()  # <3>
+                .group("/across-docs", "Documentation").and()  # <3>
                 .item("/across-docs/site", "Across documentation", "https://across-docs.foreach.be")  # <4>
                 .and()
                 .changeItemPath("/across", "/across-docs");  # <5>
