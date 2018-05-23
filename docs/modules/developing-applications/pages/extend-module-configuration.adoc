@@ -14,8 +14,8 @@ On this page, you will:
 
 == AcrossBootstrapConfigurer
 
-You can implement the `AcrossBootstrapConfigurer` interface to alter the module and Across context configuration that is to be started.
-xref:across-autoconfigure:ROOT:chap-auto-configuration.adoc[Auto-configuration compatibility adapters] often implement this interface to inject the configurations in the relevant modules.
+To modify the Across context configuration or a bootstrapped module the `AcrossBootstrapConfigurer` interface can be implemented.
+xref:across-autoconfigure:ROOT:chap-auto-configuration.adoc[Auto-configuration compatibility adapters] often implement this interface to inject the configurations into the relevant modules.
 
 For the following example we will use the `AdminWebModule` to enhance the standard security configuration.
 
@@ -101,7 +101,7 @@ An easier alternative is to use `@ModuleConfiguration`, explained in the next se
 
 This specialised annotation acts like a `@Configuration` class, but executes inside the scope of a specific module.
 
-The above example can be rewritten just using one configuration class.
+The above example can be rewritten to using just one configuration class.
 
 First, add a dependency to `admin-web-module` in your pom.xml.
 
