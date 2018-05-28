@@ -3,9 +3,12 @@
 
 On this page, you will:
 
-* [*] Use the Across Initializr.
-* [*] Create a Blank Across Application.
+* [*] Create a Blank Across project using the Across Initializr.
 * [*] Use Spring Boot Maven Runner to run the application.
+
+== Prerequisites
+
+To get started building applications using Across you need at least Java 8 and https://maven.apache.org[Maven 3+] installed.
 
 == Getting started
 
@@ -23,7 +26,9 @@ Extract the zip file and run the application.
 $ mvn spring-boot:run
 ----
 
-In the console you will see the modules that are being bootstrapped:
+This will start the Across application including an embedded Tomcat server running on port 8080.
+Any Across application is made up of a number of modules that are started in order.
+In the console output you can see the modules being bootstrapped:
 
 ----
 INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : ---
@@ -36,8 +41,25 @@ INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : ---
 
 <1> The `DemoApplication` is the xref:creating-an-application/application-descriptor.adoc[application descriptor] for this application.
 <2> The `DemoApplicationModule` is one of the xref:default-modules.adoc[dynamic across modules].
-These are special modules which serve a specific use case.
-The application module contains the application specific code.
+The application module is automatically created and contains the application specific code.
 See the xref:default-modules.adoc#dynamic-application-module[dynamic application module] for more information.
-<3> The `AcrossContextPostProcessorModule` is a specialised Across module, which is automatically enabled when the `across-autoconfigure` artifact is included in your project.
-It facilitates https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/html/using-boot-auto-configuration.html[Spring Boot Auto-configuration] across different modules, for more information see: xref:across-autoconfigure:ROOT:chap-auto-configuration.adoc#acrosscontextpostprocessormodule[Auto-configuration support]
+<3> The `AcrossContextPostProcessorModule` is another default module that is always present in your project.
+It facilitates https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/html/using-boot-auto-configuration.html[Spring Boot Auto-configuration] across different modules, for more information see: xref:across-autoconfigure:ROOT:chap-auto-configuration.adoc#acrosscontextpostprocessormodule[Auto-configuration support].
+Applications usually don't need to bother directly with this module.
+
+Our sample application includes an embedded Tomcat webserver.
+At the end of the console output you see the port the Tomcat server was started on, along with a final message that indicates the application is fully started.
+
+----
+INFO --- [  restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
+INFO --- [  restartedMain] com.example.demo.DemoApplication         : Started DemoApplication in 3.36 seconds (JVM running for 7.7)
+----
+
+When using an embedded webserver, the actual webserver is usually started at the very end of the application bootstrap.
+You can visit `http://localhost:8080` to get the default Tomcat 404 page (since we have an empty application).
+
+We have now created and started a fully functional Across application.
+From the console you can shutdown the application again using `Ctrl+C`.
+
+== Next step
+Learn about the xref:creating-an-application/application-descriptor.adoc[application descriptor].
