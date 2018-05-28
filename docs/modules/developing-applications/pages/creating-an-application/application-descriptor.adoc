@@ -47,10 +47,46 @@ public class DemoApplication
 <1> `@AcrossApplication` annotation that defines which modules are present.
 <2> The Application Descriptor usually contains the Java `main` method for starting the entire application (as a Spring Boot app).
 
+=== Adding a module
 The `@AcrossApplication` has several attributes to define the initial application configuration.
-Chapter xref:across:developing-applications:adding-modules.adoc[adding modules] shows you can add modules directly to the `@AcrossApplication` annotation.
 
-Additional components can also be defined in the Application Descriptor as regular Spring components.
+The easiest way to add a module to your application is by specifying the unique module name in the `modules` attribute of `@AcrossApplication`.
+The xref:across:across-web:index.adoc[AcrossWebModule] dependency is automatically added to our sample project, but the module itself is not.
+
+You can activate Across Web support by adding the module name to the list:
+
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@AcrossApplication( modules = { AcrossWebModule.NAME } ) # <1>
+public class DemoApplication
+{
+	public static void main( String[] args ) {
+		SpringApplication.run( DemoApplication.class, args );
+	}
+}
+----
+
+<1> We use the `AcrossWebModule.NAME` constant to refer to the unique module name.
+
+When restarting the application, you now see in the console output that the AcrossWebModule is also being bootstrapped.
+
+----
+---
+AcrossContext: DemoApplication (AcrossContext-1)
+Bootstrapping 3 modules in the following order:
+1 - AcrossWebModule [resources: ]: class com.foreach.across.modules.web.AcrossWebModule # <1>
+2 - DemoApplicationModule [resources: demo]: class com.foreach.across.core.DynamicAcrossModule$DynamicApplicationModule
+3 - AcrossContextPostProcessorModule [resources: AcrossContextPostProcessorModule]: class com.foreach.across.core.AcrossContextConfigurationModule
+---
+----
+
+<1> AcrossWebModule has been added to the application and will bootstrap first.
+
+Chapter xref:across:developing-applications:adding-modules.adoc[Adding modules] shows other ways to add modules to the Application Descriptor.
+
+Apart from actual modules, the Application Descriptor also allows you to define additional application infrastructure as Spring beans.
+
 
 == Across applications and Spring Boot
 
