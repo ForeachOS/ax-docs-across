@@ -2,61 +2,82 @@
 
 On this page, you will:
 
-* [*] Learn about the central entry point of an Across application.
-* [*] Learn more about the bootstrapping of an Across application.
+* [*] Learn about Across Application and Module.
+* [*] Learn what the Across Application Descriptor is.
+* [*] Get some background on the relation between Across and Spring.
+
+== Application and Modules
+
+Any Across application is made up of a number of Across modules.
+An Across module defines components and resources that together provide a set of functionality for your application.
+A single module can provide a complete user interface for your application or just a single service to integrate with a remote datastore.
+
+The components that a module provides can be internal to that module, or they can be made available for other modules.
+
+Across modules can depend on other modules.
+When an Across application starts it will first build a dependency tree of all modules and then start each module in the order determined by its dependencies.
+
+The Across *Application Descriptor* defines:
+
+* the entry point of an Across application
+* which modules are present in the application
+* which components and related infrastructure are available to all modules of the application
+
+The Across Application Descriptor is defined by the *single class* annotated with `@AcrossApplication`.
 
 [[across-application]]
 [#across-application]
 == @AcrossApplication
 
-The Across application descriptor is the central entry point of our application and is described by the `@AcrossApplication` annotation.
-`@AcrossApplication` is the equivalent of `@SpringBootApplication` when defining an Across application.
-In addition to default context configuration options, it also adds selected xref:ROOT:spring-boot-compatibility.adoc#spring-boot[Spring Boot autoconfiguration classes] and enables xref:default-modules.adoc#dynamic-across-modules[dynamic modules].
+An Across application can have exactly one class annotated with `@AcrossApplication`.
+This marks the class as the Across Application Descriptor.
 
-
-
-.Minimal example of a Spring Boot based Across application
 [source,java,indent=0]
 [subs="verbatim,quotes,attributes"]
 ----
 @AcrossApplication( modules = {} ) # <1>
 public class DemoApplication
 {
-	public static void main( String[] args ) {
-		SpringApplication.run( DemoApplication.class, args ); # <2>
+	public static void main( String[] args ) {  # <2>
+		SpringApplication.run( DemoApplication.class, args );
 	}
 }
 ----
 
 <1> `@AcrossApplication` annotation that defines which modules are present.
-<2> Launch a Spring Boot application when the `main` method is executed.
+<2> The Application Descriptor usually contains the Java `main` method for starting the entire application (as a Spring Boot app).
 
-During application startup, logging provides some context about what is happening.
-In the following snippet, we can see which modules are being bootstrapped when the application is started.
+The `@AcrossApplication` has several attributes to define the initial application configuration.
+Chapter xref:across:developing-applications:adding-modules.adoc[adding modules] shows you can add modules directly to the `@AcrossApplication` annotation.
 
+Additional components can also be defined in the Application Descriptor as regular Spring components.
 
-.Abbreviated logging output during application startup
-----
-...
-INFO --- [ost-startStop-1] c.f.a.c.AcrossDynamicModulesConfigurer   : Adding package based APPLICATION module DemoApplicationModule, resources: demo, base package: com.example.demo.application # <1>
-INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : ---
-INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : AcrossContext: DemoApplication (AcrossContext-1)
-INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : Bootstrapping 2 modules in the following order: # <2>
-INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 1 - DemoApplicationModule [resources: demo]: class com.foreach.across.core.DynamicAcrossModule$DynamicApplicationModule
-INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 2 - AcrossContextPostProcessorModule [resources: AcrossContextPostProcessorModule]: class com.foreach.across.core.AcrossContextConfigurationModule
-INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : ---
-...
-----
+== Across applications and Spring Boot
 
-<1> Creates a dynamic application module for the application being bootstrapped, based on the *application* package.
-<2> Displays which modules are bootstrapped as well as the order they are bootstrapped in.
+Across applications execute as Spring Boot applications.
+If you are familiar with Spring Boot, `@AcrossApplication` is the equivalent of `@SpringBootApplication`.
+
+The Across Application Descriptor is also a regular Spring `@Configuration` class.
+It can contain `@Bean` methods or define any other components.
+These components will then be available for all modules.
+
+[WARNING]
+====
+An Across application is made up of several Across modules.
+Every module is its own Spring `ApplicationContext` with the Across Application Descriptor providing a shared parent `ApplicationContext`.
+
+This is different from most regular Spring Boot applications that only define a single `ApplicationContext` holding all components.
+Across encourages you to bundle components as much as possible in separate modules, as such you should limit the configuration of your Application Descriptor to the minimum required.
+====
+
+Because Across applications run on top of Spring Boot, most regular Spring libraries can be adapted to work in a multi-module Across application.
+Across applications also have some support for xref:across-autoconfigure:ROOT:index.adoc[Spring Boot autoconfiguration classes].
 
 [[embedded-servlet-container]]
-=== Embedded servlet container
-Using `@AcrossApplication` adds the necessary Spring Boot auto configuration classes for embedded servlet containers.
-If you have *spring-boot-starter-tomcat* on the classpath, you can run an Across based application inside an embedded Tomcat.
+=== Embedded servlet container example
+An example of the Spring Boot autoconfiguration support is the embedded Tomcat webserver in our sample application.
+Because `spring-boot-starter-tomcat` is added as a Maven dependency, an embedded Tomcat will be automatically started when running the application.
 
-.Abbreviated logging output during application startup
 ----
 ...
 INFO --- [  restartedMain] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http) # <1>
@@ -75,3 +96,6 @@ By default, it will start the application on port 8080, this can also be configu
 <4> The application has fully started.
 
 You can find more information on embedded servlet containers in the https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/html/howto-embedded-servlet-containers.html[Spring Boot documentation].
+
+== Next step
+Read about the xref:creating-an-application/project-structure.adoc[application project structure].
