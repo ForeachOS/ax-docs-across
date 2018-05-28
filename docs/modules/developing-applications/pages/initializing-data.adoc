@@ -10,7 +10,7 @@ On this page, you'll learn:
 
 * [*] What installers are
 * [*] How to create a database schema
-* [*] How to insert data into a database table. using JPA.
+* [*] How to insert data into a database table using mapped domain entities.
 
 == Installers
 
