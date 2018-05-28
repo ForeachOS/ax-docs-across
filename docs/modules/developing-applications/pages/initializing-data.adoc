@@ -10,21 +10,22 @@ On this page, you'll learn:
 
 * [*] What installers are
 * [*] How to create a database schema
-* [*] How to create insert default/test data
+* [*] How to insert data into a database table. using JPA.
 
 == Installers
 
-Installers are a special type of bean annotated with the `@Installer` annotation.
-During the start-up phase of the application, the installers will be created and executed by Across, and afterwards will no longer be available in the application.
-This allows developers to initialize data for their applications, for example to create test data or database tables, or to simply insert data in to the database on startup.
+Installers are components annotated with the `@Installer` annotation, that allow developers to perform additional initialization for their applications, for example to create database tables, test or default data.
+During the start-up phases of the application, these components are created and executed if necessary, and afterwards destroyed.
+As such, installers are only available during the start-up phases of the application.
 
 === Creating a database schema
 
-Let's start of with a simple example where we create a simple database table with liquibase.
+One of the most common use cases for installers is to create database schemas.
+Let's start of with a simple example where we create a simple database table using liquibase.
 
-To do so, first we'll need to create an xml file in which we define liquibase changesets to create a table.
+To do so, we'll start by creating an xml file in which we use a liquibase database changelog to create a table.
 The xml file should be placed in the resources directory of the project.
-As good practice, it is advised to place it in a folder named *installers*.
+As good practice, it is advised to place it in a folder named *installers/{application-name}*, with a naming strategy based on your application to prevent possible name conflicts or overwrites.
 
 .Example liquibase database changelog
 ```
@@ -68,16 +69,23 @@ As good practice, it is advised to place it in a folder named *installers*.
 <1> Definition of global properties to be used within the changesets.
 Properties are replaced by their value during execution.
 <2> A changeset is defined.
-Changesets always require a unique identifier and an author.
+Changesets always require a unique identifier (`id`) and an author.
 <3> Preconditions are defined as to when the changeset should be executed.
-In this example, we check for the existence of the user table.
+In this example, we check for the existence of the table we are going to create.
 Should the table exist, then it does not have to be created and this changeset may be marked as ran.
-<4> Optionally, a comment can be added to further describe what the changeset does.
+<4> Optionally, a comment can be added to further describe which changes are performed.
 <5> A create table statement is defined.
 
 Through the use of an installer, we can now execute the aforementioned liquibase script when the application is started.
-Let's add an installer to the project.
-To do so, we'll add an installer to the *installers* package under the *application* package
+Take a look the link:https://www.liquibase.org/documentation/index.html[liquibase documentation] to learn more about its features.
+
+We've got our database changelog, now we still need to execute it.
+Let's add an installer to the project which will execute the changesets found in the aforementioned xml file.
+As installers are a special type of bean that should only exist during the startup phases of our application, we want to make sure that those beans do not get created automatically.
+To ensure that, we'll add them to the `installers` package within our `application` package, which is scanned by Across for installer beans.
+
+NOTE: The `installers` package is one of the special packages that is not scanned automatically for any type of beans.
+It is however, specifically scanned to create `Installer` beans during the application startup phases.
 
 .Example database schema installer
 [source,java,indent=0]
@@ -88,20 +96,21 @@ To do so, we'll add an installer to the *installers* package under the *applicat
 public class SchemaInstaller extends AcrossLiquibaseInstaller # <3>
 {
 	public SchemaInstaller() {
-		super( "classpath:installers/demo/schema/main.xml" ); # <4>
+		super( "classpath:installers/demo/schema/DemoSchemaInstaller.xml" ); # <4>
 	}
 }
 ----
 <1> Installers are executed in the order they are picked up.
 An explicit ordering can be defined using the `@Order` annotation.
 <2> The `@Installer` annotation is present and various parameters are defined.
-This means that it can be found by Across and executed during the startup phase.
-The `runCondition` parameter defines whether the installer should *always* be executed, or only *when necessary* (e.g. through versioning)
+This means that it can be found by Across and executed during one of the startup phases.
+The `runCondition` parameter defines whether the installer should *always* be executed, or only *when necessary* (e.g. through versioning).
+The version parameter defaults to `1`, as such, it is not required to provide the parameter, unless you want/have increased the version of the installer before.
 <3> For ease of use, a `AcrossLiquibaseInstaller` class has been defined.
-This is a base class for Installers to execute liquibase changelog scripts based on a given xml file.
+This is a base class for Installers to execute liquibase database changelog scripts based on a given xml file.
 <4> Define the path to the xml file that contains the liquibase changelog script.
 
-When we now start up our application, the installer is automatically picked up by across and executed.
+Whilst the application is being started, the installer is automatically picked up by across and executed.
 
 .Abbreviated logging output during application startup
 ----
@@ -109,36 +118,37 @@ When we now start up our application, the installer is automatically picked up b
 INFO --- [ost-startStop-1] f.a.c.i.AcrossBootstrapInstallerRegistry : Executing installer schema-installer for module DemoApplicationModule # <1>
 INFO --- [ost-startStop-1] liquibase                                : Successfully acquired change log lock
 INFO --- [ost-startStop-1] liquibase                                : Reading from PUBLIC.DATABASECHANGELOG
-INFO --- [ost-startStop-1] liquibase                                : classpath:installers/demo/schema/main.xml: classpath:installers/demo/schema/main.xml::201805231424::stg: Table table_user created
-INFO --- [ost-startStop-1] liquibase                                : classpath:installers/demo/schema/main.xml: classpath:installers/demo/schema</main.xml::201805231424::stg: ChangeSet classpath:installers/demo/schema/main.xml::201805231424::stg ran successfully in 8ms
+INFO --- [ost-startStop-1] liquibase                                : classpath:installers/demo/schema/DemoSchemaInstaller.xml: classpath:installers/demo/schema/DemoSchemaInstaller.xml::201805231424::stg: Table table_user created
+INFO --- [ost-startStop-1] liquibase                                : classpath:installers/demo/schema/DemoSchemaInstaller.xml: classpath:installers/demo/schema/DemoSchemaInstaller.xml::201805231424::stg: ChangeSet classpath:installers/demo/schema/DemoSchemaInstaller.xml::201805231424::stg ran successfully in 8ms
 ...
 ----
 <1> The schema installer is executed.
 
-This can also quickly be checked through the h2-console, where the users table can be found.
-In addition to the users table, other tables have been created as well.
+This can also quickly be checked through the h2-console, where our newly created table can be found.
+In addition to the `table_user`, other tables have been created as well, which were created by the core schema.
 
 image::h2-console-table-user.png[User table is present in h2-console]
 
 Installer execution is tracked to ensure that installers are only run if they have not yet been executed, which is specified through the `runCondition` and `version` parameters.
-Tracking is done by the AcrossInstallerRepository, which can also be wired as a bean in installers.
+Tracking is done by the `AcrossInstallerRepository`, which can also be wired as a bean in installers.
 This could be helpful in migration trajectories for example to rename installers.
 
-Aside of tracking, execution is also synchronized for when multiple applications would connect to the same database through the use of a xref:initializing-data#distributed-lock-repository[DistributedLockRepository] that is created in the core schema.
+Aside of tracking, execution is also synchronized for when multiple applications would connect to the same database through the use of a `DistributedLockRepository` that is created in the core schema.
+The `DistributedLockRepository` provides a simple locking mechanism for RDBMS synchronization.
 A lock will be taken on the database as soon as a single installer wishes to execute, and will be released once that installer has finished executing.
 The lock owner will contain the hostname of the computer running the application, as well as the displayName of the AcrossContext.
-Because of tracking and synchronization, a datasource is required in order to execute installers.
+
+WARNING: Because of tracking and synchronization, a datasource is required in order to execute installers.
+This is because the `DistributedLockRepository` relies on tables created in the core schema.
 
 === Installing default or test data
 
-As mentioned, installers are spring beans that only exist during the bootstrap phase of the application.
-This means that we can wire other beans directly into this component, and thus, interact with those beans.
-
+As mentioned, installers are spring beans that only exist during the bootstrap phase of the application, which means that other beans can be wired directly into this component.
 This means that we can also define installers that simply insert data into the database.
 Let's insert a default admin user in the table that we've created in the section above.
 
-To do so, we'll require a domain model, the User class, and a corresponding repository, the UserRepository.
-We'll be using spring to map our entity to the database model, as such we'll add a dependency on the Spring boot JPA starter.
+In the following example, we'll create a domain model, for example a `User` class, and a corresponding repository, a `UserRepository`.
+We're going to use Spring and Hibernate to interact with the database model, so we'll add a dependency on the Spring boot JPA starter.
 
 .Abbreviated pom.xml dependencies
 [source,xml,indent=0]
@@ -155,7 +165,7 @@ We'll be using spring to map our entity to the database model, as such we'll add
     ...
 ----
 <1> Dependency to the Spring Data JPA starter.
-Note that we do not have to specify a version, because transitively across has a dependency on the Spring boot dependencies pom through on the Spring platform dependency.
+Note that we do not have to specify a version, because across has a dependency transitively on the Spring boot dependencies pom through its Spring platform dependency.
 
 .Example User class
 [source,java,indent=0]
@@ -192,12 +202,10 @@ public class User implements Persistable<Long> { # <4>
 }
 ----
 <1> `@Table` and `@Entity` are annotations used for persistence.
-<2> `@Data` will generate various methods to make our class more compact.
-Amongst these methods are a constructor, getters and setters.
-<3> `@Builder` enables the use of a fluent api to construct the entity.
-<4> Spring data JPA is used, as such the `Persistable` interface must be implemented to allow our entity to be fetched using a typed identifier.
-Persistable itself requires that `getId()` and `isNew()` are implemented.
-`isNew()` is used to check whether the entity has already been persisted.
+<2> link:https://projectlombok.org/features/Data[`@Data`] provides a shortcut for `@ToString`, `@EqualsAndHashCode`, `@Getter`, `@Setter` and `@RequiredArgsConstructor`.
+<3> link:https://projectlombok.org/features/Builder[`@Builder`] enables the use of a fluent api to construct the entity.
+<4> The `Persistable` interface is implemented to further complete the mapping to our database model.
+Persistable requires `getId` to be implemented to fetch the id of the entity and `isNew()` is used to check whether the entity has already been persisted once before.
 
 .Example UserRepository class
 [source,java,indent=0]
@@ -207,7 +215,7 @@ public interface UserRepository extends JpaRepository<User, Long> { # <1>
 }
 ----
 <1> By extending `JpaRepository`, which is a specification of the `Repository` marker interface, Spring is able to automatically detect and create repository beans.
-See link:https://docs.spring.io/spring-data/data-commons/docs/1.6.1.RELEASE/reference/html/repositories.html[Working with spring data repositories] and link:https://docs.spring.io/spring-data/jpa/docs/1.4.3.RELEASE/reference/html/jpa.repositories.html[JPArepositories] to learn more about the options they provide.
+See link:https://docs.spring.io/spring-data/data-commons/docs/1.6.1.RELEASE/reference/html/repositories.html[Working with Spring Data repositories] and link:https://docs.spring.io/spring-data/jpa/docs/1.4.3.RELEASE/reference/html/jpa.repositories.html[JPA repositories] to learn more about the possibilities they provide.
 
 Now that we've created a domain entity and a repository, let's create an installer and insert data into the database.
 
@@ -229,31 +237,14 @@ public class UserInstaller {
 }
 ----
 <1> The `@Installer` annotation is provided so that the installer can be found and executed by Across.
-This time around, an additional parameter has been added, being `phase`.
-`phase` enables the developer to define during which bootstrap phase the installer should be executed.
+This time around, an additional parameter `phase` has been added, which enables the developer to define during which bootstrap phase the installer should be executed.
 The default phase is `InstallerPhase.BeforeContextBootstrap` which ensures that installers are executed before any modules are bootstrapped.
-This allows installers to be executed before beans are created and is usually used to create database schemas.
+This allows installers to be executed before beans are created and is usually used when creating database schemas.
 `InstallerPhase.AfterContextBootstrap` ensures that all modules have been fully bootstrapped and are ready to be used.
 <2> `@InstallerMethod` is added to denote which methods of the installer should be executed.
-By using the `@Order` annotation a specific ordering can be defined for the `@InstallerMethods` that are present.
+By using the `@Order` annotation a specific ordering can be defined for the `@InstallerMethod`s that are present.
 <3> Beans are automatically wired when specifying them as a method parameter.
-By setting the `required` parameter on the `@InstallerMethod` annotation, execution will continue even if no bean can be found for a given parameter.
+By setting the `required` parameter on the `@InstallerMethod` annotation to `false`, execution will continue even if no bean can be found for a given parameter.
 <4> The defined user is persisted using the `JpaRepository` that was defined earlier.
 
-
-
-// TODO distributedlockrepository
 // other base installers?
-
-[[distributed-lock-repository]]
-=== DistributedLockRepository
-
-////
-In addition, installer execution is synchronized for multiple applications connecting on the same database. This is done through the DistributedLockRepository that is created in the core schema. A lock will be taken on the database as soon as a single installer wishes to execute, and will be released once that installer has finished executing.
-
-The lock owner will contain the hostname of the computer running the application, as well as the displayName of the AcrossContext.
-
-Because of tracking and synchronization, a datasource is required in order to execute installers.
-
-The AcrossInstallerRepository can be wired as a bean in installers. This can be helpful in migration trajectories for example to rename installers.
-////
