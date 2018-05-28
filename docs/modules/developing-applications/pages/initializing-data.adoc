@@ -25,7 +25,7 @@ Let's start of with a simple example where we create a simple database table usi
 
 To do so, we'll start by creating an xml file in which we use a liquibase database changelog to create a table.
 The xml file should be placed in the resources directory of the project.
-As good practice, it is advised to place it in a folder named *installers/{application-name}*, with a naming strategy based on your application to prevent possible name conflicts or overwrites.
+As good practice, it is advised to place it in a directory named *installers/{application-artifact}*, with a naming strategy based on your application to prevent possible name conflicts or overwrites.
 
 .Example liquibase database changelog
 ```
