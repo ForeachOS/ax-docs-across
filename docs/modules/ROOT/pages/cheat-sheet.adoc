@@ -1,1 +1,7 @@
-= Cheat sheet
+= Across cheat sheet
+
+This page contains a quick overview of some common features and practices for an Across application or module.
+
+== Across Application
+
+== Across Module

@@ -1,3 +1,4 @@
+* xref:cheat-sheet.adoc[Cheat Sheet]
 * xref:spring-boot-compatibility.adoc[Spring Boot compatibility]
 * xref:glossary.adoc[Glossary]
 * xref:guides:ROOT:index.adoc[Application guides]

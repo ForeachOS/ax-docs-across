@@ -83,10 +83,13 @@ Bootstrapping 3 modules in the following order:
 
 <1> AcrossWebModule has been added to the application and will bootstrap first.
 
+If you now go take your browser to http://localhost:8080 you will no longer see the generic Tomcat 404 page, but the whitelabel error page activated by Across Web support.
+
+image::404-whitelabel.png[Across Web loads the Spring Boot whitelabel error page]
+
 Chapter xref:across:developing-applications:adding-modules.adoc[Adding modules] shows other ways to add modules to the Application Descriptor.
 
 Apart from actual modules, the Application Descriptor also allows you to define additional application infrastructure as Spring beans.
-
 
 == Across applications and Spring Boot
 

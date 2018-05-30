@@ -1,0 +1,4 @@
+= Project Structure
+
+[#module-resources]
+== Module resources
