@@ -73,7 +73,7 @@ Only relevant if the run condition is `VersionDifferent`.
 
 |===
 
-=== Instalelr execution
+=== Installer execution
 
 Whether an installer should be executed depends primarily on its run condition.
 
