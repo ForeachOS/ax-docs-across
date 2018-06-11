@@ -1,16 +1,48 @@
-// refer to autoconfiguration support
-// list differences between Spring (Boot) and Across applications
-
-
 = Spring boot compatibility
-Using `@EnableAutoConfiguration` and Spring Boot starters directly with Across is currently not supported, but for a selected number of starters support has been built.
-See xref:ROOT:spring-boot-compatibility.adoc#spring-boot[Auto-configuration support] for more background information.
-It is also possible to disable specific autoconfiguration classes using the *exclude* attribute on `@AcrossApplication`, as well as creating your own autoconfiguration.
 
+An Across application runs as a Spring Boot application but deviates from regular Spring Boot applications in several aspects.
 
-== Spring boot autoconfiguration
-Spring boot allows developers to opt-in on automatic configuration of their application through the use of `@EnableAutoConfiguration`.
-Using autoconfiguration allows Spring Boot to configure your application based on its jar dependencies.
+See also the xref:developing-applications:creating-an-application/application-descriptor.adoc[Across Application Descriptor] for some background information.
 
+== ApplicationContext hierarchy
+An Across application is made up of several Across modules.
+Every module is its own Spring `ApplicationContext` with the Across Application Descriptor providing a shared parent `ApplicationContext`.
 
-== Spring boot starters
+This is different from most regular Spring Boot applications that only define a single `ApplicationContext` holding all components.
+Across encourages you to bundle components as much as possible in separate modules.
+
+== Auto-configuration support
+An Across application must use `@AcrossApplication` instead of `@SpringBootApplication`.
+Using regular `@EnableAutoConfiguration` and top-level `@ComponentScan` is not supported.
+
+Auto-configuration is attempted by default when using `@AcrossApplication`.
+
+=== Spring Boot starters
+Spring Boot starter configurations must be adapted to work in a multi-module Across application.
+
+The separate `across-autoconfigure` project provides Across support for many standard starters and commonly used frameworks.
+See the separate document on xref:across-autoconfigure:ROOT:index.adoc[Auto-configuration support] for an overview of the supported starters, as well as more information on how to make libraries compatible with Across.
+
+=== Excluding auto-configuration classes
+You can forcibly exclude auto-configuration classes from being loaded by adding them to the application descriptor.
+
+.Excluding auto-configuration classes
+[source,java,indent=0]
+----
+@AcrossApplication(excludeAutoConfigurations = { AopAutoConfiguration.class })
+public class SampleApplication
+{
+}
+----
+
+=== Disabling auto-configuration
+If you want to disable Across auto-configuration altogether, you can do using the `autoConfiguration` attribute.
+
+.Disabling auto-configuration support
+[source,java,indent=0]
+----
+@AcrossApplication(modules = AcrossWebModule.NAME, autoConfiguration = false)
+public class SampleApplication
+{
+}
+----

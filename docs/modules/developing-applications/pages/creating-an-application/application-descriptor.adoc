@@ -110,11 +110,11 @@ Across encourages you to bundle components as much as possible in separate modul
 ====
 
 Because Across applications run on top of Spring Boot, most regular Spring libraries can be adapted to work in a multi-module Across application.
-Across applications also have some support for xref:across-autoconfigure:ROOT:index.adoc[Spring Boot autoconfiguration classes].
+Across applications also have some support for xref:across-autoconfigure:ROOT:index.adoc[Spring Boot auto-configuration classes].
 
 [[embedded-servlet-container]]
 === Embedded servlet container example
-An example of the Spring Boot autoconfiguration support is the embedded Tomcat webserver in our sample application.
+An example of the Spring Boot auto-configuration support is the embedded Tomcat webserver in our sample application.
 Because `spring-boot-starter-tomcat` is added as a Maven dependency, an embedded Tomcat will be automatically started when running the application.
 
 ----
