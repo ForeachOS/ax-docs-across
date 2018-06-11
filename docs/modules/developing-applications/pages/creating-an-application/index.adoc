@@ -44,7 +44,7 @@ INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : ---
 The application module is automatically created and contains the application specific code.
 See the xref:default-modules.adoc#dynamic-application-module[dynamic application module] for more information.
 <3> The `AcrossContextPostProcessorModule` is another default module that is always present in your project.
-It facilitates https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/html/using-boot-auto-configuration.html[Spring Boot Auto-configuration] across different modules, for more information see: xref:across-autoconfigure:ROOT:chap-auto-configuration.adoc#acrosscontextpostprocessormodule[Auto-configuration support].
+It facilitates https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/html/using-boot-auto-configuration.html[Spring Boot Auto-configuration] across different modules, for more information see: xref:across-autoconfigure:ROOT:adding-auto-configuration-support.adoc[Auto-configuration support].
 Applications usually don't need to bother directly with this module.
 
 Our sample application includes an embedded Tomcat webserver.
