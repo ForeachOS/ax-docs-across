@@ -9,7 +9,7 @@ For example:
 
 On this page, you will:
 
-* [*] Learn about `AcrossBootConfigurer` to customize a module.
+* [*] Learn about `AcrossBootstrapConfigurer` to customize a module.
 * [*] Use `@ModuleConfiguration` to customize a module.
 
 == AcrossBootstrapConfigurer
@@ -21,13 +21,15 @@ For the following example we will use the `AdminWebModule` to enhance the standa
 
 First, add a dependency to `admin-web-module` in your pom.xml.
 
+[source,xml,indent=0]
+[subs="verbatim,quotes,attributes"]
 ----
-	<dependencies>
-		<dependency>
-			<groupId>com.foreach.across.modules</groupId>
-			<artifactId>admin-web-module</artifactId>
-		</dependency>
-	</dependencies>
+<dependencies>
+    <dependency>
+        <groupId>com.foreach.across.modules</groupId>
+        <artifactId>admin-web-module</artifactId>
+    </dependency>
+</dependencies>
 ----
 
 Add `AdminWebModule` to your application descriptor.
@@ -105,6 +107,8 @@ The above example can be rewritten to using just one configuration class.
 
 First, add a dependency to `admin-web-module` in your pom.xml.
 
+[source,xml,indent=0]
+[subs="verbatim,quotes,attributes"]
 ----
 	<dependencies>
 		<dependency>
