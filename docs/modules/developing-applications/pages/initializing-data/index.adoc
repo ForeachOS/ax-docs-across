@@ -73,7 +73,7 @@ Only relevant if the run condition is `VersionDifferent`.
 
 |===
 
-=== Execution
+=== Instalelr execution
 
 Whether an installer should be executed depends primarily on its run condition.
 
@@ -149,6 +149,7 @@ The lock owner will contain the hostname of the computer running the application
 WARNING: Because of tracking and synchronization, a xref:connecting-to-a-database.adoc[datasource] is required in order to execute installers.
 This is because the `DistributedLockRepository` relies on tables created in the core schema.
 
+// TODO does this fit here?
 === Installer Groups and Settings
 
 In addition to the standard `@Installer` attributes, an `@InstallerGroup` annotation can be specified.
@@ -159,8 +160,10 @@ It also allows to determine install action at runtime by supplying an link:https
 
 `InstallerSettings` can be set for both the `AcrossContext` and the `AcrossModule`.
 
-// TODO does this fit here?
-=== Installers in depth - Installer ApplicationContext
+=== Installers in depth
+
+// TODO put partially under 'Execution'? split up 'Execution' in multiple subsections?
+==== Installer ApplicationContext
 
 When installers need to be executed, a specific `ApplicationContext` is created in which the installers will be wired as beans.
 This `ApplicationContext` can exist before the actual module `ApplicationContext` does.
