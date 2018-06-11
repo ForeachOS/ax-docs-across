@@ -1,0 +1,327 @@
+= Initializing application data
+
+////
+* installers
+* schema installer
+* locking on installers: distributedlockrepository
+////
+
+On this page, you'll learn:
+
+* [*] What installers are
+* [*] When installers are executed
+* [*] About the Installer ApplicationContext.
+* [*] How to create a database schema
+
+== Installers
+
+Installers are components that allow developers to perform additional initialization for their applications and are always marked by the `@Installer` annotation.
+They are detected from the classpath by scanning the `installers` package relative to the package of the package xref:creating-an-application/application-descriptor.adoc[application descriptor] or module descriptor.
+//TODO installer detection -> changing packages to scan for installers by overriding getInstallerScanPackages() or getInstallers() on AcrossModule
+
+Specification as to how and when an installer should be executed are specified through a variety of attributes on the `@Installer` annotation.
+
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@Profile("dev") # <1>
+@Order(1) # <2>
+@Installer(description = "Creates a test user", phase = InstallerPhase.AfterModuleBootstrap) # <3>
+public class TestUserInstaller {
+
+    @InstallerMethod # <4>
+    public void createTestUser(){
+        // ... perform some logic
+    }
+
+}
+----
+<1> Since the dev profile is specified, this installer will only run when the dev profile is active.
+<2> The `@Order` can be specified to give the installer an explicit order.
+<3> The `@Installer` profile is specified with a description and a bootstrap phase.
+This means that the missing attributes will be instantiated with default values.
+The phase is explicitly set to `AfterModuleBootstrap`, which means that the installer will be executed once the containing module (in this case the xref:default-modules.adoc[`DynamicApplicationModule`]) has been bootstrapped.
+<4> When the installer is executed, all methods marked with `@InstallerMethod` will be called.
+An explicit ordering can be specified using the `@Order` annotation.
+
+.Listing of @Installer attributes
+[cols="1,1,2", options="header"]
+|===
+|Attribute |Default value |Description
+
+|*name*
+|If omitted, the fully qualified class name of the installer class will be used.
+|Optional (unique) name of the installer.
+
+|*description*
+|
+|Descriptive text of what will be installed.
+
+|*phase*
+| `InstallerPhase.BeforeContextBootstrap`
+|When this installer should run during the context bootstrap.
+See link:index.adoc#installer-bootstrap-phases[bootstrap phases].
+
+|*runCondition*
+| `InstallerRunCondition.VersionDifferent`
+|Condition when this installer should run.  See <<installer-run-conditions,run conditions>>.
+
+|*version*
+|Version number of the installer.
+This value should be incremented to enforce a new run of the same installer.
+Only relevant if the run condition is `VersionDifferent`.
+
+|===
+
+=== Execution
+
+Whether an installer should be executed depends primarily on its run condition.
+
+.Run conditions
+[cols="1,2", options="header"]
+|===
+|Run condition| Description
+
+| `AlwaysRun`
+| The installer is executed every time the module is bootstrapped.
+In the case of an application, this installer is always run when the application is started.
+
+| `VersionDifferent`
+| The installer is only executed if the `version` attribute specifies a higher version than the last time the installer has executed.
+|===
+
+To further specify if an installer should be executed, `@Conditional` annotations can be used.
+See the above example where the `@Profile` annotation is used to execute an installer only when the `dev` profile is active.
+
+Installers are always executed during a specific phase of the application bootstrap.
+This phase must always be specified for every installer and determines which beans will be available.
+
+.Bootstrap phases
+[cols="1,2", options="header"]
+|===
+|Phase |Description
+
+|BeforeContextBootstrap
+| The installer is executed before any of the modules in the AcrossContext are bootstrapped.
+  Only beans from the parent `ApplicationContext` or the <<installer-applicationcontext,installer `ApplicationContext`>> are available.
+
+
+|BeforeModuleBootstrap
+|The installer is executed before the module that owns it bootstraps, but after all previous modules have bootstrapped.
+ All beans from previous modules will also be available to the installer.
+
+
+|AfterModuleBootstrap
+|The installer is executed after the module that owns it has bootstrapped, but before the next module bootstraps.
+ All beans from the current module are available.
+
+|AfterContextBootstrap
+|The installer is executed after all modules have bootstrapped, but before the `AcrossContextBootstrappedEvent` is published.
+ All beans from all modules are available.
+
+|===
+
+NOTE: During the xref:application-bootstrap.adoc[application bootstrap], installers are created and executed if necessary.
+ Once the application bootstrap is complete, installer components will be destroyed.
+ As such, installers are only available during the start-up of the application.
+
+If all conditions are fulfilled, installers will be executed in a predetermined order:
+
+. in <<installer-bootstrap-phases,bootstrap phase>> order
+. in <<developing-applications.adoc#module-bootstrap-order,module bootstrap order>>
+. in installer order (according to `@Order` annotations on the installer class)
+
+WARNING: Installers without an `@Order` annotation behave as if they have an order index of *0*.
+In that case the installer registration order will be used as a fallback, with installers specified through `getInstallers()` having a higher precedence.
+
+=== Tracking and synchronization
+
+Installer execution is tracked to ensure that installers are only executed if necessary, which is specified through the `runCondition` and `version` attributes.
+Tracking is done by the `AcrossInstallerRepository`, which can also be wired as a bean in installers.
+This could be helpful in migration trajectories for example to rename installers.
+
+Aside of tracking, execution is also synchronized for when multiple applications would connect to the same database.
+Synchronization is done through the use of a `DistributedLockRepository` requires the core schema.
+The `DistributedLockRepository` provides a simple locking mechanism for RDBMS synchronization.
+A lock will be taken on the database as soon as a single installer wishes to execute, and will be released once that installer has finished executing.
+The lock owner will contain the hostname of the computer running the application, as well as the displayName of the AcrossContext.
+
+WARNING: Because of tracking and synchronization, a xref:connecting-to-a-database.adoc[datasource] is required in order to execute installers.
+This is because the `DistributedLockRepository` relies on tables created in the core schema.
+
+=== Installer Groups and Settings
+
+In addition to the standard `@Installer` attributes, an `@InstallerGroup` annotation can be specified.
+This allows grouping types of installers together (for example schema) and overruling their execution using `InstallerSettings`.
+
+`InstallerSettings` provide more advanced configuration options to determine when installers should be executed.
+It also allows to determine install action at runtime by supplying an link:https://across-docs.foreach.be/across/3.0.0.RELEASE/javadoc/[`InstallerActionResolver`].
+
+`InstallerSettings` can be set for both the `AcrossContext` and the `AcrossModule`.
+
+// TODO does this fit here?
+=== Installers in depth - Installer ApplicationContext
+
+When installers need to be executed, a specific `ApplicationContext` is created in which the installers will be wired as beans.
+This `ApplicationContext` can exist before the actual module `ApplicationContext` does.
+However, all beans from the parent Across context and the module context - when created - are available in installers.
+
+These installer contexts are temporary and will be closed when the Across context has bootstrapped.
+Configuration and other components can be added to the installer context using `ApplicationContextConfigurer` implementations, either for an `AcrossContext` or on a module descriptor.
+
+By default, the package subpackage `config` in the installers package will be scanned for beans that should be added to the installer `ApplicationContext`.
+
+.Example using different datasource inside the modules
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@Configuration
+class Config implements AcrossContextConfigurer
+{
+    /**
+     * Installer tracking will be done on this datasource.
+     */
+    @Bean
+    public EmbeddedDatabase acrossDataSource() {
+        return new EmbeddedDatabaseBuilder()
+                .setType( EmbeddedDatabaseType.HSQL )
+                .setName( "core" )
+                .build();
+    }
+
+    @Bean
+    public EmbeddedDatabase moduleDataSource() {
+        return new EmbeddedDatabaseBuilder()
+                .setType( EmbeddedDatabaseType.HSQL )
+                .setName( "data" )
+                .build();
+    }
+
+    @Override
+    public void configure( AcrossContext context ) {
+        ProvidedBeansMap beans = new ProvidedBeansMap();
+        beans.put( AcrossContext.DATASOURCE, new PrimarySingletonBean( acrossDataSource() ) );
+        beans.put( AcrossContext.INSTALLER_DATASOURCE, moduleDataSource() );
+
+        context.addApplicationContextConfigurer( new ProvidedBeansConfigurer( beans ),
+                                                 ConfigurerScope.MODULES_ONLY );
+        context.addInstallerContextConfigurer( new ProvidedBeansConfigurer( beans ) );
+    }
+}
+----
+
+NOTE: The installer context has no web support as it is a direct implementation of `AcrossApplicationContext` but does not implement `WebApplicationContext`.
+
+TIP: When registering bean definitions to the installer context, a good practice is to demarcate beans as `@Lazy`.
+In that case they will never get created if the installer conditionals fail.
+
+
+////
+//TODO move to separate page as example?
+=== Installing default or test data
+
+As mentioned, installers are spring beans that only exist during the bootstrap phase of the application, which means that other beans can be wired directly into this component.
+This means that we can also define installers that simply insert data into the database.
+Let's insert a default admin user in the table that we've created in the section above.
+
+In the following example, we'll create a domain model, for example a `User` class, and a corresponding repository, a `UserRepository`.
+We're going to use Spring and Hibernate to interact with the database model, so we'll add a dependency on the Spring boot JPA starter.
+
+.Abbreviated pom.xml dependencies
+[source,xml,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+    ...
+    <dependencies>
+        ...
+      <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId> # <1>
+        </dependency>
+    </dependencies>
+    ...
+----
+<1> Dependency to the Spring Data JPA starter.
+Note that we do not have to specify a version, because across has a dependency transitively on the Spring boot dependencies pom through its Spring platform dependency.
+
+.Example User class
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@Entity # <1>
+@Table(name = "table_user") # <1>
+@Data # <2>
+@Builder # <3>
+public class User implements Persistable<Long> { # <4>
+    @Id # <5>
+    @GeneratedValue
+    private Long id;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column
+    private String email;
+
+    @Column(name = "date_of_birth")
+    private LocalDate dateOfBirth;
+
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    @Override
+    public boolean isNew() { # <4>
+        return id == null || id == 0L;
+    }
+}
+----
+<1> `@Table` and `@Entity` are annotations used for persistence.
+<2> link:https://projectlombok.org/features/Data[`@Data`] provides a shortcut for `@ToString`, `@EqualsAndHashCode`, `@Getter`, `@Setter` and `@RequiredArgsConstructor`.
+<3> link:https://projectlombok.org/features/Builder[`@Builder`] enables the use of a fluent api to construct the entity.
+<4> The `Persistable` interface is implemented to further complete the mapping to our database model.
+Persistable requires `getId` to be implemented to fetch the id of the entity and `isNew()` is used to check whether the entity has already been persisted once before.
+
+.Example UserRepository class
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+public interface UserRepository extends JpaRepository<User, Long> { # <1>
+}
+----
+<1> By extending `JpaRepository`, which is a specification of the `Repository` marker interface, Spring is able to automatically detect and create repository beans.
+See link:https://docs.spring.io/spring-data/data-commons/docs/1.6.1.RELEASE/reference/html/repositories.html[Working with Spring Data repositories] and link:https://docs.spring.io/spring-data/jpa/docs/1.4.3.RELEASE/reference/html/jpa.repositories.html[JPA repositories] to learn more about the possibilities they provide.
+
+Now that we've created a domain entity and a repository, let's create an installer and insert data into the database.
+
+.Example User data installer
+[source,java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@Installer(name = "user-installer", description = "Example installer that creates a user", phase = InstallerPhase.AfterContextBootstrap) # <1>
+public class UserInstaller {
+    @InstallerMethod # <2>
+    public void createDefaultUser(UserRepository userRepository) { # <3>
+        User user = User.builder().firstName( "John" )
+                .lastName( "Doe" )
+                .email( "john.doe@local" )
+                .dateOfBirth( LocalDate.of( 1990, 3, 24 ) )
+                .build();
+        userRepository.save( user ); # <4>
+    }
+}
+----
+<1> The `@Installer` annotation is provided so that the installer can be found and executed by Across.
+This time around, an additional parameter `phase` has been added, which enables the developer to define during which bootstrap phase the installer should be executed.
+The default phase is `InstallerPhase.BeforeContextBootstrap` which ensures that installers are executed before any modules are bootstrapped.
+This allows installers to be executed before beans are created and is usually used when creating database schemas.
+`InstallerPhase.AfterContextBootstrap` ensures that all modules have been fully bootstrapped and are ready to be used.
+<2> `@InstallerMethod` is added to denote which methods of the installer should be executed.
+By using the `@Order` annotation a specific ordering can be defined for the `@InstallerMethod`s that are present.
+<3> Beans are automatically wired when specifying them as a method parameter.
+By setting the `required` parameter on the `@InstallerMethod` annotation to `false`, execution will continue even if no bean can be found for a given parameter.
+<4> The defined user is persisted using the `JpaRepository` that was defined earlier.
+
+////

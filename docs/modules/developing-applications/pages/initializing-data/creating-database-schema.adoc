@@ -1,24 +1,10 @@
-= Initializing application data
-
-////
-* installers
-* schema installer
-* locking on installers: distributedlockrepository
-////
+= Creating a database schemas
 
 On this page, you'll learn:
 
-* [*] What installers are
 * [*] How to create a database schema
-* [*] How to insert data into a database table using mapped domain entities.
 
-== Installers
-
-Installers are components annotated with the `@Installer` annotation, that allow developers to perform additional initialization for their applications, for example to create database tables, test or default data.
-During the start-up phases of the application, these components are created and executed if necessary, and afterwards destroyed.
-As such, installers are only available during the start-up phases of the application.
-
-=== Creating a database schema
+== Creating a database schema
 
 One of the most common use cases for installers is to create database schemas.
 Let's start of with a simple example where we create a simple database table using liquibase.
@@ -141,110 +127,6 @@ The lock owner will contain the hostname of the computer running the application
 WARNING: Because of tracking and synchronization, a datasource is required in order to execute installers.
 This is because the `DistributedLockRepository` relies on tables created in the core schema.
 
-=== Installing default or test data
+== AcrossLiquibaseInstaller
 
-As mentioned, installers are spring beans that only exist during the bootstrap phase of the application, which means that other beans can be wired directly into this component.
-This means that we can also define installers that simply insert data into the database.
-Let's insert a default admin user in the table that we've created in the section above.
-
-In the following example, we'll create a domain model, for example a `User` class, and a corresponding repository, a `UserRepository`.
-We're going to use Spring and Hibernate to interact with the database model, so we'll add a dependency on the Spring boot JPA starter.
-
-.Abbreviated pom.xml dependencies
-[source,xml,indent=0]
-[subs="verbatim,quotes,attributes"]
-----
-    ...
-    <dependencies>
-        ...
-      <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId> # <1>
-        </dependency>
-    </dependencies>
-    ...
-----
-<1> Dependency to the Spring Data JPA starter.
-Note that we do not have to specify a version, because across has a dependency transitively on the Spring boot dependencies pom through its Spring platform dependency.
-
-.Example User class
-[source,java,indent=0]
-[subs="verbatim,quotes,attributes"]
-----
-@Entity # <1>
-@Table(name = "table_user") # <1>
-@Data # <2>
-@Builder # <3>
-public class User implements Persistable<Long> { # <4>
-    @Id # <5>
-    @GeneratedValue
-    private Long id;
-
-    @Column(name = "first_name")
-    private String firstName;
-
-    @Column(name = "last_name")
-    private String lastName;
-
-    @Column
-    private String email;
-
-    @Column(name = "date_of_birth")
-    private LocalDate dateOfBirth;
-
-    @Column(name = "phone_number")
-    private String phoneNumber;
-
-    @Override
-    public boolean isNew() { # <4>
-        return id == null || id == 0L;
-    }
-}
-----
-<1> `@Table` and `@Entity` are annotations used for persistence.
-<2> link:https://projectlombok.org/features/Data[`@Data`] provides a shortcut for `@ToString`, `@EqualsAndHashCode`, `@Getter`, `@Setter` and `@RequiredArgsConstructor`.
-<3> link:https://projectlombok.org/features/Builder[`@Builder`] enables the use of a fluent api to construct the entity.
-<4> The `Persistable` interface is implemented to further complete the mapping to our database model.
-Persistable requires `getId` to be implemented to fetch the id of the entity and `isNew()` is used to check whether the entity has already been persisted once before.
-
-.Example UserRepository class
-[source,java,indent=0]
-[subs="verbatim,quotes,attributes"]
-----
-public interface UserRepository extends JpaRepository<User, Long> { # <1>
-}
-----
-<1> By extending `JpaRepository`, which is a specification of the `Repository` marker interface, Spring is able to automatically detect and create repository beans.
-See link:https://docs.spring.io/spring-data/data-commons/docs/1.6.1.RELEASE/reference/html/repositories.html[Working with Spring Data repositories] and link:https://docs.spring.io/spring-data/jpa/docs/1.4.3.RELEASE/reference/html/jpa.repositories.html[JPA repositories] to learn more about the possibilities they provide.
-
-Now that we've created a domain entity and a repository, let's create an installer and insert data into the database.
-
-.Example User data installer
-[source,java,indent=0]
-[subs="verbatim,quotes,attributes"]
-----
-@Installer(name = "user-installer", description = "Example installer that creates a user", phase = InstallerPhase.AfterContextBootstrap) # <1>
-public class UserInstaller {
-    @InstallerMethod # <2>
-    public void createDefaultUser(UserRepository userRepository) { # <3>
-        User user = User.builder().firstName( "John" )
-                .lastName( "Doe" )
-                .email( "john.doe@local" )
-                .dateOfBirth( LocalDate.of( 1990, 3, 24 ) )
-                .build();
-        userRepository.save( user ); # <4>
-    }
-}
-----
-<1> The `@Installer` annotation is provided so that the installer can be found and executed by Across.
-This time around, an additional parameter `phase` has been added, which enables the developer to define during which bootstrap phase the installer should be executed.
-The default phase is `InstallerPhase.BeforeContextBootstrap` which ensures that installers are executed before any modules are bootstrapped.
-This allows installers to be executed before beans are created and is usually used when creating database schemas.
-`InstallerPhase.AfterContextBootstrap` ensures that all modules have been fully bootstrapped and are ready to be used.
-<2> `@InstallerMethod` is added to denote which methods of the installer should be executed.
-By using the `@Order` annotation a specific ordering can be defined for the `@InstallerMethod`s that are present.
-<3> Beans are automatically wired when specifying them as a method parameter.
-By setting the `required` parameter on the `@InstallerMethod` annotation to `false`, execution will continue even if no bean can be found for a given parameter.
-<4> The defined user is persisted using the `JpaRepository` that was defined earlier.
-
-// other base installers?
+// TODO in depth? (schemaconfiguration ...)
