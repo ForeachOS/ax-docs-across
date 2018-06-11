@@ -241,7 +241,7 @@ In this case the name is `th/demo/applicationKey` which is the path to our Thyme
 The `Model` (MVC) is the way to pass attributes and data between controller and view.
 All this is standard Spring MVC functionality.
 
-After changing controller code, add the following` template file in the right location:
+After changing controller code, add the following template file in the right location:
 
 .classpath:views/th/demo/applicationKey.html
 [source,java,indent=0]
