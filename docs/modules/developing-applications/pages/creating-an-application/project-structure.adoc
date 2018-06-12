@@ -116,7 +116,7 @@ Scanning the entire package of the Application Descriptor should never be done.
 === Adding a component
 
 Let's add a component to our sample application.
-We will add a simple web controller that prints our an _application key_ when called.
+We will add a simple web controller that prints out an _application key_ when called.
 
 Create a class `SampleController` and place it in the `application` package.
 
