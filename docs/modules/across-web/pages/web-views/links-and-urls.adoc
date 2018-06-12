@@ -5,7 +5,7 @@
 [[web-app-path-resolver]]
 [#web-app-path-resolver-and-path-prefixing]
 === WebAppPathResolver and path prefixing
-{module-name} introduces the `<<prefixed-request-mappings,PrefixingRequestMappingHandlerMapping>>`.
+Across Web introduces the `<<prefixed-request-mappings,PrefixingRequestMappingHandlerMapping>>`.
 This allows `@RequestMapping` methods to be prefixed at runtime, based on configuration.
 
 Some standard Across modules like AdminWebModule and DebugWebModule make use of this functionality.
@@ -18,7 +18,7 @@ The <<thymeleaf-dialect,AcrossWebModule Thymeleaf dialect>> integrates with the 
 NOTE: If you want to ensure your relative path is never prefixed, start it with an exclamation mark (!).
 
 ==== Default prefixes
-{module-name} registers default prefixers for static resources:
+Across Web registers default prefixers for static resources:
 
 [cols="1,3",options=header]
 |===

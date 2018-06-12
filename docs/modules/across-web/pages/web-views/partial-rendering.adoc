@@ -22,7 +22,6 @@ String get() {
 ----
 And we render it in the following snippet:
 [source,xml,indent=0]
-[subs="verbatim,quotes,attributes"]
 ----
 <h1>title</h1>
 <div th:fragment="mycontent">

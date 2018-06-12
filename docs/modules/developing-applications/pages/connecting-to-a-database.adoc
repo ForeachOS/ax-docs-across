@@ -149,7 +149,7 @@ When adding `spring-boot-starter-data-jpa` a JPA `EntityManager` using Hibernate
 The *application module package will be scanned for entities and Spring Data JPA repositories*, in the same way as described in the link:{spring-boot-docs}#boot-features-jpa-and-spring-data[Spring Boot documentation].
 
 Default support is limited to the application module however.
-If you are looking for JPA support for multiple (shared) modules, you should look at the link:{across-hibernate-module-url}[AcrossHibernateJpaModule].
+If you are looking for JPA support for multiple (shared) modules, you should look at the link:{url-AcrossHibernateModule}[AcrossHibernateJpaModule].
 Said module creates a shared `EntityManager` with a mapping context that other modules can extend.
 It is also fully compatible with the default Spring Boot JPA support and can often be used as a simple drop-in replacement when switching from a simple application to having multiple modules with entities.
 

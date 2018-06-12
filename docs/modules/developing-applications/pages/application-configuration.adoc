@@ -27,7 +27,6 @@ Modify the `StartupLogger` class to the one below:
 
 .A component which displays a configuration value!
 [source,java,indent=0]
-[subs="verbatim,quotes,attributes"]
 ----
 @Component
 @Slf4j

@@ -33,7 +33,6 @@ Other modules like link:https://across.foreach.be/modules/WebCmsModule[WebCmsMod
 		<dependency>
 			<groupId>com.foreach.across</groupId>
 			<artifactId>across-web</artifactId>
-			<version>{across-version}</version>
 		</dependency>
 	</dependencies>
 ----

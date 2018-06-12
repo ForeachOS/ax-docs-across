@@ -14,7 +14,7 @@ Across 3.0.0 is a big internal upgrade focused on improving Spring Boot compatib
 Although the number should be limited, this release does introduce some breaking changes.
 
 Across Framework 3.0.0 adds the `across-autoconfigure` artifact as a base dependency for creating Across applications.
-It is also the first release with auto-configuration support, see the separate documentation on link:{doc-spring-boot}#spring-boot[Spring Boot compatibility] for more details.
+It is also the first release with auto-configuration support, see the separate documentation on xref:spring-boot-compatibility.adoc[Spring Boot compatibility] for more details.
 
 === Core dependency upgrades
 
@@ -60,7 +60,7 @@ It is also the first release with auto-configuration support, see the separate d
 ** these will correctly exclude the `installers` and `extensions` child package
 ** *note*: default `AcrossModule` implementations still only scan the `config` child package, this behaviour has not changed
 * failure analyzers have been added to provide better exception information when using `@AcrossApplication`
-* added support for link:{doc-spring-boot}#across-configuration[`META-INF/across.configuration`]
+* added support for xref:across-autoconfigure:ROOT:adding-auto-configuration-support.adoc#across-configuration[`META-INF/across.configuration`]
 ** allows for externalizing compatibility rules with regular Spring Boot auto-configuration
 ** allows for defining illegal use of configuration classes, this can help in avoiding bad use of regular Spring Boot configurations in an Across context
 * added illegal configuration detection on a `@AcrossApplication`, upon starting the presence of configuration classes will be detected and possibly result in an exception describing the illegal use
@@ -81,11 +81,11 @@ The following changes and additions are included in the update:
 * a `RestTemplateBuilder` is created and exposed
 * Jackson `ObjectMapper` and `Jackson2ObjectMapperBuilder` are created and exposed
 * if Gson on the classpath: a `Gson` object is created and exposed
-* support for link:{doc-across-web}#error-handling[default error pages] is now automatically activated
+* support for xref:across-web/basic-features/error-pages.adoc[default error pages] is now automatically activated
 * the https://github.com/thymeleaf/thymeleaf-extras-java8time[Thymeleaf Java 8 Time dialect] is now also included and enabled
 * the default mvc `Validator` bean now implements `SmartValidator` directly, allowing `@Validated` with group validation to be used
-* the `TextViewElementBuilder` now supports a link:{doc-across-web}#localized-text[localized text pattern] as text value
-* several changes to the menu building infrastructure, some breaking. See the link:{doc-across-web}#menu-infrastructure[updated documentation] for use case examples.
+* the `TextViewElementBuilder` now supports a xref:across-web/web-views/localized-text.adoc[localized text pattern] as text value
+* several changes to the menu building infrastructure, some breaking. See the xref:across-web/web-views/working-with-menus.adoc[updated documentation] for use case examples.
 ** added `Menu.builder()` for easy ad-hoc creation of a menu using path registration
 ** `MenuSelector` factory methods have been moved from the `Menu` to `MenuSelector` class
 ** some rarely used methods on `PathBasedMenuBuilder`, `PathBasedMenuItemBuilder` and `BuildMenuEvent` have been removed
@@ -137,6 +137,6 @@ Dynamically registered filters should preferably include an explicit order value
 
 * new features for exposing additional components during the scope of a test
 ** both `@AcrossTestConfiguration` and the `AcrossTestBuilders` now have an attribute/method to easily expose additional classes for the scope of the test
-** link:{doc-testing}#expose-for-test[`@ExposeForTest`] can be used in combination with `@SpringBootTest`
+** xref:testing:expose-for-test.adoc[`@ExposeForTest`] can be used in combination with `@SpringBootTest`
 *** the latter is particularly useful for integration testing of a dynamic application module
 

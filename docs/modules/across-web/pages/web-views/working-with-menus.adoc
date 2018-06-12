@@ -4,7 +4,7 @@
 Across Web provides some infrastructure to build a tree-like menu.
 This can be used for rendering for example hierarchical menus on a web page, though the class structure can be used for many things.
 
-Several standard modules like link:{admin-web-module-url}[AdminWebModule], link:{entity-module-url}[EntityModule] or link:{bootstrap-ui-module-url}[BootstrapUiModule] use these features to allow creation, customization and easy rendering of menus.
+Several standard modules like link:{url-AdminWebModule}[AdminWebModule], link:{url-EntityModule}[EntityModule] or link:{url-BootstrapUiModule}[BootstrapUiModule] use these features to allow creation, customization and easy rendering of menus.
 In this section we will explain the basics of working with the Across Web menu features.
 
 === Creating a menu
@@ -350,7 +350,7 @@ Please see the javadoc and source code for more information on this.
 [[publishing-a-menu]]
 === Publishing a menu
 Menus are often used to allow other modules to configure items to them.
-An example is link:{admin-web-module-url}[AdminWebModule] which builds a custom `Menu` for the navigation items on the UI.
+An example is link:{url-AdminWebModule}[AdminWebModule] which builds a custom `Menu` for the navigation items on the UI.
 It publishes an event that any component in any module can listen for, and use it to register its own navigational items.
 
 Behind the scenes <<request-menu-selector,request based selecting>> is then used to automatically select & highlight the active nav item.
@@ -469,5 +469,5 @@ Across Web itself does not in any way determine how a `Menu` is visualized, this
 </ol>
 ----
 
-A module like link:{bootstrap-ui-module-url}[BootstrapUiModule] provides components for rendering `Menu` instances.
+A module like link:{url-BootstrapUiModule}[BootstrapUiModule] provides components for rendering `Menu` instances.
 

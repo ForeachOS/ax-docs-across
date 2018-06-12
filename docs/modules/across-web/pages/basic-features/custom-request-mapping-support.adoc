@@ -115,4 +115,4 @@ The latter can be used to add interceptors only to request mappings attached to 
 
 `PrefixingRequestMappingHandlerMapping` also fully supports <<custom-request-mapping,custom request conditions>>.
 
-Examples of prefixing request mappings can be found in the {admin-web-module-url}[AdminWebModule] and {debug-web-module-url}[DebugWebModule].
+Examples of prefixing request mappings can be found in the {url-AdminWebModule}[AdminWebModule] and {url-DebugWebModule}[DebugWebModule].

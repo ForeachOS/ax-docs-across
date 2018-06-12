@@ -26,7 +26,7 @@ The following attributes are required for a fully configured `AcrossVersionInfo`
 |Name of the project the class (`AcrossModule`) belongs to. Often also the JAR name.
 
 |*Implementation-Version*
-|{across-version}
+|\{across-version}
 |Build version of the `AcrossModule`.
 
 |*Build-Time*

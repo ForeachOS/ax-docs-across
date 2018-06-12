@@ -8,7 +8,7 @@ This is usually the base dependency for an application, as it transitively impor
 across-test:: Supports integration testing of your Across modules, both web and non-web related.  Builds on top of `spring-test`.
 standard-module-bom:: BOM pom for creating an Across Standard Module or any module wishing to adhere to the standard module conventions.
 
-There is also a separate {platform-bom-url}[platform-bom] project that provides a bill-of-material for applications built on Across and the Across Standard Modules.
+There is also a separate platform-bom project that provides a bill-of-material for applications built on Across and the Across Standard Modules.
 
 .Common dependencies
 Across is directly tied to Spring framework and all artifacts come with a set of curated dependencies.
@@ -18,7 +18,7 @@ Across itself uses the http://platform.spring.io/platform/[Spring IO platform] a
 All release versions of Across artifacts are available on Maven Central.
 
 Snapshot and milestones can be fetched from the Foreach Nexus repository.
-This also includes the set of link:{doc-fundamentals}#fundamentals-ax-standard-modules[across standard modules].
+This also includes the set of Across standard modules.
 
 [source,xml,indent=0]
 [subs="verbatim,quotes,attributes"]

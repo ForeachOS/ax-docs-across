@@ -46,7 +46,7 @@ It is currently empty but is the location where you will store Spring components
 The `dev` and `prod` filename segments determine when those settings apply.
 The section xref:application-configuration.adoc[Application configuration] explains these files in more detail.
 <5> Under this package you can place your unit tests.
-<8> The `it` package is the location to store your integration tests.
+<6> The `it` package is the location to store your integration tests.
 The package is outside the application's package, to avoid scanning of beans that are defined inside the integration tests.
 
 A more complete project structure example can be found in the xref:ROOT:cheat-sheet.adoc[Cheat Sheet].
@@ -249,7 +249,7 @@ After changing controller code, add the following template file in the right loc
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head><title>Application Key</title></head>
 <body>
-The application key is: <strong th:text="${applicationKey}">APPLICATION KEY</strong> # <1>
+The application key is: <strong th:text="$\{applicationKey}">APPLICATION KEY</strong> # <1>
 </body>
 </html>
 ----

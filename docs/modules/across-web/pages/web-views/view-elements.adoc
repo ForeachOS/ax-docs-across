@@ -14,7 +14,6 @@ This is done through a collection of Thymeleaf processors for rendering `ViewEle
 You can render a `ViewElement` available on the model anywhere in a Thymeleaf template by using the _across:view_ tag.
 
 [source,xml,indent=0]
-[subs="verbatim,quotes,attributes"]
 ----
 	<across:view element="${myViewElement}" />
 ----
@@ -51,13 +50,13 @@ Every `ViewElement` allows you to configure a *customTemplate*.
 Only Thymeleaf fragments are supported, if you specify a Thymeleaf template without a fragment, a *render(component)* fragment will be appended.
 The *component* variable will always contain the `ViewElement` instance that is being rendered.
 
-You can use a different input variable by specifying the *${component}* manually in your template specification.
+You can use a different input variable by specifying the *$\{component}* manually in your template specification.
 
 .Examples:
 
 * `th/mymodule/mytemplate` results in `th/mymodule/mytemplate :: render(component)`
 * `th/mymodule/mytemplate :: myfragment` results in `th/mymodule/mytemplate :: myfragment(component)`
-* `th/mymodule/mytemplate :: myfragment(${someModelAttribute},${component})` results in `th/mymodule/mytemplate :: myfragment(attributeValue,component)`
+* `th/mymodule/mytemplate :: myfragment($\{someModelAttribute},$\{component})` results in `th/mymodule/mytemplate :: myfragment(attributeValue,component)`
 
 NOTE: You should only use model attributes that are sure to be available when the template is being rendered.
 It is usually best to pass the required values as attributes on the `ViewElement` itself.

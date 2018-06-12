@@ -9,12 +9,12 @@
 :spring-boot-docs: https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/htmlsingle/
 :commons-fileupload-url: http://commons.apache.org/proper/commons-fileupload/
 :platform-bom-url: https://across.foreach.be/modules
-:admin-web-module-url: https://across.foreach.be/modules/AdminWebModule
-:debug-web-module-url: https://across.foreach.be/modules/DebugWebModule
-:across-hibernate-module-url: https://across.foreach.be/modules/AcrossHibernateJpaModule
-:bootstrap-ui-module-url: https://across.foreach.be/modules/BootstrapUiModule
-:entity-module-url: https://across.foreach.be/modules/EntityModule
-:spring-security-module-url: https://across.foreach.be/modules/SpringSecurityModule
+:url-AdminWebModule: https://across.foreach.be/modules/AdminWebModule
+:url-DebugWebModule: https://across.foreach.be/modules/DebugWebModule
+:url-AcrossHibernateModule: https://across.foreach.be/modules/AcrossHibernateJpaModule
+:url-BootstrapUiModule: https://across.foreach.be/modules/BootstrapUiModule
+:url-EntityModule: https://across.foreach.be/modules/EntityModule
+:url-SpringSecurityModule: https://across.foreach.be/modules/SpringSecurityModule
 :git-across-docs: https://github.com/ForeachOS/ax-docs-across
 :git-across-autoconfigure: https://bitbucket.org/beforeach/across-autoconfigure
 

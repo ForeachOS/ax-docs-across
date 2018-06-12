@@ -40,7 +40,6 @@ The actual template view can then dispatch to the original view (or parts of it)
 
 .Example Thymeleaf template that renders the content fragment of the original view
 [source,html,indent=0]
-[subs="verbatim,attributes"]
 ----
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">

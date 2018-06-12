@@ -4,7 +4,7 @@
 Modules in an Across application often use events to communicate with each other.
 To this end, Across fully supports the Spring framework event listening features.
 
-This chapter lists the most common event features, please refer to the {spring-docs}#context-functionality-events[Spring framework documentation] for all details.
+This chapter lists the most common event features, please refer to the {spring-framework-docs}#context-functionality-events[Spring framework documentation] for all details.
 
 === Subscribing to events
 The most common way to subscribe to an event is by simply providing an `@EventListener` annotated method.
@@ -100,7 +100,7 @@ public class EntityCreatedEvent<T> implements ResolvableTypeProvider {
 
 === Asynchronous listeners
 You can use a `@Async` to handle events asynchronously.
-This has some limitations, see the {spring-docs}#context-functionality-events-async[Spring framework documentation].
+This has some limitations, see the {spring-framework-docs}#context-functionality-events-async[Spring framework documentation].
 
 Please note as well that asynchronous execution must be enabled in the module where you register the event listener.
 

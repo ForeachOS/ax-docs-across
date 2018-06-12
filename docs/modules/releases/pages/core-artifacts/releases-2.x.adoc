@@ -31,7 +31,7 @@
 * `@AcrossApplication` has a `displayName` attribute to configure the context display name
 ** if empty, the property value of *across.displayName* will be considered instead
 * added `LocalizedTextResolver` for link:across-web-module/index.adoc#localizing-text[generic localization of text snippets]
-** `ViewElementBuilderContext` also implements text and message code resolving (see {bootstrap-ui-module-url}[BootstrapUiModule] documentation)
+** `ViewElementBuilderContext` also implements text and message code resolving (see {url-BootstrapUiModule}[BootstrapUiModule] documentation)
 * the default Thymeleaf resolvers now support templates with **.html* suffix
 ** _.html_ extension is now preferred as text editors will automatically recognize the template as html
 ** _.thtml_ extension is still fully supported but support may be removed in a future major release
@@ -70,4 +70,4 @@ Upgrade to *Spring Platform Athens*, new major dependency versions:
 ** using link:across-web-module/index.adoc#web-app-path-resolver-and-path-prefixing[prefixes] directly in url expressions is now supported
 ** addition of *across:static* and *across:resource* attributes for generating links to static resources
 * add infrastructure for defining link:across-web-module/index.adoc#custom-request-mapping[custom request mapping conditions] using `@CustomRequestMapping` and `CustomRequestCondition`
-* partial rendering of a single `ViewElement` is now also supported (see {bootstrap-ui-module-url}[BootstrapUiModule] documentation).
+* partial rendering of a single `ViewElement` is now also supported (see {url-BootstrapUiModule}[BootstrapUiModule] documentation).
