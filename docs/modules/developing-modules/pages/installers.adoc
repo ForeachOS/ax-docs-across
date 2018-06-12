@@ -198,6 +198,7 @@ NOTE: When registering bean definitions to the installer context, a good practic
  In that case they will never get created if the installer conditionals fail.
 
 [discrete]
+[[across-liquibase-installer]]
 === AcrossLiquibaseInstaller
 Across core comes with an `AcrossLiquibaseInstaller` class.
 This is an abstract base class for executing liquibase XML resources.
