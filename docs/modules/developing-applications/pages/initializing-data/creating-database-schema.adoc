@@ -6,9 +6,9 @@ On this page, you'll learn:
 
 == Creating a database schema
 
-We've just learned about installers and how to create default or application data.
-Another frequent use case is to use installers to create the database schema for an application.
-Creating a database schema hands the developer more fine-grained control over the ...
+We've just learned about installers and how to create initial/test data.
+Another frequent use case for installers is to create the database schema for an application.
+Manually creating a database schema allows a developer to have more fine-grained control over the table structures and their optimizations.
 
 In this section, we'll create a database schema for the `Product` entity for which we have used in xref:initializing-data/index.adoc#creating-default-test-data[Initializing application data].
 To do so, we'll start by creating an xml file in which we use a liquibase database changelog to create the table.
@@ -34,9 +34,9 @@ This file should be placed in the resources directory of the project.
 			</not>
 		</preConditions>
 
-		<comment>Creates product table</comment> # <4>
+		<comment>Creates product table</comment>
 
-		<createTable tableName="${table.product}"> # <5>
+		<createTable tableName="${table.product}"> # <4>
 			<column name="id" type="java.sql.Types.BIGINT">
 				<constraints nullable="false" primaryKey="true" primaryKeyName="pk_tbl_product"/>
 			</column>
@@ -52,20 +52,20 @@ Changesets always require a unique identifier (`id`) and an author.
 <3> Preconditions are defined as to when the changeset should be executed.
 In this example, we check for the existence of the table we are going to create.
 Should the table exist, then it does not have to be created and this changeset may be marked as ran.
-<4> Optionally, a comment can be added to further describe which changes are performed.
-<5> A create table statement is defined.
+<4> A create table statement is defined.
 
 Through the use of an installer, we can now execute the aforementioned liquibase script when the application is started.
-Take a look the link:https://www.liquibase.org/documentation/index.html[liquibase documentation] to learn more about its features.
 
-The final step is to add an installer to the project which will execute the changesets found in the aforementioned xml file.
+NOTE: Take a look at the link:https://www.liquibase.org/documentation/index.html[liquibase documentation] to learn more about its features.
+
+The final step is to add an installer to the project which will execute the liquibase changelog.
 
 .SchemaInstaller.java
 [source,java,indent=0]
 [subs="verbatim,quotes,attributes"]
 ----
 @Order(1) # <1>
-@Installer(name = "schema-installer", runCondition = InstallerRunCondition.VersionDifferent, description = "Installs the required database tables", version = 1) # <2>
+@Installer(name = "schema-installer", runCondition = InstallerRunCondition.VersionDifferent, description = "Installs the required database tables") # <2>
 public class SchemaInstaller extends AcrossLiquibaseInstaller # <3>
 {
 	public SchemaInstaller() {
@@ -75,15 +75,14 @@ public class SchemaInstaller extends AcrossLiquibaseInstaller # <3>
 ----
 <1> Installers are executed in the order they are picked up.
 An explicit ordering can be defined using the `@Order` annotation.
-<2> The `@Installer` annotation is present and various attributes are defined.
-This means that it can be found by Across and executed during one of the startup phases.
-The `runCondition` parameter defines whether the installer should *always* be executed, or only *when necessary* (e.g. through versioning).
-The version parameter defaults to `1`, as such, it is not required to provide the parameter, unless you want/have increased the version of the installer before.
-<3> For ease of use, a <<across-liquibase-installer,`AcrossLiquibaseInstaller`>> class has been defined.
-This is a base class for Installers to execute liquibase database changelog scripts based on a given xml file.
-<4> Define the path to the xml file that contains the liquibase changelog script.
+<2> The `@Installer` annotation is present along with various attributes are defined.
+The `version` attribute is not specified because the default value is 1.
+As soon as we'd make changes to our changelog, we would need to specify a higher version number if the installer should be executed again.
+<3> For ease of use, an `AcrossLiquibaseInstaller` class has been defined.
+This is a base class for Installers to execute liquibase changelogs based on a given xml file.
+<4> Define the path to the xml file that contains the liquibase changelog.
 
-Whilst the application is being started, the installer is automatically picked up by across and executed.
+Whilst the application is being started, the installer is automatically picked up and executed.
 
 .Startup logging - schema installer is executed
 ----
@@ -95,21 +94,11 @@ INFO --- [ost-startStop-1] liquibase                                : classpath:
 ----
 <1> The schema installer is executed.
 
-This can also quickly be checked through the h2-console, where our newly created table can be found.
-In addition to the `table_product`, other tables have been created as well, which were created by the core schema.
+Just like in xref:initializing-data/index.adoc#creating-default-test-data[Initializing application data], our database table has been created.
+To check whether our liquibase script has executed, we can also check the `DATABASECHANGELOG` table, where we can find the changeset we've created.
 
-image::h2-console-table-product.png[Product table is present in h2-console]
+image::h2-console-database-changelog.png[Changeset is present in DATABASECHANGELOG table]
 
-Installer execution is tracked to ensure that installers are only run if they have not yet been executed, which is specified through the `runCondition` and `version` parameters.
-Tracking itself is done by the `AcrossInstallerRepository`, which can also be wired as a bean in installers.
-This could be helpful in migration trajectories for example to rename installers.
-
-Aside of tracking, execution is also synchronized for when multiple applications would connect to the same database through the use of a `DistributedLockRepository` that is created in the core schema.
-The `DistributedLockRepository` provides a simple locking mechanism for RDBMS synchronization.
-A lock will be taken on the database as soon as a single installer wishes to execute, and will be released once that installer has finished executing.
-The lock owner will contain the hostname of the computer running the application, as well as the displayName of the AcrossContext.
-
-WARNING: Because of tracking and synchronization, a datasource is required in order to execute installers.
-This is because the `DistributedLockRepository` relies on tables created in the core schema.
+NOTE: The DATABASECHANGELOG table is automatically created by liquibase to keep track of changesets
 
 See the xref:developing-modules:installers.adoc#across-liquibase-installer[reference documentation] for more information on the `AcrossLiquibaseInstaller`.
