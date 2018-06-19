@@ -1,0 +1,3 @@
+// message codes
+
+// setting locale - fixed locale / multiple locales?
