@@ -51,25 +51,23 @@ WARNING: Properties added directly to the application properties will take prece
 // devtools!
 == Developer tools
 Development mode also activates support for link:https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html[Spring Boot DevTools].
-They provide various options options to modify the applications behaviour and to speed up development, e.g. live-reloading of resources/classes and disabling caching.
-// hot reloading ctrl + F9?
-// caching of resouruces?
+These tools provide the developer with various productivity features, such as hot-relod, where simply a recompile is required instead of restarting the entire application.
 
 // can also be activated using AcrossContextConfigurer
 == Customizing the AcrossContext
-After initial configuration but before bootstrapping, the configured `AcrossContext` will be delegated to all `AcrossContextConfigurer` beans it can find in the `ApplicationContext`.
-This allows for changing any settings before the actual bootstrap happens.
+After initial configuration and before any modules have been bootstrapped before bootstrapping, the configured `AcrossContext` will be delegated to all `AcrossContextConfigurer` beans it can find in the `ApplicationContext`.
+This allows the `AcrossContext` to be modified before the actual bootstrap happens.
 
 .Example customizing an AcrossContext
 [source,java,indent=0]
 [subs="verbatim,quotes,attributes"]
-----
+|===
 @Configuration
 @EnableAcrossContext
-public class WebConfiguration implements AcrossContextConfigurer
+public class WebConfiguration implements AcrossContextConfigurer # <1>
 {
 	@Bean
-	public DataSource acrossDataSource() {
+	public DataSource acrossDataSource() { # <2>
 		BasicDataSource dataSource = new BasicDataSource();
 		dataSource.setDriverClassName( "org.hsqldb.jdbc.JDBCDriver" );
 		dataSource.setUrl( "jdbc:hsqldb:mem:/hsql/testDataSource" );
@@ -80,10 +78,13 @@ public class WebConfiguration implements AcrossContextConfigurer
 	}
 
 	@Override
-	public void configure( AcrossContext context ) {
+	public void configure( AcrossContext context ) { # <3>
 		context.setDevelopmentMode( true );
 
 		context.addModule( new SomeModule() );
 	}
 }
-----
+|===
+<1> All AcrossContextConfigurers that are found in the ApplicationContext are called with the initial AcrossContext.
+<2> A xref:connecting-to-a-database.adoc[datasource bean] is creaed.
+<3> The `AcrossContext` is being injected and modified.
