@@ -59,9 +59,9 @@ After initial configuration and before any modules have been bootstrapped before
 This allows the `AcrossContext` to be modified before the actual bootstrap happens.
 
 .Example customizing an AcrossContext
-[source,java,indent=0]
+[source=java,indent=0]
 [subs="verbatim,quotes,attributes"]
-|===
+----
 @Configuration
 @EnableAcrossContext
 public class WebConfiguration implements AcrossContextConfigurer # <1>
@@ -84,7 +84,7 @@ public class WebConfiguration implements AcrossContextConfigurer # <1>
 		context.addModule( new SomeModule() );
 	}
 }
-|===
+----
 <1> All AcrossContextConfigurers that are found in the ApplicationContext are called with the initial AcrossContext.
-<2> A xref:connecting-to-a-database.adoc[datasource bean] is creaed.
+<2> A xref:connecting-to-a-database.adoc[datasource bean] is created.
 <3> The `AcrossContext` is being injected and modified.
