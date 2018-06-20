@@ -116,10 +116,15 @@ public interface UserRepository extends JpaRepository<Product, Long> { # <1>
 <1> By extending `JpaRepository`, which is a specification of the `Repository` marker interface, Spring is able to automatically detect and create repository beans.
 See link:https://docs.spring.io/spring-data/data-commons/docs/1.6.1.RELEASE/reference/html/repositories.html[Working with Spring Data repositories] and link:https://docs.spring.io/spring-data/jpa/docs/1.4.3.RELEASE/reference/html/jpa.repositories.html[JPA repositories] to learn more about the possibilities they provide.
 
-// TODO explain why not necessary?
-// If we would now start up the application, we wouldn't be able to create any products yet, because the database table specified does not exist.
-// By setting the following property, we let hibernate generate our table for us.
-// `spring.jpa.hibernate.ddl-auto=create-drop`
+[NOTE]
+====
+When using the dev profile xref:development-mode.adoc[`development mode`] is activated.
+As such, if you do not specify a database configuration, an in memory database will be created.
+
+Spring data JPA supports automatic DDL generation, which will create a database schema based on the provided annotations.
+For more information see link:https://docs.spring.io/spring-boot/docs/current/reference/html/howto-database-initialization.html#howto-database-initialization[the Spring docs on initializing a  database]
+To disable DDL generation explicitly, set the `spring.jpa.hibernate.ddl-auto=none` property.
+====
 
 Now that we've created a domain entity and a repository, let's create an installer and insert data into the database.
 
