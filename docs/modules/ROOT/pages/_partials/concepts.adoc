@@ -18,6 +18,7 @@ The application module is always considered to depend on all other “shared” 
 Shared modules have an explicit module descriptor, whereas the application module has an implicit one that is derived from the name and package of the `@AcrossApplication` annotated class.
 The application module is determined using a convention-over-configuration approach, see the link:../developing-applications/index.adoc#dynamic-across-modules[chapter on dynamic modules] for more information.
 
+[#across-context]
 ==== Across context
 The Across context is the set of configured modules that make up the application.
 There is a single configured Across context in an Across application.

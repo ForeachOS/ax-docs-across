@@ -8,7 +8,8 @@ For example auto-reloading and no caching of the message sources if development 
 
 Development mode is activated if one of the following conditions applies:
 
-* The `developmentMode` property on the `AcrossContext` has been set
+* The `developmentMode` property on the `AcrossContext` has been set.
+See <<customizing-the-acrosscontext,Customizing the AcrossContext>> for more information.
 * The property `across.development.active` is _true_
 * The `dev` xref:application-configuration.adoc#application-profiles[application profile] is active
 
@@ -48,15 +49,20 @@ Depending on how you run the application, the working directory can differ.
 
 WARNING: Properties added directly to the application properties will take precedence over those present in the development mode properties.
 
-// devtools!
 == Developer tools
 Development mode also activates support for link:https://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-devtools.html[Spring Boot DevTools].
-These tools provide the developer with various productivity features, such as hot-relod, where simply a recompile is required instead of restarting the entire application.
+Devtools provide the developer with various productivity features, such as hot-reloading, where a recompile will apply your recent code changes instead of restarting the entire application.
 
-// can also be activated using AcrossContextConfigurer
+[[customizing-the-acrosscontext]]
 == Customizing the AcrossContext
-After initial configuration and before any modules have been bootstrapped before bootstrapping, the configured `AcrossContext` will be delegated to all `AcrossContextConfigurer` beans it can find in the `ApplicationContext`.
+
+The xref:ROOT:in-a-nutshell.adoc#across-context[`AcrossContext`] is the parent Spring `ApplicationContext` for all the modules that are present.
+By using the `@AcrossApplication` annotation, an `AcrossContext` will be configured.
+
+After the initial configuration takes place and before any module has been bootstrapped, the configured `AcrossContext` will be delegated to all `AcrossContextConfigurer` beans it can find in the `ApplicationContext`.
 This allows the `AcrossContext` to be modified before the actual bootstrap happens.
+
+Aside of configuring development mode, the across context can also be used to further customize beans and modules.
 
 .Example customizing an AcrossContext
 [source=java,indent=0]
