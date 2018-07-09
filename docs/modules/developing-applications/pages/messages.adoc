@@ -1,3 +1,148 @@
+= Localization and translations
 // message codes
 
-// setting locale - fixed locale / multiple locales?
+On this page you will:
+
+* [*] Learn how to localize your website for various languages
+* [*] Learn how to set up a locale for your application.
+
+== Message source and message codes
+
+In xref:developing-applications:creating-an-application/project-structure.adoc[Project structure] we've learned about the project structure of an application and where resource bundles are located.
+Resource bundles are a set of message files which contain message codes and their values.
+
+.Example default.properties
+----
+sample.message=This is a message from your message source # <1>
+----
+<1> A message code `sample.message` with an assigned value.
+
+These key value combinations can be overwritten for any language that should be supported within the application.
+To overwrite a value for a specific language, an additional message file should be created ending with the specific locale code.
+When using message codes, a key lookup will be performed in the various message files, starting from the message file that has the most specific locale specification, down to the message file without a locale specification.
+
+.Example message files
+----
+src
+├── main
+│   ├── ...
+│   └── resources
+│       │   └── messages
+│       │       └── demo
+│       │           ├── default.properties # <1>
+│       │           ├── default_nl.properties # <2>
+│       │           ├── default_nl_BE.properties # <3>
+----
+<1> The default message file which will be used as a fallback for any locale that was not specified or if the key was not found in a more specific message file.
+<2> The message file that will be used when the locale starts with `nl`.
+<3> The message file that will be used when the locale starts with `nl_BE`.
+
+This means that when the configured locale is `en_uS` the following message files will be used in order until the message code is found:
+
+* `default_en_US.properties`
+* `default_en.properties`
+* `default.properties`
+
+If the configured locale is `en` a different set of message files will be used:
+
+* `default_en.properties`
+* `default.properties`
+
+This can be useful to provide sensible defaults for message codes using the `default.properties` file, a translation to dutch using `default_nl.properties` and region specific translations by using the `default_nl_BE.properties` file.
+
+Within an across application, the default message sources are configured using the `AcrossModuleMessageSource` which is a special case of Spring's `ReloadableResourceBundleMessageSource`.
+If xref:developing-applications:development-mode.adoc[development mode] is active, physical file lookups will be used instead of classpath lookups with a cache of 1 second.
+This means that during development mode, any changes to the resource bundles will instantly be visible.
+
+== Setting the locale
+
+By default the locale defined in the user's browser preferences will be used.
+To make your locale configurable, you can register a `LocaleResolver` (or `LocaleContextResolver` if you want to include timezone information).
+By doing this, you can configure what the default locale for your application is and how the locale should be retrieved.
+
+Let's make the locale for our application configurable and render a message code in their various languages.
+
+We'll start off by creating a message code in the resource bundle mentioned above with different content.
+
+.Message code per message file
+* default_en_GB.properties: cookie.name=biscuit
+* default_en.properties: cookie.name=cracker
+* default.properties: cookie.name=cookie
+
+Next up, we'll create a controller that renders a web page in which we print out a localized message using thymeleaf.
+
+.com.example.demo.application.SampleController.java
+[source=java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@Controller
+public class SampleController {
+
+    @GetMapping("/")
+    public String localization() {
+        return "th/demo/localization";
+    }
+}
+----
+
+Just like in xref:developing-applications:creating-an-application/project-structure.adoc[Project structure], we will also need to provide our template.
+
+.classpath:views/th/demo/localization.html
+[source=thtml,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Localization</title>
+</head>
+<body>
+The name for a cookie in <strong th:text="${\#locale}">LOCALE</strong> is: <strong th:text="#{cookie.name}">APPLICATION KEY</strong> # <1>
+</body>
+</html>
+----
+<1> `${}` and `\#{}` are thymeleaf expressions which are evaluated through the link:https://www.thymeleaf.org/doc/tutorials/3.0/usingthymeleaf.html#using-thtext-and-externalizing-text[`th:text` attribute].
+`#{}` will use the given parameter as a message code to look up via the MessageSource.
+
+When we now navigate to the root path of our application, we will be able to see a message based on our browsers locale
+
+image::localization_en_US.png[Message code resolving using the browser locale]
+
+Next up we'll register a `LocaleResolver` to define how the locale should be resolved and a `LocaleChangeInterceptor` so we can quickly change the current locale.
+To do so, we'll create a configuration class that extends `WebMvcConfigurer`
+
+.com.example.demo.application.LocaleConfiguration.java
+[source=java,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+@Configuration
+public class LocaleConfiguration extends WebMvcConfigurerAdapter {
+
+    @Bean
+    @Exposed # <1>
+    public LocaleResolver localeResolver() {
+        return new CookieLocaleResolver();
+    }
+
+    @Bean # <2>
+    public LocaleChangeInterceptor localeChangeInterceptor() {
+        return new LocaleChangeInterceptor();
+    }
+
+    @Override # <2>
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor( localeChangeInterceptor() );
+    }
+}
+----
+<1> We create a `CookieLocaleResolver` bean.
+When the locale of a user is modified, it will be stored within a cookie.
+<2> A `LocaleChangeInterceptor` is used to modify the current locale.
+This allows us to modify the locale, simply by adding the `locale` parameter to our request.
+
+Upon navigating to the root path of our application, we can change the locale by supplying the locale code to the `locale` parameter.
+
+image::localization_en_GB.png[Changing the locale using a request parameter]
+
+For more information on how to resolve message codes using the Message Source, see the link:https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#context-functionality-messagesource[Spring Framework reference documentation].
