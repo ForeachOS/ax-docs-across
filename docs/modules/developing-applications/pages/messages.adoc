@@ -3,17 +3,20 @@
 
 On this page you will:
 
-* [*] Learn how to use the `MessageSource` in an `AcrossContext`.
+* [*] Learn about the `MessageSource` and translations in an `AcrossContext`.
 
 == Message source and message codes
 
-In xref:developing-applications:creating-an-application/project-structure.adoc[Project structure] we've learned about the project structure of an application and where resource bundles are located.
-Resource bundles are a set of message files which contain message codes and their values.
+Spring framework provides an abstraction to work with localization and translations called the `MessageSource`.
+This abstraction supports the resolution of message codes for locales.
+By default, two implementations of a `MessageSource`  are provided, the `ResourceBundleMessageSource` and the `ReloadableResourceBundleMessageSource`.
+These implementations make use of resource bundles to look up message codes, which are a set of message files containing key-value pairs of message codes and their values.
+As seen in xref:developing-applications:creating-an-application/project-structure.adoc[Project structure], resource bundles are located within our resources folder.
 
 .Example default.properties
 ----
 sample.message=This is a message from your message source # <1>
-parameterized.message= I {0} Java.
+parameterized.message= I {0} Java. # <2>
 ----
 <1> A message code `sample.message` with an assigned value.
 <2> A parameterized message code.
@@ -22,7 +25,7 @@ E.g. When using `love` as the parameter for this message code, `I love Java` wil
 
 These key value combinations can be overwritten for any language that should be supported within the application.
 To overwrite a value for a specific language, an additional message file should be created ending with the specific locale code.
-When using message codes, a key lookup will be performed in the various message files, starting from the message file that has the most specific locale specification, down to the message file without a locale specification.
+When using message codes, a key lookup will be performed in the various message files, starting from the message file that has the closest locale specification, down to the message file without a locale specification.
 
 .Example message files
 ----
@@ -33,14 +36,14 @@ src
 │       │   └── messages
 │       │       └── demo
 │       │           ├── default.properties # <1>
-│       │           ├── default_nl.properties # <2>
-│       │           ├── default_nl_BE.properties # <3>
+│       │           ├── default_en.properties # <2>
+│       │           ├── default_en_US.properties # <3>
 ----
 <1> The default message file which will be used as a fallback for any locale that was not specified or if the key was not found in a more specific message file.
 <2> The message file that will be used when the locale starts with `nl`.
 <3> The message file that will be used when the locale starts with `nl_BE`.
 
-This means that when the configured locale is `en_uS` the following message files will be used in order until the message code is found:
+This means that when the configured locale is `en_US` the following message files will be used in order until the message code is found:
 
 * `default_en_US.properties`
 * `default_en.properties`
@@ -51,12 +54,10 @@ If the configured locale is `en` a different set of message files will be used:
 * `default_en.properties`
 * `default.properties`
 
-This can be useful to provide sensible defaults for message codes using the `default.properties` file, a translation to dutch using `default_nl.properties` and region specific translations by using the `default_nl_BE.properties` file.
+This can be useful to provide sensible defaults for message codes using the `default.properties` file, a translation to dutch using `default_en.properties` and region specific translations by using the `default_en_US.properties` file.
 
 Within an across application, the default message sources are configured using the `AcrossModuleMessageSource` which is a special case of Spring's `ReloadableResourceBundleMessageSource`.
 If xref:developing-applications:development-mode.adoc[development mode] is active, physical file lookups will be used instead of classpath lookups with a cache of 1 second.
 This means that during development mode, any changes to the resource bundles will instantly be visible.
 
-Internally message codes are resolved through the use of a `MessageSource`.
-The `MessageSource` will look up the given values using the aforementioned message files.
-For more information on how to use a MessageSource, see the link:https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#context-functionality-messagesource[Spring Framework reference documentation].
+For more information on how to use a `MessageSource`, see the link:https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#context-functionality-messagesource[Spring Framework reference documentation].
