@@ -1,9 +1,15 @@
 = 3.x release notes
 
 [#3-1-0]
-== 3.1.0-SNAPSHOT
-=== Across Web
+== 3.1.0.RELEASE
 
+=== Core dependency upgrades
+
+* Spring Platform Brussels-SR11
+* Spring Framework 4.3.18
+* Spring Boot 1.5.14
+
+=== Across Web
 * path prefixes are now supported directly in redirect view names +
 
  return "redirect:@adminWeb:/somePath";
