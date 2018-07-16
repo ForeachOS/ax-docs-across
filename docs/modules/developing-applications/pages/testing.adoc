@@ -1,0 +1,69 @@
+= Testing your application
+
+On this page, you'll
+
+* [*] learn how to bootstrap an Across application for testing with(out) an embedded servlet container.
+
+== Spring Boot Test?
+
+For more information on how to test your application using Spring Boot testing, please see the link:https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html#boot-features-testing[reference documentation].
+
+== Using an embedded servlet container
+
+Testing your application with integration tests can be done by using Spring Boot testing support.
+Spring Boot testing provides the `@SpringBootTest` annotation which allows you to load an application in an embedded servlet container.
+
+.Example integration test
+[source,java,indent=0]
+----
+@RunWith(SpringJUnit4ClassRunner.class) # <1>
+@WebAppConfiguration # <2>
+@SpringBootTest(classes = {DemoApplication.class}) # <3>
+public class ITDemoApplication {
+
+    @Autowired
+    private ProductRepository productRepository; # <4>
+
+    @Test
+    public void bootstrappedOk() throws Exception {
+        // Test should really do something - but when it gets called, bootstrap has been successful
+        assertNotNull( productRepository ); # <4>
+    }
+}
+----
+<1> A test runner is provided.
+<2> `@WebAppConfiguration` ensures that the loaded `ApplicationContext` is a `WebApplicationContext`.
+<3> `SpringBootTest` will fully bootstrap an application with the context configuration classes.
+`DemoApplication` is annotated with `@AcrossApplication` which will configure an `AcrossContext`.
+<4> A `ProductRepository` bean has been created and can be used in our tests.
+
+== Using MockMvc
+
+`MockMvc` is provided by the Spring MVC Test Framework that provides an effective way for testing controllers.
+Spring MVC Test is built on the servlet API mock objects which means that a running servlet container is not required.
+
+For more information on how to use `MockMvc`, see the link:https://docs.spring.io/spring/docs/current/spring-framework-reference/testing.html#spring-mvc-test-framework[Spring MVC Test Framework documentation].
+
+.Example integration test
+[source,java,indent=0]
+----
+@RunWith(SpringJUnit4ClassRunner.class)
+@WebAppConfiguration
+@SpringBootTest(classes = { DemoApplication.class, MockMvcConfiguration.class }) # <1>
+@ContextConfiguration(initializers = MockAcrossServletContextInitializer.class) # <2>
+public class ITDemoApplication
+{
+	@Autowired
+	private MockMvc mockMvc; # <3>
+
+	@Test
+	public void bootstrappedOk() throws Exception {
+        // Test should really do something - but when it gets called, bootstrap has been successful
+		assertNotNull( mockMvc ); # <3>
+	}
+}
+----
+<1> An additional Configuration class is provided for MockMvc.
+<2> A `MockAcrossServletContext` is configured instead of a `MockServletContext`.
+<3> A `MockMvc` bean is present to perform integration tests.
+

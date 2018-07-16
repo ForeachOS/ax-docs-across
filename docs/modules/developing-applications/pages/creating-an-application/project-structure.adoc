@@ -249,7 +249,7 @@ After changing controller code, add the following template file in the right loc
 <html xmlns:th="http://www.w3.org/1999/xhtml">
 <head><title>Application Key</title></head>
 <body>
-The application key is: <strong th:text="$\{applicationKey}">APPLICATION KEY</strong> # <1>
+The application key is: <strong th:text="${applicationKey}">APPLICATION KEY</strong> # <1>
 </body>
 </html>
 ----
