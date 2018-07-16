@@ -19,8 +19,8 @@ src
 │   │   └── com
 │   │       └── example
 │   │           └── demo
-│   │           │   └── application # <1>
-│   │           └── DemoApplication.java # <2>
+│   │               ├── application # <1>
+│   │               └── DemoApplication.java # <2>
 │   └── resources
 │       │   └── messages
 │       │       └── demo

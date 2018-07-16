@@ -2,7 +2,7 @@
 
 On this page, you'll
 
-* [*] learn how to bootstrap an Across application for testing with(out) an embedded servlet container.
+* [*] learn how to bootstrap your across application in a test setup.
 
 == Spring Boot Test?
 

@@ -1,56 +1,80 @@
 = Default modules in an application
 
-// AcrossContextPostProccesorModule,Dynamic Application Module
+On this page, you'll learn:
+
+* [*] about the dynamic modules in an across application
+* [*] how these modules are configured
 
 [[dynamic-across-modules]]
 [#dynamic-across-modules]
 == Dynamic Across modules
-Using `@AcrossApplication` on a class will automatically enable dynamic Across modules on that class.
+Using `@AcrossApplication` on a class will automatically enable dynamic across modules on that class.
 Before bootstrapping the context, the configurator will attempt to find an application specific infrastructure, application or postprocessor module.
 The name of the expected module is generated based on the name of the importing class.
+
 If no module with that name can be resolved, the configurator will see if a child package is present relative to the package of the importing class.
 Depending on the child package name, a dynamic module will be generated.
+If we, for example, take a look at the xref:developing-applications:creating-an-application/project-structure.adoc#layout[project structure] of an application, an `application` package is created next to the application descriptor.
+The `application` package will be used to generate the dynamic application module.
 
-|===
+Dynamic across modules can be disabled through the `enableDynamicModules` attribute on `@AcrossApplication`.
 
-|*Importing class* |MyApplication |MyConfiguration
+=== Infrastructure module
 
-|*Infrastructure module* +
-package: _infrastructure_
-|MyApplicationInfrastructureModule +
-resources: myApplicationInfrastructure
-|MyConfigurationInfrastructureModule +
-resources: myConfigurationInfrastructure
+Infrastructure modules will be added as a required dependency to all other non-infrastructure modules, as such they will be bootstrapped early during application startup.
+The infrastructure module in an application setup is identified by the package _infrastructure_.
+An infrastructure module is typically used to perform additional configuration before any other module has been bootstrapped.
 
-|*Application module* +
-package: _application_
-|MyApplicationModule +
-resources: *my*
-|MyConfigurationApplicationModule +
-resources: *myConfiguration*
-
-|*PostProcessor module* +
-package: _postprocessor_
-|MyApplicationPostProcessorModule +
-resources: myApplicationPostProcessor
-|MyConfigurationPostProcessorModule +
-resources: myConfigurationPostProcessor
-
-|===
-
-.Example package structure for application modules
-[source,text,indent=0]
-[subs="verbatim,quotes,attributes"]
+.Infrastructure module configured by an `@AcrossApplication`
 ----
-com.mypackage
-  MyApplication.class
-  application.config
-    MyApplicationModuleConfiguration.class
-  infrastructure.installers
-    SchemaInstallerToRunBeforeAnyOtherModule.class
+src
+├── main
+│   ├── java
+│   │   └── com
+│   │       └── example
+│   │           └── demo
+│   │               ├── infrastructure # <1>
+│   │               └── DemoApplication.java
 ----
+<1> Represents the `DemoApplicationInfrastructureModule` with `demoApplicationInfrastructure` as the resource package descriptor.
 
-Disabling dynamic modules on an `@AcrossApplication` can be done through the *enableDynamicModules* attribute.
+=== Application module
+
+The application module contains your application specific spring components and business logic.
+It is identified by the package _application_.
+
+.Application module configured by an `@AcrossApplication`
+----
+src
+├── main
+│   ├── java
+│   │   └── com
+│   │       └── example
+│   │           └── demo
+│   │               ├── application # <1>
+│   │               └── DemoApplication.java
+----
+<1> Represents the `DemoApplicationModule` with `demo` as the resource package descriptor.
+
+
+=== PostProcessor module
+
+A postprocessor module will have all other non-postprocessor modules as a required dependency, as such they will be bootstrapped after all non-postprocessor modules have been bootstrapped.
+The postprocessor module in an application setup is identified by the package _postprocessor_.
+A postprocessor module is typically used to perform additional configuration once all modules have been bootstrapped.
+
+.Application module configured by an `@AcrossApplication`
+----
+src
+├── main
+│   ├── java
+│   │   └── com
+│   │       └── example
+│   │           └── demo
+│   │               ├── postprocessor # <1>
+│   │               └── DemoApplication.java
+----
+<1> Represents the `DemoApplicationPostProcessorModule` with `demoApplicationPostProcessor` as the resource package descriptor.
 
 WARNING: Dynamic modules perform an automatic component scan of all their child packages with the exception of _installers_ and _extensions_.
 If you want the default behavior of scanning only the _config_ child package, you must provide an `AcrossModule` implementation.
