@@ -4,10 +4,6 @@ On this page, you'll
 
 * [*] learn how to bootstrap your across application in a test setup.
 
-== Spring Boot Test?
-
-For more information on how to test your application using Spring Boot testing, please see the link:https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html#boot-features-testing[reference documentation].
-
 == Using an embedded servlet container
 
 Testing your application with integration tests can be done by using Spring Boot testing support.
@@ -67,3 +63,4 @@ public class ITDemoApplication
 <2> A `MockAcrossServletContext` is configured instead of a `MockServletContext`.
 <3> A `MockMvc` bean is present to perform integration tests.
 
+NOTE: For more information on how to test your application using Spring Boot testing, please see the link:https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-testing.html#boot-features-testing[reference documentation].
