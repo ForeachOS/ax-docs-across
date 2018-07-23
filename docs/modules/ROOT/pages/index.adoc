@@ -1,1 +1,39 @@
-// what is Across?
+= Across Platform documentation
+
+[NOTE]
+====
+Our documentation is in a constant state of evolution.
+Many sections of the documentation are still incomplete but we are working very hard to get them uptodate.
+
+Due to the migration of our documentation from regular Asciidoctor files and Gitbook repositories to http://antora.org[Antora], many pages may still contain broken links.
+====
+
+== How to get started
+The easiest way to get started is actually generating a project using the {ax-initializr-url}[Across Initializr] and then playing around with it.
+
+Reading the documentation section on xref:developing-applications:creating-an-application/index.adoc[Developing Applications] is a good nex step.
+
+There are also a couple of xref:guides:ROOT:index.adoc[guides and tutorials] to help you get started.
+In the nearby future, you can expect this list to grow.
+
+== Frequently Asked Questions
+The https://across.foreach.be/faq[FAQ page] lists a number of common questions grouped by category.
+It's a different approach to start exploring some of the core documentation.
+
+== Getting in touch
+If you don't find the answer to your specific question in either the documentation or the FAQ, there's a couple of ways to reach out:
+
+=== Issue tracker
+For bug reports or feature requests, the https://foreach.atlassian.net[issue tracker] is obviously the place to be.
+Every module usually has its own issue tracker, so when possible, please find and use the specific one via the https://across.foreach.be/modules[modules overview].
+
+More general questions or feature requests can be filed as a Question issue type.
+
+=== Gitter
+There is a public Gitter chat channel where the core development team resides: https://gitter.im/thinking-across/Lobby
+
+=== Twitter
+You can also follow us on Twitter:
+
+* https://twitter.com/ThinkingAcross[project feed]
+* https://twitter.com/beforeach[the company behind Across]

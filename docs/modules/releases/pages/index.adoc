@@ -1,2 +1,54 @@
-= Across Releases
+= Across Platform Releases
 
+Across Platform is a so called bill of material POM providing a curated list of Across related dependencies, including all standard modules.
+Using this BOM pom is all that is required to start building your application on a specific version of Across.
+
+The Platform BOM helps you to avoid dependency conflicts and gives you the confidence that dependency versions work together correctly.
+
+== Using the Platform BOM
+
+Using the BOM can be done by including it in the `dependencyManagement` section of your Maven build file.
+Dependencies known in the platform BOM do not need a version element to be specified.
+If a version is omitted, the version from the BOM will be used.
+
+[source,xml,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+<!-- Include the platform BOM with scope import -->
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.foreach.across</groupId>
+            <artifactId>platform-bom</artifactId>
+            <version>2.1.1.RELEASE</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
+<!-- Specific dependencies do not need a version -->
+<dependencies>
+    <dependency>
+        <groupId>com.foreach.across</groupId>
+        <artifactId>across-autoconfigure</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.foreach.across.modules</groupId>
+        <artifactId>admin-web-module</artifactId>
+    </dependency>
+</dependencies>
+----
+
+== Current Across Platform release
+
+xref:platform/2.1.1.adoc[Across Platform 2.1.1] is the current version we advise new projects to use.
+
+== Across Core artifacts
+
+Across Platform is the assembly of the Across core artifacts, standard modules and related dependencies.
+Every application running Across automatically imports one or more of the core artifacts.
+
+More information about the core artifacts and their versioning can be found on the xref:core-artifacts/index.adoc[dedicated section].
+
+TIP: Usually developers should only actively manage their Across Platform version.

@@ -5,6 +5,8 @@ generate a simple app
 link to the starter trails
 ////
 
+WARNING: The starter trail documentation is currently under construction.
+
 == Prerequisites
 
 * Java 8

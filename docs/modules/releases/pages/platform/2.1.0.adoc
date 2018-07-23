@@ -1,13 +1,9 @@
-= +++ <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82.9 95.7" width="40" style="margin-right: 10px"><path fill="#3CA873" d="M0 23.9l15.9-9.2 41.5 23.9-16 9.2"></path><path fill="#0093D8" d="M25.5 9.2L41.4 0l41.5 23.9-16 9.2"></path><path fill="#53DD99" d="M41.4 95.7l16-9.3V38.6l-16 9.2"></path><path fill="#22CEFA" d="M66.9 80.9l16-9.2V23.9l-16 9.2"></path><path fill="#257A50" d="M12.5 64.5L28.9 55l-16.4-9.4"></path><path fill="#4DBC86" d="M12.5 64.5L28.9 74V55"></path></svg> +++ Across Platform BOM
-:toc: left
-:toc-title: Across Platform BOM
-:toclevels: 2
-:sectnums:
-:chapter-number: 0
-:across-platform-version: 2.1.1-SNAPSHOT
+= Across Platform 2.1.0
+
+:across-platform-version: 2.1.0.RELEASE
 :spring-platform-version: Brussels-SR7
 :spring-platform-url: http://docs.spring.io/platform/docs/Brussels-SR7/reference/htmlsingle/#appendix-dependency-versions
-:across-version: 3.1.0-SNAPSHOT
+:across-version: 3.0.0.RELEASE
 :across-autoconfigure-version: 1.0.0.RELEASE
 :foreach-common-version: 1.1
 :commons-collections-version: 4.1
@@ -25,7 +21,7 @@
 :asm-ehcache-module-version: 1.0.1.RELEASE
 :asm-spring-mobile-module-version: 2.0.0.RELEASE
 :asm-application-info-module-version: 1.0.1.RELEASE
-:asm-bootstrap-ui-module-version: 2.1.0-SNAPSHOT
+:asm-bootstrap-ui-module-version: 2.0.1.RELEASE
 :asm-admin-web-module-version: 3.0.1.RELEASE
 :asm-file-manager-module-version: 1.2.0.RELEASE
 :asm-spring-batch-module-version: 1.0.1.RELEASE
@@ -38,24 +34,13 @@
 :asm-web-cms-version: 0.0.4.RELEASE
 :ais-image-server-version: 4.0.0.RELEASE
 
-include::../ax-docs-shared/copyright.adoc[]
+Released on April 3rd, 2018.
+This is a major feature upgrade bumping Across core artifacts and Spring Boot versions.
 
-:!sectnums:
-
-[abstract]
-== About
-The Across Platform BOM is a so called *bill of material* POM that provides a curated list of Across related dependencies, including all standard modules.
-Using this BOM pom is advised as it helps you to avoid dependency conflicts and gives you the confidence that dependency versions work together correctly.
-
-== Using the Platform BOM
-Using the BOM can be done by including it in the `dependencyManagement` section of your Maven build file.
-Dependencies known in the platform BOM do not need a version element to be specified.
-If a version is omitted, the version from the BOM will be used.
-
+== Maven artifact
 [source,xml,indent=0]
 [subs="verbatim,quotes,attributes"]
 ----
-<!-- Include the platform BOM with scope import -->
 <dependencyManagement>
     <dependencies>
         <dependency>
@@ -67,49 +52,14 @@ If a version is omitted, the version from the BOM will be used.
         </dependency>
     </dependencies>
 </dependencyManagement>
-
-<!-- Specific dependencies do not need a version -->
-<dependencies>
-    <dependency>
-        <groupId>across</groupId>
-        <artifactId>across-web</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>across-standard-modules</groupId>
-        <artifactId>debug-web</artifactId>
-    </dependency>
-</dependencies>
 ----
 
-== What's new in this version
+== Dependency upgrades
 
-=== 2.1.1-SNAPSHOT
-
-.Across dependency upgrades
-
-[cols="3,1,1",options=header]
-|===
-
-|Dependency
-|Previous version
-|New version
-
-|Across
-|3.0.0.RELEASE
-|3.1.0-SNAPSHOT
-
-|BootstrapUiModule
-|2.0.1.RELEASE
-|2.1.0-SNAPSHOT
-
-|===
-
-=== 2.1.0.RELEASE
 Most of the standard modules have been baselined against Across 3.0.0 in this update.
-See the link:migration-2.0.x-to-2.1.x.html[migration guide] for upgrading from Across Platform 2.0.x.
+See the <<migration-guides,migration guide>> for upgrading from Across Platform 2.0.x.
 
 .Across dependency upgrades
-
 [cols="3,1,1",options=header]
 |===
 
@@ -120,6 +70,10 @@ See the link:migration-2.0.x-to-2.1.x.html[migration guide] for upgrading from A
 |Across
 |2.1.1.RELEASE
 |3.0.0.RELEASE
+
+|Auto-configuration Support
+|
+|1.0.0.RELEASE
 
 |AcrossHibernateJpaModule
 |2.0.1.RELEASE
@@ -137,6 +91,14 @@ See the link:migration-2.0.x-to-2.1.x.html[migration guide] for upgrading from A
 |2.2.0.RELEASE
 |3.0.1.RELEASE
 
+|LdapModule
+|1.0.0.RELEASE
+|1.0.1.RELEASE
+
+|SpringSecurityAclModule
+|2.0.1.RELEASE
+|3.0.1.RELEASE
+
 |SpringSecurityModule
 |2.0.1.RELEASE
 |3.0.1.RELEASE
@@ -148,18 +110,6 @@ See the link:migration-2.0.x-to-2.1.x.html[migration guide] for upgrading from A
 |WebCmsModule
 |0.0.3.RELEASE
 |0.0.4.RELEASE
-
-|Across auto-configure
-|
-|1.0.0.RELEASE
-
-|SpringSecurityAclModule
-|2.0.1.RELEASE
-|3.0.1.RELEASE
-
-|LdapModule
-|1.0.0.RELEASE
-|1.0.1.RELEASE
 
 |===
 
@@ -186,122 +136,6 @@ See the link:migration-2.0.x-to-2.1.x.html[migration guide] for upgrading from A
 |Thymeleaf extras: Java8 time
 |&nbsp;
 |3.0.1.RELEASE
-
-|===
-
-=== 2.0.2.RELEASE
-
-.Across dependency upgrades
-
-[cols="3,1,1",options=header]
-|===
-
-|Dependency
-|Previous version
-|New version
-
-|Across
-|2.1.0.RELEASE
-|2.1.1.RELEASE
-
-|AdminWebModule
-|2.1.0.RELEASE
-|2.1.1.RELEASE
-
-|BootstrapUiModule
-|1.1.0.RELEASE
-|1.2.0.RELEASE
-
-|EntityModule
-|2.1.0.RELEASE
-|2.2.0.RELEASE
-
-|SpringSecurityModule
-|2.0.0.RELEASE
-|2.0.1.RELEASE
-
-|WebCmsModule
-|0.0.2.RELEASE
-|0.0.3.RELEASE
-
-|===
-
-.Other dependency upgrades
-[cols="3,1,1",options=header]
-|===
-
-|Dependency
-|Previous version
-|New version
-
-|Spring Platform
-|Athens-SR2
-|Athens-SR6
-
-|Thymeleaf
-|3.0.3.RELEASE
-|3.0.7.RELEASE
-
-|Thymeleaf extras: Spring Security 4
-|3.0.1.RELEASE
-|3.0.2.RELEASE
-
-|===
-
-=== 2.0.1.RELEASE
-
-.Across dependency upgrades
-
-[cols="3,1,1",options=header]
-|===
-
-|Dependency
-|Previous version
-|New version
-
-|Across
-|2.0.0.RELEASE
-|2.1.0.RELEASE
-
-|AcrossHibernateJpaModule
-|2.0.0.RELEASE
-|2.0.1.RELEASE
-
-|AdminWebModule
-|2.0.0.RELEASE
-|2.1.0.RELEASE
-
-|BootstrapUiModule
-|1.0.0.RELEASE
-|1.1.0.RELEASE
-
-|EntityModule
-|2.0.0.RELEASE
-|2.1.0.RELEASE
-
-|FileManagerModule
-|1.1.0.RELEASE
-|1.2.0.RELEASE
-
-|SpringSecurityAclModule
-|2.0.0.RELEASE
-|2.0.1.RELEASE
-
-|===
-
-.New dependencies added
-
-[cols="1,1",options=header]
-|===
-
-|Dependency
-|Version
-
-|WebCmsModule
-|0.0.2.RELEASE
-
-|ImageServer modules
-|4.0.0.RELEASE
 
 |===
 
@@ -362,7 +196,8 @@ Additionally Across platform BOM defines and overrides the following dependencie
 
 |===
 
+[[migration-guides]]
 == Migration guides
 The following migration guides are available:
 
-* link:./migration-2.0.x-to-2.1.x.html[Across Platform 2.0.x to 2.1.x]
+* xref:migration::platform-2-0-to-2-1.adoc[Across Platform 2.0.x to 2.1.x]
