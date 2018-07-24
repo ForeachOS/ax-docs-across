@@ -1,5 +1,6 @@
 [#across-core-components]
 = Across core components
+
 The following is a listing of the default components (beans) that are created by the Across context.
 These beans are always available and accessible in every module.
 
@@ -29,11 +30,11 @@ This is a simple locking mechanism that can be used for distributed locks in a m
 The lock repository is also used by the installer tracking mechanism.
 
 |`AcrossDevelopmentMode`
-|Utility bean that can be used to verify if <<developing-applications.adoc#development-mode,development mode>> is active, and to get development locations for resources files.
+|Utility bean that can be used to verify if xref:developing-applications:development-mode.adoc[development mode] is active, and to get development locations for resources files.
 
 |`MessageSource`
 |The default Across `MessageSource` bean that represents the module based message source hierarchy.
-See the chapter on <<developing-modules.adoc#message-sources,Message sources>> for more information.
+See the chapter on xref:developing-modules:messages.adoc[Message sources] for more information.
 
 |`CacheManager`
 |Exposes the `AcrossCompositeCacheManager`.
@@ -45,18 +46,18 @@ A `Cache` instance will always be returned, defaulting to a `NoOpCache` if no ac
 
 [#conversion-service]
 == ConversionService
-An AcrossContext requires a valid `ConversionService` bean named *conversionService* to be present.
+An AcrossContext requires a valid `ConversionService` bean with the name *conversionService* to be present.
 If there is none, a `DefaultFormattingConversionService` will be created and exposed.
-If you want to manage the `ConversionService` yourself, simply create a `ConversionService` with the right name in the parent `ApplicationContext`.
+If you want to manage the `ConversionService` yourself, simply create a `ConversionService` bean with the right name in your xref:developing-applications:creating-an-application/application-descriptor.adoc[application descriptor].
 
 The default *conversionService* will also be attached to the `ApplicationContext` environment of every module.
 This means property fetching using `Environment.getProperty()` methods will perform type conversion using the `ConversionService` (eg. useful for date property parsing).
 
 .Date conversion
-Apart from the `ConversionService` itself, an `AcrossContext` creates a default `StringToDateConverter` bean named *defaultDateConverter*.
+Apart from the `ConversionService` itself, an `AcrossContext` creates a default `StringToDateTimeConverter` bean named *defaultDateTimeConverter*.
 This converter supports converting a string to a corresponding date in many common date patterns.
-The `StringToDateConverter` assumes a fixed locale that can be configured (default: `US`).
+The `StringToDateTimeConverter` assumes a fixed locale that can be configured (default: `US`).
 
-WARNING: If you manage the `ConversionService` outside of the `AcrossContext` the default `StringToDateConverter` will not be registered either.
+WARNING: If you manage the `ConversionService` outside of the `AcrossContext` the default `StringToDateTimeConverter` will not be registered either.
 
 
