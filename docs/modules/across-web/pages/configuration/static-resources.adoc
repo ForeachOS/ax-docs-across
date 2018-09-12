@@ -48,7 +48,7 @@ This is also the default if development mode is active.
 [#resource-url-versioning]
 === Resource URL versioning
 //TODO fix spring link to mvc config static resources
-By default AcrossWebModule enables link:http://docs.spring.io/spring-framework/docs/current/spring-framework-reference/html/mvc.html#mvc-config-static-resources[Spring versioning of static resources].
+By default AcrossWebModule enables link:https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/web.html#mvc-config-static-resources[Spring versioning of static resources].
 This will generate versioned URLs, create a `ResourceUrlProvider` bean and add a `ResourceUrlEncodingFilter` and `ResourceUrlProviderExposingInterceptor` to the request handlers.
 
 Using versioned resource URLs is transparent:
