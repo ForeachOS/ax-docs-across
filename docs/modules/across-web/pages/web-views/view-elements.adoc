@@ -72,12 +72,35 @@ It is a way to pass attributes required for building the elements, and it also g
 
 AcrossWebModule comes with a number of default `ViewElementBuilder` implementations for both simple elements and more complex components.
 
-==== Global ViewElementBuilderContext
-Most `ViewElementBuilder` implementations extend `GlobalContextSupportingViewElementBuilder`.
-This class provides a parameterless `build()` method that will attempt to retrieve a `ViewElementBuilderContext` from the current thread, or from the request attached to the thread.
-If no global `ViewElementBuilderContext` is registered however, calls to `build()` will throw an exception.
+.Simple ContainerViewElementBuilder example
+[source,java]
+----
+ViewElementBuilderContext builderContext = new DefaultViewElementBuilderContext(); <1>
+builderContext.setAttribute( "username", "John Doe" );
 
+return new ContainerViewElementBuilder() <2>
+          .add( TextViewElement.text( "Hello, " ) ) <3>
+          .add( bc -> TextViewElement.text( bc.getAttribute( "username" ) ) ) <4>
+          .build( builderContext ); <5>
+----
+
+<1> We create a custom `ViewElementBuilderContext` and set the `username` attribute.
+<2> Create a new `ContainerViewElementBuilder` instance.
+<3> Add a `TextViewElement` with some static text.
+<4> Add a child `ViewElementBuilder` which in turn creates a `TextViewElement` using the builder context `username` attribute as text value.
+<5> Build the actual `ContainerViewElement`.
+This will recursively call `build( builderContext )` on the child builder, resulting in a single `ContainerViewElement` with 2 `TextViewElement` children.
+
+==== Global ViewElementBuilderContext
+The `ViewElementBuilder` interface provides a default no-arg `build()` method that will attempt to retrieve a global `ViewElementBuilderContext`.
+It will do so by calling `ViewElementBuilderContext.retrieveGlobalBuilderContext()` which usually returns the one attached to the current request or current thread.
+
+If no global builder context is available, a new `DefaultViewElementBuilderContext` will be used instead.
+
+Using a global `ViewElementBuilderContext` is a good way to share contextual variables across all elements being built.
 See the `ViewElementBuilderContextInterceptor` for an interceptor that creates a global `ViewElementBuilderContext`.
+
+NOTE: For performance reasons it is usually better to manage the `ViewElementBuilderContext` scope yourself: either provide a `ViewElementBuilderContext` directly or ensure there is a global one available.
 
 ==== ViewElementBuilderContext in controllers
 If there is a global `ViewElementBuilderContext` available, you can also `ViewElementBuilderContext` as a method argument in web controller methods.

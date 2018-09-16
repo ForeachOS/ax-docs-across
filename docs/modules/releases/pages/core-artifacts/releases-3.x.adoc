@@ -11,6 +11,13 @@ Mainly a bugfix release.
 * Spring Framework 4.3.19
 * Spring Boot 1.5.16
 
+=== Across Web
+* `ViewElementBuilder` improvements
+** a `build()` method has been added with a default implementation which will create a new `DefaultViewElementBuilderContext` is no global context is available
+*** the `GlobalContextSupportingViewElementBuilder` base class has been removed as it was obsolete
+** chaining `ViewElementPostProcessors` on any builder is now possible using `andThen()` which will return a new builder instance
+** `HtmlViewElementBuilder` implementations has short-hand `data()` methods for adding `data-` attributes
+
 [#3-1-0]
 == 3.1.0.RELEASE
 
