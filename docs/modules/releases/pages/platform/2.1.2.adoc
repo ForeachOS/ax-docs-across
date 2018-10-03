@@ -28,7 +28,7 @@
 :asm-properties-module-version: 1.1.1.RELEASE
 :asm-entity-module-version: 3.2.0-SNAPSHOT
 :asm-spring-security-acl-module-version: 3.0.1.RELEASE
-:asm-user-module-version: 3.0.0.RELEASE
+:asm-user-module-version: 3.1.0-SNAPSHOT
 :asm-ldap-module-version: 1.0.0.RELEASE
 :asm-oauth2-module-version: 2.0.1.RELEASE
 :asm-web-cms-version: 0.0.6-SNAPSHOT
@@ -85,6 +85,10 @@ This is a minor upgrade, including some new features, security patches and sever
 |EntityModule
 |3.1.0.RELEASE
 |xref:entity-module::releases/3.x.adoc#3-2-0[3.2.0-SNAPSHOT]
+
+|UserModule
+|3.0.0.RELEASE
+|xref:entity-module::releases/3.x.adoc#3-1-0[3.1.0-SNAPSHOT]
 
 |WebCmsModule
 |0.0.5.RELEASE
