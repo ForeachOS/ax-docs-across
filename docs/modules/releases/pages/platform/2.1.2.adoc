@@ -30,7 +30,7 @@
 :asm-spring-security-acl-module-version: 3.0.1.RELEASE
 :asm-user-module-version: 3.1.0-SNAPSHOT
 :asm-ldap-module-version: 1.0.0.RELEASE
-:asm-oauth2-module-version: 2.0.1.RELEASE
+:asm-oauth2-module-version: 2.1.0-SNAPSHOT
 :asm-web-cms-version: 0.0.6-SNAPSHOT
 :asm-dynamic-forms-version: 0.0.2-SNAPSHOT
 :ais-image-server-version: 4.0.0.RELEASE
@@ -89,6 +89,10 @@ This is a minor upgrade, including some new features, security patches and sever
 |FileManagerModule
 |1.2.0.RELEASE
 |xref:1.3.0-dev@file-manager-module::releases/1.x.adoc#1-3-0[1.3.0-SNAPSHOT]
+
+|OAuth2Module
+|2.0.1.RELEASE
+|xref:2.1.0-dev@oauth2-module::releases/2.x.adoc#2-1-0[2.1.0-SNAPSHOT]
 
 |UserModule
 |3.0.0.RELEASE
