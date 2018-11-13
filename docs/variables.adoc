@@ -1,12 +1,12 @@
-:across-version: 3.0.0.RELEASE
-:across-autoconfigure-version: 1.0.0.RELEASE
+:across-version: 3.1.1.RELEASE
+:across-autoconfigure-version: 1.0.2.RELEASE
 :across-url: https://across.foreach.be
 :spring-url: http://projects.spring.io/spring-framework/
 :spring-data-url: http://projects.spring.io/spring-data/
 :spring-batch-url: http://projects.spring.io/spring-batch/
 :spring-security-url: http://projects.spring.io/spring-security/
-:spring-docs: https://docs.spring.io/spring/docs/4.3.14.RELEASE/spring-framework-reference/htmlsingle/
-:spring-boot-docs: https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/htmlsingle/
+:spring-docs: https://docs.spring.io/spring/docs/4.3.20.RELEASE/spring-framework-reference/htmlsingle/
+:spring-boot-docs: https://docs.spring.io/spring-boot/docs/1.5.17.RELEASE/reference/htmlsingle/
 :commons-fileupload-url: http://commons.apache.org/proper/commons-fileupload/
 :platform-bom-url: https://across.foreach.be/modules
 :url-AdminWebModule: https://across.foreach.be/modules/AdminWebModule

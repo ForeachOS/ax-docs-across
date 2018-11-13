@@ -12,7 +12,7 @@ There is also a separate platform-bom project that provides a bill-of-material f
 
 .Common dependencies
 Across is directly tied to Spring framework and all artifacts come with a set of curated dependencies.
-Across itself uses the http://platform.spring.io/platform/[Spring IO platform] as a basis for all its dependencies.
+Across itself uses the https://spring.io/projects/platform[Spring IO platform] as a basis for all its dependencies.
 
 .Artifact repositories
 All release versions of Across artifacts are available on Maven Central.

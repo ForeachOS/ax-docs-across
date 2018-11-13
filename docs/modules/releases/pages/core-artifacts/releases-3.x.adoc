@@ -1,17 +1,18 @@
 = 3.x release notes
 
 [#3-1-1]
-== 3.1.1-SNAPSHOT
+== 3.1.1.RELEASE
 
 Mainly a bugfix release.
 
 === Core dependency upgrades
 
-* Spring Platform Brussels-SR13
-* Spring Framework 4.3.19
-* Spring Boot 1.5.16
+* Spring Platform Brussels-SR14
+* Spring Framework 4.3.20
+* Spring Boot 1.5.17
 
 === Across Web
+* fixed an issue with the automatic registration of a `MultipartResolver`
 * `ViewElementBuilder` interface improvements
 ** a `build()` method has been added with a default implementation which will create a new `DefaultViewElementBuilderContext` is no global context is available
 *** the `GlobalContextSupportingViewElementBuilder` base class has been removed as it was obsolete
@@ -20,6 +21,11 @@ Mainly a bugfix release.
 ** `map(Function<ViewElement>)` and `map(BiFunction<ViewElementBuilderContext,ViewElement>)` methods added
 *** supports transforming the actual `ViewElement` type and returns a new builder for the new type
 ** `HtmlViewElementBuilder` implementations has short-hand `data()` methods for adding `data-` attributes
+* `ViewElementBuilderContext` interface improvements
+** `findAttribute()` methods added that allow looking up an attribute with meta information
+*** allows checking if an attribute is present (but possibly `null`) and if it has been inherited
+*** mainly used internally for attribute precedence rules
+** `withAttributeOverride()` methods added that return a `Closeable` for temporary overriding of attribute values in a builder context
 
 [#3-1-0]
 == 3.1.0.RELEASE
