@@ -13,7 +13,7 @@ The easiest way to get started is actually generating a project using the {ax-in
 
 Reading the documentation section on xref:developing-applications:creating-an-application/index.adoc[Developing Applications] is a good nex step.
 
-There are also a couple of xref:guides:ROOT:index.adoc[guides and tutorials] to help you get started.
+There are also a couple of xref:2.1.2@guides:ROOT:index.adoc[guides and tutorials] to help you get started.
 In the nearby future, you can expect this list to grow.
 
 == Frequently Asked Questions
