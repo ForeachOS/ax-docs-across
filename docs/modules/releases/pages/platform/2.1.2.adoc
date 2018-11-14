@@ -107,6 +107,32 @@ This is a feature upgrade, additionally including security patches and several b
 
 |===
 
+.Other dependency upgrades
+[cols="3,1,1",options=header]
+|===
+
+|Dependency
+|Previous version
+|New version
+
+|Spring Platform
+|Brussels-SR11
+|https://docs.spring.io/platform/docs/Brussels-SR14/reference/htmlsingle[Brussels-SR14]
+
+|AssertJ
+|3.11.1
+|3.9.0
+
+|Thymeleaf
+|3.0.9.RELEASE
+|3.0.11.RELEASE
+
+|Thymeleaf Spring security
+|3.0.2.RELEASE
+|3.0.4.RELEASE
+
+|===
+
 == Dependency versions
 Across Platform BOM {across-platform-version} extends the *Spring IO Platform BOM {spring-platform-version}*.
 The base list of dependencies can be found in the {spring-platform-url}[Spring IO Platform documentation].
