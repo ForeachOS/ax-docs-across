@@ -38,6 +38,7 @@ src
 ----
 <1> Represents the `DemoApplicationInfrastructureModule` with `demoApplicationInfrastructure` as the resource package descriptor.
 
+[#dynamic-application-module]
 === Application module
 
 The application module contains your application specific spring components and business logic.
