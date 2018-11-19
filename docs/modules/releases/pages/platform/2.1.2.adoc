@@ -87,7 +87,7 @@ This is a feature upgrade, additionally including security patches and several b
 
 |EntityModule
 |3.1.0.RELEASE
-|xref:entity-module::releases/3.x.adoc#3-2-0[3.2.0.RELEASE]
+|xref:3.2.0@entity-module::releases/3.x.adoc#3-2-0[3.2.0.RELEASE]
 
 |FileManagerModule
 |1.2.0.RELEASE
