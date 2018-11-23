@@ -1,4 +1,4 @@
-* xref:index.adoc[Developing modules]
+* xref:creating-a-module/index.adoc[Developing modules]
 ** xref:creating-a-module/index.adoc[Creating a reusable module]
 *** xref:creating-a-module/module-descriptor.adoc[Module descriptor]
 *** xref:creating-a-module/project-structure.adoc[Project structure]
