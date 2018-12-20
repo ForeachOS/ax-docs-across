@@ -1,0 +1,201 @@
+= Across Platform 2.1.3
+
+:across-platform-version: 2.1.3-SNAPSHOT
+:spring-platform-version: Brussels-SR14
+:spring-platform-url: https://docs.spring.io/platform/docs/Brussels-SR14/reference/htmlsingle/#appendix-dependency-versions
+:across-version: 3.1.1.RELEASE
+:across-autoconfigure-version: 1.0.2.RELEASE
+:foreach-common-version: 1.1
+:commons-collections-version: 4.1
+:commons-lang-version: 3.7
+:assertj-core-version: 3.11.1
+:cglib-version: 3.1
+:ojdbc6-version: 11.2.0
+:thymeleaf-version: 3.0.11.RELEASE
+:thymeleaf-extras-springsecurity4: 3.0.4.RELEASE
+:thymeleaf-extras-java8time: 3.0.1.RELEASE
+:asm-across-hibernate-module-version: 3.0.0.RELEASE
+:asm-spring-security-module-version: 3.0.2.RELEASE
+:asm-debug-web-module-version: 2.0.0.RELEASE
+:asm-logging-module-version: 1.1.0.RELEASE
+:asm-ehcache-module-version: 1.0.1.RELEASE
+:asm-spring-mobile-module-version: 2.0.0.RELEASE
+:asm-application-info-module-version: 1.0.1.RELEASE
+:asm-bootstrap-ui-module-version: 2.1.1.RELEASE
+:asm-admin-web-module-version: 3.1.0.RELEASE
+:asm-file-manager-module-version: 1.3.1-SNAPSHOT
+:asm-spring-batch-module-version: 1.0.1.RELEASE
+:asm-properties-module-version: 1.1.1.RELEASE
+:asm-entity-module-version: 3.3.0-SNAPSHOT
+:asm-spring-security-acl-module-version: 3.0.1.RELEASE
+:asm-user-module-version: 3.1.0.RELEASE
+:asm-ldap-module-version: 1.0.0.RELEASE
+:asm-oauth2-module-version: 2.1.0.RELEASE
+:asm-web-cms-version: 0.0.6.RELEASE
+:asm-dynamic-forms-version: 0.0.2.RELEASE
+:ais-image-server-version: 5.0.0-SNAPSHOT
+
+Released on November 13th, 2018.
+This is a feature upgrade, additionally including security patches and several bugfixes.
+
+== Maven artifact
+[source,xml,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.foreach.across</groupId>
+            <artifactId>platform-bom</artifactId>
+            <version>{across-platform-version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+----
+
+== Dependency upgrades
+
+.Across dependency upgrades
+[cols="3,1,1",options=header]
+|===
+
+|Dependency
+|Previous version
+|New version
+
+|Across
+|3.1.0.RELEASE
+|xref:core-artifacts/releases-3.x.adoc#3-1-1[3.1.1.RELEASE]
+
+|Auto-configuration support
+|1.0.1.RELEASE
+|xref:across-autoconfigure::index.adoc[1.0.2.RELEASE]
+
+|AdminWebModule
+|3.0.1.RELEASE
+|xref:admin-web-module::releases/3.x.adoc#3-1-0[3.1.0.RELEASE]
+
+|BootstrapUiModule
+|2.1.0.RELEASE
+|xref:bootstrap-ui-module::releases/2.x.adoc#2-1-1[2.1.1.RELEASE]
+
+|DynamicFormsModule
+|0.0.1.RELEASE
+|xref:dynamic-forms-module::releases/0.0.x.adoc#0-0-2[0.0.2.RELEASE]
+
+|EntityModule
+|3.1.0.RELEASE
+|xref:3.2.0@entity-module::releases/3.x.adoc#3-2-0[3.2.0.RELEASE]
+
+|FileManagerModule
+|1.2.0.RELEASE
+|xref:file-manager-module::releases/1.x.adoc#1-3-0[1.3.0.RELEASE]
+
+|OAuth2Module
+|2.0.1.RELEASE
+|xref:oauth2-module::releases/2.x.adoc#2-1-0[2.1.0.RELEASE]
+
+|UserModule
+|3.0.0.RELEASE
+|xref:user-module::releases/3.x.adoc#3-1-0[3.1.0.RELEASE]
+
+|WebCmsModule
+|0.0.5.RELEASE
+|xref:web-cms-module::releases/0.0.x.adoc#0-0-6[0.0.6.RELEASE]
+
+|===
+
+.Other dependency upgrades
+[cols="3,1,1",options=header]
+|===
+
+|Dependency
+|Previous version
+|New version
+
+|Spring Platform
+|Brussels-SR11
+|https://docs.spring.io/platform/docs/Brussels-SR14/reference/htmlsingle[Brussels-SR14]
+
+|AssertJ
+|3.9.0
+|3.11.1
+
+|Thymeleaf
+|3.0.9.RELEASE
+|3.0.11.RELEASE
+
+|Thymeleaf Spring security
+|3.0.2.RELEASE
+|3.0.4.RELEASE
+
+|===
+
+== Dependency versions
+Across Platform BOM {across-platform-version} extends the *Spring IO Platform BOM {spring-platform-version}*.
+The base list of dependencies can be found in the {spring-platform-url}[Spring IO Platform documentation].
+Additionally Across platform BOM defines and overrides the following dependencies:
+
+|===
+
+| Group | Artifact | Version
+
+| cglib | cglib | {cglib-version}
+
+| com.foreach.across | across-core | {across-version}
+| com.foreach.across | across-test | {across-version}
+| com.foreach.across | across-web | {across-version}
+| com.foreach.across | across-autoconfigure | {across-autoconfigure-version}
+
+| com.foreach.across.modules | across-hibernate-module | {asm-across-hibernate-module-version}
+| com.foreach.across.modules | admin-web-module | {asm-admin-web-module-version}
+| com.foreach.across.modules | application-info-module | {asm-application-info-module-version}
+| com.foreach.across.modules | bootstrap-ui-module | {asm-bootstrap-ui-module-version}
+| com.foreach.across.modules | debug-web-module | {asm-debug-web-module-version}
+| com.foreach.across.modules | dynamic-forms-module | {asm-dynamic-forms-version}
+| com.foreach.across.modules | ehcache-module | {asm-ehcache-module-version}
+| com.foreach.across.modules | entity-module | {asm-entity-module-version}
+| com.foreach.across.modules | file-manager-module | {asm-file-manager-module-version}
+| com.foreach.across.modules | ldap-module | {asm-ldap-module-version}
+| com.foreach.across.modules | logging-module | {asm-logging-module-version}
+| com.foreach.across.modules | oauth2-module | {asm-oauth2-module-version}
+| com.foreach.across.modules | properties-module | {asm-properties-module-version}
+| com.foreach.across.modules | spring-batch-module | {asm-spring-batch-module-version}
+| com.foreach.across.modules | spring-mobile-module | {asm-spring-mobile-module-version}
+| com.foreach.across.modules | spring-security-module | {asm-spring-security-module-version}
+| com.foreach.across.modules | spring-security-acl-module | {asm-spring-security-acl-module-version}
+| com.foreach.across.modules | user-module | {asm-user-module-version}
+| com.foreach.across.modules | web-cms-module | {asm-web-cms-version}
+
+| com.foreach.imageserver  | imageserver-core | {ais-image-server-version}
+| com.foreach.imageserver  | imageserver-admin | {ais-image-server-version}
+| com.foreach.imageserver  | imageserver-client | {ais-image-server-version}
+
+| com.foreach.libs | common-concurrent | {foreach-common-version}
+| com.foreach.libs | common-spring | {foreach-common-version}
+| com.foreach.libs | common-test | {foreach-common-version}
+| com.foreach.libs | common-web | {foreach-common-version}
+
+| com.mattbertolini | liquibase-slf4j | 1.2.1
+| com.oracle | ojdbc6 | {ojdbc6-version}
+
+| org.assertj | assertj-core | {assertj-core-version}
+| org.apache.commons | commons-collections4 | {commons-collections-version}
+| org.apache.commons | commons-lang3 | {commons-lang-version}
+
+| org.thymeleaf | thymeleaf | {thymeleaf-version}
+| org.thymeleaf | thymeleaf-spring4 | {thymeleaf-version}
+| org.thymeleaf.extras | thymeleaf-extras-springsecurity4 | {thymeleaf-extras-springsecurity4}
+| org.thymeleaf.extras | thymeleaf-extras-java8time | {thymeleaf-extras-java8time}
+
+|===
+
+[[migration-guides]]
+== Migration guides
+
+Platform 2.1.3 should be a drop-in upgrade in most cases.
+Upgrading only individual modules might result in breaking changes and is not advised.
+
+No migration guide is available.
