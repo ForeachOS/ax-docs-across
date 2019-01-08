@@ -1,6 +1,6 @@
-= Across Platform 2.1.3
+= Across Platform 2.1.4
 
-:across-platform-version: 2.1.3-SNAPSHOT
+:across-platform-version: 2.1.4-SNAPSHOT
 :spring-platform-version: Brussels-SR14
 :spring-platform-url: https://docs.spring.io/platform/docs/Brussels-SR14/reference/htmlsingle/#appendix-dependency-versions
 :across-version: 3.1.2-SNAPSHOT
@@ -23,20 +23,20 @@
 :asm-application-info-module-version: 1.0.1.RELEASE
 :asm-bootstrap-ui-module-version: 2.1.1.RELEASE
 :asm-admin-web-module-version: 3.1.0.RELEASE
-:asm-file-manager-module-version: 1.3.0.RELEASE
+:asm-file-manager-module-version: 1.3.1-SNAPSHOT
 :asm-spring-batch-module-version: 1.0.1.RELEASE
 :asm-properties-module-version: 1.1.1.RELEASE
-:asm-entity-module-version: 3.2.0.RELEASE
+:asm-entity-module-version: 3.3.0-SNAPSHOT
 :asm-spring-security-acl-module-version: 3.0.1.RELEASE
 :asm-user-module-version: 3.1.0.RELEASE
 :asm-ldap-module-version: 1.0.0.RELEASE
 :asm-oauth2-module-version: 2.1.0.RELEASE
 :asm-web-cms-version: 0.0.6.RELEASE
 :asm-dynamic-forms-version: 0.0.2.RELEASE
-:ais-image-server-version: 4.0.0.RELEASE
+:ais-image-server-version: 5.0.0-SNAPSHOT
 
 Released on January 8th, 2019.
-This is a bugfix release.
+This is a feature upgrade, additionally including security patches and several bugfixes.
 
 == Maven artifact
 [source,xml,indent=0]
@@ -65,9 +65,17 @@ This is a bugfix release.
 |Previous version
 |New version
 
-|Across
-|3.1.1.RELEASE
-|xref:core-artifacts/releases-3.x.adoc#3-1-2[3.1.2-SNAPSHOT]
+|EntityModule
+|3.2.0.RELEASE
+|xref:3.2.0@entity-module::releases/3.x.adoc#3-3-0[3.3.0-SNAPSHOT]
+
+|FileManagerModule
+|1.3.0.RELEASE
+|xref:file-manager-module::releases/1.x.adoc#1-3-1[1.3.1-SNAPSHOT]
+
+|ImageServer
+|4.0.0.RELEASE
+|5.0.0-SNAPSHOT
 
 |===
 
@@ -133,7 +141,7 @@ Additionally Across platform BOM defines and overrides the following dependencie
 [[migration-guides]]
 == Migration guides
 
-Platform 2.1.3 should be a drop-in upgrade in most cases.
+Platform 2.1.4 should be a drop-in upgrade in most cases.
 Upgrading only individual modules might result in breaking changes and is not advised.
 
 No migration guide is available.
