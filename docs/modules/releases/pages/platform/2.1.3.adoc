@@ -147,7 +147,5 @@ Additionally Across platform BOM defines and overrides the following dependencie
 [[migration-guides]]
 == Migration guides
 
-Platform 2.1.3 should be a drop-in upgrade in most cases.
-Upgrading only individual modules might result in breaking changes and is not advised.
-
+Platform 2.1.3 is a drop-in upgrade.
 No migration guide is available.
