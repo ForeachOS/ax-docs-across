@@ -71,6 +71,20 @@ This is a bugfix release.
 
 |===
 
+.Other dependency upgrades
+[cols="3,1,1",options=header]
+|===
+
+|Dependency
+|Previous version
+|New version
+
+|Spring Platform
+|Brussels-SR14
+|https://docs.spring.io/platform/docs/Brussels-SR15/reference/htmlsingle[Brussels-SR15]
+
+|===
+
 == Dependency versions
 Across Platform BOM {across-platform-version} extends the *Spring IO Platform BOM {spring-platform-version}*.
 The base list of dependencies can be found in the {spring-platform-url}[Spring IO Platform documentation].
