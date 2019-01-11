@@ -1,8 +1,8 @@
 = Across Platform 2.1.4
 
 :across-platform-version: 2.1.4-SNAPSHOT
-:spring-platform-version: Brussels-SR14
-:spring-platform-url: https://docs.spring.io/platform/docs/Brussels-SR14/reference/htmlsingle/#appendix-dependency-versions
+:spring-platform-version: Brussels-SR15
+:spring-platform-url: https://docs.spring.io/platform/docs/Brussels-SR15/reference/htmlsingle/#appendix-dependency-versions
 :across-version: 3.1.2.RELEASE
 :across-autoconfigure-version: 1.0.2.RELEASE
 :foreach-common-version: 1.1
