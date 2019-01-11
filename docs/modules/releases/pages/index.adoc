@@ -20,7 +20,7 @@ If a version is omitted, the version from the BOM will be used.
         <dependency>
             <groupId>com.foreach.across</groupId>
             <artifactId>platform-bom</artifactId>
-            <version>2.1.2.RELEASE</version>
+            <version>2.1.3.RELEASE</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
@@ -42,7 +42,7 @@ If a version is omitted, the version from the BOM will be used.
 
 == Current Across Platform release
 
-xref:platform/2.1.2.adoc[Across Platform 2.1.2] is the current version we advise new projects to use.
+xref:platform/2.1.3.adoc[Across Platform 2.1.3] is the current version we advise new projects to use.
 
 == Across Core artifacts
 

@@ -1,17 +1,19 @@
 = 3.x release notes
 
 [#3-1-2]
-== 3.1.2-SNAPSHOT
+== 3.1.2.RELEASE
 
 Mainly a bugfix release.
 
 === Core dependency upgrades
 
 * Spring Platform Brussels-SR15
+* Spring Framework 4.3.21
+* Spring Boot 1.5.18
 
 === Across Core
 
-* link:https://across-docs.foreach.be/across/3.1.2-SNAPSHOT/javadoc/[Deprecated HikariDataSourceHelper] in favour of DataSourceBuilder or Spring Boot datasource properties.
+* Deprecated `HikariDataSourceHelper` in favour of `DataSourceBuilder` or Spring Boot datasource properties.
 
 === Across Web
 
