@@ -68,4 +68,9 @@ Note that several Spring (Boot) properties can also influence behaviour of the A
 |Map of physical locations for views resources.  Only used if development mode is active.
 |_Collections.emptyMap()_
 
+|webjars.path
+|`String`
+|Relative path for serving all webjars.
+|/webjars
+
 |===
