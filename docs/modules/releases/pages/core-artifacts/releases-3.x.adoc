@@ -9,7 +9,7 @@ Mainly a bugfix release.
 === Across Web
 
 * Fixed issue with `RequestMenuSelector` not selecting the correct items based on a request url with query string parameters
-* Webjar support extended by providing a `@webjar` attribute processor that defaults to /webjars.
+* Webjar support extended by providing a `@webjars` attribute processor that defaults to /webjars.
 See xref:across-web:web-views/thymeleaf-dialect.adoc#attribute-processors[Attribute processors] for more details.
 
 

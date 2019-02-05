@@ -66,9 +66,9 @@ Any double dash (--) will be replaced by a colon (:).
 |_<a across:static-data-url="/img"/>_ +
  output: _<a data-url="/res/static/img">_
 
-|*across:webjar*
+|*across:webjars*
 |Takes a relative path to a webjar. By default mapped to `/webjars` but can be changed by setting the xref:across-web:configuration/module-settings.adoc[webjar path].
-|_<link rel="stylesheet" type="text/css" th:href="@{@webjar:/bootstrap/3.1.0/css/bootstrap.min.css}"/>_ +
+|_<link rel="stylesheet" type="text/css" th:href="@{@webjars:/bootstrap/3.1.0/css/bootstrap.min.css}"/>_ +
  output: _<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.1.0/css/bootstrap.min.css">_
 
 |===
