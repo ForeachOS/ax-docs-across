@@ -19,7 +19,3 @@ Use these if you have multiple beans (eg security configurers) of the same type 
 
 NOTE: Unless a specific order is given either through the interface or annotation, a default order of `Ordered.LOWEST_PRECEDENCE - 1000` is applied.
 This way you can still force beans to be ordered behind beans without an explicit order.
-
-WARNING: The current version of Across does not apply the module order hierarchy to event handlers.
-If event handlers need an order, it should be defined explicitly and you cannot rely that event handlers from other modules you depend on will have been executed before you.
-This is an important work in progress for one of the next versions of Across.
