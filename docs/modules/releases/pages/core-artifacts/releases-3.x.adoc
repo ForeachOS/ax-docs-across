@@ -1,10 +1,21 @@
 = 3.x release notes
 
-[#3-1-3]
-== 3.1.3-SNAPSHOT
+[#3-2-0]
+== 3.2.0-SNAPSHOT
 
 Mainly a bugfix release.
 
+=== Core dependency upgrades
+
+* Spring Platform Brussels-SR16
+* Spring Framework 4.3.22
+* Spring Boot 1.5.19
+
+=== Across Core
+
+* Fixed issue where exposed `FactoryBean` beans did not behave consistently
+** full target bean and factory type information is now available
+* Fixed issue where exposed `Lifecycle` beans sould get started more than once
 
 === Across Web
 
