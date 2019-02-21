@@ -1,23 +1,20 @@
 [[WebResourceRegistry]]
 [#web-resource-registry]
-=== WebResourceRegistry
+=== Web Resources
 AcrossWebModule allows for programatically registering web resources through the use of a `WebResourceRegistry`.
 A new `WebResourceRegistry` is attached to every request and can be accessed as a request attribute or a handler method parameter.
 
-Resources can be added in a bucket.
+Resources can be added in a bucket and AcrossWebModule supports 3 buckets by default: `css`, `javascript` and `meta`.
 
-AcrossWebModule supports 3 bucket types by default: css, javascript, meta.
+A bucket can be used for retrieval of resources, for example when rendering inside a thymeleaf template.
 
-You can add your own type by, see TODO:LINK.
-//TODO: fix link
-
-This bucket can be used for retrieval of resources, for example when rendering inside a thymeleaf template.
+You can add your own rendering to a specific bucket, see <<custom-bucket,custom bucket>> to implement this.
 
 Resources can be identified with a unique key, ensuring they are added only once.
 
-==== Javascript bucket type
+==== Javascript bucket
 
-You can add a javascript type to the `WebResourceRegistry` by using following syntax:
+You can add a javascript resource to the `WebResourceRegistry` by using following syntax:
 
 .Example controller registering Javascript resources
 [source,java,indent=0]
@@ -25,20 +22,39 @@ You can add a javascript type to the `WebResourceRegistry` by using following sy
 @Controller
 public class MyController
 {
-  @ModelAttribute
-  public void registerWebResources( WebResourceRegistry webResourceRegistry ) {
-    webResourceRegistry.add( WebResource.javascript().url("//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js").defer().async() ); # <1>
-    webResourceRegistry.add( WebResource.javascript().url("@static:/adminweb/js/file.js") ); # <2>
-    webResourceRegistry.add( WebResource.javascript().inline( "alert('hello world');") ); # <3>
-    webResourceRegistry.add( WebResource.javascript().data( Collections.singletonMap( "PI", "3.14159265359"  ) ) ); # <4>
-  }
+	@ModelAttribute
+	public void registerWebResources( WebResourceRegistry webResourceRegistry ) {
+		Map<String, String> statics = new HashMap<String, String>()
+		{{
+			put( "static", "@static:/" );
+			put( "admin", "@adminWeb:/" );
+		}};
+		Map<String, Object> vars = new HashMap<String, Object>()
+		{{
+			put( "rootPaths", statics );
+			put( "language", "nl" );
+		}};
+
+		webResourceRegistry.apply(
+			WebResourceRule.add( WebResource.javascript( "//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js").defer().async() ).withKey( "bootstrap-min-js" ).toBucket( WebResource.JAVASCRIPT ),  # <1>
+			WebResourceRule.add( WebResource.javascript( "@static:/adminweb/js/file.js") ).withKey( "static-file-js" ).toBucket( WebResource.JAVASCRIPT ),  # <2>
+			WebResourceRule.add( WebResource.javascript().inline( "alert('hello world');") ).withKey( "inline-hello-world-min-js" ).toBucket( WebResource.JAVASCRIPT_PAGE_END ),  # <3>
+			WebResourceRule.add( WebResource.javascript().data( vars ).snippet( ( data ) -> {
+			        return "(function ( Across ) {\n" +
+			                "var data=" + new ObjectMapper().writeValueAsString( data ) + ";\n" +
+			                "for(var key in data) Across[key] = data[key];\n" +
+			                "        })( window.Across = window.Across || {} );\n";  # <4>
+			} ) ).withKey( "alert-page-top" ).toBucket( "javascript_vars" )
+		);
+	}
 }
 ----
 
-<1> This adds an external Javascript file to the javascript bucket, it will put the attributes `defer` and `async` on it
-<2> This adds a Javascript file located under the default static folder
-<3> This inlines Javascript directly into a script tag
-<4> This inline a data object into the script tag
+<1> This adds an external Javascript file to the javascript bucket, it will put the attributes `defer` and `async` on it.
+<2> This adds a Javascript file located under the default static folder.
+See xref:web-views/links-and-urls.adoc[Links and URLs] for a list of prefixes that are supported.
+<3> This inlines Javascript directly into a script tag.
+<4> This inlines a data object with a snippet into the script tag.
 
 You can render the *javascript* bucket, with the following snippet:
 
@@ -47,38 +63,38 @@ You can render the *javascript* bucket, with the following snippet:
 ----
 <html>
 <head>
-    <across:view element="${javascript}" th:each="javascript :${webResourceRegistry.getResourceBucket('javascript')}" />
+    <across:view element="${webResourceRegistry.getBucketResources('javascript')}" />
 </head>
 <body>
-...
+    ...
+    <across:view element="${webResourceRegistry.getBucketResources('javascript-page-end')}" />
 </body>
 </html>
 ----
 
-//TODO: revise data object
-.Generated output by thymelaf for the above example
+.Generated output by thymelaf
 [source,html,indent=0]
 ----
 <html>
 <head>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" type="text/javascript" defer async></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" type="text/javascript" defer="defer" async="async"></script>
     <script src="/static/adminweb/js/file.js" type="text/javascript"></script>
-    <script type="text/javascript">alert('hello world()');</script>
-    <script type="text/javascript">
-        (function( Across ) {
-            Across[ "PI" ] = "3.14159265359";
-        })( window.Across = window.Across || {} );
+    <script type="text/javascript">(function ( Across ) {
+    var data={"rootPaths":{"static":"@static:/","admin":"@adminWeb:/"},"language":"nl"};
+    for(var key in data) Across[key] = data[key];
+            })( window.Across = window.Across || {} );
     </script>
 </head>
 <body>
-...
+    ...
+    <script type="text/javascript">alert('hello world()');</script>
 </body>
 </html>
 ----
 
-==== CSS bucket type
+==== CSS bucket
 
-You can add a css type to the `WebResourceRegistry` by using following syntax:
+You can add a css resource to the `WebResourceRegistry` by using following syntax:
 
 .Example controller registering CSS resources
 [source,java,indent=0]
@@ -86,18 +102,21 @@ You can add a css type to the `WebResourceRegistry` by using following syntax:
 @Controller
 public class MyController
 {
-  @ModelAttribute
-  public void registerWebResources( WebResourceRegistry webResourceRegistry ) {
-    webResourceRegistry.add( WebResource.css().url("//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css") ); # <1>
-    webResourceRegistry.add( WebResource.css().url("@static:/adminweb/css/print.css").rel("stylesheet").media("print") ); # <2>
-    webResourceRegistry.add( WebResource.css().inline("body {background-color: powderblue;}") ); # <3>
-  }
+	@ModelAttribute
+	public void registerWebResources( WebResourceRegistry webResourceRegistry ) {
+		webResourceRegistry.apply(
+				WebResourceRule.add( WebResource.css( "//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" ) ).withKey( "bootstrap-min-css" ).toBucket( WebResource.CSS ), # <1>
+				WebResourceRule.add( WebResource.css().url("@static:/adminweb/css/print.css").rel("stylesheet").media( "print" ) ).withKey( "admin-web-print-css" ).toBucket( WebResource.CSS ), # <2>
+				WebResourceRule.add( WebResource.css().inline( "body {background-color: powderblue;}" ) ) # <3>
+		);
+	}
 }
 ----
 
 <1> This adds an external CSS file to the css bucket.
-<2> This adds a CSS file located under the default static folder, it will put the attributes `media` and `rel` on it
-<3> This inlines CSS directly into a style tag
+<2> This adds a CSS file located under the default static folder, it will put the attributes `media` and `rel` on it.
+See xref:web-views/links-and-urls.adoc[Links and URLs] for a list of prefixes that are supported.
+<3> This inlines CSS directly into a `style` tag.
 
 You can render the *css* bucket, with the following snippet:
 
@@ -106,7 +125,7 @@ You can render the *css* bucket, with the following snippet:
 ----
 <html>
 <head>
-    <across:view element="${css}" th:each="css :${webResourceRegistry.getResourceBucket('css')}" />
+    <across:view element="${webResourceRegistry.getBucketResources('css')}" />
 </head>
 <body>
 ...
@@ -114,12 +133,12 @@ You can render the *css* bucket, with the following snippet:
 </html>
 ----
 
-.Generated output by thymelaf for the above example
+.Generated output by thymelaf
 [source,html,indent=0]
 ----
 <html>
 <head>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css"></script>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet"></script>
     <link href="/static/adminweb/css/print.css" type="text/css" rel="stylesheet" media="print"></script>
     <style>
         body {background-color: powderblue;}
@@ -131,9 +150,9 @@ You can render the *css* bucket, with the following snippet:
 </html>
 ----
 
-==== Meta bucket type
+==== Meta bucket
 
-You can add a meta type to the `WebResourceRegistry` by using following syntax:
+You can add a meta resource to the `WebResourceRegistry` by using following syntax:
 
 .Example controller registering META resources
 [source,java,indent=0]
@@ -141,16 +160,18 @@ You can add a meta type to the `WebResourceRegistry` by using following syntax:
 @Controller
 public class MyController
 {
-  @ModelAttribute
-  public void registerWebResources( WebResourceRegistry webResourceRegistry ) {
-    webResourceRegistry.add( WebResource.meta().name("keywords").content("HTML, CSS, XML, HTML") ); # <1>
-    webResourceRegistry.add( WebResource.meta().refresh("30;URL='https://www.google.com/'") ); # <2>
-  }
+	@ModelAttribute
+	public void registerWebResources( WebResourceRegistry webResourceRegistry ) {
+		webResourceRegistry.apply(
+				WebResourceRule.add( WebResource.meta().metaName( "keywords" ).content( "HTML, CSS, XML, HTML" ) ).withKey( "meta-keywords" ).toBucket( "meta" ), # <1>
+				WebResourceRule.add( WebResource.meta().refresh("30;URL='https://www.foreach.be/'") ).withKey( "meta-refresh" ).toBucket( "meta" ) # <2>
+		);
+	}
 }
 ----
 
 <1> This will generate a META tag and will put the attributes `name` and `content` on it.
-<2> This generate a `http-equiv` META tag with a refresh timer of 30 seconds, towards https://www.google.com.
+<2> This generate a `http-equiv` META tag with a refresh timer of 30 seconds, towards https://www.foreach.be.
 
 You can render the *meta* bucket, with the following snippet:
 
@@ -159,7 +180,7 @@ You can render the *meta* bucket, with the following snippet:
 ----
 <html>
 <head>
-    <across:view element="${meta}" th:each="meta :${webResourceRegistry.getResourceBucket('meta')}" />
+    <across:view element="${webResourceRegistry.getBucketResources('meta')}" />
 </head>
 <body>
 ...
@@ -167,22 +188,24 @@ You can render the *meta* bucket, with the following snippet:
 </html>
 ----
 
-.Generated output by thymelaf for the above example
+.Generated output by thymelaf
 [source,html,indent=0]
 ----
 <html>
 <head>
-    <meta name="keywords" content=""HTML, CSS, XML, HTML"" />
-    <meta http-equiv="refresh" content="30;URL='https://www.google.com/'" />
+    <meta name="keywords" content="HTML, CSS, XML, HTML"></meta>
+    <meta http-equiv="refresh" content="30;URL=https://www.foreach.be/"></meta>
 </head>
 <body>
 ...
 </body>
 </html>
 ----
-==== Custom bucket type
 
-It is possible to register your own bucket type by using following syntax:
+[#custom-bucket]
+==== Custom bucket
+
+It is possible to register your own bucket by using following syntax:
 
 .Example controller registering `base` resources
 [source,java,indent=0]
@@ -190,14 +213,26 @@ It is possible to register your own bucket type by using following syntax:
 @Controller
 public class MyController
 {
- @ModelAttribute
- public void registerWebResources( WebResourceRegistry webResourceRegistry ) {
-   webResourceRegistry.add( WebResource.create("base").attr( Collections.singletonMap( "href", "https://www.w3schools.com/images/"  ) ) ); # <1>
- }
+	@ModelAttribute
+	public void registerWebResources( WebResourceRegistry webResourceRegistry ) {
+		webResourceRegistry.apply(
+				WebResourceRule.add( new ViewElementBuilderSupport()
+				{
+					@Override
+					protected MutableViewElement createElement( ViewElementBuilderContext builderContext ) {
+						NodeViewElement element = new NodeViewElement( "base" );
+						element.setAttribute( "href", builderContext.buildLink( "https://www.w3schools.com/images/" ) ); # <1>
+						element.setAttribute( "target", "_blank" );
+						return element;
+					}
+				} ).withKey( "base-href" ).toBucket( "base" ) # <2>
+		);
+	}
 }
 ----
 
-<1> Generates a `base` tag with the `href` attribute.
+<1> Using the `buildLink` will ensure that xref:web-views/links-and-urls.adoc[path prefixes] are correctly resolved.
+<2> Generates a `base` tag with the `href` attribute.
 
 You can render the custom bucket, with the following snippet:
 
@@ -206,7 +241,7 @@ You can render the custom bucket, with the following snippet:
 ----
 <html>
 <head>
-    <across:view element="${base}" th:each="base :${webResourceRegistry.getResourceBucket('base')}" />
+    <across:view element="${webResourceRegistry.getBucketResources('base')}" />
 </head>
 <body>
 ...
@@ -214,7 +249,7 @@ You can render the custom bucket, with the following snippet:
 </html>
 ----
 
-.Generated output by thymelaf for the above example
+.Generated output by thymelaf
 [source,html,indent=0]
 ----
 <html>
@@ -225,3 +260,96 @@ You can render the custom bucket, with the following snippet:
 ...
 </body>
 </html>
+----
+
+==== Linking to webjars
+
+You can use a path prefix in your `url` to generate an url pointing to a webjar.
+
+.Example controller registering a bootstrap css webjar
+[source,java,indent=0]
+----
+@Controller
+public class MyController
+{
+	@ModelAttribute
+	public void registerWebResources( WebResourceRegistry webResourceRegistry ) {
+		webResourceRegistry.apply(
+				WebResourceRule.add( WebResource.css( "@webjars:/bootstrap/3.3.5/css/bootstrap.min.css" ) ).withKey( "bootstrap-min-css" ).toBucket( WebResource.CSS ) # <1>
+		);
+	}
+}
+----
+
+<1> Using the `@webjars` will generate the link to the registered webjar. See xref:web-views/links-and-urls.adoc[path prefixes] for a list of other supported prefixes.
+
+.Generated output by thymelaf
+[source,html,indent=0]
+----
+<html>
+<head>
+    <link href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet"></script>
+</head>
+<body>
+...
+</body>
+</html>
+----
+
+Make sure you have registered your webjar in the `pom.xml` if you wish to use it.
+
+.Registering a jquery webjar
+[source,xml,indent=0]
+----
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>jquery</artifactId>
+    <version>3.3.0</version>
+</dependency>
+----
+
+This will expose the webjar under the base url `/webjars/jquery/3.3.0/` for example `/webjars/jquery/3.3.0/jquery.js`.
+
+==== Ordering of web resources
+
+Every `AddWebResourceRule` supports several ordering parameters. The following is an example of ordering web resources.
+Sorting is handled per bucket when the rendering of the view elemement is done.
+
+.Example controller registering ordered web resources
+[source,java,indent=0]
+----
+@Controller
+public class MyController
+{
+	@ModelAttribute
+	public void registerWebResources( WebResourceRegistry webResourceRegistry ) {
+		webResourceRegistry.apply(
+				WebResourceRule.add( WebResource.css( "/css/1.css" ) ).order( 1 ).withKey( "first-css" ).toBucket( WebResource.CSS ), # <1>
+				WebResourceRule.add( WebResource.css( "/css/4.css" ) ).after( "third-css" ).withKey( "fourth-css" ).toBucket( WebResource.CSS ), # <2>
+				WebResourceRule.add( WebResource.css( "/css/3.css" ) ).withKey( "third-css" ).toBucket( WebResource.CSS ),
+				WebResourceRule.add( WebResource.css( "/css/2.css" ) ).before( "third-css" ).withKey( "second-css" ).toBucket( WebResource.CSS )
+		);
+	}
+}
+----
+
+<1> Web resources will always be ordered by `order()` first. If no `order()` is specified, they are sorted after the ones that have an order (lowest precendence).
+<2> The web resource with key `fourth-css` is placed after the web resource with key `third-css`.
+<3> The web resource with key `third-css` has no specific ordering and will depend on other web resources for sorting.
+<4> The web resource with key `second-css` is placed before the web resource with key `third-css'.
+
+.Generated output by thymelaf
+[source,html,indent=0]
+----
+<html>
+<head>
+    <link rel="stylesheet" href="/css/1.css" type="text/css"></link>
+    <link rel="stylesheet" href="/css/2.css" type="text/css"></link>
+    <link rel="stylesheet" href="/css/3.css" type="text/css"></link>
+    <link rel="stylesheet" href="/css/4.css" type="text/css"></link>
+</head>
+<body>
+...
+</body>
+</html>
+----
