@@ -326,8 +326,8 @@ public class MyController
 		webResourceRegistry.apply(
 				WebResourceRule.add( WebResource.css( "/css/1.css" ) ).order( 1 ).withKey( "first-css" ).toBucket( WebResource.CSS ), # <1>
 				WebResourceRule.add( WebResource.css( "/css/4.css" ) ).after( "third-css" ).withKey( "fourth-css" ).toBucket( WebResource.CSS ), # <2>
-				WebResourceRule.add( WebResource.css( "/css/3.css" ) ).withKey( "third-css" ).toBucket( WebResource.CSS ),
-				WebResourceRule.add( WebResource.css( "/css/2.css" ) ).before( "third-css" ).withKey( "second-css" ).toBucket( WebResource.CSS )
+				WebResourceRule.add( WebResource.css( "/css/3.css" ) ).withKey( "third-css" ).toBucket( WebResource.CSS ), # <3>
+				WebResourceRule.add( WebResource.css( "/css/2.css" ) ).before( "third-css" ).withKey( "second-css" ).toBucket( WebResource.CSS ) # <4>
 		);
 	}
 }
