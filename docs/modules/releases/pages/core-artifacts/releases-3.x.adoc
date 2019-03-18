@@ -15,14 +15,16 @@ Mainly a bugfix release.
 
 * Fixed issue where exposed `FactoryBean` beans did not behave consistently
 ** full target bean and factory type information is now available
-* Fixed issue where exposed `Lifecycle` beans sould get started more than once
+* Fixed issue where exposed `Lifecycle` beans would get started more than once
 
 === Across Web
 
+* A global `ViewElementBuilderContext` is now created by default.
+To revert to the old behaviour set property `acrossWebModule.registerGlobalBuilderContext=false`.
 * Fixed issue with `RequestMenuSelector` not selecting the correct items based on a request url with query string parameters
-* Webjar support extended by providing a `@webjars` attribute processor that defaults to /webjars.
+* Webjar support extended by providing a `@webjars` path prefix.
 See xref:across-web:web-views/links-and-urls.adoc#default-prefixes[default prefixes] for more details.
-* Added a more fluent API to add xref:across-web:web-views/web-resources.adoc[Web resources]
+* Added a more fluent and powerful API for xref:across-web:web-views/web-resources.adoc[registering Web resources] based on view element rendering.
 
 
 [#3-1-2]

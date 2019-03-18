@@ -51,7 +51,7 @@ Note that several Spring (Boot) properties can also influence behaviour of the A
 |registerGlobalBuilderContext
 |`Boolean`
 |Should a request-bound `ViewElementBuilderContext` be created.
-|_false_
+|_true_
 
 |templates.enabled
 |`Boolean`
