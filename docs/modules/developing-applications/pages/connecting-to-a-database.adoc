@@ -1,5 +1,3 @@
-[[across-datasource]]
-[#across-datasource]
 = Connecting to a database
 
 On this page you'll learn:
