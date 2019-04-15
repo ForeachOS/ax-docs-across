@@ -3,13 +3,13 @@
 [#3-2-0]
 == 3.2.0-SNAPSHOT
 
-Mainly a bugfix release.
+Several bugs fixed and some web related features added.
 
 === Core dependency upgrades
 
-* Spring Platform Brussels-SR16
-* Spring Framework 4.3.22
-* Spring Boot 1.5.19
+* Spring Platform Brussels-SR17
+* Spring Framework 4.3.23
+* Spring Boot 1.5.20
 
 === Across Core
 
