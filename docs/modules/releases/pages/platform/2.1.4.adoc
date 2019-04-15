@@ -1,8 +1,8 @@
 = Across Platform 2.1.4
 
 :across-platform-version: 2.1.4-SNAPSHOT
-:spring-platform-version: Brussels-SR16
-:spring-platform-url: https://docs.spring.io/platform/docs/Brussels-SR16/reference/htmlsingle/#appendix-dependency-versions
+:spring-platform-version: Brussels-SR17
+:spring-platform-url: https://docs.spring.io/platform/docs/Brussels-SR17/reference/htmlsingle/#appendix-dependency-versions
 :across-version: 3.2.0-SNAPSHOT
 :across-autoconfigure-version: 1.0.2.RELEASE
 :foreach-common-version: 1.1
@@ -97,7 +97,7 @@ This is a feature upgrade, additionally including security patches and several b
 
 |Spring Platform
 |Brussels-SR15
-|https://docs.spring.io/platform/docs/Brussels-SR16/reference/htmlsingle[Brussels-SR16]
+|https://docs.spring.io/platform/docs/Brussels-SR17/reference/htmlsingle[Brussels-SR17]
 
 |===
 
