@@ -6,7 +6,7 @@ Using the `@SpringBootTest` in your tests is necessary for default _application.
 Refer to the Spring Boot reference documentation for more information on Spring Boot testing facilities.
 
 [[web-integration-test]]
-=== @WebIntegrationTest
+=== Web integration test
 A full-stack web integration test (eg. with an embedded Tomcat) does not require any special configuration.
 
 You can use <<expose-for-test,`@ExposeForTest`>> in combination with `@SpringBootTest` to expose additional components during test execution.
@@ -16,8 +16,7 @@ You can use <<expose-for-test,`@ExposeForTest`>> in combination with `@SpringBoo
 [subs="verbatim,quotes,attributes"]
 ----
 @RunWith(SpringJUnit4ClassRunner.class)
-@WebIntegrationTest(randomPort = true)
-@SpringBootTest(classes = MyApplication.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT, classes = MyApplication.class)
 public class TestSpringBootWebIntegration
 {
 	private final TestRestTemplate restTemplate = new TestRestTemplate();
