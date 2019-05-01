@@ -58,7 +58,11 @@ See xref:web-views/links-and-urls.adoc[Links and URLs] for a list of prefixes th
 
 You can render the *javascript* bucket, with the following snippet:
 
-.Example rendering in thymeleaf
+[tabs]
+====
+Thymeleaf::
++
+--
 [source,html,indent=0]
 ----
 <html>
@@ -71,8 +75,10 @@ You can render the *javascript* bucket, with the following snippet:
 </body>
 </html>
 ----
-
-.Generated output by thymelaf
+--
+Generated HTML::
++
+--
 [source,html,indent=0]
 ----
 <html>
@@ -91,6 +97,8 @@ You can render the *javascript* bucket, with the following snippet:
 </body>
 </html>
 ----
+--
+====
 
 ==== CSS bucket
 
