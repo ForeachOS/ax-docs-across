@@ -1,13 +1,26 @@
-:page-partial:
+
 [[static-resources]]
 [#static-resources]
-== Static resources
+= Static resources
+
+[abstract]
+--
+This page explains the support for static resources activated by Across Web.
+On this page you will learn:
+
+* [*] the embedded resource conventions for static resource files (css, js) and Thymeleaf templates
+* [*] how to configure static resource (client-side) caching
+* [*] how to configure static resource url versioning
+
+See the chapter on xref:web-views/web-resources.adoc[web resources] if you are looking for information on the `WebResourceRegistry` and programmatic registration of web resources.
+--
+
 Across Web automatically enables serving of static resources bundled with modules.
 With the default settings static resources will be configured with <<resource-url-versioning,versioned urls>> and <<client-side-caching,client-side caching>>.
 
 [[static-resources-conventions]]
 [#conventions]
-=== Conventions
+== Conventions
 The default resources are served from the */views* folder on the classpath.
 By default AcrossWebModule will serve resources from _/views/static_.
 Additional subfolders can be configured with the *acrossWebModule.resources.folders* property.
@@ -35,7 +48,7 @@ The relative path under which the static resources are available is determined b
 
 [[client-side-caching]]
 [#client-side-caching]
-=== Client-side caching
+== Client-side caching
 By default static resources will be cached on the client-side for a period of 1 year.
 Disabling client-side caching is done with the *acrossWebModule.resources.caching.enabled* property.
 If client-side caching is disabled, no cache headers will be sent to the client.
@@ -46,7 +59,7 @@ This is also the default if development mode is active.
 
 [[resource-url-versioning]]
 [#resource-url-versioning]
-=== Resource URL versioning
+== Resource URL versioning
 By default AcrossWebModule enables {spring-framework-docs}#mvc-config-static-resources[Spring versioning of static resources].
 This will generate versioned URLs, create a `ResourceUrlProvider` bean and add a `ResourceUrlEncodingFilter` and `ResourceUrlProviderExposingInterceptor` to the request handlers.
 
@@ -60,7 +73,7 @@ Using these will work both with or without resource versioning.
 WARNING: If versioning is disabled, the `ResourceUrlProvider` will not be available on the request.
 Modules using accessing the `ResourceUrlProvider` directly should built-in support for this.
 
-==== Fixed version strategy
+=== Fixed version strategy
 AcrossWebModule supports automatic configuration of resource versioning using a single fixed version.
 When enabled this means that resources of the form */across/resources/static/mymodule/mymodule.css* will get rewritten to */across/resources/static/VERSION/mymodule/mymodule.css*.
 
@@ -72,7 +85,7 @@ The fixed version used is determined as follows:
 
 Using the fixed version strategy works well for relative includes in both CSS and JS files, avoiding the need to rewrite URLs inside those files.
 
-==== Customizing the version strategy
+=== Customizing the version strategy
 It is possible to keep configuration of the default resources active but only change the version strategy used.
 This can be done by injecting your own `VersionResourceResolver` bean named *versionResourceResolver* the AcrossWebModule context.
 

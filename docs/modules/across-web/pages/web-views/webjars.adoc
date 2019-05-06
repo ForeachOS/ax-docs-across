@@ -1,0 +1,45 @@
+You can use a path prefix in your `url` to generate an url pointing to a webjar.
+
+.Example controller registering a bootstrap css webjar
+[source,java,indent=0]
+----
+@Controller
+public class MyController
+{
+	@ModelAttribute
+	public void registerWebResources( WebResourceRegistry webResourceRegistry ) {
+		webResourceRegistry.apply(
+				WebResourceRule.add( WebResource.css( "@webjars:/bootstrap/3.3.5/css/bootstrap.min.css" ) ).withKey( "bootstrap-min-css" ).toBucket( WebResource.CSS ) # <1>
+		);
+	}
+}
+----
+
+<1> Using the `@webjars` will generate the link to the registered webjar. See xref:web-views/links-and-urls.adoc[path prefixes] for a list of other supported prefixes.
+
+.Generated output by thymelaf
+[source,html,indent=0]
+----
+<html>
+<head>
+    <link href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet"></script>
+</head>
+<body>
+...
+</body>
+</html>
+----
+
+Make sure you have registered your webjar in the `pom.xml` if you wish to use it.
+
+.Registering a jquery webjar
+[source,xml,indent=0]
+----
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>jquery</artifactId>
+    <version>3.3.0</version>
+</dependency>
+----
+
+This will expose the webjar under the base url `/webjars/jquery/3.3.0/` for example `/webjars/jquery/3.3.0/jquery.js`.
