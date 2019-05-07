@@ -281,7 +281,7 @@ Output::
 === Link tags
 
 Can be used for any type of `<link>` tag rendering.
-If a url is specified, that url will be the default web resource key.
+If an url is specified, that url will be the default web resource key.
 
 See `LinkWebResourceBuilder` javadoc for all details.
 
@@ -478,7 +478,7 @@ For more comprehensive web resources management, you can use named packages.
 A `WebResourcePackage` represents a bundle of web resource rules that should all be applied at once.
 A package is identified by a unique name and registered in a `WebResourcePackageManager`, which in turn is attached to the `WebResourceRegistry`.
 
-Must like individual web resources, an entire package can be added to the registry.
+Just like individual web resources, an entire package can be added to the registry.
 
 .Register a custom `WebResourcePackage`
 [source,java,indent=0]
