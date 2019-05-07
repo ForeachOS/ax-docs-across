@@ -18,20 +18,26 @@ This basic template implementation has adapter methods for registering of web re
 public class MyTemplate extends LayoutTemplateProcessorAdapterBean {
 
     public MyTemplate() {
-        super( "MyTemplate", "th/mysite/layout" );
+        super( "MyTemplate", "th/mysite/layout" ); <1>
     }
 
     @Override
     protected void registerWebResources( WebResourceRegistry registry ) {
-        registry.add( WebResource.CSS, "/static/mysite/css/main.css", WebResource.VIEWS );
+        registry.apply( <2>
+            WebResourceRule.add( WebResource.css( "@static:/mysite/css/main.css" ) ).toBucket( WebResource.CSS )
+        );
     }
 
     @Override
     protected void buildMenus( MenuFactory menuFactory ) {
-        menuFactory.buildMenu( "topMenu" );
+        menuFactory.buildMenu( "topMenu" ); <3>
     }
 }
 ----
+
+<1> identify the template as `MyTemplate` and render it using the Thymeleaf view with name `th/mysite/layout`
+<2> register some default xref:web-views/web-resources.adoc[web resources] for this template
+<3> publish a xref:web-views/working-with-menus.adoc[menu] to build the navigation
 
 When the template is applied it will take the original view name and put it as a model attribute with the key *childPage*.
 The actual template view can then dispatch to the original view (or parts of it) when building the final layout.
@@ -43,26 +49,22 @@ The actual template view can then dispatch to the original view (or parts of it)
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>My Site</title>
-
-    <script th:each="javascript : ${webResourceRegistry.getResources('javascript')}" th:src="@{${javascript.data}}"
-            th:if="${javascript.location != 'inline'}"></script>
-
-    <link rel="stylesheet" type="text/css" th:each="css : ${webResourceRegistry.getResources('css')}"
-          th:href="@{${css.data}}"/>
+    <across:web-resources bucket="head" />
+    <across:web-resources bucket="javascript" />
+    <across:web-resources bucket="css" />
 </head>
 <body>
     <div th:replace="${childPage} :: content">
         Insert original view
     </div>
 
-    <script th:each="javascript : ${webResourceRegistry.getResources('javascript-page-end')}" th:src="@{${javascript.data}}"
-            th:if="${javascript.location != 'inline'}"></script>
+    <across:web-resources bucket="javascript-page-end" />
 </body>
 </html>
 ----
 
-After the initial `registerWebResources(WebResourceRegistry)` has been executed by the template component, an `BuildTemplateWebResourcesEvent` with the template name will be published.
-This allows event listeners to add additional resources for a specific template.
+After the initial `registerWebResources(WebResourceRegistry)` has been executed by the template component, a `BuildTemplateWebResourcesEvent` with the template name will be published.
+This allows event listeners to add additional xref:web-views/web-resources.adoc[web resources] for a specific template.
 
 [#linking-template-to-controller]
 == Linking a template to a controller
