@@ -1,7 +1,6 @@
-:page-partial:
-[[default-http-encoding]]
 [#default-http-encoding]
-== Default HTTP encoding
+= Default HTTP encoding
+
 AcrossWebModule registers a default `CharacterEncodingFilter` that forces the request and response encoding to use UTF-8.
 This is done through the `HttpEncodingAutoConfiguration` from Spring Boot and can be controlled with the following properties:
 

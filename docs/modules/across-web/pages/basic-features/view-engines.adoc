@@ -1,25 +1,24 @@
-:page-partial:
 [#view-engines]
-== View engines
+= View engines
 
 [#thymeleaf-support]
-=== Thymeleaf support
+== Thymeleaf support
 AcrossWebModule automatically activates http://www.thymeleaf.org[Thymeleaf] support for server-side templating.
 Thymeleaf is a powerful templating language that allows its templates to be embedded inside the JAR files (something that is more cumbersome with regular JSP).
 
-AcrossWebModule itself - as well as many other modules - use Thymeleaf extensively and add additional features for it (like <<thymeleaf-dialect,custom dialects>>).
+AcrossWebModule itself - as well as many other modules - use Thymeleaf extensively and add additional features for it (like xref:thymeleaf-dialect.adoc[a custom dialect]).
 
 When Thymeleaf support is enabled, the https://github.com/thymeleaf/thymeleaf-extras-java8time[Thymeleaf Java 8 Time dialect] is also included.
 
 The Thymeleaf templates embedded in modules are expected to be located in the *views/th/__moduleResourceKey__* resources folder.
 The supported file extension is **.html*.
-See the chapter on <<conventions,static resource conventions>> for an example project layout.
+See the chapter on xref:web-views/static-resources.adoc[static resources] for an example project layout.
 
 [#jsp-support]
-=== JSP support
+== JSP support
 Support for regular JSP/JSTL can be enabled by setting the property *acrossWebModule.views.jsp.enabled* to `true`.
 
-==== Combining JSP and Thymeleaf
+=== Combining JSP and Thymeleaf
 If both JSP and Thymeleaf support are enabled, you can easily use both view types at the same time.
 The AcrossWebModule also provides a JSP tag that can be used to import Thymeleaf templates or fragments in a JSP rendering pipeline.
 The same model (request attributes) should be available in the Thymeleaf template as in the calling JSP.
@@ -42,6 +41,6 @@ The same model (request attributes) should be available in the Thymeleaf templat
 ----
 
 [discrete]
-=== Using other templating engines
+== Using other templating engines
 It is still possible to use additional templating engines.
 You can do so by extending the AcrossWebModule configuration and registering custom Spring `ViewResolver` beans.

@@ -1,38 +1,34 @@
-You can use a path prefix in your `url` to generate an url pointing to a webjar.
+= Webjars support
 
-.Example controller registering a bootstrap css webjar
-[source,java,indent=0]
-----
-@Controller
-public class MyController
-{
-	@ModelAttribute
-	public void registerWebResources( WebResourceRegistry webResourceRegistry ) {
-		webResourceRegistry.apply(
-				WebResourceRule.add( WebResource.css( "@webjars:/bootstrap/3.3.5/css/bootstrap.min.css" ) ).withKey( "bootstrap-min-css" ).toBucket( WebResource.CSS ) # <1>
-		);
-	}
-}
-----
+[abstract]
+--
+On this page we explain:
 
-<1> Using the `@webjars` will generate the link to the registered webjar. See xref:web-views/links-and-urls.adoc[path prefixes] for a list of other supported prefixes.
+* [*] how to embed and link to Webjars resources in your application
+* [*] how to configure Webjars serving from CDN
+* [*] how to write Webjars links that work both with embedded Webjars and CDN
 
-.Generated output by thymelaf
-[source,html,indent=0]
-----
-<html>
-<head>
-    <link href="/webjars/bootstrap/3.3.5/css/bootstrap.min.css" type="text/css" rel="stylesheet"></script>
-</head>
-<body>
-...
-</body>
-</html>
-----
+--
 
-Make sure you have registered your webjar in the `pom.xml` if you wish to use it.
+== Using Webjars resources
+Across Web takes over the Spring Boot configuration of automatically serving https://www.webjars.org/[Webjar contents].
+Any resources with a path in `/webjars/**` will be served from jar files if they are packaged in the Webjars format.
 
-.Registering a jquery webjar
+=== @webjars prefix
+Across Web additionally registers a `@webjars` xref:web-views/links-and-urls.adoc[path prefix] which can be used for building links to the content, instead of using `/webjars` directly.
+
+Using the prefix serves a double purpose:
+
+* it allows correct resolving of the resources either directly in Thymeleaf template or via xref:web-views/web-resources.adoc[web resource registration].
+* it allows you to configure a CDN instead of the `/webjars` path for serving the actual content
+
+=== Webjars example
+
+[tabs]
+====
+Maven dependency::
++
+--
 [source,xml,indent=0]
 ----
 <dependency>
@@ -41,5 +37,88 @@ Make sure you have registered your webjar in the `pom.xml` if you wish to use it
     <version>3.3.0</version>
 </dependency>
 ----
+--
+Thymeleaf::
++
+--
+[source,html,indent=0]
+----
+<link rel="stylesheet" type="text/css" th:href="@{@webjars:/jquery/3.3.0/jquery.js}" />
+----
+--
+Output::
++
+--
+[source,html,indent=0]
+----
+<link rel="stylesheet" type="text/css" href="/webjars/jquery/3.3.0/jquery.js" />
+----
+--
+====
 
-This will expose the webjar under the base url `/webjars/jquery/3.3.0/` for example `/webjars/jquery/3.3.0/jquery.js`.
+== Using a CDN for Webjars
+
+Across Web allows you to switch all serving of Webjars content to a CDN (eg. the Webjars.org CDN: `//cdn.jsdelivr.net/webjars`).
+This can be done by setting the `acrossWebModule.resources.webjars` to the CDN prefix.
+
+WARNING: This will only work if all links to Webjars content have been done in a CDN-compatible way (see next section).
+
+[tabs]
+====
+application.yml::
++
+--
+[source,yaml,indent=0]
+----
+acrossWebModule:
+  resources:
+    webjars: '//cdn.jsdelivr.net/webjars/'
+----
+--
+Maven dependency::
++
+--
+[source,xml,indent=0]
+----
+<dependency>
+    <groupId>org.webjars</groupId>
+    <artifactId>jquery</artifactId>
+    <version>3.3.0</version>
+</dependency>
+----
+--
+Thymeleaf::
++
+--
+[source,html,indent=0]
+----
+<link rel="stylesheet" type="text/css" th:href="@{@webjars:/jquery/3.3.0/jquery.js}" />
+----
+--
+Output::
++
+--
+[source,html,indent=0]
+----
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/webjars/jquery/3.3.0/jquery.js" />
+----
+--
+====
+
+TIP: When serving Webjars from a CDN, it might no longer be necessary to include them in your application build.
+Your build tool probably supports some mechanism of dependency exclusions to exclude them from the artifact.
+
+=== CDN-compatible links
+
+To create Webjars links that can work with both embedded `/webjars` serving and CDN-based serving, the links should:
+
+* use the `@webjars:` prefix
+* include the `groupId` (Webjars flavor) after the prefix, but *without a forward /*
+** all content before the first `/` will be removed when using embedded Webjars
+** the exception is the `org.webjars` group, this is the default and may be omitted altogether
+
+.Valid CDN-compatible Webjars links:
+* `@webjars:/jquery/3.3.0/jquery.js`
+* `@webjars:org.webjars/jquery/3.3.0/jquery.js` (identical as previous)
+* `@webjars:org.webjars.bower/jquery/3.4.0/jquery.js` (bower flavor)
+

@@ -1,10 +1,11 @@
 [[across-web-module-settings]]
 [#module-settings]
-=== Module settings
+= Module settings
 
 All properties start with the *acrossWebModule.* prefix.
 Note that several Spring (Boot) properties can also influence behaviour of the AcrossWebModule, for example the `spring.http.multipart.*` properties.
 
+[cols="2,1,4,1",options=header]
 |===
 |Property |Type |Description |Default
 
@@ -27,6 +28,11 @@ Note that several Spring (Boot) properties can also influence behaviour of the A
 |`String[]`
 |Default subfolders of _views_ that should be served as static resources.
 |js,css,static
+
+|resources.webjars
+|`String`
+|Path prefix for xref:web-views/webjars.adoc[webjar resources].
+|/webjars
 
 |resources.versioning.enabled
 |`Boolean`
@@ -55,12 +61,12 @@ Note that several Spring (Boot) properties can also influence behaviour of the A
 
 |templates.enabled
 |`Boolean`
-|Should support for <<layout-templates,web templates>> be enabled.
+|Should support for xref:web-views/layout-templates.adoc[layout templates] be enabled.
 |_true_
 
 |templates.auto-register
 |`Boolean`
-|If <<layout-templates,web templates>> are enabled, should named templates be autodetected.
+|If xref:web-views/layout-templates.adoc[layout templates] are enabled, should named templates be autodetected.
 |_true_
 
 |development-views
@@ -68,9 +74,5 @@ Note that several Spring (Boot) properties can also influence behaviour of the A
 |Map of physical locations for views resources.  Only used if development mode is active.
 |_Collections.emptyMap()_
 
-|resources.webjars
-|`String`
-|Relative path for serving all webjars.
-|/webjars
 
 |===

@@ -1,12 +1,12 @@
-:page-partial:
 [[extended-request-mapping]]
 [#request-mapping-extensions]
-== @RequestMapping extensions
+= @RequestMapping extensions
+
 AcrossWebModule adds several extensions to the out-of-the-box Spring MVC functionality.
 
 [[customrequestcondition]]
 [#custom-request-mapping]
-=== @CustomRequestMapping
+== @CustomRequestMapping
 Default `@RequestMapping` implementations can be further specified by adding custom request conditions using `@CustomRequestMapping` annotations.
 The latter allows you to restrict a `@RequestMapping` on any annotation attribute value on the handler method, or even any attribute value that is available on the `HttpServletRequest`.
 
@@ -107,7 +107,7 @@ private static class ReferrerRequestCondition extends AbstractCustomRequestCondi
 
 [[prefix-request-mappings]]
 [#prefixed-request-mappings]
-=== Prefixed request mappings
+== Prefixed request mappings
 AcrossWebModule contains a `PrefixingRequestMappingHandlerMapping` implementation.
 The `PrefixingRequestMappingHandlerMapping` allows request mappings to be prefixed at runtime.
 Core infrastructure is the `PrefixingRequestMappingHandlerMapping` and the `PrefixingHandlerMappingConfigurer`.

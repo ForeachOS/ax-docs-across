@@ -387,14 +387,13 @@ Output::
 --
 [source,html,indent=0]
 ----
-
-// exposes global variable MyApp.StaticPaths whiich contains fields 'static' and 'admin'
 <script type='text/javascript'>
+// exposes global variable MyApp.StaticPaths which contains fields 'static' and 'admin'
 (function( _data ) { _data[ "StaticPaths" ] = {"static":"/","admin":"/admin"}; })( window["MyApp"] = window["MyApp"] || {} );
 </script>
 
-// exposes global variables MyApp.one and MyApp.two
 <script type='text/javascript'>
+// exposes global variables MyApp.one and MyApp.two
 (function( _data ) { _data[ "one" ] = 1; })( window["MyApp"] = window["MyApp"] || {} );
 (function( _data ) { _data[ "two" ] = 2; })( window["MyApp"] = window["MyApp"] || {} );
 </script>
@@ -504,7 +503,7 @@ public class MyWebConfiguration
 <3> in this particular case the first rule installs another package called `base-resources`
 
 === Extending existing packages
-Sometimes you always want to add one or more resources to a previously defined package.
+Sometimes you want to add one or more resources to a previously defined package.
 
 You can combine multiple packages together with `WebResourcePackage.combine()`.
 

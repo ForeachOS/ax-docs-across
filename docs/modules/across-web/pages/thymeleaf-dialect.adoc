@@ -16,8 +16,12 @@ The `AcrossWebDialect` adds the following elements that can be used in HTML temp
 | Attributes
 
 |*across:view*
-|Takes a `ViewElement` as _element_ attribute and will be replaced by the rendering of that `ViewElement`.
+|Takes a `ViewElement` or `ViewElementBuilder` as _element_ attribute and will be replaced by the rendering of that `ViewElement`.
 |_element_ : `ViewElement` instance
+
+|*across:web-resources*
+|Renders the xref:web-views/web-resources.adoc[web resources] from a specific bucket.
+|_bucket_ : bucket name
 
 |===
 
@@ -95,7 +99,7 @@ Usually not necessary to use the `#webapp` however, see the <<url-support,URL su
 [[url-support]]
 [#url-support]
 === URL support
-Apart from the availability of *#webapp*, AcrossWebModule activates transparent support for the <<web-app-path-resolver-and-path-prefixing,`WebAppPathResolver`>> on Thymeleaf URL generation. +
+Apart from the availability of *#webapp*, AcrossWebModule activates transparent support for the xref:web-views/links-and-urls.adoc#web-app-path-resolver-and-path-prefixing[`WebAppPathResolver`] on Thymeleaf URL generation. +
 
 Example:
 _<img th:src="@{@static:/img}">_ would produce _<img src="/res/static/img">_

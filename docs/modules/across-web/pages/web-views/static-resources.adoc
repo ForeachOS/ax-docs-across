@@ -1,4 +1,3 @@
-
 [[static-resources]]
 [#static-resources]
 = Static resources

@@ -1,11 +1,10 @@
-:page-partial:
 [#generating-urls]
-== Generating URLs
+= Generating URLs
 
 [[web-app-path-resolver]]
 [#web-app-path-resolver-and-path-prefixing]
-=== WebAppPathResolver and path prefixing
-Across Web introduces the `<<prefixed-request-mappings,PrefixingRequestMappingHandlerMapping>>`.
+== WebAppPathResolver and path prefixing
+Across Web introduces the xref:basic-features/custom-request-mapping-support.adoc#prefixed-request-mappings[`PrefixingRequestMappingHandlerMapping`].
 This allows `@RequestMapping` methods to be prefixed at runtime, based on configuration.
 
 Some standard Across modules like AdminWebModule and DebugWebModule make use of this functionality.
@@ -13,12 +12,12 @@ Some standard Across modules like AdminWebModule and DebugWebModule make use of 
 Because the actual relative path of a controller is then not known during development, you can define a relative path with a prefix.
 If you provide your path to the `WebAppPathResolver` bean, the prefix will then be replaced at runtime by the final path.
 
-The <<thymeleaf-dialect,AcrossWebModule Thymeleaf dialect>> integrates with the `WebAppPathResolver` so prefix based paths are supported directly in templates.
+The xref:thymeleaf-dialect.adoc[Across Web Thymeleaf dialect] integrates with the `WebAppPathResolver` so prefix based paths are supported directly in templates.
 
 NOTE: If you want to ensure your relative path is never prefixed, start it with an exclamation mark (!).
 
 [[default-prefixes]]
-==== Default prefixes
+=== Default prefixes
 Across Web registers default prefixers for static resources:
 
 [cols="1,3",options=header]
@@ -35,14 +34,12 @@ Across Web registers default prefixers for static resources:
 This is a short-hand for _@resource:/static/<path>_
 
 |*@webjars*
-|Takes a relative path to a webjar. By default mapped to `/webjars` but can be changed by setting the xref:across-web:configuration/module-settings.adoc[webjar path].
+|Webjar includes, see xref:web-views/webjars.adoc[webjars support] for more information.
 
-For example `_<link rel="stylesheet" type="text/css" th:href="@{@webjars:/bootstrap/3.1.0/ss/bootstrap.min.css}"/>_`
-becomes: `_<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/3.1.0/css/bootstrap.min.css">_`
 
 |===
 
-==== Path resolving examples
+=== Path resolving examples
 The examples assume that _res_ is the configured *acrossWebModule.resources.path*:
 
 [cols="1,3",options=header]
@@ -68,11 +65,11 @@ The examples assume that _res_ is the configured *acrossWebModule.resources.path
 
 |===
 
-==== Registering your own prefixing handler mapping and resolver
+=== Registering your own prefixing handler mapping and resolver
 See `PrefixingHandlerMappingConfiguration` and `PrefixingPathContext`.
 
 [#web-app-link-builder]
-=== WebAppLinkBuilder
+== WebAppLinkBuilder
 The `WebAppPathResolver` will only replace the relative path prefix, but to generate a valid application link you would still need to prepend the possible context path as wel as encode the URL.
 If you want to generate a complete link from code, you can use the `WebAppLinkBuilder` bean.
 

@@ -1,7 +1,7 @@
-:page-partial:
 [[multipart-config]]
 [#multipart-support]
-== Multipart support
+= Multipart support
+
 By default AcrossWebModule will attempt to automatically configure a `MultipartFilter` to support multipart form data.
 When correctly configured, this will enable multipart support for all servlets and web requests.
 

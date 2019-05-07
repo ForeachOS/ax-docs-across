@@ -22,8 +22,8 @@ Several bugs fixed and some web related features added.
 * A global `ViewElementBuilderContext` is now created by default.
 To revert to the old behaviour set property `acrossWebModule.registerGlobalBuilderContext=false`.
 * Fixed issue with `RequestMenuSelector` not selecting the correct items based on a request url with query string parameters
-* Webjar support extended by providing a `@webjars` path prefix.
-See xref:across-web:web-views/links-and-urls.adoc#default-prefixes[default prefixes] for more details.
+* Added a `@webjars` prefix for linking to Webjars content.
+See xref:across-web:web-views/webjars.adoc[Webjars support] for more details.
 * Added a more fluent and powerful API for xref:across-web:web-views/web-resources.adoc[registering Web resources] based on view element rendering.
 
 

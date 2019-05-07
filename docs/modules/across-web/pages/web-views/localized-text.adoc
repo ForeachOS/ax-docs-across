@@ -1,12 +1,11 @@
-:page-partial:
 [[localized-text]]
 [#localized-text]
-== Localizing text
+= Localizing text
 Text message codes can be translated into text messages via the `MessageSource`.
 AcrossWebModule also provides a utility bean that wraps the `MessageSource` for optional resolving of message codes.
 
 [discrete]
-=== LocalizedTextResolver
+== LocalizedTextResolver
 The `LocalizedTextResolver` can be used to localize text snippets.
 A text snippet can either be the final text, or a message code construct.
 

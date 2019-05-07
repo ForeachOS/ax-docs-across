@@ -1,12 +1,11 @@
-:page-partial:
 [[view-elements]]
 [#viewelement-infrastructure]
-== ViewElement infrastructure
+= ViewElement infrastructure
 AcrossWebModule provides a programmatic model for rendering UI components.
 A single UI component in this context is called a `ViewElement`.
 
 [#viewelement]
-=== ViewElement
+== ViewElement
 `ViewElement` implementations usually correspond to one or more HTML nodes.
 AcrossWebModule comes with a default set `ViewElement` implementation for rendering Bootstrap markup elements.
 This is done through a collection of Thymeleaf processors for rendering `ViewElement` components.
@@ -22,7 +21,7 @@ WARNING: You usually do not want to cache and reuse `ViewElement` components.
 It is better to cache `ViewElementBuilder`.
 
 [#default-properties]
-=== Default properties
+== Default properties
 In its most simple form, a `ViewElement` has the following properties:
 
 [cols="1,3"]
@@ -33,7 +32,7 @@ In its most simple form, a `ViewElement` has the following properties:
 This name can be used to retrieve the element from a `ContainerViewElement`.
 Use `ContainerViewElementUtils` to query and modify containers.
 
-See <<developing-applications.adoc#development-mode,development mode rendering>> for more information to retrieve generated view names.
+See <<development-mode-rendering,development mode rendering>> for more information on how to retrieve generated names.
 
 |*elementType*
 |A *required* type identification for the element.
@@ -45,7 +44,7 @@ By default only Thymeleaf templates are supported.
 
 |===
 
-==== Custom template
+=== Custom template
 Every `ViewElement` allows you to configure a *customTemplate*.
 Only Thymeleaf fragments are supported, if you specify a Thymeleaf template without a fragment, a *render(component)* fragment will be appended.
 The *component* variable will always contain the `ViewElement` instance that is being rendered.
@@ -64,7 +63,7 @@ It is usually best to pass the required values as attributes on the `ViewElement
 You can use the `TemplateViewElement` if you only want to render a custom template and optionally pass it some attributes.
 
 [#viewelementbuilder]
-=== ViewElementBuilder
+== ViewElementBuilder
 A `ViewElementBuilder` is a simple API for creating a `ViewElement` instance based on a configuration and a given `ViewElementBuilderContext`.
 
 The `ViewElementBuilderContext` represents the runtime context when creating the element.
@@ -91,7 +90,7 @@ return new ContainerViewElementBuilder() <2>
 <5> Build the actual `ContainerViewElement`.
 This will recursively call `build( builderContext )` on the child builder, resulting in a single `ContainerViewElement` with 2 `TextViewElement` children.
 
-==== Global ViewElementBuilderContext
+=== Global ViewElementBuilderContext
 The `ViewElementBuilder` interface provides a default no-arg `build()` method that will attempt to retrieve a global `ViewElementBuilderContext`.
 It will do so by calling `ViewElementBuilderContext.retrieveGlobalBuilderContext()` which usually returns the one attached to the current request or current thread.
 
@@ -102,16 +101,15 @@ See the `ViewElementBuilderContextInterceptor` for an interceptor that creates a
 
 NOTE: For performance reasons it is usually better to manage the `ViewElementBuilderContext` scope yourself: either provide a `ViewElementBuilderContext` directly or ensure there is a global one available.
 
-==== ViewElementBuilderContext in controllers
+=== ViewElementBuilderContext in controllers
 If there is a global `ViewElementBuilderContext` available, you can also `ViewElementBuilderContext` as a method argument in web controller methods.
 
-==== Creating application links
+=== Creating application links
 The `ViewElementBuilderContext` provides a `buildLink(String)` method that will resolve a link using the `WebAppLinkBuilder` attribute that is available on the builder context.
 By default the request-bound `WebAppLinkBuilder` is already set.
 
-[[dev-mode-rendering]]
 [#development-mode-rendering]
-=== Development mode rendering
+== Development mode rendering
 If development mode is active, all `ViewElement` names will be rendered in the markup.
 Start and end of the element rendering will be marked by a HTML comment.
 If the `ViewElement` is a node (xml-type element) it will also have a data attribute *data-ax-dev-view-element* containing the name.

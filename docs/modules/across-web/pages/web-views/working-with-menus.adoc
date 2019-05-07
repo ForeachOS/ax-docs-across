@@ -1,13 +1,12 @@
-:page-partial:
 [[menu-infrastructure]]
-== Working with menus
+= Working with menus
 Across Web provides some infrastructure to build a tree-like menu.
 This can be used for rendering for example hierarchical menus on a web page, though the class structure can be used for many things.
 
 Several standard modules like link:{url-AdminWebModule}[AdminWebModule], link:{url-EntityModule}[EntityModule] or link:{url-BootstrapUiModule}[BootstrapUiModule] use these features to allow creation, customization and easy rendering of menus.
 In this section we will explain the basics of working with the Across Web menu features.
 
-=== Creating a menu
+== Creating a menu
 The base class for the menu tree structure is `com.foreach.across.modules.web.menu.Menu`.
 A single `Menu` can have several child `Menu` items, which in turn can have children of their own.
 As such, a `Menu` can optionally have a single parent `Menu`.
@@ -102,7 +101,7 @@ childOne.addItem( childOfChildOne );
 Because of the hierarchical nature of a menu however, usually constructing a complex `Menu` is done using a <<building-a-menu,path based builder>>.
 
 [[sorting-a-menu]]
-=== Sorting a menu
+== Sorting a menu
 A `Menu` can be sorted once its items have been added, simply by calling the `sort()` method.
 Sorting a menu will sort its direct child items, and in turn call `sort()` on every child item, resulting in the entire menu tree being sorted.
 
@@ -114,7 +113,7 @@ This means you can use different comparators for sub-trees of a menu tree.
 Usually a single comparator is responsible for the entire sub-tree, but you can make exceptions there as well.
 
 [[selecting-menu-items]]
-=== Selecting menu items
+== Selecting menu items
 A `Menu` item in the tree can be `selected`.
 When a `Menu` is selected and it has a parent, its parent `Menu` will also be selected, all the way up to the root of the tree.
 
@@ -132,7 +131,7 @@ NOTE: The current `Menu` implementation only allows a single selected path in a 
 You cannot have more than one leaf item selected.
 
 [discrete]
-==== Using a MenuSelector
+=== Using a MenuSelector
 `MenuSelector` is a strategy interface for finding or selecting a `Menu` in a tree.
 There are several implementations available as factory methods on the `MenuSelector` class.
 The default implementations will traverse the entire `Menu` tree to find the lowest item that matches the predicate.
@@ -145,7 +144,7 @@ myMenu.select( MenuSelector.byPath( "path-to-select" ) );
 
 [discrete]
 [[request-menu-selector]]
-==== HTTP request selector
+=== HTTP request selector
 A common case for using `Menu` in a web scenario is selecting the menu item based on the path of the current web request.
 The `RequestMenuSelector` is a specific `MenuSelector` implementation that does exactly that.
 
@@ -170,10 +169,10 @@ Suppose the current url is `\http://my.domain/my-page?id=10`, then `RequestMenuS
 
 Note that even if an item matches only a prefix of the requested path, it will match if there is none more specific.
 
-TIP: The `RequestMenuSelector` is the default selector that is automatically used when using the `MenuFactory`to <<publishing-a-menu,publish a menu for configuration>>.
+TIP: The `RequestMenuSelector` is the default selector that is automatically used when using the `MenuFactory` to <<publishing-a-menu,publish a menu for configuration>>.
 
 [[building-a-menu]]
-=== Path based menu building
+== Path based menu building
 Instead of manually assembling a `Menu`, it is usually easier to use a `PathBasedMenuBuilder` for configuration of an entire menu tree using a single class.
 The fastest way to create a new `PathBasedMenuBuilder` builder is with `Menu.builder()`.
 
@@ -185,7 +184,7 @@ The flat list of items will only be turned into a `Menu` tree when calling the `
 A `PathBasedMenuBuilder` not only allows you to create a new `Menu` instance using `build()`, it can also be used to update/extend already existing menu trees using the `merge(Menu)` method.
 
 [discrete]
-==== A simple example
+=== A simple example
 Suppose you register the following menu items in order:
 
 . `/my-group/item-1`
@@ -232,7 +231,7 @@ There is no item `/my-other-group`, so this item remains a direct child of the r
 NOTE: Items should peferably not be registered with a trailing slash to ensure correct conversion to a menu tree.
 
 [discrete]
-==== Fluent API examples
+=== Fluent API examples
 The `PathBasedMenuBuilder` provides a fluent API to add items, modify them and remove them, and _move them around_  by manipulating their paths.
 It allows you to change the registered paths of an item before `Menu` building, thus influencing the actual menu tree that gets created.
 
@@ -341,14 +340,14 @@ The resulting menu tree will contain 2 children of the root node: `/two` and `/o
 The resulting menu tree will have a single child of the root node and two items in total: `/two` and `/two/child`.
 
 [discrete]
-==== MenuItemBuilderProcessor
+=== MenuItemBuilderProcessor
 The `PathBasedMenuBuilder` also allows you to register a `MenuItemBuilderProcessor` instance, that can be used to post-process generated `Menu` items right after they have been created.
 
 An example where this could be useful is to transparently translate context-relative urls to absolute or domain relative urls.
 Please see the javadoc and source code for more information on this.
 
 [[publishing-a-menu]]
-=== Publishing a menu
+== Publishing a menu
 Menus are often used to allow other modules to configure items to them.
 An example is link:{url-AdminWebModule}[AdminWebModule] which builds a custom `Menu` for the navigation items on the UI.
 It publishes an event that any component in any module can listen for, and use it to register its own navigational items.
@@ -412,11 +411,11 @@ This requires you to customize the `MenuFactory` configuration.
 We invite you to look at both the javadoc and source code if you want to implement a similar scenario.
 
 [discrete]
-==== Post-processing a menu
+=== Post-processing a menu
 If you need to post-process a generated `Menu` after all items have been registered, the menu has been built, sorted and active items selected; you can register a `Consumer<Menu>` using `event.addMenuPostProcessor()`.
 
 [discrete]
-==== Automatic menu publishing from handler methods
+=== Automatic menu publishing from handler methods
 `MenuFactory` provides integration with handler methods through means of an argument resolver.
 If you specify a menu argument, the instance will be created and published automatically, provided there is a parameter-less constructor available if you use a specific menu type.
 
@@ -439,7 +438,7 @@ A single handler method can have as many menu references as it wants, as long as
 Every menu will only be built once per request.
 In the above example, subsequent calls to `menuFactory.buildMenu( "navMenu" )` would always return the same instance.
 
-=== Rendering a menu
+== Rendering a menu
 Across Web itself does not in any way determine how a `Menu` is visualized, this is up to the application.
 
 .Example Thymeleaf snippet rendering a Bootstrap markup breadcrumb
