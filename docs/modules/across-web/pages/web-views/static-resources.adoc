@@ -20,9 +20,8 @@ With the default settings static resources will be configured with <<resource-ur
 [[static-resources-conventions]]
 [#conventions]
 == Conventions
-The default resources are served from the */views* folder on the classpath.
-By default AcrossWebModule will serve resources from _/views/static_.
-Additional subfolders can be configured with the *acrossWebModule.resources.folders* property.
+The default resources are contains in the `/views` folder on the classpath, and Across Web will serve resources from `/views/static`.
+Additional subfolders to serve can be configured with the *acrossWebModule.resources.folders* property.
 
 By convention (and for best development mode support) module specific resources should be located in a subfolder with the `resourcesKey` of the module.
 
@@ -45,64 +44,4 @@ src/main/resources
 
 The relative path under which the static resources are available is determined by the *acrossWebModule.resources.path* property.
 
-[[client-side-caching]]
-[#client-side-caching]
-== Client-side caching
-By default static resources will be cached on the client-side for a period of 1 year.
-Disabling client-side caching is done with the *acrossWebModule.resources.caching.enabled* property.
-If client-side caching is disabled, no cache headers will be sent to the client.
-
-Configuring the caching period is done separately with the *acrossWebModule.resources.caching.period* property.
-Setting the value to *0* with caching enabled will sent *no-cache* headers.
-This is also the default if development mode is active.
-
-[[resource-url-versioning]]
-[#resource-url-versioning]
-== Resource URL versioning
-By default AcrossWebModule enables {spring-framework-docs}#mvc-config-static-resources[Spring versioning of static resources].
-This will generate versioned URLs, create a `ResourceUrlProvider` bean and add a `ResourceUrlEncodingFilter` and `ResourceUrlProviderExposingInterceptor` to the request handlers.
-
-Using versioned resource URLs is transparent:
-
-* in Thymeleaf all relative links added with `@{/relative/path}` will be rewritten if necessary
-* in JSP the equivalent is the `<spring:url value="/relative/path" var="url"/>` tag
-
-Using these will work both with or without resource versioning.
-
-WARNING: If versioning is disabled, the `ResourceUrlProvider` will not be available on the request.
-Modules using accessing the `ResourceUrlProvider` directly should built-in support for this.
-
-=== Fixed version strategy
-AcrossWebModule supports automatic configuration of resource versioning using a single fixed version.
-When enabled this means that resources of the form */across/resources/static/mymodule/mymodule.css* will get rewritten to */across/resources/static/VERSION/mymodule/mymodule.css*.
-
-The fixed version used is determined as follows:
-
-. *acrossWebModule.resources.versioning.version* property
-. *build.number* property
-. version of the AcrossWebModule
-
-Using the fixed version strategy works well for relative includes in both CSS and JS files, avoiding the need to rewrite URLs inside those files.
-
-=== Customizing the version strategy
-It is possible to keep configuration of the default resources active but only change the version strategy used.
-This can be done by injecting your own `VersionResourceResolver` bean named *versionResourceResolver* the AcrossWebModule context.
-
-.Example providing custom version strategy
-[source,java,indent=0]
-[subs="verbatim,attributes"]
-----
-@ModuleConfiguration(AcrossWebModule.NAME)
-public static class CustomVersionResourceResolver
-{
-	@Bean
-	public VersionResourceResolver versionResourceResolver() {
-		return new VersionResourceResolver()
-				.addVersionStrategy( new FixedVersionStrategy( "1.0" ), "/**/*.css" )
-				.addVersionStrategy( new FixedVersionStrategy( "2.0" ), "/**" );
-	}
-}
-----
-
-NOTE: Because of limitations of the `CssLinkTransformer` in combination with a fixed version strategy, AcrossWebModule does not rewrite links inside css files.
-If you absolutely need this in your application, you will have to disable the automatic resource versioning and configure it yourself.
+include::static-resources-versioning.adoc[]

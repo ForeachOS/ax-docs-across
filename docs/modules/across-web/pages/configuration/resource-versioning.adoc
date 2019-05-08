@@ -1,0 +1,13 @@
+= Resource caching and versioning
+
+[abstract]
+--
+On this page we explain:
+
+* [*] how to configure the (client-side) caching of static resources
+* [*] how to configure the resource URL versioning strategy
+
+See the section on xref:web-views/static-resources.adoc[static resources] for more details.
+--
+
+include::../web-views/static-resources-versioning.adoc[]
