@@ -11,6 +11,33 @@ Several bugs fixed and some web related features added.
 * Spring Framework 4.3.23
 * Spring Boot 1.5.20
 
+=== Additional dependencies for JUnit 5
+
+The `standard-module-bom` has been extended with dependencies for JUnit 5.
+These include:
+
+* `org.junit.jupiter:junit-jupiter-engine:5.4.2`
+* `org.junit.vintage:junit-vintage-engine:5.4.2`
+* `org.mockito:mockito-junit-jupiter:2.27.0`
+* `com.github.sbrannen:spring-test-junit5:1.4.0`
+
+Modules or applications that wish to use JUnit 5 with this version of Across should add these dependencies in test scope.
+
+The `spring-test-junit5` dependency is not available on Maven central.
+Add the Jitpack repository to your `pom.xml` if you cannot fetch it:
+
+[source,xml]
+----
+<repositories>
+    <repository>
+        <id>jitpack.io</id>
+        <url>https://jitpack.io</url>
+    </repository>
+</repositories>
+----
+
+NOTE: Use maven 3.5.0 or higher if you want to use JUnit 5.
+
 === Across Core
 
 * Fixed issue where exposed `FactoryBean` beans did not behave consistently
