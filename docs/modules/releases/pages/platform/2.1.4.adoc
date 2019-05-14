@@ -115,6 +115,7 @@ These include:
 * `com.github.sbrannen:spring-test-junit5:1.4.0`
 
 Modules or applications that wish to use JUnit 5 with this version of Across should add these dependencies in test scope.
+If you want to use Mockito with JUnit 5, you should also explicitly use `mockito-core` with the same version as `mockito-junit-jupiter`.
 
 The `spring-test-junit5` dependency is not available on Maven central.
 Add the Jitpack repository to your `pom.xml` if you cannot fetch it:
