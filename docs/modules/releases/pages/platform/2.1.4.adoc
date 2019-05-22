@@ -26,7 +26,7 @@
 :asm-application-info-module-version: 1.0.1.RELEASE
 :asm-bootstrap-ui-module-version: 2.1.1.RELEASE
 :asm-admin-web-module-version: 3.1.0.RELEASE
-:asm-file-manager-module-version: 1.3.1-SNAPSHOT
+:asm-file-manager-module-version: 1.4.0-SNAPSHOT
 :asm-spring-batch-module-version: 1.0.1.RELEASE
 :asm-properties-module-version: 1.1.1.RELEASE
 :asm-entity-module-version: 3.3.0-SNAPSHOT
@@ -82,7 +82,7 @@ This is a feature upgrade, additionally including security patches and several b
 
 |FileManagerModule
 |1.3.0.RELEASE
-|xref:file-manager-module::releases/1.x.adoc#1-3-1[1.3.1-SNAPSHOT]
+|xref:file-manager-module::releases/1.x.adoc#1-4-0[1.4.0-SNAPSHOT]
 
 |ImageServer
 |4.0.0.RELEASE
