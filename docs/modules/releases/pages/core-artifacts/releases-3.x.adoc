@@ -1,7 +1,7 @@
 = 3.x release notes
 
 [#3-2-0]
-== 3.2.0-SNAPSHOT
+== 3.2.0.RELEASE
 
 Several bugs fixed and some web related features added.
 
