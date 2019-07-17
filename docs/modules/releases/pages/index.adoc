@@ -1,4 +1,5 @@
 = Across Platform Releases
+:across-platform-current-release: 2.1.4
 
 Across Platform is a so called bill of material POM providing a curated list of Across related dependencies, including all standard modules.
 Using this BOM pom is all that is required to start building your application on a specific version of Across.
@@ -20,7 +21,7 @@ If a version is omitted, the version from the BOM will be used.
         <dependency>
             <groupId>com.foreach.across</groupId>
             <artifactId>platform-bom</artifactId>
-            <version>2.1.3.RELEASE</version>
+            <version>{across-platform-current-release}.RELEASE</version>
             <type>pom</type>
             <scope>import</scope>
         </dependency>
@@ -42,7 +43,7 @@ If a version is omitted, the version from the BOM will be used.
 
 == Current Across Platform release
 
-xref:platform/2.1.3.adoc[Across Platform 2.1.3] is the current version we advise new projects to use.
+xref:platform/{across-platform-current-release}.adoc[Across Platform {across-platform-current-release}] is the current version we advise new projects to use.
 
 == Across Core artifacts
 

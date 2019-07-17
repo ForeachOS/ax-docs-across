@@ -1,0 +1,5 @@
+* xref:platform/2.1.4.adoc[2.1.4]
+* xref:platform/2.1.3.adoc[2.1.3]
+* xref:platform/2.1.2.adoc[2.1.2]
+* xref:platform/2.1.1.adoc[2.1.1]
+* xref:platform/2.1.0.adoc[2.1.0]

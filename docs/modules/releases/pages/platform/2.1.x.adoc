@@ -1,0 +1,5 @@
+= Across Platform 2.1.x release notes
+
+Select the specific platform version:
+
+include::{partialsdir}/releases-2.1.x.adoc[]

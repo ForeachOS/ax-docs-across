@@ -1,6 +1,7 @@
 = Across Platform 2.1.4
+:page-partial:
 
-:across-platform-version: 2.1.4-SNAPSHOT
+:across-platform-version: 2.1.4.RELEASE
 :spring-platform-version: Brussels-SR17
 :spring-platform-url: https://docs.spring.io/platform/docs/Brussels-SR17/reference/htmlsingle/#appendix-dependency-versions
 :across-version: 3.2.0.RELEASE
@@ -24,22 +25,24 @@
 :asm-ehcache-module-version: 1.0.1.RELEASE
 :asm-spring-mobile-module-version: 2.0.0.RELEASE
 :asm-application-info-module-version: 1.0.1.RELEASE
-:asm-bootstrap-ui-module-version: 2.1.1.RELEASE
-:asm-admin-web-module-version: 3.1.0.RELEASE
-:asm-file-manager-module-version: 1.4.0-SNAPSHOT
-:asm-spring-batch-module-version: 1.0.1.RELEASE
+:asm-bootstrap-ui-module-version: 2.2.1.RELEASE
+:asm-admin-web-module-version: 3.1.1.RELEASE
+:asm-file-manager-module-version: 1.4.0.RELEASE
+:asm-spring-batch-module-version: 1.0.2.RELEASE
 :asm-properties-module-version: 1.1.1.RELEASE
-:asm-entity-module-version: 3.3.0-SNAPSHOT
-:asm-spring-security-acl-module-version: 3.0.1.RELEASE
-:asm-user-module-version: 3.1.0.RELEASE
+:asm-entity-module-version: 3.3.0.RELEASE
+:asm-spring-security-acl-module-version: 3.0.2.RELEASE
+:asm-user-module-version: 3.1.1.RELEASE
 :asm-ldap-module-version: 1.0.0.RELEASE
-:asm-oauth2-module-version: 2.1.0.RELEASE
-:asm-web-cms-version: 0.0.6.RELEASE
-:asm-dynamic-forms-version: 0.0.2.RELEASE
-:ais-image-server-version: 5.0.0-SNAPSHOT
+:asm-oauth2-module-version: 2.1.1.RELEASE
+:asm-web-cms-version: 0.0.7.RELEASE
+:asm-dynamic-forms-version: 0.0.3.RELEASE
+:ais-image-server-version: 5.0.0.RELEASE
+:ais-image-server-url: https://repository.foreach.be/projects/image-server/5.0.0.RELEASE/reference/
 
-Released on January 8th, 2019.
-This is a feature upgrade, additionally including security patches and several bugfixes.
+Released on July 17th, 2019.
+This is a feature and dependency upgrade, additionally including security patches and several bugfixes.
+See the separate module release notes for detailed information.
 
 == Maven artifact
 [source,xml,indent=0]
@@ -72,21 +75,49 @@ This is a feature upgrade, additionally including security patches and several b
 |3.1.2.RELEASE
 |xref:core-artifacts/releases-3.x.adoc#3-2-0[3.2.0.RELEASE]
 
+|AdminWebModule
+|3.1.0.RELEASE
+|xref:admin-web-module::releases/3.x.adoc#3-1-1[3.1.1.RELEASE]
+
+|BootstrapUiModule
+|2.1.1.RELEASE
+|xref:bootstrap-ui-module::releases/2.x.adoc#2-2-1[2.2.1.RELEASE]
+
 |DynamicFormsModule
 |0.0.2.RELEASE
-|xref:dynamic-forms-module::releases/0.0.x.adoc#0-0-3[0.0.3-SNAPSHOT]
+|xref:dynamic-forms-module::releases/0.0.x.adoc#0-0-3[0.0.3.RELEASE]
 
 |EntityModule
 |3.2.0.RELEASE
-|xref:3.2.0@entity-module::releases/3.x.adoc#3-3-0[3.3.0-SNAPSHOT]
+|xref:entity-module::releases/3.x.adoc#3-3-0[3.3.0.RELEASE]
 
 |FileManagerModule
 |1.3.0.RELEASE
-|xref:file-manager-module::releases/1.x.adoc#1-4-0[1.4.0-SNAPSHOT]
+|xref:file-manager-module::releases/1.x.adoc#1-4-0[1.4.0.RELEASE]
+
+|OAuth2Module
+|2.1.0.RELEASE
+|xref:oauth2-module::releases/2.x.adoc#2-1-1[2.1.1.RELEASE]
+
+|SpringBatchModule
+|1.0.1.RELEASE
+|xref:spring-batch-module::releases/1.x.adoc#1-0-2[1.0.2.RELEASE]
+
+|SpringSecurityAclModule
+|3.0.1.RELEASE
+|xref:spring-security-acl-module::releases/3.x.adoc#3-0-2[3.0.2.RELEASE]
+
+|UserModule
+|3.1.0.RELEASE
+|xref:user-module::releases/3.x.adoc#3-1-1[3.1.1.RELEASE]
+
+|WebCmsModule
+|0.0.6.RELEASE
+|xref:web-cms-module::releases/0.0.x.adoc#0-0-7[0.0.7.RELEASE]
 
 |ImageServer
 |4.0.0.RELEASE
-|5.0.0-SNAPSHOT
+|{ais-image-server-url}[5.0.0.RELEASE]
 
 |===
 
@@ -201,7 +232,8 @@ Additionally Across platform BOM defines and overrides the following dependencie
 [[migration-guides]]
 == Migration guides
 
-Platform 2.1.4 should be a drop-in upgrade in most cases.
+Even though some core (web related) features have been refactored, platform 2.1.4 should be a drop-in upgrade in most cases.
+
 Upgrading only individual modules might result in breaking changes and is not advised.
 
 No migration guide is available.
