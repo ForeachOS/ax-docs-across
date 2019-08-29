@@ -124,7 +124,7 @@ public class StartupLogger {
     public void buildMainMenu(DebugMenuEvent event) {  # <2>
         event.builder()
                 .group("/across-docs", "Documentation").and()  # <3>
-                .item("/across-docs/site", "Across documentation", "https://across-docs.foreach.be")  # <4>
+                .item("/across-docs/site", "Across documentation", "https://docs.across.dev")  # <4>
                 .and()
                 .changeItemPath("/across", "/across-docs");  # <5>
     }
