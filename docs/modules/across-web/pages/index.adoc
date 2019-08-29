@@ -22,7 +22,7 @@ On top of that, the out-of-the-box Spring MVC functionality is extended in sever
  * auto configuration of static resources with <<client-side-caching,client-side caching>> and <<resource-url-versioning,url versioning>>
 
 AcrossWebModule is not a Web CMS, it only supplies some common infrastructure generally useful when building web applications.
-Other modules like link:https://across.foreach.be/modules/WebCmsModule[WebCmsModule] provide CMS features on top of Across Web.
+Other modules like link:https://across.dev/modules/WebCmsModule[WebCmsModule] provide CMS features on top of Across Web.
 
 [#artifact]
 == Artifact
