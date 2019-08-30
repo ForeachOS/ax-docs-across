@@ -1,10 +1,10 @@
 = Across Platform 2.1.5
 :page-partial:
 
-:across-platform-version: 2.1.5-SNAPSHOT
+:across-platform-version: 2.1.5.RELEASE
 :spring-platform-version: Brussels-SR17
 :spring-platform-url: https://docs.spring.io/platform/docs/Brussels-SR17/reference/htmlsingle/#appendix-dependency-versions
-:across-version: 3.2.1-SNAPSHOT
+:across-version: 3.2.1.RELEASE
 :across-autoconfigure-version: 1.0.2.RELEASE
 :foreach-common-version: 1.1
 :commons-collections-version: 4.1
@@ -25,12 +25,12 @@
 :asm-ehcache-module-version: 1.0.1.RELEASE
 :asm-spring-mobile-module-version: 2.0.0.RELEASE
 :asm-application-info-module-version: 1.0.1.RELEASE
-:asm-bootstrap-ui-module-version: 2.2.1.RELEASE
-:asm-admin-web-module-version: 3.2.0-SNAPSHOT
+:asm-bootstrap-ui-module-version: 2.2.2.RELEASE
+:asm-admin-web-module-version: 3.2.0.RELEASE
 :asm-file-manager-module-version: 1.4.0.RELEASE
 :asm-spring-batch-module-version: 1.0.2.RELEASE
 :asm-properties-module-version: 1.1.1.RELEASE
-:asm-entity-module-version: 3.4.0-SNAPSHOT
+:asm-entity-module-version: 3.4.0.RELEASE
 :asm-spring-security-acl-module-version: 3.0.2.RELEASE
 :asm-user-module-version: 3.1.1.RELEASE
 :asm-ldap-module-version: 1.0.0.RELEASE
@@ -73,19 +73,19 @@ See the separate module release notes for detailed information.
 
 |Across
 |3.2.0.RELEASE
-|xref:core-artifacts/releases-3.x.adoc#3-2-1[3.2.1-SNAPSHOT]
+|xref:core-artifacts/releases-3.x.adoc#3-2-1[{across-version}]
 
 |AdminWebModule
 |3.1.1.RELEASE
-|xref:3.2.0-SNAPSHOT@admin-web-module::releases/3.x.adoc#3-2-0[3.2.0-SNAPSHOT]
+|xref:3.2.0@admin-web-module::releases/3.x.adoc#3-2-0[{asm-admin-web-module-version}]
 
 |BootstrapUiModule
 |2.2.1.RELEASE
-|xref:2.2.2-SNAPSHOT@bootstrap-ui-module::releases/2.x.adoc#2-2-2[2.2.2-SNAPSHOT]
+|xref:2.2.2@bootstrap-ui-module::releases/2.x.adoc#2-2-2[{asm-bootstrap-ui-module-version}]
 
 |EntityModule
 |3.3.0.RELEASE
-|xref:3.4.0-SNAPSHOT@entity-module::releases/3.x.adoc#3-4-0[3.4.0-SNAPSHOT]
+|xref:3.4.0@entity-module::releases/3.x.adoc#3-4-0[{asm-entity-module-version}]
 
 |===
 
