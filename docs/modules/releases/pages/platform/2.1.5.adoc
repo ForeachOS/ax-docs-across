@@ -41,7 +41,7 @@
 :ais-image-server-url: https://repository.foreach.be/projects/image-server/5.0.0.RELEASE/reference/
 
 Released on August 30th, 2019.
-This is a feature and dependency upgrade, additionally including security patches and several bugfixes.
+This is a feature upgrade.
 See the separate module release notes for detailed information.
 
 == Maven artifact
