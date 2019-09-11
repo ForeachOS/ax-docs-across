@@ -6,4 +6,4 @@ include::{partialsdir}/releases-2.1.x.adoc[]
 
 == Older releases
 
-Documentation for older releases can be found https://across-docs.foreach.be/across-platform/[here].
+Documentation for older releases can be found https://docs.across.dev/across-platform/[here].

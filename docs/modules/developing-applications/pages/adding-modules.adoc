@@ -17,7 +17,7 @@ In this section, a module will be added to the application, by specifying it in 
 In this example, `DebugWebModule` will be added to the application.
 `DebugWebModule` enables the user/developer to check various application settings.
 // TODO specify the across-site url
-See the https://across-docs.foreach.be/across-standard-modules/DebugWebModule/2.0.0.RELEASE/reference/[reference documentation] for more information.
+See the https://docs.across.dev/across-standard-modules/DebugWebModule/2.0.0.RELEASE/reference/[reference documentation] for more information.
 Before the module can be added to the application, the jar library needs to be present in the project.
 To do so, we'll specify the dependency in the `pom.xml`.
 

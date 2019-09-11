@@ -1,6 +1,6 @@
 :across-version: 3.1.1.RELEASE
 :across-autoconfigure-version: 1.0.2.RELEASE
-:across-url: https://across.foreach.be
+:across-url: https://across.dev
 :spring-url: http://projects.spring.io/spring-framework/
 :spring-data-url: http://projects.spring.io/spring-data/
 :spring-batch-url: http://projects.spring.io/spring-batch/
@@ -8,13 +8,13 @@
 :spring-docs: https://docs.spring.io/spring/docs/4.3.20.RELEASE/spring-framework-reference/htmlsingle/
 :spring-boot-docs: https://docs.spring.io/spring-boot/docs/1.5.17.RELEASE/reference/htmlsingle/
 :commons-fileupload-url: http://commons.apache.org/proper/commons-fileupload/
-:platform-bom-url: https://across.foreach.be/modules
-:url-AdminWebModule: https://across.foreach.be/modules/AdminWebModule
-:url-DebugWebModule: https://across.foreach.be/modules/DebugWebModule
-:url-AcrossHibernateModule: https://across.foreach.be/modules/AcrossHibernateJpaModule
-:url-BootstrapUiModule: https://across.foreach.be/modules/BootstrapUiModule
-:url-EntityModule: https://across.foreach.be/modules/EntityModule
-:url-SpringSecurityModule: https://across.foreach.be/modules/SpringSecurityModule
+:platform-bom-url: https://across.dev/modules
+:url-AdminWebModule: https://across.dev/modules/AdminWebModule
+:url-DebugWebModule: https://across.dev/modules/DebugWebModule
+:url-AcrossHibernateModule: https://across.dev/modules/AcrossHibernateJpaModule
+:url-BootstrapUiModule: https://across.dev/modules/BootstrapUiModule
+:url-EntityModule: https://across.dev/modules/EntityModule
+:url-SpringSecurityModule: https://across.dev/modules/SpringSecurityModule
 :git-across-docs: https://github.com/ForeachOS/ax-docs-across
 :git-across-autoconfigure: https://bitbucket.org/beforeach/across-autoconfigure
 

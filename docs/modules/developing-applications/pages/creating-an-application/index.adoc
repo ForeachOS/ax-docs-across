@@ -14,7 +14,7 @@ To get started building applications using Across you need at least Java 8 and h
 
 To generate an Across application, you can use the Across Initializr.
 
-Go to http://start-across.foreach.be/[start-across.foreach.be] and select `Blank Across application without any modules` under `Configuration Presets`.
+Go to https://start.across.dev/[start.across.dev] and select `Blank Across application without any modules` under `Configuration Presets`.
 
 In the `Selected modules and options` check `include a default message source`.
 
