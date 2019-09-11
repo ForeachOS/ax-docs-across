@@ -1,5 +1,46 @@
 = Across Platform 2.1.x release notes
+:across-platform-current-release: 2.1.5
+
+NOTE: Across Platform 2.1.x is the last series to provide the separate Platform BOM that projects should use.
+As of the 5.x series projects should use one of xref:releases/index.adoc[the newer artifacts].
+
+== Version overview
 
 Select the specific platform version:
 
 include::{partialsdir}/releases-2.1.x.adoc[]
+
+== Using the Platform BOM
+
+Using the BOM can be done by including it in the `dependencyManagement` section of your Maven build file.
+Dependencies known in the platform BOM do not need a version element to be specified.
+If a version is omitted, the version from the BOM will be used.
+
+[source,xml,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+<!-- Include the platform BOM with scope import -->
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.foreach.across</groupId>
+            <artifactId>platform-bom</artifactId>
+            <version>{across-platform-current-release}.RELEASE</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
+<!-- Specific dependencies do not need a version -->
+<dependencies>
+    <dependency>
+        <groupId>com.foreach.across</groupId>
+        <artifactId>across-autoconfigure</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>com.foreach.across.modules</groupId>
+        <artifactId>admin-web-module</artifactId>
+    </dependency>
+</dependencies>
+----

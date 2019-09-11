@@ -16,8 +16,8 @@
 === Across Web
 
 * The standard `ViewElement` and `ViewElementBuilder` have been refactored
-** `ViewElement` methods are chainable by default
-** custom implementations should use one of the 3 base classes to ensure chainability: `AbstractContainerViewElement`, `AbstractNodeViewElement` or `AbstractVoidNodeViewElement`
-** a `ViewElement` for a HTML5 tag can be created using the factory methods on `HtmlViewElements`
-** due this refactoring a `NodeViewElement` is no longer a `ContainerViewElement` (but an `AbstractContainerViewElement`), code should be adjusted accordingly
+//** `ViewElement` methods are chainable by default
+//** custom implementations should use one of the 3 base classes to ensure chainability: `AbstractContainerViewElement`, `AbstractNodeViewElement` or `AbstractVoidNodeViewElement`
+//** a `ViewElement` for a HTML5 tag can be created using the factory methods on `HtmlViewElements`
+//** due this refactoring a `NodeViewElement` is no longer a `ContainerViewElement` (but an `AbstractContainerViewElement`), code should be adjusted accordingly
 * several deprecated classes have been removed: `AcrossDynamicServletConfigurer`

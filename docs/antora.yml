@@ -1,6 +1,6 @@
 name: across
 title: Across Platform
-version: master
+version: '5.0.0-SNAPSHOT'
 nav:
 - modules/ROOT/nav.adoc
 - modules/releases/nav.adoc

@@ -1,5 +1,5 @@
 = Across Platform Releases
-:across-platform-current-release: 2.1.5
+:across-platform-current-release: 5.0.0
 
 Across Platform is a so called bill of material POM providing a curated list of Across related dependencies, including all standard modules.
 Using this BOM pom is all that is required to start building your application on a specific version of Across.
@@ -43,7 +43,7 @@ If a version is omitted, the version from the BOM will be used.
 
 == Current Across Platform release
 
-xref:platform/{across-platform-current-release}.adoc[Across Platform {across-platform-current-release}] is the current version we advise new projects to use.
+xref:platform/5.x/{across-platform-current-release}.adoc[Across Platform {across-platform-current-release}] is the current version we advise new projects to use.
 
 == Across Core artifacts
 

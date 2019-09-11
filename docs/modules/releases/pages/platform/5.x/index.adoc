@@ -1,0 +1,5 @@
+= Across Platform 5.x release notes
+
+Select the specific platform version:
+
+include::{partialsdir}/releases-5.x.adoc[]
