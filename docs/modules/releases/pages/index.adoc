@@ -20,7 +20,7 @@ If a version is omitted, the version from the BOM will be used.
     <dependencies>
         <dependency>
             <groupId>com.foreach.across</groupId>
-            <artifactId>platform-bom</artifactId>
+            <artifactId>across-platform-dependencies</artifactId>
             <version>{across-platform-current-release}.RELEASE</version>
             <type>pom</type>
             <scope>import</scope>

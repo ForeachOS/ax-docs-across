@@ -55,7 +55,7 @@ This is the first release introducing the new `across-application-parent` and `a
     <dependencies>
         <dependency>
             <groupId>com.foreach.across</groupId>
-            <artifactId>platform-bom</artifactId>
+            <artifactId>across-core-dependencies</artifactId>
             <version>{across-platform-version}</version>
             <type>pom</type>
             <scope>import</scope>
