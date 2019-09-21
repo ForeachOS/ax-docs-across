@@ -6,12 +6,14 @@
 === Core dependency upgrades
 
 * Spring Framework 5.1.9
-* Spring Boot 2.1.7
+* Spring Boot 2.1.8
 
 === Across Core
 
 * `across.configuration` has been dropped in favour of `across-configuration.yml` which allows more advanced configuration
 * several deprecated classes have been removed: `HasSchemaConfiguration`
+* the ability to extend existing module configurations has been improved
+** `@ModuleConfiguration` classes can now be added either before or after the initial module configuration, making it easier to override bean definitions
 
 === Across Web
 
