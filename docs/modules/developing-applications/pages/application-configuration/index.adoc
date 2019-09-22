@@ -1,0 +1,64 @@
+= Application configuration
+
+[abstract]
+--
+In this section, you will:
+
+* [*] Get to know the application.yml file.
+* [*] Use the @ConfigurationProperties annotation.
+* [*] Use profiles to simulate different application environments.
+--
+
+[[application-yml]]
+== application.yml
+
+We will start this example by adding an entry to the `application.yml` file.
+This YAML file holds all configuration values for a specific application.
+
+Place the following snippet in the file.
+
+[source,yaml,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+applicationKey: 73RNNJIJFN83N3R3NKFNK
+----
+
+We are defining a configuration item with name `applicationKey` and value `73RNNJIJFN83N3R3NKFNK`.
+
+To use this configuration item, we can use the `@Value` annotation in our class.
+Modify the `StartupLogger` class to the one below:
+
+.A component which displays a configuration value!
+[source,java,indent=0]
+----
+@Component
+@Slf4j
+public class StartupLogger {
+
+    @Value( "${applicationKey}" ) # <1>
+    private String applicationKey;
+
+    @Bean
+    public Void dummyBean() {
+        LOG.info( "Your application key is: {}", applicationKey);
+        return null;
+    }
+}
+----
+<1> The `@Value` annotation can be used to perform expression based dependency injection.
+In combination with the property syntax or the Spring Expression Language (SpEL), it can be used to fetch properties from a configuration file or beans.
+
+Run the application.
+
+----
+$ mvn spring-boot:run
+----
+
+In the console you should see the following:
+
+----
+INFO --- [ost-startStop-1] c.e.demo.application.StartupLogger       : Your application key is: 73RNNJIJFN83N3R3NKFNK
+----
+
+Next up, you will see how we can use `@ConfigurationProperties`.
+This is a more structured way of defining your configuration values.

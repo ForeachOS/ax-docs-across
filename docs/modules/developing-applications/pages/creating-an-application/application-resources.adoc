@@ -1,0 +1,120 @@
+= Application resources
+
+Resources are non-Java class files that are bundled alongside the classes in the same JAR file.
+In the <<layout,file and folder layout>> above you can see the resource files are present in a physical `resources` folder.
+This is a standard convention most (Maven or Gradle based) Java projects use.
+
+Typical resource files include:
+
+* application configuration files (like `application.yml`, `logback.xml`)
+* static web resources like css and javascript files
+* view templates (like html, xml) used for rendering output
+* resource bundles for xref:developing-modules:messages.adoc[localisation and translation]
+
+Across modules often have their own associated resources.
+In order to avoid conflicts between modules, Across encourages certain conventions when organizing your resource files.
+A core element is that every module should have its own unique `resources key` for grouping its resources.
+This key is often used as the name of a parent folder of the actual resource file.
+
+Using the conventions correctly avoids conflicts between modules and enhances the xref:development-mode.adoc[developer experience].
+See also the chapter on xref:developing-modules/creating-a-module/project-structure.adoc#module-resources[Module resoures].
+
+Our sample application contains 2 different types of resources:
+
+* top-level application resources (configuration files)
+* Application Module resources (message code resource bundle)
+
+.Resources in the sample project
+----
+src
+├── main
+│   ├── ...
+│   └── resources
+│       │   └── messages # <1>
+│       │       └── demo # <1>
+│       │           └── default.properties # <1>
+│       ├── application.yml # <2>
+│       ├── application-dev.yml # <2>
+│       └── application-prod.yml # <2>
+...
+----
+
+<1> `default.properties` respresent a resource bundle with message codes that are associated with the Application Module.
+The root folder `messages` is used for all message resource bundle locations.
+The parent folder `demo` is the resources key for the Application Module, attaching these resources to that specific module.
+<2> The `application-*.yml` files contain configuration settings of the application.
+These are by convention top-level resources.
+
+== Adding a resource file
+
+Let's change our sample controller to use a HTML template file instead of writing the response from code directly.
+
+Across Web enables support for using https://www.thymeleaf.org[Thymeleaf] for your view templates, so we'll be using that.
+
+Change the source code of the sample web controller:
+
+.com.example.demo.application.SampleController.java
+[source,java,indent=0]
+----
+@Controller
+public class SampleController {
+    @GetMapping("/applicationKey") # <1>
+    public String applicationKey(Model model) { # <2>
+        model.addAttribute("applicationKey", "DEMO");
+        return "th/demo/applicationKey"; # <1>
+    }
+}
+----
+
+<1> We remove the `@ResponseBody` which implies that the `String` return value of our controller method is now the name of the view that should be rendered.
+In this case the name is `th/demo/applicationKey` which is the path to our Thymeleaf template.
+<2> Instead of rendering the entire message, we will pass the application key to the view template by putting it on the `Model`.
+The `Model` (MVC) is the way to pass attributes and data between controller and view.
+All this is standard Spring MVC functionality.
+
+After changing controller code, add the following template file in the right location:
+
+.classpath:views/th/demo/applicationKey.html
+[source,java,indent=0]
+----
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head><title>Application Key</title></head>
+<body>
+The application key is: <strong th:text="${applicationKey}">APPLICATION KEY</strong> # <1>
+</body>
+</html>
+----
+
+<1> Instead of plain text we now return valid HTML.
+We use the `th:text` attribute to replace the content of the `<strong>` element with the value of the `applicationKey` attribute on the `Model`.
+
+Your project layout should now look like:
+
+----
+src
+├── main
+│   ├── java
+│   │   └── com
+│   │       └── example
+│   │           ├── demo
+│   │           │   └── application
+│   │           │       └── SampleController.java
+│   │           ...
+│   └── resources
+│       │   ├── views
+│       │   │   └── th
+│       │   │       └── demo
+│       │   │           └── applicationKey.html
+│       │   ...
+│       ...
+...
+----
+
+NOTE: Across Web ensures that any view name starting with `th/` will look for a Thymeleaf template with `.html` file extension matching that view name in the root `views` folder.
+
+Restart the application and when you point your browser to http://localhost:8080/applicationKey you should see the processed markup from the template.
+
+image::applicationKey-thymeleaf.png[The application key controller result.]
+
+== Next step
+The section on xref:application-configuration.adoc[application configuration] extends our sample controller to display values from the configuration resources.

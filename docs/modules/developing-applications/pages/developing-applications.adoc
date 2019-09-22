@@ -1,0 +1,3 @@
+= Developing Across applications
+
+include::ROOT:partial$missing-docs.adoc[]

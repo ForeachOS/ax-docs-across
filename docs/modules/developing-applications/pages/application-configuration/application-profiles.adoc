@@ -1,0 +1,92 @@
+= Application profiles
+
+In the previous example we created a configuration item `applicationKey` which holds the value `73RNNJIJFN83N3R3NKFNK`.
+
+But what needs to happen when this value is different between environments?
+For example in development you might want to use `DEV:487FEF7E8F7E8F7E8` whereas in production you want the value `PROD:FEU4349323FJ83NF`.
+
+To achieve this, you can use profiles and the `@Profile` annotation.
+
+Place the following configuration items anywhere in the `application-dev.yml` and `application-prod.yml` files.
+
+.application-dev.yml
+[source,yaml,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+applicationKey: 'DEV:487FEF7E8F7E8F7E8'
+----
+
+.application-prod.yml
+[source,yaml,indent=0]
+[subs="verbatim,quotes,attributes"]
+----
+applicationKey: 'PROD:FEU4349323FJ83NF'
+----
+
+Run the application.
+
+----
+$ mvn spring-boot:run
+----
+
+You should see the following in your console:
+
+----
+INFO --- [ost-startStop-1] c.e.demo.application.StartupLogger       : Your application key is: 73RNNJIJFN83N3R3NKFNK
+----
+
+****
+*Why is this?*
+
+You specified configuration values in several configuration files, but you did not specify which profile needs to be active.
+This can be done by specifying the `spring.profiles.active` property when starting the application.
+
+A hint was also in the console:
+
+----
+INFO --- [  restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication with PID 133348
+INFO --- [  restartedMain] com.example.demo.DemoApplication         : No active profile set, falling back to default profiles: default
+----
+****
+
+Let's fix this and start our application with the `dev` profile.
+
+----
+$ mvn spring-boot:run -Dspring-boot.run.profiles=dev
+----
+
+WARNING: Because we are running the application with the spring-boot-maven-plugin, the parameter that should be passed is actually `spring-boot.run.profiles`.
+
+Alterntatively, an environment variable could be used instead:
+
+----
+$ SPRING_PROFILES_ACTIVE=dev mvn spring-boot:run
+----
+
+TIP: You would get the same behaviour when using the following command line in case of an executable jar:
+
+----
+$ java -jar target/demo.jar -Dspring.profiles.active=dev
+----
+
+In the console you should now see:
+
+----
+INFO --- [  restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication with PID 126896
+INFO --- [  restartedMain] com.example.demo.DemoApplication         : The following profiles are active: dev
+...
+INFO --- [ost-startStop-1] c.e.demo.application.StartupLogger       : Your application key is: DEV:487FEF7E8F7E8F7E8
+----
+
+For production, the command line would be:
+----
+$ java -jar target/demo.jar -Dspring.profiles.active=prod
+----
+
+Note that it's also possible to combine profiles, the following would activate the `dev` profile as well as the `test-data` profile.
+
+----
+$ java -jar target/demo.jar -Dspring.profiles.active=dev,test-data
+----
+
+Read the https://docs.spring.io/spring-boot/docs/1.5.10.RELEASE/reference/html/boot-features-profiles.html[Spring Boot Profiles] documentation for more configuration options.

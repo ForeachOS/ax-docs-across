@@ -1,10 +1,13 @@
 = Across Application Descriptor
 
+[abstract]
+--
 On this page, you will:
 
 * [*] Learn about Across Application and Module.
 * [*] Learn what the Across Application Descriptor is.
 * [*] Get some background on the relation between Across and Spring.
+--
 
 == Application and Modules
 

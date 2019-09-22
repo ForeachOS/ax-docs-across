@@ -1,10 +1,13 @@
 = Adding modules
 
+[abstract]
+--
 On this page, you will learn:
 
 * [*] How to add a standard and custom module to an application.
 * [*] How to add a module to the local maven repository.
 * [*] How to define when a module should be bootstrapped into the application.
+--
 
 Thus far, we've learned about our application descriptor, project structure and application configuration.
 In the following sections we'll start adding additional modules in various use cases.
@@ -183,97 +186,3 @@ INFO --- [ost-startStop-1] c.f.a.s.m.d.c.DummyModuleConfiguration   : DummyModul
 ----
 <1> The custom module has been bootstrapped into the application.
 <2> The DummyModule simply prints an additional log message during startup.
-
-[#conditional-modules]
-== Conditional modules
-
-In the previous sections, you've learned how to add modules by using the `@AcrossApplication` annotation.
-It is also possible to specify a module by defining it as a bean.
-When a module is defined as a bean, it will be added to the ApplicationContext, but since a module always implements the `AcrossModule` interface, it will also be picked up by the `AcrossContext`.
-By using this approach, Spring annotations can be used to define when exactly the module should be created.
-In the following examples, you'll add `DebugWebModule` to the application once again, but instead of specifying the module by name, you'll add it as a bean.
-
-First off, you'll add the module when starting the application with the `dev` profile.
-
-If you haven't read about application profiles yet, take a look at xref:application-configuration.adoc#application-profiles[Application profiles].
-
-.Adding a module when the dev profile is present
-[source,java,indent=0]
-[subs="verbatim,quotes,attributes"]
-----
-@AcrossApplication( modules = { } )
-public class DemoApplication
-{
-    ...
-
-    @Bean # <1>
-    @Profile("dev") # <2>
-    public DebugWebModule debugWebModule(){
-        return new DebugWebModule();  # <3>
-    }
-}
-----
-<1> We specify the module as a bean so that it can be picked up by the AcrossContext.
-<2> We specify the `@Profile` annotation so that it is only added when the *dev* profile is active.
-<3> We return an instance that will be bootstrapped as a module.
-
-If we would now simply start up the application again, we would notice that neither `DebugWebModule` nor `AcrossWebModule` are bootstrapped into the application.
-
-.Starting the application without any profiles
-----
-...
-INFO --- [  restartedMain] com.example.demo.DemoApplication         : No active profile set, falling back to default profiles: default # <1>
-...
-INFO --- [ost-startStop-1] c.f.a.c.AcrossDynamicModulesConfigurer   : Adding package based APPLICATION module DemoApplicationModule, resources: demo, base package: com.example.demo.application
-INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : ---
-INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : AcrossContext: DemoApplication (AcrossContext-1)
-INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : Bootstrapping 2 modules in the following order: # <2>
-INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 1 - DemoApplicationModule [resources: demo]: class com.foreach.across.core.DynamicAcrossModule$DynamicApplicationModule
-INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 2 - AcrossContextPostProcessorModule [resources: AcrossContextPostProcessorModule]: class com.foreach.across.core.AcrossContextConfigurationModule
-INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : ---
-...
-----
-<1> We started the application without any profile, so only the 'default' profile is present.
-<2> Neither DebugWebModule nor AcrossWebModule have been bootstrapped.
-
-If we would then start up the application with the `dev` profile, these modules will be bootstrapped once again.
-
-`$ mvn spring-boot:run -Dspring-boot.run.profiles=dev`
-
-.Starting the application with the dev profile
-----
-...
-INFO --- [  restartedMain] com.example.demo.DemoApplication         : The following profiles are active: dev # <1>
-...
-INFO --- [ost-startStop-1] c.f.a.c.AcrossDynamicModulesConfigurer   : Adding package based APPLICATION module DemoApplicationModule, resources: demo, base package: com.example.demo.application
-INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : ---
-INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : AcrossContext: DemoApplication (AcrossContext-1)
-INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : Bootstrapping 4 modules in the following order: # <2>
-INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 1 - AcrossWebModule [resources: ]: class com.foreach.across.modules.web.AcrossWebModule
-INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 2 - DebugWebModule [resources: debugweb]: class com.foreach.across.modules.debugweb.DebugWebModule
-INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 3 - DemoApplicationModule [resources: demo]: class com.foreach.across.core.DynamicAcrossModule$DynamicApplicationModule
-INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : 4 - AcrossContextPostProcessorModule [resources: AcrossContextPostProcessorModule]: class com.foreach.across.core.AcrossContextConfigurationModule
-INFO --- [ost-startStop-1] c.f.a.c.c.bootstrap.AcrossBootstrapper   : ---
-...
-----
-<1> We have started the application with the `dev` profile.
-<2> `DebugWebModule` and `AcrossWebModule` are bootstrapped as well.
-
-.Adding a module based on configured properties
-[source,java,indent=0]
-[subs="verbatim,quotes,attributes"]
-----
-@AcrossApplication( modules = { } )
-public class DemoApplication
-{
-    ...
-
-    @Bean # <1>
-    @ConditionalOnProperty("dev") # <2>
-    public DebugWebModule debugWebModule(){
-        return new DebugWebModule();  # <3>
-    }
-}
-----
-
-// TODO should we add a small paragraph on when a conditional module might be handy? e.g. when you have a more complex Test Data Module, or ... ?

@@ -1,0 +1,113 @@
+= Application Module
+
+An Across application is always combination of different Across modules.
+The xref:creating-an-application/application-descriptor.adoc[Application Descriptor] describes which modules are part of the application.
+One of these modules is the *Application Module*.
+
+The Application Module contains the components that make up the application-specific functionality.
+Whereas other Across modules in your application might be shared across multiple applications (shared libraries), the application module is local to a single application.
+
+As noted in the <<layout,file and folder layout>> above, the content of the Application Module is represented by all classes in the `application` package below the package of the Application Descriptor.
+When the Application Module starts, this package will be scanned for Spring components.
+
+Like any other Across module the Application Module must have a unique name, which is generated based on the name of the Application Descriptor.
+
+Let's have a look at our sample project:
+
+* the Application Descriptor is `DemoApplication`
+* the package of the Application Descriptor is `com.example.demo`
+* as a result:
+** the components of the Application Module should be in `com.example.demo.application`
+** the name of the Application Module will be `DemoApplicationModule`
+** the <<application-resources,Application Module resources>> are expected to use `demo` as a folder prefix
+
+Looking back at the console output, we see the notice that the Application Module has been created and will be bootstrapped.
+
+----
+---
+AcrossContext: DemoApplication (AcrossContext-1)
+Bootstrapping 3 modules in the following order:
+1 - AcrossWebModule [resources: ]: class com.foreach.across.modules.web.AcrossWebModule
+2 - DemoApplicationModule [resources: demo]: class com.foreach.across.core.DynamicAcrossModule$DynamicApplicationModule  # <1>
+3 - AcrossContextPostProcessorModule [resources: AcrossContextPostProcessorModule]: class com.foreach.across.core.AcrossContextConfigurationModule
+---
+----
+
+<1> The automatically generated Application Module.
+
+The Application Module is one of the xref:default-modules.adoc[default application modules] and is automatically generated based on a Java package.
+Apart from that it behaves as a regular Across module.
+Refer to the chapters in xref:developing-modules:index.adoc[Developing modules] for more specific information on Across modules.
+
+== Why an Application _Module_?
+Across encourages you to bundle all functionality in separate modules to better structure your application and its dependencies.
+While the Application Module is demarcated by the single `application` Java package, the components inside it are actually loaded in a separate Across module, with all interaction and visibility benefits or limitations that implies.
+
+Bundling your components in an application module early on also makes it easier to extract them to a shared module at a later stage.
+The chapter xref:developing-modules:creating-a-module/extracting-from-application.adoc[Extracting a module from you application] explains how to do this.
+
+[WARNING]
+====
+If you are familiar with regular Spring Boot applications, it is important to note that an Across application uses a different component scanning approach.
+
+In a Spring Boot application the entire package with the `@SpringBootApplication` class will be scanned for components.
+
+An Across application does not scan the package holding the `@AcrossApplication` class but instead creates default modules based on the presence of specific child packages.
+These child packages might then be scanned for components when the corresponding module bootstraps.
+These components will be created inside said module, which is in fact a child `ApplicationContext` of the root `ApplicationContext` represented by the Across Application Descriptor.
+
+Scanning the entire package of the Application Descriptor should never be done.
+====
+
+== Adding a component
+
+Let's add a component to our sample application.
+We will add a simple web controller that prints out an _application key_ when called.
+
+Create a class `SampleController` and place it in the `application` package.
+
+.com.example.demo.application.SampleController.java
+[source,java,indent=0]
+----
+@Controller # <1>
+public class SampleController {
+    @GetMapping("/applicationKey") # <2>
+    @ResponseBody # <3>
+    public String applicationKey() {
+        return "The application key is: DEMO"; # <3>
+    }
+}
+----
+
+<1> The `@Controller` annotation is a {spring-framework-docs}#mvc-controller[Spring Web MVC] annotation marking this class as a web controller component.
+Spring MVC support is activated by Across Web.
+Please refer to the Spring MVC documentation for details on web controllers and request mappings
+<2> `@GetMapping("/applicationKey")` specifies that this method should be executed for any `GET` HTTP request to the `/applicationKey` path.
+<3> `@ResponseBody` specifies that the return value of the method is not the name of a view template but represents the entire response that should be written to the caller.
+
+Your project layout should now look like:
+
+----
+src
+├── main
+│   ├── java
+│   │   └── com
+│   │       └── example
+│   │           ├── demo
+│   │           │   └── application
+│   │           │       └── SampleController.java
+│   │           ...
+│   ...
+...
+----
+
+Run or restart the application:
+
+ $ mvn spring-boot:run
+
+Pointing your web browser to http://localhost:8080/applicationKey should yield the following output:
+
+image::applicationKey-ResponseBody.png[The application key controller result.]
+
+The Application Module will automatically scan the `com.example.demo.application` package for Spring components.
+Any classes (meta-)annotated with `@Component` (like `@Controller`) will be created.

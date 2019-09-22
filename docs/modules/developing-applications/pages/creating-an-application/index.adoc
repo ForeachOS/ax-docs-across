@@ -1,10 +1,13 @@
 [#creating-across-application]
 = Creating an Across application
 
+[abstract]
+--
 On this page, you will:
 
 * [*] Create a Blank Across project using the Across Initializr.
 * [*] Use Spring Boot Maven Runner to run the application.
+--
 
 == Prerequisites
 
