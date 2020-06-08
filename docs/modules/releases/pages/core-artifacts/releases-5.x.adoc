@@ -5,19 +5,31 @@
 
 === Core dependency upgrades
 
-* Spring Framework 5.1.9
-* Spring Boot 2.1.7
+* Spring Framework 5.1.10
+* Spring Boot 2.1.9
 
 === Across Core
 
+* an `AcrossContextInfrastructureModule` is now also added to every AcrossContext as the very first module
+** module will only bootstrap if relevant configuration is present but it can be used as a certain extension point in configurations
 * `across.configuration` has been dropped in favour of `across-configuration.yml` which allows more advanced configuration
 * several deprecated classes have been removed: `HasSchemaConfiguration`
+* the ability to extend existing module configurations has been improved
+** `@ModuleConfiguration` classes can now be added either before or after the initial module configuration using the `deferred` attribute, making it easier to override bean definitions
+** `@ModuleConfiguration` can be made optional using the `optional` attribute.
+An optional configuration will not cause the module `ApplicationContext` to be started.
+** Across modules without non-optional configurations will now get a `Skipped` bootstrap status instead of `Disabled`.
+Only the actual bootstrap of the module is skipped, for all other purposes it is an active part of the Across context.
+This allows a module to be declared which only adds configuration to other modules without starting an "empty' `ApplicationContext`.
+* a bootstrap report has been added through the `AcrossBootstrapTimer`
+** it is displayed in the logs after context start when log level `INFO` is enabled on `com.foreach.across.core.context.bootstrap.AcrossBootstrapTimer`
+
 
 === Across Web
 
 * The standard `ViewElement` and `ViewElementBuilder` have been refactored
-** `ViewElement` methods are chainable by default
-** custom implementations should use one of the 3 base classes to ensure chainability: `AbstractContainerViewElement`, `AbstractNodeViewElement` or `AbstractVoidNodeViewElement`
-** a `ViewElement` for a HTML5 tag can be created using the factory methods on `HtmlViewElements`
-** due this refactoring a `NodeViewElement` is no longer a `ContainerViewElement` (but an `AbstractContainerViewElement`), code should be adjusted accordingly
+//** `ViewElement` methods are chainable by default
+//** custom implementations should use one of the 3 base classes to ensure chainability: `AbstractContainerViewElement`, `AbstractNodeViewElement` or `AbstractVoidNodeViewElement`
+//** a `ViewElement` for a HTML5 tag can be created using the factory methods on `HtmlViewElements`
+//** due this refactoring a `NodeViewElement` is no longer a `ContainerViewElement` (but an `AbstractContainerViewElement`), code should be adjusted accordingly
 * several deprecated classes have been removed: `AcrossDynamicServletConfigurer`

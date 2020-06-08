@@ -1,6 +1,16 @@
 = Across Platform release notes
 
+NOTE: There never was a Platform release series 3 or 4.
+The versioning scheme of Across Platform and Across Core was aligned on a new 5.x series.
+
+== 5.x
+
+include::{partialsdir}/releases-5.x.adoc[]
+
 == 2.1.x
+
+WARNING: Platform 2.1.x provides the older `platform-bom` for projects to use.
+See xref:platform/2.1.x.adoc[the separate documentation for more information].
 
 include::{partialsdir}/releases-2.1.x.adoc[]
 
