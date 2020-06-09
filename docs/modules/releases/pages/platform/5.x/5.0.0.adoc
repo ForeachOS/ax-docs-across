@@ -37,8 +37,10 @@
 :asm-oauth2-module-version: 3.0.0.RELEASE
 :asm-web-cms-version: 0.1.0.RELEASE
 :asm-dynamic-forms-version: 0.1.0.RELEASE
+:asm-adminweb-themes-version: 0.0.1.RELEASE
 :ais-image-server-version: 6.0.0.RELEASE
-:ais-image-server-url: https://repository.foreach.be/projects/image-server/6.0.0.RELEASE/reference/
+//:ais-image-server-url: https://repository.foreach.be/projects/image-server/6.0.0.RELEASE/reference/
+:ais-image-server-url: http://project-docs.foreach.be/projects/image-server/6.0.0.RELEASE/reference/6.0.0.RELEASE/reference/
 
 IMPORTANT: Platform 5.0.0 is a massive upgrade with many breaking changes.
 It is also the first release using Spring Boot 2.1.
@@ -80,91 +82,91 @@ This is the first release introducing the new `across-application-parent` and `a
 
 |Across Autoconfigure
 |1.0.2.RELEASE
-|xref:across-autoconfigure::releases/releases-2.x.adoc#2-0-0[{across-version}]
+|xref:across-autoconfigure::index.adoc[{across-autoconfigure-version}]
 
 |AcrossHibernateModule
 |3.0.0.RELEASE
-|xref:hibernate-jpa-module::releases/releases-2.x.adoc#2-0-0[{across-version}]
+|xref:hibernate-jpa-module::releases/4.x.adoc#4-0-0[{asm-across-hibernate-module-version}]
 
 |SpringSecurityModule
 |3.0.2.RELEASE
-|xref:spring-security-module::releases/releases-2.x.adoc#2-0-0[{across-version}]
+|xref:spring-security-module::releases/4.x.adoc#4-0-0[{asm-spring-security-module-version}]
 
 |DebugWebModule
 |2.0.0.RELEASE
-|xref:core-artifacts/releases-2.x.adoc#2-0-0[{across-version}]
+|xref:debug-web-module::releases/3.x.adoc#3-0-0[{asm-debug-web-module-version}]
 
 |LoggingModule
 |1.1.0.RELEASE
-|xref:core-artifacts/releases-2.x.adoc#2-0-0[{across-version}]
+|xref:logging-module::releases/3.x.adoc#3-0-0[{asm-logging-module-version}]
 
 |EhCacheModule
 |1.0.1.RELEASE
-|xref:core-artifacts/releases-2.x.adoc#2-0-0[{across-version}]
+|xref:ehcache-module::releases/2.x.adoc#2-0-0[{asm-ehcache-module-version}]
 
 |SpringMobileModule
 |2.0.0.RELEASE
-|xref:core-artifacts/releases-2.x.adoc#2-0-0[{across-version}]
+|xref:spring-mobile-module::releases/3.x.adoc#3-0-0[{asm-spring-mobile-module-version}]
 
 |BootstrapUiModule
 |2.2.2.RELEASE
-|xref:bootstrap-ui-module::releases/2.x.adoc#2-2-2[{asm-bootstrap-ui-module-version}]
+|xref:bootstrap-ui-module::releases/3.x.adoc#3-0-0[{asm-bootstrap-ui-module-version}]
 
 |AdminWebModule
 |3.2.0.RELEASE
-|xref:admin-web-module::releases/3.x.adoc#3-2-0[{asm-admin-web-module-version}]
+|xref:admin-web-module::releases/4.x.adoc#4-0-0[{asm-admin-web-module-version}]
 
 |ApplicationInfoModule
 |1.0.1.RELEASE
-|xref:admin-web-module::releases/3.x.adoc#3-2-0[{asm-admin-web-module-version}]
+|xref:application-info-module::releases/2.x.adoc#2-0-0[{asm-application-info-module-version}]
 
 |EntityModule
 |3.4.0.RELEASE
-|xref:entity-module::releases/3.x.adoc#3-4-0[{asm-entity-module-version}]
+|xref:entity-module::releases/4.x.adoc#4-0-0[{asm-entity-module-version}]
 
 |SpringSecurityAclModule
 |3.0.2.RELEASE
-|xref:admin-web-module::releases/3.x.adoc#3-2-0[{asm-admin-web-module-version}]
+|xref:spring-security-acl-module::releases/4.x.adoc#4-0-0[{asm-spring-security-acl-module-version}]
 
 |PropertiesModule
 |1.1.1.RELEASE
-|xref:admin-web-module::releases/3.x.adoc#3-2-0[{asm-admin-web-module-version}]
+|xref:properties-module::releases/2.x.adoc#2-0-0[{asm-properties-module-version}]
 
 |UserModule
 |3.1.1.RELEASE
-|xref:admin-web-module::releases/3.x.adoc#3-2-0[{asm-admin-web-module-version}]
+|xref:user-module::releases/3.x.adoc#4-0-0[{asm-user-module-version}]
 
 |OAuth2Module
 |2.1.1.RELEASE
-|xref:admin-web-module::releases/3.x.adoc#3-2-0[{asm-admin-web-module-version}]
+|xref:oauth2-module::releases/3.x.adoc#3-0-0[{asm-oauth2-module-version}]
 
 |LdapModule
 |1.0.0.RELEASE
-|xref:admin-web-module::releases/3.x.adoc#3-2-0[{asm-admin-web-module-version}]
+|xref:ldap-module::releases/2.x.adoc#2-0-0[{asm-ldap-module-version}]
 
 |SpringBatchModule
 |1.0.2.RELEASE
-|xref:admin-web-module::releases/3.x.adoc#3-2-0[{asm-admin-web-module-version}]
+|xref:spring-batch-module::releases/2.x.adoc#2-0-0[{asm-spring-batch-module-version}]
 
 |FileManagerModule
 |1.4.0.RELEASE
-|xref:admin-web-module::releases/3.x.adoc#3-2-0[{asm-admin-web-module-version}]
+|xref:file-manager-module::releases/2.x.adoc#2-0-0[{asm-file-manager-module-version}]
 
 |ImageServerModules
 |5.0.0.RELEASE
-|xref:admin-web-module::releases/3.x.adoc#3-2-0[{asm-admin-web-module-version}]
+|{ais-image-server-url}[{ais-image-server-version}]
 
 |WebCmsModule
 |0.0.7.RELEASE
-|xref:admin-web-module::releases/3.x.adoc#3-2-0[{asm-admin-web-module-version}]
+|xref:web-cms-module::releases/0.1.x.adoc#0-1-0[{asm-web-cms-version}]
 
 |DynamicFormsModule
 |0.0.3.RELEASE
-|xref:admin-web-module::releases/3.x.adoc#3-2-0[{asm-admin-web-module-version}]
+|xref:dynamic-forms-module::releases/0.1.x.adoc#3-2-0[{asm-dynamic-forms-version}]
 
 |Across Bootstrap Theme
 |
-|0.0.1.RELEASE
+|{asm-adminweb-themes-version}
 
 |===
 
