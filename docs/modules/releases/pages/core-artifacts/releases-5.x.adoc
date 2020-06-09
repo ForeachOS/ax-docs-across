@@ -5,8 +5,8 @@
 
 === Core dependency upgrades
 
-* Spring Framework 5.1.10
-* Spring Boot 2.1.9
+* Spring Framework 5.1.13
+* Spring Boot 2.1.12
 
 === Across Core
 
