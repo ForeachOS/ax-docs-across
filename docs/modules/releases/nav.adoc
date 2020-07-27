@@ -2,7 +2,7 @@
 ** xref:platform/current-release.adoc[Current release]
 ** xref:platform/release-notes.adoc[Release notes]
 *** xref:platform/5.x/index.adoc[5.x]
-**** xref:platform/5.x/5.0.0.adoc[5.0.0]
+**** xref:platform/5.x/5.0.1.adoc[5.0.1]
 *** xref:platform/2.1.x.adoc[2.1.x]
 **** xref:platform/2.1.5.adoc[2.1.5]
 **** xref:platform/2.1.4.adoc[2.1.4]
