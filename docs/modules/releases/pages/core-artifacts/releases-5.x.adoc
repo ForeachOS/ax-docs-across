@@ -18,6 +18,9 @@
 * Explicitly specify `@RequestMapping("**")` in some tests, following a change in Spring Framework where `@RestController()` would match too much request patterns (https://github.com/spring-projects/spring-framework/issues/22543)
 * Improved performance in `ConfigurableAcrossContextInfo` by backing the configured modules in a `Map` instead of a `List`
 * Moved to `BeanDefinitionBuilder` instead of `new GenericBeanDefinition`
+* Properly expose factory bean definitions in `AbstractClassBasedBeanFilter` (required for lazy repositories)
+* Removed outdated cglib dependency
+* Bumped MySQL connector to 8.0.21 to follow Spring Boot Dependencies
 
 [#5-0-1]
 == 5.0.1.RELEASE
