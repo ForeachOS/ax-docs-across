@@ -5,7 +5,7 @@
 :spring-platform-version: 2.3.4.RELEASE
 :spring-platform-url: https://docs.spring.io/platform/docs/Brussels-SR17/reference/htmlsingle/#appendix-dependency-versions
 :across-version: 5.1.0.RELEASE
-:across-autoconfigure-version: 2.0.0.RELEASE
+:across-autoconfigure-version: 3.0.0.RELEASE
 :foreach-common-version: 1.1
 :commons-collections-version: 4.1
 :commons-lang-version: 3.8.1
@@ -74,7 +74,7 @@ Developers are encouraged to thoroughly read the separate module release notes a
 |xref:core-artifacts/releases-5.x.adoc#5-0-0[{across-version}]
 
 |Across Autoconfigure
-|1.0.2.RELEASE
+|2.0.0.RELEASE
 |xref:across-autoconfigure::index.adoc[{across-autoconfigure-version}]
 
 |AcrossHibernateModule

@@ -16,6 +16,8 @@
 * converted legacy `spring.http.encoding.*` to `server.servlet.*` (https://github.com/spring-projects/spring-boot/issues/18827)
 * Removed `hiddenHttpMethodFilter (has been disabled in`Spring Boot 2.2 see https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-2.2-Release-Notes)
 * Explicitly specify `@RequestMapping("**")` in some tests, following a change in Spring Framework where `@RestController()` would match too much request patterns (https://github.com/spring-projects/spring-framework/issues/22543)
+* Improved performance in `ConfigurableAcrossContextInfo` by backing the configured modules in a `Map` instead of a `List`
+* Moved to `BeanDefinitionBuilder` instead of `new GenericBeanDefinition`
 
 [#5-0-1]
 == 5.0.1.RELEASE
