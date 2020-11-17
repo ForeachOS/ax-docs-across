@@ -1,5 +1,13 @@
 = 5.x release notes
 
+[#5-0-2]
+== 5.0.2.RELEASE
+
+=== Core dependency upgrades
+
+* Spring Framework 5.1.14
+* Spring Boot 2.1.13
+
 [#5-0-1]
 == 5.0.1.RELEASE
 
