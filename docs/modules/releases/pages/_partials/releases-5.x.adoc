@@ -1,2 +1,3 @@
+* xref:platform/5.x/5.1.0.adoc[5.1.0]
 * xref:platform/5.x/5.0.2.adoc[5.0.2]
 * xref:platform/5.x/5.0.1.adoc[5.0.1]
