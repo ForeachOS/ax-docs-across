@@ -1,49 +1,48 @@
-= Across Platform 5.0.1
+= Across Platform 5.1.0
 :page-partial:
 
 :across-platform-version: 5.1.0.RELEASE
-:spring-platform-version: 2.3.4.RELEASE
+:spring-platform-version: 2.3.5.RELEASE
 :spring-platform-url: https://docs.spring.io/platform/docs/Brussels-SR17/reference/htmlsingle/#appendix-dependency-versions
 :across-version: 5.1.0.RELEASE
-:across-autoconfigure-version: 3.0.0.RELEASE
+:across-autoconfigure-version: 2.1.0.RELEASE
 :foreach-common-version: 1.1
-:commons-collections-version: 4.1
-:commons-lang-version: 3.8.1
+:commons-collections-version: 4.4
+:commons-lang-version: 3.10
 :assertj-core-version: 3.11.1
-:cglib-version: 3.1
 :ojdbc6-version: 11.2.0
 :thymeleaf-version: 3.0.11.RELEASE
 :thymeleaf-extras-springsecurity4: 3.0.4.RELEASE
 :thymeleaf-extras-java8time: 3.0.4.RELEASE
-:junit5-version: 5.4.2
-:mockito-junit5-version: 2.27.0
-:spring-test-junit5-version: 1.4.0
-:asm-across-hibernate-module-version: 4.0.0.RELEASE
-:asm-spring-security-module-version: 4.0.0.RELEASE
-:asm-debug-web-module-version: 3.0.0.RELEASE
-:asm-logging-module-version: 3.0.0.RELEASE
-:asm-ehcache-module-version: 2.0.0.RELEASE
-:asm-spring-mobile-module-version: 3.0.0.RELEASE
-:asm-application-info-module-version: 2.0.0.RELEASE
-:asm-bootstrap-ui-module-version: 3.0.0.RELEASE
-:asm-admin-web-module-version: 4.0.0.RELEASE
-:asm-file-manager-module-version: 2.0.0.RELEASE
-:asm-spring-batch-module-version: 2.0.0.RELEASE
-:asm-properties-module-version: 2.0.0.RELEASE
-:asm-entity-module-version: 4.0.0.RELEASE
-:asm-spring-security-acl-module-version: 4.0.0.RELEASE
-:asm-user-module-version: 4.0.0.RELEASE
-:asm-ldap-module-version: 2.0.0.RELEASE
-:asm-oauth2-module-version: 3.0.0.RELEASE
-:asm-web-cms-version: 0.1.0.RELEASE
-:asm-dynamic-forms-version: 0.1.0.RELEASE
+:junit5-version: 5.6.3
+:mockito-junit5-version: 3.3.3
+:asm-across-hibernate-module-version: 4.1.0.RELEASE
+:asm-spring-security-module-version: 4.1.0.RELEASE
+:asm-debug-web-module-version: 3.1.0.RELEASE
+:asm-logging-module-version: 3.1.0.RELEASE
+:asm-ehcache-module-version: 2.1.0.RELEASE
+:asm-spring-mobile-module-version: 3.1.0.RELEASE
+:asm-application-info-module-version: 2.1.0.RELEASE
+:asm-bootstrap-ui-module-version: 3.1.0.RELEASE
+:asm-admin-web-module-version: 4.1.0.RELEASE
+:asm-file-manager-module-version: 2.2.0.RELEASE
+:asm-spring-batch-module-version: 2.1.0.RELEASE
+:asm-properties-module-version: 2.1.0.RELEASE
+:asm-entity-module-version: 4.1.0.RELEASE
+:asm-spring-security-acl-module-version: 4.1.0.RELEASE
+:asm-user-module-version: 4.1.0.RELEASE
+:asm-ldap-module-version: 2.1.0.RELEASE
+:asm-oauth2-module-version: 3.1.0.RELEASE
+:asm-web-cms-version: 0.2.0.RELEASE
+:asm-dynamic-forms-version: 0.2.0.RELEASE
 :asm-adminweb-themes-version: 0.0.1.RELEASE
-:ais-image-server-version: 6.0.0.RELEASE
+:ais-image-server-version: 6.1.0.RELEASE
 //:ais-image-server-url: https://repository.foreach.be/projects/image-server/6.0.0.RELEASE/reference/
 :ais-image-server-url: http://project-docs.foreach.be/projects/image-server/6.0.0.RELEASE/reference/6.0.0.RELEASE/reference/
 
 IMPORTANT: Platform 5.1.0 is an upgrade to Spring Boot 2.3.
 Please follow the xref:migration::platform-2.1-to-5.0/index.adoc[migration guide] if you are on Across Platform 2.x
+Please follow the xref:migration::platform-5-0-to-5-1.adoc[migration guide] if you are on Across Platform 5.0.x
 Developers are encouraged to thoroughly read the separate module release notes and follow the xref:migration::platform-5-0-to-5-1.adoc[migration guide] when upgrading.
 
 == Maven artifacts
@@ -186,8 +185,6 @@ Additionally Across platform BOM defines and overrides the following dependencie
 
 | Group | Artifact | Version
 
-| cglib | cglib | {cglib-version}
-
 | com.foreach.across | across-core | {across-version}
 | com.foreach.across | across-test | {across-version}
 | com.foreach.across | across-web | {across-version}
@@ -222,8 +219,6 @@ Additionally Across platform BOM defines and overrides the following dependencie
 | com.foreach.libs | common-spring | {foreach-common-version}
 | com.foreach.libs | common-test | {foreach-common-version}
 | com.foreach.libs | common-web | {foreach-common-version}
-
-| com.github.sbrannen | spring-test-junit5 | {spring-test-junit5-version}
 
 | com.mattbertolini | liquibase-slf4j | 1.2.1
 | com.oracle | ojdbc6 | {ojdbc6-version}
