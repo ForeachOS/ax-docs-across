@@ -1,5 +1,20 @@
 = 5.x release notes
 
+[#5-2-0]
+== 5.2.0.RELEASE
+
+=== Core dependency upgrades
+
+* Spring Framework 5.3.2
+* Spring Boot 2.4.1
+
+=== Across Core
+
+* Reworked `ApplicationAutoConfigurationPackage` because of changes in `AutoConfigurationPackages`.
+Arguments are not passed as `ConstructorArgumentValues` but instead constructed via `BasePackagesBeanDefinition.getInstanceSupplier()`
+* `AcrossBootstrapConfig` now keeps a `Map` instead of a `List` to make `getModule(module)` calls faster.
+* Pinned the versionn of Liquibase to 4.2.2 due to a performance regression in the version included by Spring Boot.
+
 [#5-1-0]
 == 5.1.0.RELEASE
 

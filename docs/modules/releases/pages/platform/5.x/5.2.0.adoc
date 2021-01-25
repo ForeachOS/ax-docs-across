@@ -1,4 +1,4 @@
-= Across Platform 5.1.0
+= Across Platform 5.1.0 TODO
 :page-partial:
 
 :across-platform-version: 5.1.0.RELEASE
@@ -41,9 +41,7 @@
 :ais-image-server-url: http://project-docs.foreach.be/projects/image-server/6.0.0.RELEASE/reference/6.0.0.RELEASE/reference/
 
 IMPORTANT: Platform 5.1.0 is an upgrade to Spring Boot 2.3.
-Please follow the xref:migration::platform-2.1-to-5.0/index.adoc[migration guide] if you are on Across Platform 2.x
-Please follow the xref:migration::platform-5-0-to-5-1.adoc[migration guide] if you are on Across Platform 5.0.x
-Developers are encouraged to thoroughly read the separate module release notes and follow the xref:migration::platform-5-0-to-5-1.adoc[migration guide] when upgrading.
+Please follow the xref:migration::platform-2.1-to-5.0/index.adoc[migration guide] if you are on Across Platform 2.x Please follow the xref:migration::platform-5-0-to-5-1.adoc[migration guide] if you are on Across Platform 5.0.x Developers are encouraged to thoroughly read the separate module release notes and follow the xref:migration::platform-5-0-to-5-1.adoc[migration guide] when upgrading.
 
 == Maven artifacts
 
@@ -177,6 +175,7 @@ Developers are encouraged to thoroughly read the separate module release notes a
 //|===
 
 == Dependency versions
+
 Across Platform BOM {across-platform-version} extends the *Spring IO Platform BOM {spring-platform-version}*.
 The base list of dependencies can be found in the {spring-platform-url}[Spring IO Platform documentation].
 Additionally Across platform BOM defines and overrides the following dependencies:
