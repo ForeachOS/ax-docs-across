@@ -147,14 +147,14 @@ Add the following configuration class to the `extensions` package.
 [subs="verbatim,quotes,attributes"]
 ----
 @ModuleConfiguration(SpringSecurityModule.NAME) # <1>
-public class SecurityConfiguration {
+@EnableGlobalAuthentication
+public class SecurityConfiguration
+{
     @Autowired
-    public void configureAuthentication( AuthenticationManagerBuilder auth ) throws Exception { # <2>
+    public void configureGlobal( AuthenticationManagerBuilder auth ) { # <2>
         auth.inMemoryAuthentication()
-                .withUser( "admin" ).password( "admin" )
-                .authorities( "access administration" ).and()
-                .withUser( "user" ).password( "user" )
-                .authorities( Collections.emptyList() );
+            .withUser( "admin" ).password( "{noop}admin" )
+            .authorities( "access administration" );
     }
 }
 ----
